@@ -11,6 +11,9 @@ OLD_CXXFLAGS=$CXXFLAGS
 AC_PROG_CXX
 CXXFLAGS=$OLD_CXXFLAGS
 
+# check headers
+AC_CHECK_HEADERS
+
 # debug compilation support
 AC_MSG_CHECKING([whether to build with debug information])
 AC_ARG_ENABLE([debug],
@@ -51,8 +54,6 @@ AM_PATH_SDL($SDL_VERSION,
 )
 CPPFLAGS="$CPPFLAGS $SDL_CFLAGS"
 LIBS="$LIBS $SDL_LIBS"
-
-AC_CHECK_LIB(stdc++, main)
 
 #AC_CHECK_LIB(config, config_read, [], [
 #	echo "Error! You need to have the libconfig++ library."

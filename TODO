@@ -3,7 +3,7 @@
 - fix exit abort (ok)
 - fix memory leaks (ok)
 - comment everything, write docs, man page
-- autotools
+- autotools (ok)
 - alpha message (ok)
 - arguments
 - icon
