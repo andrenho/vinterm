@@ -1,6 +1,7 @@
 #include "font.h"
 
 #include "SDL.h"
+#include "config.h"
 
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
@@ -9,9 +10,20 @@ Font::Font()
 {
 	ch = new uint8_t*[256];
 
-	SDL_Surface* sf = SDL_LoadBMP("data/mda9.bmp");
+	SDL_Surface* sf = SDL_LoadBMP(DATADIR "/mda9.bmp");
 	if(!sf)
-		throw "Invalid font image.";
+	{
+		sf = SDL_LoadBMP("../data/mda9.bmp");
+		if(!sf)
+		{
+			sf = SDL_LoadBMP("data/mda9.bmp");
+			if(!sf)
+			{
+				fprintf(stderr, "File mda9.bmp could not be found.\n");
+				exit(1);
+			}
+		}
+	}
 
 	int x=0, y=0;
 	for(int i=0; i<256; i++)
