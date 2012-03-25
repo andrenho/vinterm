@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.68])
-AC_INIT([vinterm], [0.1.0], [http://code.google.com/p/vinterm/issues/])
+AC_INIT([vinterm], [0.2.0], [http://code.google.com/p/vinterm/issues/])
 AM_INIT_AUTOMAKE([-Wall])
 AC_CONFIG_SRCDIR([src/main.cc])
 
