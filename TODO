@@ -1,0 +1,9 @@
+- ignore ESCAPE codes (ok)
+- get correct shell (ok)
+- fix exit abort (ok)
+- fix memory leaks (ok)
+- comment everything, write docs, man page
+- autotools
+- alpha message (ok)
+- arguments
+- icon
