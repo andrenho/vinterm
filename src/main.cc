@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	Options options;
+	Options options(argc, argv);
 	Console console;
 	Terminal terminal(options, console);
 	Screen screen(options, terminal);

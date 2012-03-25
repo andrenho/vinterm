@@ -1,0 +1,26 @@
+Vintage Terminal
+----------------
+
+Use a terminal in style, like in the good old days! Vintage Terminal is a 
+terminal emulator that simulates the looks of a 1980s monitor.
+
+Vintage Terminal has the following features:
+
+  * Very basic terminal emulator support;
+  * Scaling (zoom);
+  * Has a authentic old look based on a IBM 5151 monitor.
+
+This is a very early alpha release, so is not yet for the faint of heart. USE
+AT YOUR OWN RISK.
+
+The following features are planned:
+
+  * Complete VT100 terminal support
+  * Mouse support
+  * Different colors for the monochrome monitor (ambar, blue, gray...)
+  * Different types of old monitors (DEC terminals, TV...)
+  * Ability to configure every aspect of the image
+  * Full screen
+  * MS-DOS console emulation for Windows
+
+`Vintage Terminal` has only been tested on Linux so far.

@@ -194,6 +194,7 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = gnu
+EXTRA_DIST = HACKING
 SUBDIRS = src data
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

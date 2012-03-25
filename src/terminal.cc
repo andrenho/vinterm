@@ -114,6 +114,9 @@ Terminal::PrintChar(const uint8_t c)
 		escape_mode = true;
 		escape_sequence = string(1, (char)27);
 		break;
+	case '\a':
+		cout << "Beep!" << endl; // TODO
+		break;
 	case '\t': // tab
 		AdvanceCursorX();
 		while((cursor_x % 8) != 0)
