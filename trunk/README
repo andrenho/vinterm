@@ -13,6 +13,8 @@ Vintage Terminal has the following features:
 This is a very early alpha release, so is not yet for the faint of heart. USE
 AT YOUR OWN RISK.
 
+Vintage Terminal requires the SDL library. <http://www.libsdl.org/>
+
 The following features are planned:
 
   * Complete VT100 terminal support
