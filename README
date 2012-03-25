@@ -17,6 +17,7 @@ Vintage Terminal requires the SDL library. <http://www.libsdl.org/>
 
 The following features are planned:
 
+  * Unicode support
   * Complete VT100 terminal support
   * Mouse support
   * Different colors for the monochrome monitor (ambar, blue, gray...)
