@@ -7,7 +7,7 @@
 #include "filter_scanline.h"
 #include "filter_bright.h"
 
-Options::Options(int argc, char* argv[]) 
+Options::Options(const int argc, char** const argv) 
 	: scale(1), w(80), h(25), border_x(30), border_y(40),
 	  background_color((SDL_Color) { 30, 30, 30 }),
 	  bright_color((SDL_Color) { 140, 255, 190 }),
@@ -23,7 +23,7 @@ Options::ParseArguments(int argc, char* argv[])
 	int c;
 	while(1)
 	{
-		int idx = 0;
+		int idx(0);
 		static struct option long_opt[] = {
 			{ "scale",   required_argument, 0, 0 },
 			{ "version", no_argument,       0, 0 },
@@ -44,7 +44,7 @@ Options::ParseArguments(int argc, char* argv[])
 			else
 				Help(EXIT_FAILURE);
 		case 's':
-			this->scale = strtol(optarg, NULL, 10);
+			scale = strtol(optarg, NULL, 10);
 			if(scale < 1 || scale > 6)
 			{
 				fprintf(stderr, "error: Scale must be a value between 1 and 6.\n");
@@ -91,7 +91,7 @@ Options::~Options()
 void 
 Options::Help(int status)
 {
-	FILE* f = stdout;
+	FILE* f(stdout);
 	if(status == EXIT_FAILURE)
 		f = stderr;
 

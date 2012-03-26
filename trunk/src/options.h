@@ -11,7 +11,7 @@ class Filter;
 class Options
 {
 public:
-	Options(int argc, char* argv[]);
+	Options(const int argc, char** const argv);
 	~Options();
 
 	inline const vector<Filter*>* PreFilters() const { return &prefilters; }

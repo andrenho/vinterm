@@ -6,7 +6,7 @@ using namespace std;
 #include "filter_inexact.h"
 #include "options.h"
 #include "screen.h"
-#include "terminal.h"
+#include "vt100.h"
 #include "console.h"
 
 int main(int argc, char* argv[])
@@ -18,8 +18,7 @@ int main(int argc, char* argv[])
 	}
 
 	Options options(argc, argv);
-	Console console;
-	Terminal terminal(options, console);
+	VT100 terminal(options);
 	Screen screen(options, terminal);
 
 	while(1)

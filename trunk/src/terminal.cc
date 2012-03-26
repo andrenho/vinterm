@@ -4,8 +4,8 @@
 #include <iostream>
 using namespace std;
 
-Terminal::Terminal(Options const& options, Console& console)
-	: w(80), h(25), options(options), console(console), 
+Terminal::Terminal(Options const& options, string const& term)
+	: w(80), h(25), options(options), console(new Console(term)),
 	  ch(new TerminalChar*[w]), cursor_x(0), cursor_y(0),
 	  old_cursor_x(0), old_cursor_y(0), blink_on(true), 
 	  last_blink(SDL_GetTicks()), escape_mode(false)
@@ -14,7 +14,7 @@ Terminal::Terminal(Options const& options, Console& console)
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, 
 			SDL_DEFAULT_REPEAT_INTERVAL);
 
-	for(int x=0; x<w; x++)
+	for(int x(0); x<w; x++)
 		ch[x] = new TerminalChar[h];
 
 	UpdateCursorPosition();
@@ -25,10 +25,11 @@ Terminal::Terminal(Options const& options, Console& console)
 
 Terminal::~Terminal()
 {
-	for(int x=0; x<w; x++)
+	for(int x(0); x<w; x++)
 		delete[] ch[x];
 	delete[] ch;
 	dirty.clear();
+	delete console;
 }
 
 
@@ -54,7 +55,7 @@ Terminal::ConsoleInput()
 		{
 		case SDL_KEYDOWN:
 			{
-				uint16_t c = e.key.keysym.unicode;
+				uint16_t c(e.key.keysym.unicode);
 				if(c != 0)
 					KeyPress(c);
 			}
@@ -73,7 +74,7 @@ Terminal::ConsoleOutput()
 	// read console and draw on terminal
 	string s;
 	int ret;
-	if((ret = console.ReceiveString(s)) == Console::READ_OK)
+	if((ret = console->ReceiveString(s)) == Console::READ_OK)
 	{
 		string::const_iterator it;
 		for(it = s.begin(); it != s.end(); it++)
@@ -94,7 +95,7 @@ void
 Terminal::KeyPress(uint16_t key)
 {
 	//printf("%d\n", key);
-	console.SendChar((uint8_t)key);
+	console->SendChar((uint8_t)key);
 }
 
 
@@ -192,10 +193,10 @@ Terminal::AdvanceCursorY()
 	// advance page
 	if(cursor_y >= h)
 	{
-		for(int y=1; y<h; y++)
-			for(int x=0; x<w; x++)
+		for(int y(1); y<h; y++)
+			for(int x(0); x<w; x++)
 				SetChar(x, y-1, ch[x][y].ch, ch[x][y].attr);
-		for(int x=0; x<w; x++)
+		for(int x(0); x<w; x++)
 			SetChar(x, h-1, ' ', NORMAL);
 		--cursor_y;
 	}
@@ -209,11 +210,11 @@ Terminal::UpdateCursorPosition()
 	if(cursor_x >= w || cursor_y >= h)
 		return;
 
-	TerminalChar* old = &ch[old_cursor_x][old_cursor_y];
+	TerminalChar* old(&ch[old_cursor_x][old_cursor_y]);
 	old->cursor = false;
 	SetChar(old_cursor_x, old_cursor_y, old->ch, old->attr);
 	
-	TerminalChar* _new = &ch[cursor_x][cursor_y];
+	TerminalChar* _new(&ch[cursor_x][cursor_y]);
 	_new->cursor = true;
 	SetChar(cursor_x, cursor_y, _new->ch, _new->attr);
 
