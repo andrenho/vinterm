@@ -25,12 +25,12 @@ private:
 
 	Options const& options;
 	const Font* const font;
-	Chars* chars;
-	Terminal& terminal;
+	Chars* const chars;
+	Terminal const& terminal;
 	const int border_x, border_y;
 	const int w, h;
 	SDL_Surface* screen;
-	SDL_Rect* rects;
+	SDL_Rect* const rects;
 };
 
 #endif

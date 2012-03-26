@@ -6,11 +6,9 @@
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
 Font::Font()
-	: char_w(9), char_h(14)
+	: char_w(9), char_h(14), ch(new uint8_t*[256])
 {
-	ch = new uint8_t*[256];
-
-	SDL_Surface* sf = SDL_LoadBMP(DATADIR "/mda9.bmp");
+	SDL_Surface* sf(SDL_LoadBMP(DATADIR "/mda9.bmp"));
 	if(!sf)
 	{
 		sf = SDL_LoadBMP("../data/mda9.bmp");
@@ -25,12 +23,12 @@ Font::Font()
 		}
 	}
 
-	int x=0, y=0;
-	for(int i=0; i<256; i++)
+	int x(0), y(0);
+	for(int i(0); i<256; i++)
 	{
 		ch[i] = new uint8_t[char_w*char_h];
-		for(int xx=0; xx<char_w; xx++)
-			for(int yy=0; yy<char_h; yy++)
+		for(int xx(0); xx<char_w; xx++)
+			for(int yy(0); yy<char_h; yy++)
 				ch[i][yy*char_w+xx] = (P(sf,x+xx,y+yy) == 1 ? 0 : 1);
 		x += char_w;
 		if(x >= sf->w)
@@ -46,7 +44,7 @@ Font::Font()
 
 Font::~Font()
 {
-	for(int i=0; i<256; i++)
+	for(int i(0); i<256; i++)
 		delete[] ch[i];
 	delete[] ch;
 }

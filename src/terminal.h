@@ -12,19 +12,21 @@ using namespace std;
 
 typedef enum { NORMAL=0, REVERSE, NUM_ATTRS } CharAttr;
 
+
 typedef struct TerminalChar {
 	TerminalChar() : ch(' '), attr(NORMAL), cursor(false) { }
 	uint8_t ch;
 	CharAttr attr;
 	bool cursor;
-	bool isReverse() { return attr == REVERSE; }
+	bool isReverse() const { return attr == REVERSE; }
 } TerminalChar;
+
 
 class Terminal
 {
 public:
-	Terminal(Options const& options, Console& console);
-	~Terminal();
+	explicit Terminal(Options const& options, string const& term="console");
+	virtual ~Terminal();
 
 	bool Process();
 
@@ -32,7 +34,7 @@ public:
 	bool BlinkOn() const { return blink_on; }
 
 	const int w, h;
-	set<int> dirty;
+	mutable set<int> dirty;
 
 private:
 	bool ConsoleInput();
@@ -51,8 +53,8 @@ private:
 	virtual void ExecuteEscapeSequence(string const& s);
 
 	Options const& options;
-	Console& console;
-	TerminalChar** ch;
+	Console* const console;
+	TerminalChar** const ch;
 	int cursor_x, cursor_y, old_cursor_x, old_cursor_y;
 	bool blink_on;
 	uint32_t last_blink;

@@ -11,12 +11,12 @@ public:
 		: brightness(brightness), sharpness(sharpness) { }
 	~FilterBright() { }
 
-	void Apply(SDL_Surface* sf, Options const& opt) const;
+	void Apply(SDL_Surface* const sf, Options const& opt) const;
 	inline FilterType Type() const { return PRE; }
 
 private:
-	void ApplyPixel(SDL_Surface* sf, int x, int y, int sp, 
-			uint8_t* bsf) const;
+	void ApplyPixel(SDL_Surface* const sf, const int x, const int y, 
+			const int sp, uint8_t* bsf) const;
 
 	const double brightness;
 	const int sharpness;

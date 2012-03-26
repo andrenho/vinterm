@@ -10,7 +10,7 @@ public:
 	~Font();
 
 	const int char_w, char_h;
-	uint8_t** ch;
+	uint8_t** const ch;
 };
 
 #endif

@@ -78,7 +78,7 @@ Console::SendString(const string data)
 int Console::ReceiveChar() const
 {
 	char c;
-	int nread = read(fd, &c, 1);
+	int nread(read(fd, &c, 1));
 	if(nread == -1)
 	{
 		if(errno == EAGAIN)
