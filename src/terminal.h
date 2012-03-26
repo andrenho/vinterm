@@ -38,6 +38,12 @@ public:
 
 protected:
 	virtual void ExecuteEscapeSequence(string const& s);
+	void InvalidEscapeSequence(string const& s);
+	void UpdateCursorPosition();
+	void SetChar(const int x, const int y, 
+			const uint8_t c, const CharAttr attr);
+
+	int cursor_x, cursor_y;
 
 private:
 	bool ConsoleInput();
@@ -46,18 +52,15 @@ private:
 	void KeyPress(uint16_t key);
 	void PrintString(string const& s);
 	void PrintChar(const uint8_t c);
-	void SetChar(const int x, const int y, 
-			const uint8_t c, const CharAttr attr);
 	void AddEscapeChar(const uint8_t c);
 	void AdvanceCursorX();
 	void AdvanceCursorY();
-	void UpdateCursorPosition();
 	void Blink();
 
 	Options const& options;
 	Console* const console;
 	TerminalChar** const ch;
-	int cursor_x, cursor_y, old_cursor_x, old_cursor_y;
+	int old_cursor_x, old_cursor_y;
 	bool blink_on;
 	uint32_t last_blink;
 
