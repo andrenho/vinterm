@@ -36,6 +36,9 @@ public:
 	const int w, h;
 	mutable set<int> dirty;
 
+protected:
+	virtual void ExecuteEscapeSequence(string const& s);
+
 private:
 	bool ConsoleInput();
 	bool ConsoleOutput();
@@ -50,7 +53,6 @@ private:
 	void AdvanceCursorY();
 	void UpdateCursorPosition();
 	void Blink();
-	virtual void ExecuteEscapeSequence(string const& s);
 
 	Options const& options;
 	Console* const console;
