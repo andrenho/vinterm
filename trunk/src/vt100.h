@@ -16,8 +16,13 @@ public:
 protected:
 	virtual void ExecuteEscapeSequence(string const& s);
 
+	// list of commands
+	void ChangeCursorPosition(const int x, const int y);
+	void EraseFromCursorToEndOfScreen();
+	void SetAttribute(CharAttr attr);
+
 private:
-	void ParseCommand(string const& seq, char& command, 
+	bool ParseCommand(string const& seq, char& command, 
 			vector<string> parameters);
 };
 

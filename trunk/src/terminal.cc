@@ -5,8 +5,8 @@
 using namespace std;
 
 Terminal::Terminal(Options const& options, string const& term)
-	: w(80), h(25), options(options), console(new Console(term)),
-	  ch(new TerminalChar*[w]), cursor_x(0), cursor_y(0),
+	: w(80), h(25), cursor_x(0), cursor_y(0), options(options), 
+	  console(new Console(term)), ch(new TerminalChar*[w]), 
 	  old_cursor_x(0), old_cursor_y(0), blink_on(true), 
 	  last_blink(SDL_GetTicks()), escape_mode(false)
 {
@@ -47,6 +47,8 @@ Terminal::Process()
 bool
 Terminal::ConsoleInput()
 {
+	uint16_t c;
+
 	// read chars and send them to the console
 	SDL_Event e;
 	while(SDL_PollEvent(&e))
@@ -54,8 +56,22 @@ Terminal::ConsoleInput()
 		switch(e.type)
 		{
 		case SDL_KEYDOWN:
+			switch(e.key.keysym.sym)
 			{
-				uint16_t c(e.key.keysym.unicode);
+			case SDLK_UP:
+				KeyPress(27); KeyPress('['); KeyPress('A');
+				break;
+			case SDLK_DOWN:
+				KeyPress(27); KeyPress('['); KeyPress('B');
+				break;
+			case SDLK_RIGHT:
+				KeyPress(27); KeyPress('['); KeyPress('C');
+				break;
+			case SDLK_LEFT:
+				KeyPress(27); KeyPress('['); KeyPress('D');
+				break;
+			default: 
+				c = e.key.keysym.unicode;
 				if(c != 0)
 					KeyPress(c);
 			}
@@ -106,6 +122,8 @@ Terminal::PrintString(string const& s)
 	for(it = s.begin(); it < s.end(); it++)
 		PrintChar(*it);
 }
+
+
 void 
 Terminal::PrintChar(const uint8_t c)
 {
@@ -240,7 +258,7 @@ Terminal::Blink()
 
 
 void 
-Terminal::ExecuteEscapeSequence(string const& s)
+Terminal::InvalidEscapeSequence(string const& s)
 {
 	cout << "Invalid escape sequence: ";
 	string::const_iterator it;
@@ -250,4 +268,10 @@ Terminal::ExecuteEscapeSequence(string const& s)
 		else
 			cout << *it;
 	cout << endl;
+}
+
+void
+Terminal::ExecuteEscapeSequence(string const& s)
+{
+	InvalidEscapeSequence(s);
 }
