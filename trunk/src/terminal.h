@@ -42,6 +42,8 @@ protected:
 	void UpdateCursorPosition();
 	void SetChar(const int x, const int y, 
 			const uint8_t c, const CharAttr attr);
+	void ScrollDown();
+	void ScrollUp();
 
 	int cursor_x, cursor_y;
 
@@ -54,7 +56,7 @@ private:
 	void PrintChar(const uint8_t c);
 	void AddEscapeChar(const uint8_t c);
 	void AdvanceCursorX();
-	void AdvanceCursorY();
+	void AdvanceCursorY(bool update=true);
 	void Blink();
 
 	Options const& options;

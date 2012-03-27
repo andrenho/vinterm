@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+#include "config.h"
+
 Terminal::Terminal(Options const& options, string const& term)
 	: w(80), h(25), cursor_x(0), cursor_y(0), options(options), 
 	  console(new Console(term)), ch(new TerminalChar*[w]), 
@@ -110,7 +112,10 @@ Terminal::ConsoleOutput()
 void
 Terminal::KeyPress(uint16_t key)
 {
-	//printf("%d\n", key);
+#ifdef DEBUG
+	if(options.debug_terminal)
+		printf(">> %c\n", key);
+#endif
 	console->SendChar((uint8_t)key);
 }
 
@@ -157,6 +162,10 @@ Terminal::PrintChar(const uint8_t c)
 		}
 		break;
 	default:
+#ifdef DEBUG
+		if(options.debug_terminal)
+			printf("<< %c (%d,%d)\n", c, cursor_x, cursor_y);
+#endif
 		SetChar(cursor_x, cursor_y, c, NORMAL);
 		AdvanceCursorX();
 	}
@@ -185,6 +194,23 @@ Terminal::AddEscapeChar(const uint8_t c)
 	|| (escape_sequence.length() > 2 && c >= 64 && c <= 126))
 	{
 		escape_mode = false;
+#ifdef DEBUG
+		// print escape sequence
+		if(options.debug_terminal)
+		{
+			cout << "<< ";
+			for(string::const_iterator it(escape_sequence.begin()); 
+					it < escape_sequence.end(); 
+					it++)
+			{
+				if(*it == 27)
+					cout << "ESC";
+				else
+					cout << *it;
+			}
+			cout << endl;
+		}
+#endif
 		ExecuteEscapeSequence(escape_sequence);
 	}
 }
@@ -196,7 +222,7 @@ Terminal::AdvanceCursorX()
 	cursor_x++;
 	if(cursor_x >= w)
 	{
-		AdvanceCursorY();
+		AdvanceCursorY(false);
 		cursor_x = 0;
 	}
 	UpdateCursorPosition();
@@ -204,21 +230,19 @@ Terminal::AdvanceCursorX()
 
 
 void 
-Terminal::AdvanceCursorY()
+Terminal::AdvanceCursorY(bool update)
 {
 	++cursor_y;
 
 	// advance page
 	if(cursor_y >= h)
 	{
-		for(int y(1); y<h; y++)
-			for(int x(0); x<w; x++)
-				SetChar(x, y-1, ch[x][y].ch, ch[x][y].attr);
-		for(int x(0); x<w; x++)
-			SetChar(x, h-1, ' ', NORMAL);
+		ScrollUp();
 		--cursor_y;
 	}
-	UpdateCursorPosition();
+
+	if(update)
+		UpdateCursorPosition();
 }
 
 
@@ -226,7 +250,11 @@ void
 Terminal::UpdateCursorPosition()
 {
 	if(cursor_x >= w || cursor_y >= h)
+	{
+		fprintf(stderr, "warning: trying to set cursor to %d,%d.\n",
+				cursor_x, cursor_y);
 		return;
+	}
 
 	TerminalChar* old(&ch[old_cursor_x][old_cursor_y]);
 	old->cursor = false;
@@ -274,4 +302,26 @@ void
 Terminal::ExecuteEscapeSequence(string const& s)
 {
 	InvalidEscapeSequence(s);
+}
+
+
+void
+Terminal::ScrollUp()
+{
+	for(int y(1); y<h; y++)
+		for(int x(0); x<w; x++)
+			SetChar(x, y-1, ch[x][y].ch, ch[x][y].attr);
+	for(int x(0); x<w; x++)
+		SetChar(x, h-1, ' ', NORMAL);
+}
+
+
+void
+Terminal::ScrollDown()
+{
+	for(int y(h-2); y>=0; y--)
+		for(int x(0); x<w; x++)
+			SetChar(x, y+1, ch[x][y].ch, ch[x][y].attr);
+	for(int x(0); x<w; x++)
+		SetChar(x, 0, ' ', NORMAL);
 }

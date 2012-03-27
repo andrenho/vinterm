@@ -8,7 +8,8 @@
 #include "filter_bright.h"
 
 Options::Options(const int argc, char** const argv) 
-	: scale(1), w(80), h(25), border_x(30), border_y(40),
+	: scale(1), w(80), h(25), debug_terminal(false), 
+	  border_x(30), border_y(40),
 	  background_color((SDL_Color) { 30, 30, 30 }),
 	  bright_color((SDL_Color) { 140, 255, 190 }),
 	  blink_speed(500)
@@ -26,12 +27,15 @@ Options::ParseArguments(int argc, char* argv[])
 		int idx(0);
 		static struct option long_opt[] = {
 			{ "scale",   required_argument, 0, 0 },
+#ifdef DEBUG
+			{ "debug-terminal", no_argument,0, 0 },
+#endif
 			{ "version", no_argument,       0, 0 },
 			{ "help",    no_argument,       0, 0 },
 			{ 0,         0,                 0, 0 }
 		};
 
-		if((c = getopt_long(argc, argv, "s:", long_opt, &idx)) == -1)
+		if((c = getopt_long(argc, argv, "@s:", long_opt, &idx)) == -1)
 			break;
 		
 		switch(c)
@@ -50,6 +54,15 @@ Options::ParseArguments(int argc, char* argv[])
 				fprintf(stderr, "error: Scale must be a value between 1 and 6.\n");
 				exit(1);
 			}
+			break;
+
+		case '@':
+#ifdef DEBUG
+			debug_terminal = true;
+#else
+			fprintf(stderr, "vinterm wasn't compiled with debugging	information.\n");
+			exit(1);
+#endif
 			break;
 
 		case '?':
@@ -73,7 +86,7 @@ Options::AddFilters()
 	}
 	else
 	{
-		prefilters.push_back(new FilterScanline());
+		prefilters.push_back(new FilterScanline(0.6));
 		prefilters.push_back(new FilterInexact(30));
 	}
 }

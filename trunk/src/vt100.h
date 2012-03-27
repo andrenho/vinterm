@@ -20,10 +20,15 @@ protected:
 	void ChangeCursorPosition(const int x, const int y);
 	void EraseFromCursorToEndOfScreen();
 	void SetAttribute(CharAttr attr);
+	void EraseToEOL();
+	void MoveCursorUp(const int n);
+	void MoveCursorDown(const int n);
+	void MoveCursorLeft(const int n);
+	void MoveCursorRight(const int n);
 
 private:
 	bool ParseCommand(string const& seq, char& command, 
-			vector<string> parameters);
+			vector<int>& parameters);
 };
 
 #endif
