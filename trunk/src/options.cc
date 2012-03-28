@@ -86,7 +86,7 @@ Options::AddFilters()
 	}
 	else
 	{
-		prefilters.push_back(new FilterScanline(0.6));
+		prefilters.push_back(new FilterScanline());
 		prefilters.push_back(new FilterInexact(30));
 	}
 }

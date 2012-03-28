@@ -7,7 +7,8 @@ using namespace std;
 #include "config.h"
 
 Terminal::Terminal(Options const& options, string const& term)
-	: w(80), h(25), cursor_x(0), cursor_y(0), options(options), 
+	: w(80), h(25), cursor_x(0), cursor_y(0), 
+	  current_attr(NORMAL), options(options), 
 	  console(new Console(term)), ch(new TerminalChar*[w]), 
 	  old_cursor_x(0), old_cursor_y(0), blink_on(true), 
 	  last_blink(SDL_GetTicks()), escape_mode(false)
@@ -166,7 +167,7 @@ Terminal::PrintChar(const uint8_t c)
 		if(options.debug_terminal)
 			printf("<< %c (%d,%d)\n", c, cursor_x, cursor_y);
 #endif
-		SetChar(cursor_x, cursor_y, c, NORMAL);
+		SetChar(cursor_x, cursor_y, c, current_attr);
 		AdvanceCursorX();
 	}
 
@@ -276,7 +277,7 @@ Terminal::Blink()
 
 	for(int x=0; x<w; x++)
 		for(int y=0; y<h; y++)
-			if(ch[x][y].isReverse())
+			if(ch[x][y].attr.Reverse)
 				SetChar(x, y, ch[x][y].ch, ch[x][y].attr);
 	SetChar(cursor_x, cursor_y, ch[cursor_x][cursor_y].ch,
 			ch[cursor_x][cursor_y].attr);

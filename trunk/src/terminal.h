@@ -10,7 +10,15 @@ using namespace std;
 #include "options.h"
 #include "console.h"
 
-typedef enum { NORMAL=0, REVERSE, NUM_ATTRS } CharAttr;
+typedef struct CharAttr {
+	bool Reverse    : 1;
+	bool Underline  : 1;
+	bool Highlight  : 1;
+	bool Blink      : 1;
+	operator long int() const { return (Reverse << 3) + (Underline << 2) + (Highlight << 1) + Blink; }
+	const int Max() const { return 0xf; }
+} CharAttr;
+const static CharAttr NORMAL = { 0, 0, 0, 0 };
 
 
 typedef struct TerminalChar {
@@ -18,7 +26,6 @@ typedef struct TerminalChar {
 	uint8_t ch;
 	CharAttr attr;
 	bool cursor;
-	bool isReverse() const { return attr == REVERSE; }
 } TerminalChar;
 
 
@@ -46,6 +53,7 @@ protected:
 	void ScrollUp();
 
 	int cursor_x, cursor_y;
+	CharAttr current_attr;
 
 private:
 	bool ConsoleInput();
