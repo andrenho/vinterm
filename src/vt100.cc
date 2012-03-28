@@ -65,16 +65,15 @@ VT100::ExecuteEscapeSequence(string const& seq)
 		break;
 	case 'm':
 		if(parameters.empty() || parameters[0] == 0)
-			SetAttribute(NORMAL);
-		/*
-		else if(parameters[0] == "4")
-			SetAttribute(UNDERLINE);
-		else if(parameters[0] == "7")
-			SetAttribute(REVERSE);
-		else if(parameters[0] == "1")
-			SetAttribute(HIGHLIGHT);
-		else if(parameters[0] == "5")
-			SetAttribute(BLINK); */
+			current_attr = NORMAL;
+		else if(parameters[0] == 4)
+			current_attr.Underline = true;
+		else if(parameters[0] == 7)
+			current_attr.Reverse = true;
+		else if(parameters[0] == 1)
+			current_attr.Highlight = true;
+		else if(parameters[0] == 5)
+			current_attr.Blink = true;
 		else
 			InvalidEscapeSequence(seq);
 		break;
@@ -138,13 +137,6 @@ VT100::EraseFromCursorToEndOfScreen()
 	for(int x(0); x<w; x++)
 		for(int y(0); y<h; y++)
 			SetChar(x, y, ' ', NORMAL);
-}
-
-
-void 
-VT100::SetAttribute(CharAttr attr)
-{
-	// TODO
 }
 
 

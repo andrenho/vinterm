@@ -27,8 +27,8 @@ Console::Console(string terminal)
 			perror("putenv");
 			abort();
 		}
-		putenv((char*)"LINES=25");
-		putenv((char*)"COLUMNS=80");
+		putenv("LINES=25");
+		putenv("COLUMNS=80");
 		if(execlp(shell, "sh", (void*)0) == -1)
 		{
 			perror("execlp");

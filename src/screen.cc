@@ -67,8 +67,10 @@ Screen::Update()
 			- (options.scale * chars->start_at_x));
 		int yy((y * font->char_h * options.scale) + border_y
 			- (options.scale * chars->start_at_y));
-		CharAttr attr(ch.cursor ? REVERSE : ch.attr);
+		CharAttr attr(ch.cursor ? (CharAttr) { 1 } : ch.attr);
 		SDL_Surface* sf(chars->Char(ch.ch, attr));
+		if(!sf)
+			abort();
 		rects[i] = (SDL_Rect) { xx, yy, sf->w, sf->h };
 
 		SDL_Rect r2 = { xx+(options.scale * chars->start_at_y),
@@ -78,7 +80,7 @@ Screen::Update()
 		};	
 		SDL_FillRect(screen, &r2, 0);
 
-		if(!((ch.isReverse() || ch.cursor) && !terminal.BlinkOn()))
+		if(!((ch.attr.Blink || ch.cursor) && !terminal.BlinkOn()))
 			SDL_BlitSurface(sf, NULL, screen, &rects[i]);
 		i++;
 	}

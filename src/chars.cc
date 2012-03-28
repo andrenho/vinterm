@@ -7,19 +7,11 @@ Chars::Chars(Options const& options, Font const& font)
 	: start_at_x(1), start_at_y(1),
 	  options(options),
 	  font(font),
-	  chars(new SDL_Surface**[256]),
 	  reverse_space(new SDL_Surface*[10])
 {
-	for(uint8_t i(0); i<255; i++)
-	{
-		chars[i] = new SDL_Surface*[NUM_ATTRS];
-		chars[i][NORMAL] = CreateChar(i, NORMAL);
-		chars[i][REVERSE] = CreateChar(i, REVERSE);
-	}
-
 	// see Char::Chars for an explaination
 	for(int i=0; i<10; i++)
-		reverse_space[i] = CreateChar(' ', REVERSE);
+		reverse_space[i] = CreateChar(' ', (CharAttr) { 1 });
 }
 
 
@@ -28,18 +20,16 @@ Chars::~Chars()
 	for(int i(0); i<10; i++)
 		SDL_FreeSurface(reverse_space[i]);
 	delete[] reverse_space;
-	for(uint8_t i(0); i<255; i++)
-	{
-		for(int j(0); j<NUM_ATTRS; j++)
-			SDL_FreeSurface(chars[i][j]);
-		delete[] chars[i];
-	}
-	delete[] chars;
+
+	for(map<uint16_t, SDL_Surface*>::iterator it(chars.begin()); 
+			it != chars.end(); it++)
+		delete it->second;
+	chars.clear();
 }
 
 
 SDL_Surface* 
-Chars::CreateChar(const uint8_t c, const CharAttr attr)
+Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 {
 	// create surface
 	SDL_Surface* s(SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -51,8 +41,10 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr)
 
 	// setup colors
 	int bg_color(0);
-	int color(200); // TODO
-	if(attr == REVERSE)
+	int color(180);
+	if(attr.Highlight)
+		color = 255;
+	if(attr.Reverse)
 	{
 		int t(bg_color);
 		bg_color = color;
@@ -62,11 +54,19 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr)
 	// copy char
 	SDL_FillRect(s, NULL, bg_color);
 	if(options.scale == 1)
+	{
 		for(int x(0); x<font.char_w; x++)
 			for(int y(0); y<font.char_h; y++)
 				P(s, x + start_at_x, y + start_at_y) = 
 					font.ch[c][y*font.char_w+x] ? color : bg_color;
+		if(attr.Underline)
+		{
+			SDL_Rect r = { 0, font.char_h, font.char_w, 1 };
+			SDL_FillRect(s, &r, color);
+		}
+	}
 	else
+	{
 		for(int x(0); x<font.char_w; x++)
 			for(int y(0); y<font.char_h; y++)
 			{
@@ -77,6 +77,13 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr)
 				if(font.ch[c][y*font.char_w+x])
 					SDL_FillRect(s, &r, color);
 			}
+		if(attr.Underline)
+		{
+			SDL_Rect r = { 0, font.char_h * options.scale, 
+				font.char_w * options.scale, options.scale };
+			SDL_FillRect(s, &r, color);
+		}
+	}
 
 	// apply filters
 	vector<Filter*>::const_iterator filter;
@@ -86,7 +93,7 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr)
 		(*filter)->Apply(s, options);
 
 	// remove borders from the reverse - avoid artifacts
-	if(attr == REVERSE)
+	if(attr.Reverse)
 	{
 		const int S(options.scale);
 		SDL_Rect r[4] = {
@@ -106,12 +113,17 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr)
 SDL_Surface* 
 Chars::Char(const uint8_t c, const CharAttr attr) const 
 {
-	if(c == ' ' && attr == REVERSE)
+	if(c == ' ' && attr.Reverse)
 	{
 		// here we need to make a little gimmick and each time return
 		// a different image to avoid artifacts on the screen
 		return reverse_space[rand() % 10];
 	}
 	else
-		return chars[c][attr]; 
+	{
+		uint16_t n = AttrIndex(c, attr);
+		if(!chars.count(n))
+			chars[n] = CreateChar(c, attr);
+		return chars[n];
+	}
 }
