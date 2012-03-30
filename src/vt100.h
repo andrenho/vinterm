@@ -7,14 +7,18 @@ using namespace std;
 
 #include "terminal.h"
 
+typedef enum { CURSOR, APPLICATION } Mode;
+
 class VT100 : public Terminal
 {
 public:
 	VT100(Options const& options)
-		: Terminal(options, "vt100") { }
+		: Terminal(options, "vt100"), cursor_keys(CURSOR),
+                  keypad_keys(CURSOR) { }
 
 protected:
 	virtual void ExecuteEscapeSequence(string const& s);
+	virtual void SpecialKeyPress(SpecialKey key);
 
 	// list of commands
 	void ChangeCursorPosition(const int x, const int y);
@@ -28,6 +32,7 @@ protected:
 private:
 	bool ParseCommand(string const& seq, char& command, 
 			vector<int>& parameters);
+	Mode cursor_keys, keypad_keys;
 };
 
 #endif

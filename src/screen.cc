@@ -68,7 +68,7 @@ Screen::Update()
 		int yy((y * font->char_h * options.scale) + border_y
 			- (options.scale * chars->start_at_y));
 		CharAttr attr(ch.cursor ? (CharAttr) { 1 } : ch.attr);
-		SDL_Surface* sf(chars->Char(ch.ch, attr));
+		SDL_Surface* sf(chars->Char(ch.ch, attr, x+y));
 		if(!sf)
 			abort();
 		rects[i] = (SDL_Rect) { xx, yy, sf->w, sf->h };
