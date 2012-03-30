@@ -28,6 +28,11 @@ typedef struct TerminalChar {
 	bool cursor;
 } TerminalChar;
 
+typedef enum { 
+	UP, DOWN, LEFT, RIGHT, 
+	KP0, KP1, KP2, KP3, KP4, KP5, KP6, KP7, KP8, KP9,
+	KP_PLUS, KP_MINUS, KP_STAR, KP_DOT
+} SpecialKey;
 
 class Terminal
 {
@@ -45,12 +50,15 @@ public:
 
 protected:
 	virtual void ExecuteEscapeSequence(string const& s);
+	virtual void SpecialKeyPress(SpecialKey key);
+
 	void InvalidEscapeSequence(string const& s);
 	void UpdateCursorPosition();
 	void SetChar(const int x, const int y, 
 			const uint8_t c, const CharAttr attr);
 	void ScrollDown();
 	void ScrollUp();
+	void KeyPress(uint16_t key);
 
 	int cursor_x, cursor_y;
 	CharAttr current_attr;
@@ -59,7 +67,6 @@ private:
 	bool ConsoleInput();
 	bool ConsoleOutput();
 
-	void KeyPress(uint16_t key);
 	void PrintString(string const& s);
 	void PrintChar(const uint8_t c);
 	void AddEscapeChar(const uint8_t c);

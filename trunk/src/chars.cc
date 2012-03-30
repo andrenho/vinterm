@@ -111,12 +111,13 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 
 
 SDL_Surface* 
-Chars::Char(const uint8_t c, const CharAttr attr) const 
+Chars::Char(const uint8_t c, const CharAttr attr, int rnd) const 
 {
 	if(c == ' ' && attr.Reverse)
 	{
 		// here we need to make a little gimmick and each time return
 		// a different image to avoid artifacts on the screen
+		srand(rnd);
 		return reverse_space[rand() % 10];
 	}
 	else

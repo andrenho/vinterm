@@ -16,7 +16,8 @@ public:
 	Chars(Options const& options, Font const& font);
 	~Chars();
 
-	SDL_Surface* Char(const uint8_t c, const CharAttr attr) const;
+	SDL_Surface* Char(const uint8_t c, const CharAttr attr,
+			int rnd=0) const;
 
 	const int start_at_x, start_at_y;
 

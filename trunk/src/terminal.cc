@@ -61,18 +61,24 @@ Terminal::ConsoleInput()
 		case SDL_KEYDOWN:
 			switch(e.key.keysym.sym)
 			{
-			case SDLK_UP:
-				KeyPress(27); KeyPress('['); KeyPress('A');
-				break;
-			case SDLK_DOWN:
-				KeyPress(27); KeyPress('['); KeyPress('B');
-				break;
-			case SDLK_RIGHT:
-				KeyPress(27); KeyPress('['); KeyPress('C');
-				break;
-			case SDLK_LEFT:
-				KeyPress(27); KeyPress('['); KeyPress('D');
-				break;
+			case SDLK_UP: SpecialKeyPress(UP); break;
+			case SDLK_DOWN: SpecialKeyPress(DOWN); break;
+			case SDLK_RIGHT: SpecialKeyPress(RIGHT); break;
+			case SDLK_LEFT: SpecialKeyPress(LEFT); break;
+			case SDLK_KP0: SpecialKeyPress(KP0); break;
+			case SDLK_KP1: SpecialKeyPress(KP1); break;
+			case SDLK_KP2: SpecialKeyPress(KP2); break;
+			case SDLK_KP3: SpecialKeyPress(KP3); break;
+			case SDLK_KP4: SpecialKeyPress(KP4); break;
+			case SDLK_KP5: SpecialKeyPress(KP5); break;
+			case SDLK_KP6: SpecialKeyPress(KP6); break;
+			case SDLK_KP7: SpecialKeyPress(KP7); break;
+			case SDLK_KP8: SpecialKeyPress(KP8); break;
+			case SDLK_KP9: SpecialKeyPress(KP9); break;
+			case SDLK_KP_PERIOD: SpecialKeyPress(KP_DOT); break;
+			case SDLK_KP_MULTIPLY: SpecialKeyPress(KP_STAR); break;
+			case SDLK_KP_MINUS: SpecialKeyPress(KP_MINUS); break;
+			case SDLK_KP_PLUS: SpecialKeyPress(KP_PLUS); break;
 			default: 
 				c = e.key.keysym.unicode;
 				if(c != 0)
@@ -190,9 +196,28 @@ Terminal::SetChar(const int x, const int y, uint8_t c, CharAttr attr)
 void 
 Terminal::AddEscapeChar(const uint8_t c)
 {
+	char ch = (char)c;
+
+	// if it's a ESC, restart the escape sequence
+	if(ch == 27)
+	{
+		escape_sequence = string(1, ch);
+		return;
+	}
+
 	escape_sequence += (char)c;
-	if((escape_sequence.length() == 2 && (char)c != '[')
-	|| (escape_sequence.length() > 2 && c >= 64 && c <= 126))
+
+	bool end_seq = false;
+	if((ch >= '<' && ch <= 'Z' && ch != '?') || (ch >= 'a' && ch <= 'z'))
+		end_seq = true;
+	if(escape_sequence.length() == 3)
+	{
+		char in = escape_sequence[1];
+		if(in == '(' || in == ')' || in == '#')
+			end_seq = true;
+	}
+
+	if(end_seq)
 	{
 		escape_mode = false;
 #ifdef DEBUG
@@ -325,4 +350,31 @@ Terminal::ScrollDown()
 			SetChar(x, y+1, ch[x][y].ch, ch[x][y].attr);
 	for(int x(0); x<w; x++)
 		SetChar(x, 0, ' ', NORMAL);
+}
+
+
+void 
+Terminal::SpecialKeyPress(SpecialKey key)
+{
+	switch(key)
+	{	
+	case UP: KeyPress(27); KeyPress('['); KeyPress('A'); break;
+	case DOWN: KeyPress(27); KeyPress('['); KeyPress('B'); break;
+	case RIGHT: KeyPress(27); KeyPress('['); KeyPress('C'); break;
+	case LEFT: KeyPress(27); KeyPress('['); KeyPress('D'); break;
+	case KP0: KeyPress('0'); break;
+	case KP1: KeyPress('1'); break;
+	case KP2: KeyPress('2'); break;
+	case KP3: KeyPress('3'); break;
+	case KP4: KeyPress('4'); break;
+	case KP5: KeyPress('5'); break;
+	case KP6: KeyPress('6'); break;
+	case KP7: KeyPress('7'); break;
+	case KP8: KeyPress('8'); break;
+	case KP9: KeyPress('9'); break;
+	case KP_DOT: KeyPress('.'); break;
+	case KP_STAR: KeyPress('*'); break;
+	case KP_PLUS: KeyPress('+'); break;
+	case KP_MINUS: KeyPress('-'); break;
+	}
 }
