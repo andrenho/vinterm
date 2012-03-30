@@ -8,7 +8,8 @@ using namespace std;
 
 Terminal::Terminal(Options const& options, string const& term)
 	: w(80), h(25), cursor_x(0), cursor_y(0), 
-	  current_attr(NORMAL), options(options), 
+	  current_attr(NORMAL),
+	  scroll_top(0), scroll_bottom(h-1), options(options),
 	  console(new Console(term)), ch(new TerminalChar*[w]), 
 	  old_cursor_x(0), old_cursor_y(0), blink_on(true), 
 	  last_blink(SDL_GetTicks()), escape_mode(false)
@@ -22,7 +23,7 @@ Terminal::Terminal(Options const& options, string const& term)
 
 	UpdateCursorPosition();
 
-	PrintString("This is a VERY EARLY ALHPA RELEASE of Vintage Terminal. Don't expect things\r\nto work correctly at all. Use at YOUR OWN RISK.\r\n\r\n");
+	//PrintString("This is a VERY EARLY ALHPA RELEASE of Vintage Terminal. Don't expect things\r\nto work correctly at all. Use at YOUR OWN RISK.\r\n\r\n");
 }
 
 
@@ -261,7 +262,7 @@ Terminal::AdvanceCursorY(bool update)
 	++cursor_y;
 
 	// advance page
-	if(cursor_y >= h)
+	if(cursor_y > scroll_bottom)
 	{
 		ScrollUp();
 		--cursor_y;
@@ -334,22 +335,22 @@ Terminal::ExecuteEscapeSequence(string const& s)
 void
 Terminal::ScrollUp()
 {
-	for(int y(1); y<h; y++)
+	for(int y(scroll_top+1); y<=scroll_bottom; y++)
 		for(int x(0); x<w; x++)
 			SetChar(x, y-1, ch[x][y].ch, ch[x][y].attr);
 	for(int x(0); x<w; x++)
-		SetChar(x, h-1, ' ', NORMAL);
+		SetChar(x, scroll_bottom, ' ', NORMAL);
 }
 
 
 void
 Terminal::ScrollDown()
 {
-	for(int y(h-2); y>=0; y--)
+	for(int y(scroll_bottom-2); y>=scroll_top; y--)
 		for(int x(0); x<w; x++)
 			SetChar(x, y+1, ch[x][y].ch, ch[x][y].attr);
 	for(int x(0); x<w; x++)
-		SetChar(x, 0, ' ', NORMAL);
+		SetChar(x, scroll_top, ' ', NORMAL);
 }
 
 
@@ -377,4 +378,15 @@ Terminal::SpecialKeyPress(SpecialKey key)
 	case KP_PLUS: KeyPress('+'); break;
 	case KP_MINUS: KeyPress('-'); break;
 	}
+}
+
+
+void
+Terminal::SetScrollRegion(int top, int bottom)
+{
+	this->scroll_top = top-1;
+	this->scroll_bottom = bottom-1;
+//	cursor_x = 0;
+//	cursor_y = top;
+//	UpdateCursorPosition();
 }

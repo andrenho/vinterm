@@ -59,9 +59,12 @@ protected:
 	void ScrollDown();
 	void ScrollUp();
 	void KeyPress(uint16_t key);
+	void SetScrollRegion(int top, int bottom);
 
-	int cursor_x, cursor_y;
+	int cursor_x, cursor_y; // call UpdateCursorPosition after changing
+	                        // these variables manually
 	CharAttr current_attr;
+	int scroll_top, scroll_bottom;
 
 private:
 	bool ConsoleInput();
