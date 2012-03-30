@@ -86,6 +86,12 @@ VT100::ExecuteEscapeSequence(string const& seq)
 			else
 				InvalidEscapeSequence(seq);
 			break;
+		case 'r':
+			if(parameters.size() != 2)
+				InvalidEscapeSequence(seq);
+			else
+				SetScrollRegion(parameters[0], parameters[1]);
+			break;
 		default:
 			Terminal::ExecuteEscapeSequence(seq);
 		}
@@ -224,6 +230,12 @@ VT100::ChangeCursorPosition(const int x, const int y)
 {
 	cursor_x = x;
 	cursor_y = y;
+	/*
+	while(cursor_y >= scroll_bottom)
+	{
+		ScrollUp();
+		--cursor_y;
+	}*/
 	UpdateCursorPosition();
 }
 
