@@ -122,7 +122,7 @@ Terminal::KeyPress(uint16_t key)
 {
 #ifdef DEBUG
 	if(options.debug_terminal)
-		printf(">> %c\n", key);
+		printf(">> %c [%d]\n", key, key);
 #endif
 	console->SendChar((uint8_t)key);
 }
@@ -172,7 +172,7 @@ Terminal::PrintChar(const uint8_t c)
 	default:
 #ifdef DEBUG
 		if(options.debug_terminal)
-			printf("<< %c (%d,%d)\n", c, cursor_x, cursor_y);
+			printf("<< %c [%d] (%d,%d)\n", c, c, cursor_x, cursor_y);
 #endif
 		SetChar(cursor_x, cursor_y, c, current_attr);
 		AdvanceCursorX();
@@ -346,7 +346,7 @@ Terminal::ScrollUp()
 void
 Terminal::ScrollDown()
 {
-	for(int y(scroll_bottom-2); y>=scroll_top; y--)
+	for(int y(scroll_bottom-1); y>=scroll_top; y--)
 		for(int x(0); x<w; x++)
 			SetChar(x, y+1, ch[x][y].ch, ch[x][y].attr);
 	for(int x(0); x<w; x++)

@@ -106,7 +106,7 @@ VT100::ExecuteEscapeSequence(string const& seq)
 			keypad_keys = CURSOR;
 			break;
 		case 'M':
-			if(cursor_y > 0)
+			if(cursor_y > scroll_top)
 				MoveCursorUp(1);
 			else
 				ScrollDown();
