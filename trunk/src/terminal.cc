@@ -164,7 +164,7 @@ Terminal::PrintChar(const uint8_t c)
 	case '\b':
 		if(cursor_x > 0)
 		{
-			SetChar(cursor_x-1, cursor_y, ' ', NORMAL);
+			//SetChar(cursor_x-1, cursor_y, ' ', NORMAL);
 			--cursor_x;
 			UpdateCursorPosition();
 		}
