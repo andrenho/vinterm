@@ -50,11 +50,19 @@ VT100::ExecuteEscapeSequence(string const& seq)
 		case 'J':
 			if(parameters.empty() || parameters[0] == 0)
 				EraseFromCursorToEndOfScreen();
+			else if(parameters[0] == 2)
+				EraseScreen();
 			else
 				InvalidEscapeSequence(seq);
 			break;
 		case 'K':
 			EraseToEOL();
+			break;
+		case 'c':
+			if(parameters.empty() || parameters[0] == 0)
+				console->SendString("\033[?1;0c");
+			else
+				InvalidEscapeSequence(seq);
 			break;
 		case 'h':
 			if(parameters.size() != 1)
@@ -88,7 +96,7 @@ VT100::ExecuteEscapeSequence(string const& seq)
 			break;
 		case 'r':
 			if(parameters.size() != 2)
-				InvalidEscapeSequence(seq);
+				SetScrollRegion(1, 25);
 			else
 				SetScrollRegion(parameters[0], parameters[1]);
 			break;
@@ -241,10 +249,19 @@ VT100::ChangeCursorPosition(const int x, const int y)
 
 
 void
-VT100::EraseFromCursorToEndOfScreen()
+VT100::EraseScreen()
 {
 	for(int x(0); x<w; x++)
 		for(int y(0); y<h; y++)
+			SetChar(x, y, ' ', NORMAL);
+}
+
+
+void
+VT100::EraseFromCursorToEndOfScreen()
+{
+	for(int x(0); x<w; x++)
+		for(int y(cursor_y); y<h; y++)
 			SetChar(x, y, ' ', NORMAL);
 }
 

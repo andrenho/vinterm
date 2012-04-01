@@ -22,6 +22,7 @@ protected:
 
 	// list of commands
 	void ChangeCursorPosition(const int x, const int y);
+	void EraseScreen();
 	void EraseFromCursorToEndOfScreen();
 	void EraseToEOL();
 	void MoveCursorUp(const int n);

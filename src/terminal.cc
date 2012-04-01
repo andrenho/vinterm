@@ -9,8 +9,8 @@ using namespace std;
 Terminal::Terminal(Options const& options, string const& term)
 	: w(80), h(25), cursor_x(0), cursor_y(0), 
 	  current_attr(NORMAL),
-	  scroll_top(0), scroll_bottom(h-1), options(options),
-	  console(new Console(term)), ch(new TerminalChar*[w]), 
+	  scroll_top(0), scroll_bottom(h-1), console(new Console(term)), 
+	  options(options), ch(new TerminalChar*[w]), 
 	  old_cursor_x(0), old_cursor_y(0), blink_on(true), 
 	  last_blink(SDL_GetTicks()), escape_mode(false)
 {
