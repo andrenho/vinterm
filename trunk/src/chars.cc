@@ -41,7 +41,7 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 
 	// setup colors
 	int bg_color(0);
-	int color(180);
+	int color(160);
 	if(attr.Highlight)
 		color = 255;
 	if(attr.Reverse)

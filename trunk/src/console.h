@@ -17,6 +17,8 @@ public:
 	static const int NO_DATA = 0x100;
 	static const int READ_OK = 0x101;
 private:
+	void CopyStartupFile();
+
 	int fd;
 };
 
