@@ -79,15 +79,19 @@ Screen::Update()
 			font->char_w * options.scale,
 			font->char_h * options.scale+1
 		};
-		if(x == 0) { r2.x-=2; r2.w+=2; }
-		else if(x == (w-1)) { r2.w+=2; }
-		if(y == 0) { r2.y-=2; r2.h+=2; }
-		else if(y == (h-1)) { r2.h+=2; }
+		if(x == 0) { r2.x-=2; r2.w+=2; } else if(x == (w-1)) { r2.w+=2; }
+		if(y == 0) { r2.y-=2; r2.h+=2; } else if(y == (h-1)) { r2.h+=2; }
 		SDL_FillRect(screen, &r2, 0);
 
 		// draw char
 		if(!((ch.attr.Blink || ch.cursor) && !terminal.BlinkOn()))
 			SDL_BlitSurface(sf, NULL, screen, &rects[i]);
+		else if(ch.cursor && !terminal.BlinkOn())
+		{
+			// show underletter when blinking is off
+			SDL_Surface* sf2(chars->Char(ch.ch, ch.attr, x+y));
+			SDL_BlitSurface(sf2, NULL, screen, &rects[i]);
+		}
 		i++;
 	}
 	terminal.dirty.clear();
