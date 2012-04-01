@@ -3,6 +3,7 @@ Version 0.1.2
   - Changed initialization file to run .bashrc on startup.
   - Bugs corrected:
     - Incorrect window title version
+    - Normal color is darker, so that bright colors standout more.
 
 Version 0.1.1
 -------------
