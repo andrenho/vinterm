@@ -1,3 +1,12 @@
+Version 0.1.1
+-------------
+  - Partial VT100 support implemented, enough to run alpine, vim (with syntax
+    highlighting) and nethack, and use commands like clear, more and less.
+  - Character effects implemented: bold, underlined, blink, reversed and dim.
+  - A file is now run when the terminal is started: ~/.vinterm_profile. It
+    comes preconfigured with some useful settings for a monochrome terminal.
+  - Vintage Terminal is already being programmed with Vintage Terminal.
+
 Version 0.1.0
 -------------
   - First public release.

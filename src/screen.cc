@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include "SDL.h"
 
+#include "config.h"
+
 Screen::Screen(Options const& options, Terminal& terminal)
 	: options(options), 
 	  font(new Font()), 
@@ -21,7 +23,8 @@ Screen::Screen(Options const& options, Terminal& terminal)
 				SDL_GetError());
 		exit(1);
 	}
-	SDL_WM_SetCaption("Vintage Emulator 0.1.0", "Vintage Emulator");
+	SDL_WM_SetCaption("Vintage Emulator " PACKAGE_VERSION, 
+			"Vintage Emulator");
 	initializePalette(screen, options);
 }
 

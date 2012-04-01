@@ -6,8 +6,10 @@ terminal emulator that simulates the looks of a 1980s monitor.
 
 Vintage Terminal has the following features:
 
-  * Very basic terminal emulator support;
-  * Scaling (zoom);
+  * Partial VT100 support implemented, enough to run alpine, vim (with syntax 
+    highlighting) and nethack and use commands like clear, man, more and less;
+    - It won't yet run nano, mc or elinks.
+  * Scaling (zoom) with the argument `-s`;
   * Has a authentic old look based on a IBM 5151 monitor.
 
 This is a very early alpha release, so is not yet for the faint of heart. USE
