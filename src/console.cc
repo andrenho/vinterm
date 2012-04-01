@@ -10,6 +10,8 @@
 
 Console::Console(string terminal)
 {
+	CopyStartupFile();
+
 	char* shell = getenv("SHELL");
 	if(!shell)
 		shell = (char*)"/bin/sh";
@@ -29,6 +31,7 @@ Console::Console(string terminal)
 		}
 		putenv("LINES=25");
 		putenv("COLUMNS=80");
+		putenv("ENV=$HOME/.vinterm_profile");
 		if(execlp(shell, "sh", (void*)0) == -1)
 		{
 			perror("execlp");
@@ -130,4 +133,11 @@ int Console::ReceiveString(string& s) const
 		return EOF;
 	else
 		abort();
+}
+
+
+void 
+Console::CopyStartupFile()
+{
+	system("cp -n " DATADIR "/vinterm_profile $HOME/.vinterm_profile");
 }

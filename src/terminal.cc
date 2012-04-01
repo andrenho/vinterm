@@ -22,8 +22,6 @@ Terminal::Terminal(Options const& options, string const& term)
 		ch[x] = new TerminalChar[h];
 
 	UpdateCursorPosition();
-
-	//PrintString("This is a VERY EARLY ALHPA RELEASE of Vintage Terminal. Don't expect things\r\nto work correctly at all. Use at YOUR OWN RISK.\r\n\r\n");
 }
 
 
