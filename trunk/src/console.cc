@@ -59,7 +59,7 @@ Console::~Console()
 
 
 void
-Console::SendChar(const char c)
+Console::SendChar(const char c) const
 {
 	if(write(fd, &c, 1) == -1)
 	{
@@ -70,7 +70,7 @@ Console::SendChar(const char c)
 
 
 void 
-Console::SendString(const string data)
+Console::SendString(const string data) const
 {
 	if(write(fd, data.c_str(), data.length()) == -1)
 	{

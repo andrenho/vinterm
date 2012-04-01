@@ -9,8 +9,8 @@ class Console
 public:
 	Console(string terminal="con80x25");
 	~Console();
-	void SendChar(const char c);
-	void SendString(const string data);
+	void SendChar(const char c) const;
+	void SendString(const string data) const;
 	int ReceiveChar() const;
 	int ReceiveString(string& s) const;
 

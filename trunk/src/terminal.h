@@ -65,6 +65,7 @@ protected:
 	                        // these variables manually
 	CharAttr current_attr;
 	int scroll_top, scroll_bottom;
+	Console* const console;
 
 private:
 	bool ConsoleInput();
@@ -78,7 +79,6 @@ private:
 	void Blink();
 
 	Options const& options;
-	Console* const console;
 	TerminalChar** const ch;
 	int old_cursor_x, old_cursor_y;
 	bool blink_on;
