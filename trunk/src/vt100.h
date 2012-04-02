@@ -33,6 +33,8 @@ protected:
 private:
 	bool ParseCommand(string const& seq, char& command, 
 			vector<int>& parameters);
+	bool KeypadKey(SDL_keysym key);
+
 	Mode cursor_keys, keypad_keys;
 };
 
