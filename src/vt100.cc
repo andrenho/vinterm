@@ -150,57 +150,91 @@ VT100::SpecialKeyPress(SDL_keysym key)
 	}
 	else
 	{
-		if(keypad_keys == CURSOR)
-			return Terminal::SpecialKeyPress(key);
-		else
-			switch(key.sym)
-			{
-			case SDLK_KP0:
-				KeyPress(27); KeyPress('O'); KeyPress('p'); 
+		// other keys
+		switch(key.sym)
+		{
+			case SDLK_DELETE:
+				KeyPress(27); KeyPress('['); KeyPress('3');
+				KeyPress('~');
 				break;
-			case SDLK_KP1:
-				KeyPress(27); KeyPress('O'); KeyPress('q'); 
+			case SDLK_INSERT:
+				KeyPress(27); KeyPress('['); KeyPress('2');
+				KeyPress('~');
 				break;
-			case SDLK_KP2:
-				KeyPress(27); KeyPress('O'); KeyPress('r'); 
+			case SDLK_HOME:
+				KeyPress(27); KeyPress('['); KeyPress('H');
 				break;
-			case SDLK_KP3:
-				KeyPress(27); KeyPress('O'); KeyPress('s'); 
-				break;
-			case SDLK_KP4:
-				KeyPress(27); KeyPress('O'); KeyPress('t'); 
-				break;
-			case SDLK_KP5:
-				KeyPress(27); KeyPress('O'); KeyPress('u');
-				break;
-			case SDLK_KP6:
-				KeyPress(27); KeyPress('O'); KeyPress('v'); 
-				break;
-			case SDLK_KP7:
-				KeyPress(27); KeyPress('O'); KeyPress('w'); 
-				break;
-			case SDLK_KP8:
-				KeyPress(27); KeyPress('O'); KeyPress('x'); 
-				break;
-			case SDLK_KP9:
-				KeyPress(27); KeyPress('O'); KeyPress('y'); 
-				break;
-			case SDLK_KP_MINUS:
-				KeyPress(27); KeyPress('O'); KeyPress('m');
-				break;
-			case SDLK_KP_MULTIPLY:
-				KeyPress(27); KeyPress('O'); KeyPress('l'); 
-				break;
-			case SDLK_KP_PERIOD:
-				KeyPress(27); KeyPress('O'); KeyPress('n'); 
-				break;
-			case SDLK_KP_PLUS:
-				KeyPress(27); KeyPress('O'); KeyPress('M'); 
+			case SDLK_END:
+				// ??? TODO
 				break;
 			default:
-				return Terminal::SpecialKeyPress(key);
-			}
+				return KeypadKey(key);
+		}
 	}
+	return true;
+}
+
+
+bool
+VT100::KeypadKey(SDL_keysym key)
+{
+	// cursor keys
+	if(keypad_keys == CURSOR)
+		return Terminal::SpecialKeyPress(key);
+	else
+		switch(key.sym)
+		{
+		case SDLK_KP0:
+			KeyPress(27); KeyPress('O'); KeyPress('p'); 
+			break;
+		case SDLK_KP1:
+			KeyPress(27); KeyPress('O'); KeyPress('q'); 
+			break;
+		case SDLK_KP2:
+			KeyPress(27); KeyPress('O'); KeyPress('r'); 
+			break;
+		case SDLK_KP3:
+			KeyPress(27); KeyPress('O'); KeyPress('s'); 
+			break;
+		case SDLK_KP4:
+			KeyPress(27); KeyPress('O'); KeyPress('t'); 
+			break;
+		case SDLK_KP5:
+			KeyPress(27); KeyPress('O'); KeyPress('u');
+			break;
+		case SDLK_KP6:
+			KeyPress(27); KeyPress('O'); KeyPress('v'); 
+			break;
+		case SDLK_KP7:
+			KeyPress(27); KeyPress('O'); KeyPress('w'); 
+			break;
+		case SDLK_KP8:
+			KeyPress(27); KeyPress('O'); KeyPress('x'); 
+			break;
+		case SDLK_KP9:
+			KeyPress(27); KeyPress('O'); KeyPress('y'); 
+			break;
+		case SDLK_KP_MINUS:
+			KeyPress(27); KeyPress('O'); KeyPress('m');
+			break;
+		case SDLK_KP_MULTIPLY:
+			KeyPress(27); KeyPress('O'); KeyPress('l'); 
+			break;
+		case SDLK_KP_PERIOD:
+			KeyPress(27); KeyPress('O'); KeyPress('n'); 
+			break;
+		case SDLK_KP_PLUS:
+			KeyPress(27); KeyPress('O'); KeyPress('M'); 
+			break;
+		case SDLK_PAGEUP:
+			KeyPress(21);
+			break;
+		case SDLK_PAGEDOWN:
+			KeyPress(4);
+			break;
+		default:
+			return Terminal::SpecialKeyPress(key);
+		}
 	return true;
 }
 
