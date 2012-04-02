@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Debug Mode */
-/* #undef DEBUG */
+#define DEBUG /**/
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -35,7 +35,7 @@
 #define HAVE_UNISTD_H 1
 
 /* No-debug Mode */
-#define NDEBUG /**/
+/* #undef NDEBUG */
 
 /* Name of package */
 #define PACKAGE "vinterm"

@@ -23,7 +23,7 @@ Chars::~Chars()
 
 	for(map<uint16_t, SDL_Surface*>::iterator it(chars.begin()); 
 			it != chars.end(); it++)
-		delete it->second;
+		SDL_FreeSurface(it->second);
 	chars.clear();
 }
 
