@@ -49,8 +49,6 @@ Terminal::Process()
 bool
 Terminal::ConsoleInput()
 {
-	uint16_t c;
-
 	// read chars and send them to the console
 	SDL_Event e;
 	while(SDL_PollEvent(&e))
@@ -58,28 +56,9 @@ Terminal::ConsoleInput()
 		switch(e.type)
 		{
 		case SDL_KEYDOWN:
-			switch(e.key.keysym.sym)
+			if(!SpecialKeyPress(e.key.keysym))
 			{
-			case SDLK_UP: SpecialKeyPress(UP); break;
-			case SDLK_DOWN: SpecialKeyPress(DOWN); break;
-			case SDLK_RIGHT: SpecialKeyPress(RIGHT); break;
-			case SDLK_LEFT: SpecialKeyPress(LEFT); break;
-			case SDLK_KP0: SpecialKeyPress(KP0); break;
-			case SDLK_KP1: SpecialKeyPress(KP1); break;
-			case SDLK_KP2: SpecialKeyPress(KP2); break;
-			case SDLK_KP3: SpecialKeyPress(KP3); break;
-			case SDLK_KP4: SpecialKeyPress(KP4); break;
-			case SDLK_KP5: SpecialKeyPress(KP5); break;
-			case SDLK_KP6: SpecialKeyPress(KP6); break;
-			case SDLK_KP7: SpecialKeyPress(KP7); break;
-			case SDLK_KP8: SpecialKeyPress(KP8); break;
-			case SDLK_KP9: SpecialKeyPress(KP9); break;
-			case SDLK_KP_PERIOD: SpecialKeyPress(KP_DOT); break;
-			case SDLK_KP_MULTIPLY: SpecialKeyPress(KP_STAR); break;
-			case SDLK_KP_MINUS: SpecialKeyPress(KP_MINUS); break;
-			case SDLK_KP_PLUS: SpecialKeyPress(KP_PLUS); break;
-			default: 
-				c = e.key.keysym.unicode;
+				uint16_t c = e.key.keysym.unicode;
 				if(c != 0)
 					KeyPress(c);
 			}
@@ -352,30 +331,51 @@ Terminal::ScrollDown()
 }
 
 
-void 
-Terminal::SpecialKeyPress(SpecialKey key)
+bool
+Terminal::SpecialKeyPress(SDL_keysym key)
 {
-	switch(key)
+	switch(key.sym)
 	{	
-	case UP: KeyPress(27); KeyPress('['); KeyPress('A'); break;
-	case DOWN: KeyPress(27); KeyPress('['); KeyPress('B'); break;
-	case RIGHT: KeyPress(27); KeyPress('['); KeyPress('C'); break;
-	case LEFT: KeyPress(27); KeyPress('['); KeyPress('D'); break;
-	case KP0: KeyPress('0'); break;
-	case KP1: KeyPress('1'); break;
-	case KP2: KeyPress('2'); break;
-	case KP3: KeyPress('3'); break;
-	case KP4: KeyPress('4'); break;
-	case KP5: KeyPress('5'); break;
-	case KP6: KeyPress('6'); break;
-	case KP7: KeyPress('7'); break;
-	case KP8: KeyPress('8'); break;
-	case KP9: KeyPress('9'); break;
-	case KP_DOT: KeyPress('.'); break;
-	case KP_STAR: KeyPress('*'); break;
-	case KP_PLUS: KeyPress('+'); break;
-	case KP_MINUS: KeyPress('-'); break;
+	case SDLK_UP: 
+		KeyPress(27); KeyPress('['); KeyPress('A'); break;
+	case SDLK_DOWN: 
+		KeyPress(27); KeyPress('['); KeyPress('B'); break;
+	case SDLK_RIGHT: 
+		KeyPress(27); KeyPress('['); KeyPress('C'); break;
+	case SDLK_LEFT: 
+		KeyPress(27); KeyPress('['); KeyPress('D'); break;
+	case SDLK_KP0: 
+		KeyPress('0'); break;
+	case SDLK_KP1: 
+		KeyPress('1'); break;
+	case SDLK_KP2: 
+		KeyPress('2'); break;
+	case SDLK_KP3: 
+		KeyPress('3'); break;
+	case SDLK_KP4: 
+		KeyPress('4'); break;
+	case SDLK_KP5: 
+		KeyPress('5'); break;
+	case SDLK_KP6: 
+		KeyPress('6'); break;
+	case SDLK_KP7: 
+		KeyPress('7'); break;
+	case SDLK_KP8: 
+		KeyPress('8'); break;
+	case SDLK_KP9: 
+		KeyPress('9'); break;
+	case SDLK_KP_PERIOD: 
+		KeyPress('.'); break;
+	case SDLK_KP_MULTIPLY: 
+		KeyPress('*'); break;
+	case SDLK_KP_PLUS: 
+		KeyPress('+'); break;
+	case SDLK_KP_MINUS: 
+		KeyPress('-'); break;
+	default:
+		return false;
 	}
+	return true;
 }
 
 

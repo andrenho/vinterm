@@ -28,12 +28,6 @@ typedef struct TerminalChar {
 	bool cursor;
 } TerminalChar;
 
-typedef enum { 
-	UP, DOWN, LEFT, RIGHT, 
-	KP0, KP1, KP2, KP3, KP4, KP5, KP6, KP7, KP8, KP9,
-	KP_PLUS, KP_MINUS, KP_STAR, KP_DOT
-} SpecialKey;
-
 class Terminal
 {
 public:
@@ -50,7 +44,7 @@ public:
 
 protected:
 	virtual void ExecuteEscapeSequence(string const& s);
-	virtual void SpecialKeyPress(SpecialKey key);
+	virtual bool SpecialKeyPress(SDL_keysym key);
 
 	void InvalidEscapeSequence(string const& s);
 	void UpdateCursorPosition();

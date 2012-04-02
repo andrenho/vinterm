@@ -18,7 +18,7 @@ public:
 
 protected:
 	virtual void ExecuteEscapeSequence(string const& s);
-	virtual void SpecialKeyPress(SpecialKey key);
+	virtual bool SpecialKeyPress(SDL_keysym key);
 
 	// list of commands
 	void ChangeCursorPosition(const int x, const int y);

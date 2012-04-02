@@ -24,14 +24,14 @@ Console::Console(string terminal)
 	else if(!pid)
 	{
 		// child
-		if (putenv((char*)("TERM=" + terminal).c_str()))
+		if (setenv("TERM", terminal.c_str(), 1))
 		{
 			perror("putenv");
 			abort();
 		}
-		putenv("LINES=25");
-		putenv("COLUMNS=80");
-		putenv("ENV=$HOME/.vinterm_profile");
+		setenv("LINES", "25", 1);
+		setenv("COLUMNS", "80", 1);
+		setenv("ENV", "$HOME/.vinterm_profile", 1);
 		if(execlp(shell, "sh", (void*)0) == -1)
 		{
 			perror("execlp");
