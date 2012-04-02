@@ -82,7 +82,8 @@ Options::AddFilters()
 	prefilters.push_back(new FilterBright(2,0));
 	if(scale == 1)
 	{
-		prefilters.push_back(new FilterInexact(20));
+		//prefilters.push_back(new FilterScanline());
+		prefilters.push_back(new FilterInexact(15));
 	}
 	else
 	{
