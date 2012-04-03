@@ -334,48 +334,7 @@ Terminal::ScrollDown()
 bool
 Terminal::SpecialKeyPress(SDL_keysym key)
 {
-	switch(key.sym)
-	{	
-	case SDLK_UP: 
-		KeyPress(27); KeyPress('['); KeyPress('A'); break;
-	case SDLK_DOWN: 
-		KeyPress(27); KeyPress('['); KeyPress('B'); break;
-	case SDLK_RIGHT: 
-		KeyPress(27); KeyPress('['); KeyPress('C'); break;
-	case SDLK_LEFT: 
-		KeyPress(27); KeyPress('['); KeyPress('D'); break;
-	case SDLK_KP0: 
-		KeyPress('0'); break;
-	case SDLK_KP1: 
-		KeyPress('1'); break;
-	case SDLK_KP2: 
-		KeyPress('2'); break;
-	case SDLK_KP3: 
-		KeyPress('3'); break;
-	case SDLK_KP4: 
-		KeyPress('4'); break;
-	case SDLK_KP5: 
-		KeyPress('5'); break;
-	case SDLK_KP6: 
-		KeyPress('6'); break;
-	case SDLK_KP7: 
-		KeyPress('7'); break;
-	case SDLK_KP8: 
-		KeyPress('8'); break;
-	case SDLK_KP9: 
-		KeyPress('9'); break;
-	case SDLK_KP_PERIOD: 
-		KeyPress('.'); break;
-	case SDLK_KP_MULTIPLY: 
-		KeyPress('*'); break;
-	case SDLK_KP_PLUS: 
-		KeyPress('+'); break;
-	case SDLK_KP_MINUS: 
-		KeyPress('-'); break;
-	default:
-		return false;
-	}
-	return true;
+	return false;
 }
 
 

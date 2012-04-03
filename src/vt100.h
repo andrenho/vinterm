@@ -9,6 +9,8 @@ using namespace std;
 
 typedef enum { CURSOR, APPLICATION } Mode;
 
+
+
 class VT100 : public Terminal
 {
 public:
@@ -31,11 +33,18 @@ protected:
 	void MoveCursorRight(const int n);
 
 private:
+	void AddModifier(Uint8* k, string& code);
+	void KeypadPress(SDLKey key);
 	bool ParseCommand(string const& seq, char& command, 
 			vector<int>& parameters);
-	bool KeypadKey(SDL_keysym key);
 
 	Mode cursor_keys, keypad_keys;
+
+	static const struct KeyCode {
+		SDLKey key;
+		string code;
+		string cursor_or_application_code;
+	} keycodes[]; 
 };
 
 #endif
