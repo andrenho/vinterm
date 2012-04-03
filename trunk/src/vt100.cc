@@ -128,114 +128,104 @@ VT100::ExecuteEscapeSequence(string const& seq)
 bool
 VT100::SpecialKeyPress(SDL_keysym key)
 {
-	if(key.sym == SDLK_UP || key.sym == SDLK_DOWN 
-	|| key.sym == SDLK_LEFT || key.sym == SDLK_RIGHT)
+	int i=0;
+	while(!keycodes[i].code.empty())
 	{
-		if(cursor_keys == CURSOR)
-			return Terminal::SpecialKeyPress(key);
-		else
-			switch(key.sym)
-			{	
-			case SDLK_UP:
-				KeyPress(27); KeyPress('O'); KeyPress('A'); break;
-			case SDLK_DOWN:
-				KeyPress(27); KeyPress('O'); KeyPress('B'); break;
-			case SDLK_RIGHT:
-				KeyPress(27); KeyPress('O'); KeyPress('C'); break;
-			case SDLK_LEFT:
-				KeyPress(27); KeyPress('O'); KeyPress('D'); break;
-			default:
-				abort();
-			}
-	}
-	else
-	{
-		// other keys
-		switch(key.sym)
+		if(key.sym == keycodes[i].key)
 		{
-			case SDLK_DELETE:
-				KeyPress(27); KeyPress('['); KeyPress('3');
-				KeyPress('~');
-				break;
-			case SDLK_INSERT:
-				KeyPress(27); KeyPress('['); KeyPress('2');
-				KeyPress('~');
-				break;
-			case SDLK_HOME:
-				KeyPress(27); KeyPress('['); KeyPress('H');
-				break;
-			case SDLK_END:
-				// ??? TODO
-				break;
-			default:
-				return KeypadKey(key);
+			Uint8 *k = SDL_GetKeyState(NULL);
+
+			// check for keypad
+			if(k[SDLK_NUMLOCK] && key.sym >= SDLK_KP0 && key.sym <= SDLK_KP9)
+			{
+				KeypadPress(key.sym);
+				return true;
+			}
+
+			// check for cursor or application code
+			string code = keycodes[i].code;
+			if(cursor_keys == APPLICATION && (key.sym == SDLK_UP || key.sym == SDLK_DOWN || key.sym == SDLK_LEFT || key.sym == SDLK_RIGHT))
+				code = keycodes[i].cursor_or_application_code;
+			else if(keypad_keys == APPLICATION && !keycodes[i].cursor_or_application_code.empty())
+				code = keycodes[i].cursor_or_application_code;
+
+			// add modifier
+			AddModifier(k, code);
+
+			// send code
+			for(string::iterator it = code.begin();
+					it < code.end();
+					++it)
+				KeyPress(*it);
+			return true;
 		}
+		++i;
 	}
-	return true;
+	return false;
 }
 
 
-bool
-VT100::KeypadKey(SDL_keysym key)
+void 
+VT100::AddModifier(Uint8* k, string& code)
 {
-	// cursor keys
-	if(keypad_keys == CURSOR)
-		return Terminal::SpecialKeyPress(key);
-	else
-		switch(key.sym)
+	static struct {
+		bool shift, control, alt;
+		char num;
+	} codes[] = {
+		{ false, false, false, '0' },
+		{ true , false, false, '2' },
+		{ false, true , false, '5' },
+		{ false, false, true , '3' },
+		{ true , true , false, '6' },
+		{ false, true , true , '7' },
+		{ true , false, true , '4' },
+		{ true , true , true , '8' }
+	};
+	
+	bool shift = k[SDLK_RSHIFT] | k[SDLK_LSHIFT];
+	bool control = k[SDLK_RCTRL] | k[SDLK_LCTRL];
+	bool alt = k[SDLK_RALT] | k[SDLK_LALT];
+	int i = 0;
+	while(1)
+	{
+		if(codes[i].shift == shift
+		&& codes[i].control == control
+		&& codes[i].alt == alt)
 		{
-		case SDLK_KP0:
-			KeyPress(27); KeyPress('O'); KeyPress('p'); 
-			break;
-		case SDLK_KP1:
-			KeyPress(27); KeyPress('O'); KeyPress('q'); 
-			break;
-		case SDLK_KP2:
-			KeyPress(27); KeyPress('O'); KeyPress('r'); 
-			break;
-		case SDLK_KP3:
-			KeyPress(27); KeyPress('O'); KeyPress('s'); 
-			break;
-		case SDLK_KP4:
-			KeyPress(27); KeyPress('O'); KeyPress('t'); 
-			break;
-		case SDLK_KP5:
-			KeyPress(27); KeyPress('O'); KeyPress('u');
-			break;
-		case SDLK_KP6:
-			KeyPress(27); KeyPress('O'); KeyPress('v'); 
-			break;
-		case SDLK_KP7:
-			KeyPress(27); KeyPress('O'); KeyPress('w'); 
-			break;
-		case SDLK_KP8:
-			KeyPress(27); KeyPress('O'); KeyPress('x'); 
-			break;
-		case SDLK_KP9:
-			KeyPress(27); KeyPress('O'); KeyPress('y'); 
-			break;
-		case SDLK_KP_MINUS:
-			KeyPress(27); KeyPress('O'); KeyPress('m');
-			break;
-		case SDLK_KP_MULTIPLY:
-			KeyPress(27); KeyPress('O'); KeyPress('l'); 
-			break;
-		case SDLK_KP_PERIOD:
-			KeyPress(27); KeyPress('O'); KeyPress('n'); 
-			break;
-		case SDLK_KP_PLUS:
-			KeyPress(27); KeyPress('O'); KeyPress('M'); 
-			break;
-		case SDLK_PAGEUP:
-			KeyPress(21);
-			break;
-		case SDLK_PAGEDOWN:
-			KeyPress(4);
-			break;
-		default:
-			return Terminal::SpecialKeyPress(key);
+			char c = codes[i].num;
+			if(c == '0')
+				return;
+			
+			char last = code[code.length()-1];
+			if(last == '~')
+				code.insert(2, string() + c + ';');
+			else
+				code.insert(2, string("1;") + c);
+			return;
 		}
-	return true;
+		++i;
+	}
+}
+
+
+
+void
+VT100::KeypadPress(SDLKey key)
+{
+	switch(key)
+	{
+	case SDLK_KP0: KeyPress('0'); break;
+	case SDLK_KP1: KeyPress('1'); break;
+	case SDLK_KP2: KeyPress('2'); break;
+	case SDLK_KP3: KeyPress('3'); break;
+	case SDLK_KP4: KeyPress('4'); break;
+	case SDLK_KP5: KeyPress('5'); break;
+	case SDLK_KP6: KeyPress('6'); break;
+	case SDLK_KP7: KeyPress('7'); break;
+	case SDLK_KP8: KeyPress('8'); break;
+	case SDLK_KP9: KeyPress('9'); break;
+	default: abort();
+	}
 }
 
 
@@ -350,3 +340,44 @@ VT100::MoveCursorRight(const int n)
 {
 	ChangeCursorPosition(min(w-1, cursor_x + n), cursor_y);
 }
+
+
+const VT100::KeyCode VT100::keycodes[] = {
+	{ SDLK_UP,	"\033[A",	"\033OA" },
+	{ SDLK_DOWN,	"\033[B",	"\033OB" },
+	{ SDLK_RIGHT,	"\033[C",	"\033OC" },
+	{ SDLK_LEFT,	"\033[D",	"\033OD" },
+	{ SDLK_KP0,	"\033[2~",      "\033Op" },
+	{ SDLK_KP1,	"\033[F",       "\033Oq" },
+	{ SDLK_KP2,	"\033[B",       "\033Or" },
+	{ SDLK_KP3,	"\033[6~"       "\033Os" },
+	{ SDLK_KP4,	"\033[D",       "\033Ot" },
+	{ SDLK_KP5,	"\033[E"        "\033Ou" },
+	{ SDLK_KP6,	"\033[C",       "\033Ov" },
+	{ SDLK_KP7,	"\033[H",       "\033Ow" },
+	{ SDLK_KP8,	"\033[A",       "\033Ox" },
+	{ SDLK_KP9,	"\033[5~",      "\033Oy" },
+	{ SDLK_KP_MINUS, "-",           "\033Om" },
+	{ SDLK_KP_MULTIPLY, "*",        "\033Ol" },
+	{ SDLK_KP_PERIOD, ".",          "\033On" },
+	{ SDLK_KP_PLUS, "+",            "\033OM" },
+	{ SDLK_INSERT, 	"\033[2~", 	"" },
+	{ SDLK_DELETE, 	"\033[3~", 	"" },
+	{ SDLK_HOME, 	"\033[H", 	"\033[7~" },
+	{ SDLK_END, 	"\033[F", 	"\033[8~" },
+	{ SDLK_PAGEUP, 	"\033[5~", 	"\025" },
+	{ SDLK_PAGEDOWN,"\033[6~", 	"\04" },
+	{ SDLK_F1,	"\033OP",       "" },
+	{ SDLK_F2,	"\033OQ",       "" },
+	{ SDLK_F3,	"\033OR",       "" },
+	{ SDLK_F4,	"\033OS",       "" },
+	{ SDLK_F5,	"\033[15~",     "" },
+	{ SDLK_F6,	"\033[17~",     "" },
+	{ SDLK_F7,	"\033[18~",     "" },
+	{ SDLK_F8,	"\033[19~",     "" },
+	{ SDLK_F9,	"\033[20~",     "" },
+	{ SDLK_F10,	"\033[21~",     "" },
+	{ SDLK_F11,	"\033[22~",     "" },
+	{ SDLK_F12,	"\033[23~",     "" },
+	{ SDLK_q, "" }
+};
