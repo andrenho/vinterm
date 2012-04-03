@@ -1,9 +1,11 @@
 Version 0.1.2
 -------------
   - Changed initialization file to run .bashrc on startup.
+  - Added control keys support (such as HOME, END, PAGE UP...)
+  - Normal color was made darker, so that bright colors standout more
   - Bugs corrected:
     - Incorrect window title version
-    - Normal color is darker, so that bright colors standout more.
+    - Memory leaks fixed
 
 Version 0.1.1
 -------------

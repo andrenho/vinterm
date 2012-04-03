@@ -13,6 +13,7 @@ Font.............. Load font, resizing it
 Chars............. Setup the characters with attributes, and apply the filters
 Console........... Connect to the PTY
 Terminal.......... Format the characters on the terminal
+  VT100........... Support VT100 extensions
 Screen............ Display everything to the user
 Filter............ Each one of the filters that'll be applied to the image
   FilterBright
