@@ -81,18 +81,27 @@ VT100::ExecuteEscapeSequence(string const& seq)
 				InvalidEscapeSequence(seq);
 			break;
 		case 'm':
-			if(parameters.empty() || parameters[0] == 0)
+			if(parameters.empty())
 				current_attr = NORMAL;
-			else if(parameters[0] == 4)
-				current_attr.Underline = true;
-			else if(parameters[0] == 7)
-				current_attr.Reverse = true;
-			else if(parameters[0] == 1)
-				current_attr.Highlight = true;
-			else if(parameters[0] == 5)
-				current_attr.Blink = true;
-			else
-				InvalidEscapeSequence(seq);
+			for(vector<int>::iterator it = parameters.begin();
+					it < parameters.end(); ++it)
+			{
+				if(*it == 0)
+					current_attr = NORMAL;
+				else if(*it == 1)
+					current_attr.Highlight = true;
+				else if(*it == 4)
+					current_attr.Underline = true;
+				else if(*it == 5)
+					current_attr.Blink = true;
+				else if(*it == 7)
+					current_attr.Reverse = true;
+				else
+				{
+					InvalidEscapeSequence(seq);
+					break;
+				}
+			}
 			break;
 		case 'r':
 			if(parameters.size() != 2)
@@ -324,7 +333,7 @@ VT100::MoveCursorUp(const int n)
 void 
 VT100::MoveCursorDown(const int n)
 {
-	ChangeCursorPosition(cursor_x, min(w-1, cursor_y + n));
+	ChangeCursorPosition(cursor_x, min(h-1, cursor_y + n));
 }
 
 
@@ -363,10 +372,10 @@ const VT100::KeyCode VT100::keycodes[] = {
 	{ SDLK_KP_PLUS, "+",            "\033OM" },
 	{ SDLK_INSERT, 	"\033[2~", 	"" },
 	{ SDLK_DELETE, 	"\033[3~", 	"" },
-	{ SDLK_HOME, 	"\033[H", 	"\033[7~" },
-	{ SDLK_END, 	"\033[F", 	"\033[8~" },
-	{ SDLK_PAGEUP, 	"\033[5~", 	"\025" },
-	{ SDLK_PAGEDOWN,"\033[6~", 	"\04" },
+	{ SDLK_HOME, 	"\033[H", 	"\033OH" },
+	{ SDLK_END, 	"\033[F", 	"\033OF" },
+	{ SDLK_PAGEUP, 	"\033[5~", 	"" },
+	{ SDLK_PAGEDOWN,"\033[6~", 	"" },
 	{ SDLK_F1,	"\033OP",       "" },
 	{ SDLK_F2,	"\033OQ",       "" },
 	{ SDLK_F3,	"\033OR",       "" },

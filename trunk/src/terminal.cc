@@ -119,6 +119,9 @@ Terminal::PrintChar(const uint8_t c)
 {
 	switch(c)
 	{
+	case 15:
+		// TODO - alternate charset???
+		break;
 	case 27: // ESC
 		escape_mode = true;
 		escape_sequence = string(1, (char)27);

@@ -79,14 +79,15 @@ Options::ParseArguments(int argc, char* argv[])
 void
 Options::AddFilters()
 {
-	prefilters.push_back(new FilterBright(2,0));
 	if(scale == 1)
 	{
+		prefilters.push_back(new FilterBright(1,0));
 		//prefilters.push_back(new FilterScanline());
 		prefilters.push_back(new FilterInexact(15));
 	}
 	else
 	{
+		prefilters.push_back(new FilterBright(2,0));
 		prefilters.push_back(new FilterScanline());
 		prefilters.push_back(new FilterInexact(30));
 	}
