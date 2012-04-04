@@ -13,6 +13,9 @@ Terminal::Terminal(Options const& options, string const& term)
 	  options(options), ch(new TerminalChar*[w]), 
 	  old_cursor_x(0), old_cursor_y(0), blink_on(true), 
 	  last_blink(SDL_GetTicks()), escape_mode(false)
+#ifndef DEBUG
+	  , debug(options.debug_terminal), dx(0)
+#endif
 {
 	SDL_EnableUNICODE(1);
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, 
@@ -56,6 +59,9 @@ Terminal::ConsoleInput()
 		switch(e.type)
 		{
 		case SDL_KEYDOWN:
+#ifdef DEBUG
+			Debug(e.key.keysym.unicode, false);
+#endif
 			if(!SpecialKeyPress(e.key.keysym))
 			{
 				uint16_t c = e.key.keysym.unicode;
@@ -81,10 +87,15 @@ Terminal::ConsoleOutput()
 	{
 		string::const_iterator it;
 		for(it = s.begin(); it != s.end(); it++)
+		{
+#ifdef DEBUG
+			Debug(*it, true);
+#endif
 			if(escape_mode)
 				AddEscapeChar(*it);
 			else
 				PrintChar(*it);
+		}
 		return true;
 	}
 	else if(ret == EOF)
@@ -94,13 +105,9 @@ Terminal::ConsoleOutput()
 }
 
 
-void
+inline void
 Terminal::KeyPress(uint16_t key)
 {
-#ifdef DEBUG
-	if(options.debug_terminal)
-		printf(">> %c [%d]\n", key, key);
-#endif
 	console->SendChar((uint8_t)key);
 }
 
@@ -150,10 +157,6 @@ Terminal::PrintChar(const uint8_t c)
 		}
 		break;
 	default:
-#ifdef DEBUG
-		if(options.debug_terminal)
-			printf("<< %c [%d] (%d,%d)\n", c, c, cursor_x, cursor_y);
-#endif
 		SetChar(cursor_x, cursor_y, c, current_attr);
 		AdvanceCursorX();
 	}
@@ -350,3 +353,27 @@ Terminal::SetScrollRegion(int top, int bottom)
 //	cursor_y = top;
 //	UpdateCursorPosition();
 }
+
+
+#ifdef DEBUG
+void 
+Terminal::Debug(const uint16_t c, const bool is_output) const
+{
+	char c1, c2;
+	if(is_output) { c1 = '['; c2 = ']'; } else { c1 = '<'; c2 = '>'; }
+	
+	if(c < 32)
+		printf("%c%02x%c ", c1, c, c2);
+	else
+		printf("%c %c%c ", c1, c, c2);
+	if(dx == 14)
+	{
+		printf("\n");
+		dx = 0;
+	}
+
+	fflush(stdout);
+
+	dx++;
+}
+#endif
