@@ -18,7 +18,8 @@ int main(int argc, char* argv[])
 	}
 
 	Options options(argc, argv);
-	VT100 terminal(options);
+	Terminal terminal(options);
+	//VT100 terminal(options);
 	Screen screen(options, terminal);
 
 	while(1)

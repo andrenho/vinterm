@@ -9,6 +9,7 @@ using namespace std;
 #include "font.h"
 #include "options.h"
 #include "console.h"
+#include "config.h"
 
 typedef struct CharAttr {
 	bool Reverse    : 1;
@@ -71,6 +72,9 @@ private:
 	void AdvanceCursorX();
 	void AdvanceCursorY(bool update=true);
 	void Blink();
+#ifdef DEBUG
+	void Debug(const uint16_t c, const bool is_output) const;
+#endif
 
 	Options const& options;
 	TerminalChar** const ch;
@@ -80,6 +84,10 @@ private:
 
 	bool escape_mode;
 	string escape_sequence;
+#ifdef DEBUG
+	bool debug;
+	mutable int dx;
+#endif
 };
 
 #endif
