@@ -204,23 +204,6 @@ Terminal::AddEscapeChar(const uint8_t c)
 	if(end_seq)
 	{
 		escape_mode = false;
-#ifdef DEBUG
-		// print escape sequence
-		if(options.debug_terminal)
-		{
-			cout << "<< ";
-			for(string::const_iterator it(escape_sequence.begin()); 
-					it < escape_sequence.end(); 
-					it++)
-			{
-				if(*it == 27)
-					cout << "ESC";
-				else
-					cout << *it;
-			}
-			cout << endl;
-		}
-#endif
 		ExecuteEscapeSequence(escape_sequence);
 	}
 }
@@ -356,9 +339,12 @@ Terminal::SetScrollRegion(int top, int bottom)
 
 
 #ifdef DEBUG
-void 
+inline void 
 Terminal::Debug(const uint16_t c, const bool is_output) const
 {
+	if(!debug)
+		return;
+
 	char c1, c2;
 	if(is_output) { c1 = '['; c2 = ']'; } else { c1 = '<'; c2 = '>'; }
 	

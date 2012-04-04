@@ -47,8 +47,9 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_vinterm_OBJECTS = main.$(OBJEXT) chars.$(OBJEXT) console.$(OBJEXT) \
 	font.$(OBJEXT) options.$(OBJEXT) screen.$(OBJEXT) \
-	terminal.$(OBJEXT) vt100.$(OBJEXT) filter_bright.$(OBJEXT) \
-	filter_inexact.$(OBJEXT) filter_scanline.$(OBJEXT)
+	terminal.$(OBJEXT) vinterm.$(OBJEXT) vt100.$(OBJEXT) \
+	filter_bright.$(OBJEXT) filter_inexact.$(OBJEXT) \
+	filter_scanline.$(OBJEXT)
 vinterm_OBJECTS = $(am_vinterm_OBJECTS)
 vinterm_DEPENDENCIES =
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
@@ -170,6 +171,7 @@ vinterm_SOURCES = main.cc					\
 		  options.h		options.cc		\
 		  screen.h		screen.cc		\
 		  terminal.h		terminal.cc		\
+		  vinterm.h             vinterm.cc              \
 		  vt100.h               vt100.cc                \
 		  						\
 		  filter.h					\
@@ -269,6 +271,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/options.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/screen.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/terminal.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vinterm.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vt100.Po@am__quote@
 
 .cc.o:
