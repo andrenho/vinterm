@@ -3,7 +3,13 @@
 
 include config.mk
 
-SRC = main.cc
+SRC = main.cc			\
+      options.cc		\
+      terminal/framebuffer.cc	\
+      terminal/terminal.cc	\
+      terminal/vinterm.cc	\
+      graphic/graphiclibrary.cc \
+      graphic/sdl_library.cc
 OBJ = ${SRC:.cc=.o}
 DIST = AUTHORS HACKING LICENSE NEWS README
 
@@ -11,17 +17,17 @@ all: options vinterm
 
 options:
 	@echo Vintage Terminal build options:
-	@echo "CPPFLAGS = ${CPPFLAGS}"
+	@echo "CXXFLAGS = ${CXXFLAGS}"
 	@echo "LDFLAGS  = ${LDFLAGS}"
 	@echo "CC       = ${CC}"
 
 .cc.o:
 	@echo CC $<
-	@${CC} -c ${CFLAGS} $<
+	@${CC} -c ${CXXFLAGS} -o $@ $<
 
 ${OBJ}: config.mk
 
-st: ${OBJ}
+vinterm: ${OBJ}
 	@echo CC -o $@
 	@${CC} -o $@ ${OBJ} ${LDFLAGS}
 

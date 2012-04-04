@@ -7,22 +7,22 @@ VERSION = 0.1.3
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+X11INC = -I/usr/X11R6/include
+X11LIB = 0L/usr/X11R6/lib
 SDLINC = `sdl-config --cflags`
 SDLLIB = `sdl-config --libs`
 
 # includes and libs
-INCS = -Isrc -I/usr/include -I${SDLINC}
+INCS = -I. -I/usr/include ${SDLINC} -D_SDL
 LIBS = ${SDLLIB}
 #LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 -lutil
 
 # basic flags
-CPPFLAGS = -DVERSION=\"${VERSION}\" -pedantic -Wall
+CXXFLAGS = -DVERSION=\"${VERSION}\" -pedantic -Wall ${INCS}
 LDFLAGS += ${LIBS}
 
 # debug flags
-CPPFLAGS += -g -O0 -DDEBUG
+CXXFLAGS += -g -O0 -DDEBUG
 LDFLAGS += -g
 
 # production flags
@@ -30,4 +30,4 @@ LDFLAGS += -g
 #LDFLAGS += -s
 
 # compiler and linker
-CC ?= gcc
+CC = g++
