@@ -164,7 +164,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 vintermdatarootdir = $(datarootdir)/${PACKAGE}
-dist_vintermdataroot_DATA = mda9.bmp vinterm_profile
+dist_vintermdataroot_DATA = mda9.bmp vinterm_profile vinterm.info
 all: all-am
 
 .SUFFIXES:
