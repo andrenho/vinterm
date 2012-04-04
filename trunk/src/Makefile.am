@@ -6,6 +6,7 @@ vinterm_SOURCES = main.cc					\
 		  options.h		options.cc		\
 		  screen.h		screen.cc		\
 		  terminal.h		terminal.cc		\
+		  vinterm.h             vinterm.cc              \
 		  vt100.h               vt100.cc                \
 		  						\
 		  filter.h					\
