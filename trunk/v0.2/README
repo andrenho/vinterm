@@ -1,0 +1,31 @@
+Vintage Terminal
+----------------
+
+Use a terminal in style, like in the good old days! Vintage Terminal is a 
+terminal emulator that simulates the looks of a 1980s monitor.
+
+Vintage Terminal has the following features:
+
+  * Partial VT100 support implemented, enough to run alpine, vim (with syntax 
+    highlighting) and nethack and use commands like clear, man, more and less;
+    - It won't yet run nano, mc or elinks.
+  * Scaling (zoom) with the argument `-s`;
+  * Has a authentic old look based on a IBM 5151 monitor.
+
+This is a very early alpha release, so is not yet for the faint of heart. USE
+AT YOUR OWN RISK.
+
+Vintage Terminal requires the SDL library. <http://www.libsdl.org/>
+
+The following features are planned:
+
+  * Unicode support
+  * Complete VT100 terminal support
+  * Mouse support
+  * Different colors for the monochrome monitor (ambar, blue, gray...)
+  * Different types of old monitors (DEC terminals, TV...)
+  * Ability to configure every aspect of the image
+  * Full screen
+  * MS-DOS console emulation for Windows
+
+`Vintage Terminal` has only been tested on Linux so far.
