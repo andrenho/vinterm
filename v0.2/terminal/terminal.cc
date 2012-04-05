@@ -1,7 +1,9 @@
 #include "terminal/terminal.h"
 
-#include <sstream>
 using namespace std;
+
+#include "terminal/framebuffer.h"
+#include "terminal/pty.h"
 
 Terminal::Terminal(Framebuffer& fb, GraphicLibrary const& gl,
 		PTY const& pty)
@@ -18,12 +20,13 @@ Terminal::~Terminal()
 void
 Terminal::Input()
 {
-	stringstream s;
-	s << pty;
+	int i;
 
-	for(string::const_iterator it = s.str().begin(); it < s.str().end(); 
-			it++)
-		'x' >> fb;
+	while((i = pty.Get()) != PTY::NO_DATA)
+	{
+		const char c = (const char)i;
+		fb.Put(c);
+	}
 }
 
 

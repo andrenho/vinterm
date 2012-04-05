@@ -36,7 +36,5 @@ int main(int argc, char** argv)
 
 	delete gl;
 
-	cout << pty;
-
 	return 0;
 }

@@ -26,8 +26,7 @@ public:
 	explicit Framebuffer(Options const& options);
 	~Framebuffer();
 
-	friend istream& operator>>(istream& in, Framebuffer& fb);
-	//void operator<<(const char c);
+	void Put(const char c);
 
 	inline int W() const { return w; }
 	inline int H() const { return h; }

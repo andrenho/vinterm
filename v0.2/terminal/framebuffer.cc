@@ -16,26 +16,19 @@ Framebuffer::~Framebuffer()
 }
 
 
-//void
-//Framebuffer::operator<<(const char c)
-istream& 
-operator>>(istream& in, Framebuffer& fb)
+void 
+Framebuffer::Put(const char c)
 {
-	char c;
-	in >> c;
-
 	// put char on the grid
-	int pos = fb.cursor_x + (fb.cursor_y * fb.W());
-	fb.chars[pos].Ch = c;
-	fb.chars[pos].Attr = fb.current_attr;
+	int pos = cursor_x + (cursor_y * W());
+	chars[pos].Ch = c;
+	chars[pos].Attr = current_attr;
 
 	// add to list of positions to be updated on the screen
-	fb.dirty->push_back(pos);
+	dirty->push_back(pos);
 
 	// advance cursor
-	fb.AdvanceCursorX();
-
-	return in;
+	AdvanceCursorX();
 }
 
 

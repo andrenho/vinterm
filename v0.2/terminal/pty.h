@@ -8,10 +8,12 @@ using namespace std;
 class PTY
 {
 public:
+	enum { NO_DATA = -1 };
+
 	explicit PTY(const string terminal="vinterm");
 	~PTY();
 
-	friend ostream& operator<<(ostream& out, PTY const& pty);
+	int Get() const;
 
 private:
 	void CopyStartupFile();
