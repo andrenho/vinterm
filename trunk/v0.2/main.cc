@@ -5,7 +5,7 @@ using namespace std;
 #include "options.h"
 #include "graphic/curses_lib.h"
 #include "terminal/framebuffer.h"
-#include "terminal/vinterm.h"
+#include "terminal/terminal.h"
 
 int main(int argc, char** argv)
 {
@@ -23,10 +23,9 @@ int main(int argc, char** argv)
 
 	Options options(argc, argv);
 	Framebuffer fb(options);
+	PTY pty;
 	gl->Initialize(options, fb);
-	Vinterm terminal(fb, *gl);
-
-	fb << 'a';
+	Terminal terminal(fb, *gl, pty);
 
 	while(terminal.Active())
 	{
@@ -36,6 +35,8 @@ int main(int argc, char** argv)
 	}
 
 	delete gl;
+
+	cout << pty;
 
 	return 0;
 }

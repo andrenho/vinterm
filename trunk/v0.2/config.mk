@@ -14,9 +14,10 @@ DEBUG = yes
 # paths
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
+VINTERMPREFIX = ${PREFIX}/share/vinterm
 
 # basic flags
-CXXFLAGS = -std=c++0x -DVERSION=\"${VERSION}\" -pedantic -Wall -I. -I/usr/include
+CXXFLAGS = -std=c++0x -DVERSION=\"${VERSION}\" -DDATADIR=\"${VINTERMPREFIX}\" -pedantic -Wall -I. -I/usr/include
 LDFLAGS = -L/usr/lib -lutil
 
 # SDL libraries

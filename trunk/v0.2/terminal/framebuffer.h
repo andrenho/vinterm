@@ -2,6 +2,7 @@
 #define FRAMEBUFFER_H
 
 #include <vector>
+#include <istream>
 using namespace std;
 
 class Options;
@@ -22,10 +23,11 @@ typedef struct Char {
 class Framebuffer
 {
 public:
-	Framebuffer(Options const& options);
+	explicit Framebuffer(Options const& options);
 	~Framebuffer();
 
-	void operator<<(char c);
+	friend istream& operator>>(istream& in, Framebuffer& fb);
+	//void operator<<(const char c);
 
 	inline int W() const { return w; }
 	inline int H() const { return h; }
@@ -35,10 +37,13 @@ public:
 
 private:
 	void AdvanceCursorX();
+	void AdvanceCursorY();
+	void ScrollUp();
 
 	Options const& options;
 	int w, h;
 	int cursor_x, cursor_y;
+	int scroll_top, scroll_bottom;
 	Attribute current_attr;
 	vector<Char> chars;
 };
