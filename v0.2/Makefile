@@ -6,8 +6,8 @@ include config.mk
 SRC = main.cc			\
       options.cc		\
       terminal/framebuffer.cc	\
+      terminal/pty.cc		\
       terminal/terminal.cc	\
-      terminal/vinterm.cc	\
       graphic/graphiclibrary.cc \
       graphic/curses_lib.cc	\
       graphic/sdl_library.cc
@@ -55,6 +55,9 @@ install: all
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
 	@cp -f vinterm ${DESTDIR}${PREFIX}/bin
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/st
+	@echo installing data to ${DESTDIR}${VINTERMPREFIX}
+	@mkdir -p ${DESTDIR}${VINTERMPREFIX}
+	@cp -f data/* ${DESTDIR}${VINTERMPREFIX}
 #	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
 #	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
 #	@sed "s/VERSION/${VERSION}/g" < st.1 > ${DESTDIR}${MANPREFIX}/man1/st.1

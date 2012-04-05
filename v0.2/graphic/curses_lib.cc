@@ -33,6 +33,7 @@ Curses::Update()
 		int y = (*it) / fb->W();
 		mvaddch(y, x, fb->Ch(x, y).Ch);
 	}
+	fb->dirty->clear();
 	refresh();
 }
 

@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Profile file for Vintage Terminal
+
+# since unicode still doesn't work, set language to C
+export LC_ALL=C
+
+# run bash file
+if [ "$SHELL" == "/bin/bash" ]; then
+  . ~/.bashrc
+fi
+
+# welcome message
+echo "This is a ALHPA RELEASE of Vintage Terminal. Use at YOUR OWN RISK."
+echo
+
+# vim - disable GPM
+alias vim='vim "+set mouse="'
+alias vi=vim
+
+# nethack - disable colors (TODO)
+export NETHACKOPTIONS="nocolor"
+
+# other aliases
+alias ls='ls --color -F'
