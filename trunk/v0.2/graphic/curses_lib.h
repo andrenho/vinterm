@@ -12,6 +12,7 @@ public:
 	~Curses();
 
 	void Update();
+	int Input() const;
 };
 
 #endif

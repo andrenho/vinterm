@@ -14,6 +14,8 @@ Curses::Curses(int const w, int const h)
 	initscr();
 	raw();
 	keypad(stdscr, TRUE);
+	noecho();
+	timeout(5);
 }
 
 
@@ -36,5 +38,13 @@ Curses::Update()
 	fb->dirty->clear();
 	refresh();
 }
+
+
+int 
+Curses::Input() const
+{
+	return getch();
+}
+
 
 #endif

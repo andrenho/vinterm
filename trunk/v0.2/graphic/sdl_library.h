@@ -11,6 +11,7 @@ public:
 	SDL_Library(int const w, int const h);
 	~SDL_Library();
 	void Update() { }
+	int Input() const { return 0; }
 };
 
 #endif
