@@ -2,7 +2,7 @@
 #define FILTER_H
 
 #include <cstdio>
-#include "screen.h"
+#include "graphic/screen.h"
 
 typedef enum { PRE, POST } FilterType;
 

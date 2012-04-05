@@ -1,7 +1,9 @@
-#include "chars.h"
+#include "graphic/chars.h"
 
-#include "screen.h"
-#include "filter.h"
+#include "options.h"
+#include "filters/filter.h"
+#include "graphic/font.h"
+#include "graphic/screen.h"
 
 Chars::Chars(Options const& options, Font const& font)
 	: start_at_x(1), start_at_y(1),
@@ -10,8 +12,10 @@ Chars::Chars(Options const& options, Font const& font)
 	  reverse_space(new SDL_Surface*[10])
 {
 	// see Char::Chars for an explaination
+	Attribute attr;
+	attr.Reverse = true;
 	for(int i=0; i<10; i++)
-		reverse_space[i] = CreateChar(' ', (CharAttr) { 1 });
+		reverse_space[i] = CreateChar(' ', attr);
 }
 
 
@@ -29,7 +33,7 @@ Chars::~Chars()
 
 
 SDL_Surface* 
-Chars::CreateChar(const uint8_t c, const CharAttr attr) const
+Chars::CreateChar(const uint8_t c, const Attribute attr) const
 {
 	// create surface
 	SDL_Surface* s(SDL_CreateRGBSurface(SDL_SWSURFACE,
@@ -61,7 +65,8 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 					font.ch[c][y*font.char_w+x] ? color : bg_color;
 		if(attr.Underline)
 		{
-			SDL_Rect r = { 0, font.char_h, font.char_w, 1 };
+			SDL_Rect r = { 0, (Sint16)font.char_h, 
+				(Sint16)font.char_w, 1 };
 			SDL_FillRect(s, &r, color);
 		}
 	}
@@ -71,16 +76,19 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 			for(int y(0); y<font.char_h; y++)
 			{
 				SDL_Rect r = {
-					(x + start_at_x) * options.scale,
-					(y + start_at_y) * options.scale,
-					options.scale, options.scale };
+					(Sint16)((x + start_at_x) * options.scale),
+					(Sint16)((y + start_at_y) * options.scale),
+					(Sint16)options.scale, 
+					(Sint16)options.scale };
 				if(font.ch[c][y*font.char_w+x])
 					SDL_FillRect(s, &r, color);
 			}
 		if(attr.Underline)
 		{
-			SDL_Rect r = { 0, font.char_h * options.scale, 
-				font.char_w * options.scale, options.scale };
+			SDL_Rect r = { 0, 
+				(Sint16)(font.char_h * options.scale), 
+				(Sint16)(font.char_w * options.scale), 
+				(Sint16)options.scale };
 			SDL_FillRect(s, &r, color);
 		}
 	}
@@ -97,10 +105,12 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 	{
 		const int S(options.scale);
 		SDL_Rect r[4] = {
-			{ 0, 0, start_at_x*S, s->h },
-			{ 0, 0, s->w, start_at_y*S },
-			{ s->w - (start_at_x*S), 0, start_at_x*S, s->h },
-			{ 0, s->h - (start_at_y*S), s->w, start_at_y*S }
+			{ 0, 0, (Sint16)(start_at_x*S), (Sint16)s->h },
+			{ 0, 0, (Sint16)s->w, (Sint16)(start_at_y*S) },
+			{ (Sint16)(s->w - (start_at_x*S)), 0, 
+				(Sint16)(start_at_x*S), (Sint16)s->h },
+			{ 0, (Sint16)(s->h - (start_at_y*S)), 
+				(Sint16)s->w, (Sint16)(start_at_y*S) }
 		};
 		for(int i(0); i<4; i++)
 			SDL_FillRect(s, &r[i], 0);
@@ -111,7 +121,7 @@ Chars::CreateChar(const uint8_t c, const CharAttr attr) const
 
 
 SDL_Surface* 
-Chars::Char(const uint8_t c, const CharAttr attr, int rnd) const 
+Chars::Char(const uint8_t c, const Attribute attr, int rnd) const 
 {
 	if(c == ' ' && attr.Reverse)
 	{

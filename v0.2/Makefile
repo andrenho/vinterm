@@ -8,9 +8,12 @@ SRC = main.cc			\
       terminal/framebuffer.cc	\
       terminal/pty.cc		\
       terminal/terminal.cc	\
-      graphic/graphiclibrary.cc \
-      graphic/curses_lib.cc	\
-      graphic/sdl_library.cc
+      graphic/chars.cc		\
+      graphic/font.cc		\
+      graphic/screen.cc		\
+      filters/filter_bright.cc  \
+      filters/filter_inexact.cc \
+      filters/filter_scanline.cc
 OBJ = ${SRC:.cc=.o}
 DIST = AUTHORS HACKING LICENSE NEWS README
 DATA = data/vinterm_profile
