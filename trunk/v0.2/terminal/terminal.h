@@ -10,7 +10,7 @@ public:
 	Terminal(Framebuffer const& fb, GraphicLibrary const& gl)
 		: fb(fb), gl(gl) { }
 
-	bool Active() { return false; }
+	bool Active() { return true; }
 	void Input() { }
 	void Output() { }
 

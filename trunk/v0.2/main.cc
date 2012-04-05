@@ -3,7 +3,7 @@
 using namespace std;
 
 #include "options.h"
-#include "graphic/graphiclibrary.h"
+#include "graphic/curses_lib.h"
 #include "terminal/framebuffer.h"
 #include "terminal/vinterm.h"
 
@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	GraphicLibrary* gl;
 	try 
 	{
-		gl = GraphicLibrary::Initialize(GraphicLibrary::SDL, 80, 24);
+		gl = GraphicLibrary::Initialize(GraphicLibrary::CURSES, 80, 24);
 	} 
 	catch(string& er) 
 	{
@@ -25,6 +25,8 @@ int main(int argc, char** argv)
 	Framebuffer fb(options);
 	gl->Initialize(options, fb);
 	Vinterm terminal(fb, *gl);
+
+	fb << 'a';
 
 	while(terminal.Active())
 	{
