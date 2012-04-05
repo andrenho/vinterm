@@ -13,6 +13,7 @@ SRC = main.cc			\
       graphic/sdl_library.cc
 OBJ = ${SRC:.cc=.o}
 DIST = AUTHORS HACKING LICENSE NEWS README
+DATA = data/vinterm_profile
 
 all: options vinterm
 
@@ -38,10 +39,11 @@ clean:
 	@echo cleaning
 	@rm -f vinterm ${OBJ} vinterm-${VERSION}.tar.gz depend
 
+# TODO - check data
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p vinterm-${VERSION}
-	@cp -R Makefile ${DIST} config.mk vinterm.info ${SRC} vinterm-${VERSION}
+	@cp -R Makefile ${DIST} config.mk vinterm.info ${SRC} ${DATA} vinterm-${VERSION}
 	@tar -cf vinterm-${VERSION}.tar vinterm-${VERSION}
 	@gzip vinterm-${VERSION}.tar
 	@rm -rf vinterm-${VERSION}
@@ -50,6 +52,7 @@ depend: ${SRC}
 	@echo checking dependencies
 	@${CC} -MM ${CXXFLAGS} ${SRC} >depend
 
+# TODO - check data
 install: all
 	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
 	@mkdir -p ${DESTDIR}${PREFIX}/bin
@@ -57,13 +60,14 @@ install: all
 	@chmod 755 ${DESTDIR}${PREFIX}/bin/st
 	@echo installing data to ${DESTDIR}${VINTERMPREFIX}
 	@mkdir -p ${DESTDIR}${VINTERMPREFIX}
-	@cp -f data/* ${DESTDIR}${VINTERMPREFIX}
+	@cp -f ${DATA} ${DESTDIR}${VINTERMPREFIX}
 #	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
 #	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
 #	@sed "s/VERSION/${VERSION}/g" < st.1 > ${DESTDIR}${MANPREFIX}/man1/st.1
 #	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/st.1
 	@tic -s st.info
 
+# TODO - check data
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
 	@rm -f ${DESTDIR}${PREFIX}/bin/st

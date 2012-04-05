@@ -2,8 +2,7 @@
 VERSION = 0.1.3
 
 # system libraries
-SDL = no
-CURSES = yes
+SDL = yes
 X11 = no
 
 # add debugging info
@@ -32,11 +31,6 @@ ifeq (${X11},yes)
   LDFLAGS += -L/usr/X11R6/lib -lX11 -lutil
 endif
 
-# curses
-ifeq (${CURSES},yes)
-  CXXFLAGS += -D_CURSES
-  LDFLAGS += -lncurses
-endif
 
 ifeq (${DEBUG},yes)
   # debug flags
