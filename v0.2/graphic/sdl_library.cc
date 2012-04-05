@@ -1,3 +1,5 @@
+#ifdef _SDL
+
 #include "graphic/sdl_library.h"
 
 #include <string>
@@ -16,3 +18,5 @@ SDL_Library::~SDL_Library()
 {
 	SDL_Quit();
 }
+
+#endif

@@ -9,6 +9,7 @@ SRC = main.cc			\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
       graphic/graphiclibrary.cc \
+      graphic/curses_lib.cc	\
       graphic/sdl_library.cc
 OBJ = ${SRC:.cc=.o}
 DIST = AUTHORS HACKING LICENSE NEWS README
@@ -27,13 +28,15 @@ options:
 
 ${OBJ}: config.mk
 
-vinterm: ${OBJ}
+vinterm: depend ${OBJ}
 	@echo CC -o $@
 	@${CC} -o $@ ${OBJ} ${LDFLAGS}
 
+-include depend
+
 clean:
 	@echo cleaning
-	@rm -f vinterm ${OBJ} vinterm-${VERSION}.tar.gz
+	@rm -f vinterm ${OBJ} vinterm-${VERSION}.tar.gz depend
 
 dist: clean
 	@echo creating dist tarball
@@ -42,6 +45,10 @@ dist: clean
 	@tar -cf vinterm-${VERSION}.tar vinterm-${VERSION}
 	@gzip vinterm-${VERSION}.tar
 	@rm -rf vinterm-${VERSION}
+
+depend: ${SRC}
+	@echo checking dependencies
+	@${CC} -MM ${CXXFLAGS} ${SRC} >depend
 
 install: all
 	@echo installing executable file to ${DESTDIR}${PREFIX}/bin
