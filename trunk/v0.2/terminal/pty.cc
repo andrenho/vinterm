@@ -72,27 +72,15 @@ PTY::OpenPTY(string const& terminal)
 }
 
 
-ostream& 
-operator<<(ostream& out, PTY const& pty)
+int 
+PTY::Get() const
 {
-	char buf[256];
-	int nread;
-	
-	while((nread = read(pty.fd, buf, 255)) > 0)
-	{
-		buf[nread] = '\0';
-		out << buf;
-	}
-
+	char c;
+	int nread(read(fd, &c, 1));
 	if(nread == -1)
 	{
 		if(errno == EAGAIN)
-			return out;
-		else if(errno == EIO)
-		{
-			pty.active = false;
-			return out;
-		}
+			return NO_DATA;
 		else
 		{
 			perror("read");
@@ -100,10 +88,7 @@ operator<<(ostream& out, PTY const& pty)
 		}
 	}
 	else if(nread == 0)
-	{
-		pty.active = false;
-		return out;
-	}
+		return EOF;
 	else
-		abort();
+		return c;
 }
