@@ -1,7 +1,7 @@
 #include "terminal/framebuffer.h"
 
 Framebuffer::Framebuffer(Options const& options)
-	: options(options), w(80), h(24), cursor_x(0), cursor_y(0)
+	: dirty(new vector<int>), options(options), w(80), h(24), cursor_x(0), cursor_y(0)
 {
 	chars.insert(chars.begin(), w*h, Char());
 }
@@ -10,6 +10,8 @@ Framebuffer::Framebuffer(Options const& options)
 Framebuffer::~Framebuffer()
 {
 	chars.clear();
+	dirty->clear();
+	delete dirty;
 }
 
 
@@ -22,7 +24,7 @@ Framebuffer::operator<<(char c)
 	chars[pos].Attr = current_attr;
 
 	// add to list of positions to be updated on the screen
-	dirty.push_back(pos);
+	dirty->push_back(pos);
 
 	// advance cursor
 	AdvanceCursorX();
