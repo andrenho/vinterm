@@ -1,8 +1,8 @@
 #include "terminal/framebuffer.h"
 
 Framebuffer::Framebuffer(Options const& options)
-	: dirty(new vector<int>), options(options), w(80), h(24), 
-	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(23)
+	: dirty(new set<int>), options(options), w(80), h(24), 
+	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1)
 {
 	chars.insert(chars.begin(), w*h, Char());
 }
@@ -25,7 +25,7 @@ Framebuffer::Put(const char c)
 	chars[pos].Attr = current_attr;
 
 	// add to list of positions to be updated on the screen
-	dirty->push_back(pos);
+	dirty->insert(pos);
 
 	// advance cursor
 	AdvanceCursorX();
@@ -56,6 +56,13 @@ Framebuffer::AdvanceCursorY()
 		ScrollUp();
 		--cursor_y;
 	}
+}
+
+
+void
+Framebuffer::CarriageReturn()
+{
+	cursor_x = 0;
 }
 
 

@@ -1,24 +1,13 @@
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
 
+#include <set>
 #include <vector>
 #include <istream>
 using namespace std;
 
+#include "terminal/charattr.h"
 class Options;
-
-typedef struct {
-	bool Reverse    : 1;
-	bool Underline  : 1;
-	bool Highlight  : 1;
-	bool Blink      : 1;
-} Attribute;
-
-typedef struct Char {
-	char Ch;
-	Attribute Attr;
-	Char() : Ch(' ') { }
-} Char;
 
 class Framebuffer
 {
@@ -27,16 +16,17 @@ public:
 	~Framebuffer();
 
 	void Put(const char c);
+	void AdvanceCursorX();
+	void AdvanceCursorY();
+	void CarriageReturn();
 
 	inline int W() const { return w; }
 	inline int H() const { return h; }
 	inline Char Ch(int x, int y) const { return chars[x+(y*W())]; }
 
-	mutable vector<int>* dirty;
+	mutable set<int>* dirty;
 
 private:
-	void AdvanceCursorX();
-	void AdvanceCursorY();
 	void ScrollUp();
 
 	Options const& options;

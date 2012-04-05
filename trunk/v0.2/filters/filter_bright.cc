@@ -4,6 +4,7 @@
 #include <algorithm>
 using namespace std;
 
+#include "options.h"
 
 void 
 FilterBright::Apply(SDL_Surface* const sf, Options const& opt) const

@@ -9,7 +9,7 @@ public:
 	Font();
 	~Font();
 
-	const int char_w, char_h;
+	const uint16_t char_w, char_h;
 	uint8_t** const ch;
 };
 

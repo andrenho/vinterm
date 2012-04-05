@@ -8,21 +8,20 @@ using namespace std;
 #include "terminal/pty.h"
 
 class Framebuffer;
-class GraphicLibrary;
+class Screen;
 
 class Terminal
 {
 public:
-	Terminal(Framebuffer& fb, GraphicLibrary const& gl, PTY& pty);
+	Terminal(Framebuffer& fb, PTY& pty);
 	~Terminal();
 
 	bool Active() const { return active; }
 	void Input();
-	void Output();
+	void Output(Screen const& screen);
 
 protected:
 	Framebuffer& fb;
-	GraphicLibrary const& gl;
 	PTY& pty;
 	bool active;
 };
