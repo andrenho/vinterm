@@ -26,8 +26,8 @@ Curses::~Curses()
 void
 Curses::Update()
 {
-	for(vector<int>::const_iterator it = fb->dirty.begin(); 
-			it < fb->dirty.end(); it++)
+	for(vector<int>::const_iterator it = fb->dirty->begin(); 
+			it < fb->dirty->end(); it++)
 	{
 		int x = (*it) % fb->W();
 		int y = (*it) / fb->W();

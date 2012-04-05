@@ -31,7 +31,7 @@ public:
 	inline int H() const { return h; }
 	inline Char Ch(int x, int y) const { return chars[x+(y*W())]; }
 
-	mutable vector<int> dirty;
+	mutable vector<int>* dirty;
 
 private:
 	void AdvanceCursorX();
