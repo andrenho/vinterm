@@ -14,6 +14,7 @@ public:
 	~PTY();
 
 	int Get() const;
+	void Send(const char c);
 
 private:
 	void CopyStartupFile();

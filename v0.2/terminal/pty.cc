@@ -92,3 +92,14 @@ PTY::Get() const
 	else
 		return c;
 }
+
+
+void 
+PTY::Send(const char c)
+{
+	if(write(fd, &c, 1) == -1)
+	{
+		perror("write");
+		abort();
+	}
+}

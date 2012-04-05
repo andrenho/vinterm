@@ -13,7 +13,7 @@ class GraphicLibrary;
 class Terminal
 {
 public:
-	Terminal(Framebuffer& fb, GraphicLibrary const& gl, PTY const& pty);
+	Terminal(Framebuffer& fb, GraphicLibrary const& gl, PTY& pty);
 	~Terminal();
 
 	bool Active() const { return active; }
@@ -23,7 +23,7 @@ public:
 protected:
 	Framebuffer& fb;
 	GraphicLibrary const& gl;
-	PTY const& pty;
+	PTY& pty;
 	bool active;
 };
 

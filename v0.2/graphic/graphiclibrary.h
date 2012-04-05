@@ -15,6 +15,7 @@ public:
 	virtual void Initialize(Options const& options, 
 			Framebuffer const& framebuffer);
 	virtual void Update() = 0;
+	virtual int Input() const = 0;
 
 protected:
 	GraphicLibrary(int const w, int const h) : w(w), h(h) { }
