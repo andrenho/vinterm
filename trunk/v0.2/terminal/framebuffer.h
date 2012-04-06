@@ -21,6 +21,8 @@ public:
 	void AdvanceCursorX();
 	void AdvanceCursorY();
 	void CarriageReturn();
+	void Tab();
+	void Backspace();
 
 	inline int W() const { return w; }
 	inline int H() const { return h; }

@@ -5,7 +5,7 @@
 - abort on exit (ok)
 - adjust Makefile (ok)
 - comment main / HACKING (ok)
-- check for memory leaks
+- check for memory leaks (ok)
 - complete terminal support
 - write manual page
 - add icon

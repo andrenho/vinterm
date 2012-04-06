@@ -79,6 +79,23 @@ Framebuffer::CarriageReturn()
 
 
 void
+Framebuffer::Tab()
+{
+	AdvanceCursorX();
+	while((cursor_x % 8) != 0)
+		AdvanceCursorX();
+}
+
+
+void
+Framebuffer::Backspace()
+{
+	if(cursor_x > 0)
+		--cursor_x;
+}
+
+
+void
 Framebuffer::ScrollUp()
 {
 	for(int y(scroll_top+1); y<=scroll_bottom; y++)

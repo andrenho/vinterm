@@ -44,6 +44,7 @@ Screen::~Screen()
 {
 	delete font;
 	delete chars;
+	delete blink;
 	SDL_Quit();
 }
 

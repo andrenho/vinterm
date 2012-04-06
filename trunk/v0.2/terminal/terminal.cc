@@ -34,32 +34,50 @@ Terminal::Input()
 
 		const char c = (const char)i;
 		if(escape_mode)
-		{
-			escape_sequence += c;
-			if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-			{
-				escape_mode = false;
-				ExecuteEscapeSequence(escape_sequence);
-			}
-		}
+			InputEscapeChar(c);
 		else
-		{
-			switch(c)
-			{
-			case 27:
-				escape_mode = true;
-				escape_sequence = "\033";
-				break;
-			case '\n': // new line
-				fb.AdvanceCursorY();
-				break;
-			case '\r': // carriage return
-				fb.CarriageReturn();
-				break;
-			default:
-				fb.Put(c);
-			}
-		}
+			InputChar(c);
+	}
+}
+
+
+void
+Terminal::InputChar(const char c)
+{
+	switch(c)
+	{
+	case 27: // ESC
+		escape_mode = true;
+		escape_sequence = "\033";
+		break;
+	case '\n': // new line
+		fb.AdvanceCursorY();
+		break;
+	case '\r': // carriage return
+		fb.CarriageReturn();
+		break;
+	case '\t': // tab
+		fb.Tab();
+		break;
+	case '\a': // beep
+		cout << "Beep!" << endl; // TODO
+		break;
+	case '\b': // backspace
+		fb.Backspace();
+		break;
+	default:
+		fb.Put(c);
+	}
+}
+
+void 
+Terminal::InputEscapeChar(const char c)
+{
+	escape_sequence += c;
+	if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	{
+		escape_mode = false;
+		ExecuteEscapeSequence(escape_sequence);
 	}
 }
 
