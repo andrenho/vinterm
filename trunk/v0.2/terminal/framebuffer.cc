@@ -159,3 +159,18 @@ Framebuffer::MoveCursor(Direction dir, int moves)
 		cursor_y = h-1;
 	}
 }
+
+
+void
+Framebuffer::Home()
+{
+	cursor_x = cursor_y = 0;
+}
+
+
+void
+Framebuffer::LowerLeft()
+{
+	cursor_x = w-1;
+	cursor_y = h-1;
+}
