@@ -33,7 +33,7 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 	case 'H': // move cursor home
 		fb.Home();
 		break;
-	case 'L':
+	case 'L': // move cursor to lower left of the screen
 		fb.LowerLeft();
 		break;
 	default:
