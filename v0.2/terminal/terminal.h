@@ -21,7 +21,11 @@ public:
 
 protected:
 	Framebuffer& fb;
+
 private:
+	void InputChar(const char c);
+	void InputEscapeChar(const char c);
+
 	PTY& pty;
 	bool active;
 	bool escape_mode;
