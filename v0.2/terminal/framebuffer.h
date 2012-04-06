@@ -9,6 +9,8 @@ using namespace std;
 #include "terminal/charattr.h"
 class Options;
 
+typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
+
 class Framebuffer
 {
 public:
@@ -23,6 +25,7 @@ public:
 	void CarriageReturn();
 	void Tab();
 	void Backspace();
+	void MoveCursor(Direction dir, int moves);
 
 	inline int W() const { return w; }
 	inline int H() const { return h; }

@@ -6,7 +6,7 @@ using namespace std;
 #include "graphic/screen.h"
 #include "terminal/pty.h"
 #include "terminal/framebuffer.h"
-#include "terminal/terminal.h"
+#include "terminal/vinterm.h"
 
 int main(int argc, char** argv)
 {
@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	/* The terminal is the class that connects the PTY with the framebuffer.
 	 * It reads the data from the PTY and stores it on the framebuffer,
 	 * translating the escape codes from the specific terminal on demand. */
-	Terminal terminal(fb, pty);
+	Vinterm terminal(fb, pty);
 
 	/* Opens the screen that the user will interact with. It reads the
 	 * characters from the framebuffer and display them on the screen, using

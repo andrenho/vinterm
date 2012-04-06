@@ -8,6 +8,7 @@ SRC = main.cc			\
       terminal/framebuffer.cc	\
       terminal/pty.cc		\
       terminal/terminal.cc	\
+      terminal/vinterm.cc	\
       graphic/blink.cc		\
       graphic/chars.cc		\
       graphic/font.cc		\
@@ -33,7 +34,7 @@ options:
 
 ${OBJ}: config.mk
 
-vinterm: depend ${OBJ}
+vinterm: depend ${OBJ} data/vinterm.info
 	@echo CC -o $@
 	@${CC} -o $@ ${OBJ} ${LDFLAGS}
 	@tic -s data/vinterm.info
