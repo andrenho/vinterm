@@ -12,24 +12,28 @@ class Options;
 class Framebuffer
 {
 public:
-	explicit Framebuffer(Options const& options);
+	Framebuffer();
 	~Framebuffer();
 
 	void Put(const char c);
+	void Put(const char c, const int x, const int y);
+	void Put(const char c, Attribute attr, const int x, const int y);
 	void AdvanceCursorX();
 	void AdvanceCursorY();
 	void CarriageReturn();
 
 	inline int W() const { return w; }
 	inline int H() const { return h; }
+	inline int CursorX() const { return cursor_x; }
+	inline int CursorY() const { return cursor_y; }
 	inline Char Ch(int x, int y) const { return chars[x+(y*W())]; }
 
 	mutable set<int>* dirty;
 
 private:
 	void ScrollUp();
+	void ScrollDown();
 
-	Options const& options;
 	int w, h;
 	int cursor_x, cursor_y;
 	int scroll_top, scroll_bottom;

@@ -1,5 +1,6 @@
 #include "terminal/terminal.h"
 
+#include <iostream>
 using namespace std;
 
 #include "terminal/framebuffer.h"
@@ -7,7 +8,7 @@ using namespace std;
 #include "graphic/screen.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty)
-	: fb(fb), pty(pty), active(true)
+	: fb(fb), pty(pty), active(true), escape_mode(false)
 {
 }
 
@@ -25,17 +26,39 @@ Terminal::Input()
 
 	while((i = pty.Get()) != PTY::NO_DATA)
 	{
-		const char c = (const char)i;
-		switch(c)
+		if(i == EOF)
 		{
-		case '\n': // new line
-			fb.AdvanceCursorY();
-			break;
-		case '\r': // carriage return
-			fb.CarriageReturn();
-			break;
-		default:
-			fb.Put(c);
+			active = false;
+			return;
+		}
+
+		const char c = (const char)i;
+		if(escape_mode)
+		{
+			escape_sequence += c;
+			if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+			{
+				escape_mode = false;
+				ExecuteEscapeSequence(escape_sequence);
+			}
+		}
+		else
+		{
+			switch(c)
+			{
+			case 27:
+				escape_mode = true;
+				escape_sequence = "\033";
+				break;
+			case '\n': // new line
+				fb.AdvanceCursorY();
+				break;
+			case '\r': // carriage return
+				fb.CarriageReturn();
+				break;
+			default:
+				fb.Put(c);
+			}
 		}
 	}
 }
@@ -57,4 +80,19 @@ Terminal::Output(Screen const& screen)
 	default:
 		pty.Send((const char)ch);
 	}
+}
+
+
+void 
+Terminal::ExecuteEscapeSequence(string const& sequence)
+{
+	cerr << "warning: Unrecognized escape sequence: ";
+	for(string::const_iterator c = sequence.begin(); c < sequence.end(); c++)
+		if(*c == 27)
+			cerr << "ESC";
+		else if(*c < 32)
+			cerr << "(" << (int)*c << ")";
+		else
+			cerr << *c;
+	cerr << endl;
 }

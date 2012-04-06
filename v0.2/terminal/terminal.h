@@ -2,13 +2,11 @@
 #define TERMINAL_H
 
 #include <string>
-#include <sstream>
 using namespace std;
-
-#include "terminal/pty.h"
 
 class Framebuffer;
 class Screen;
+class PTY;
 
 class Terminal
 {
@@ -19,11 +17,15 @@ public:
 	bool Active() const { return active; }
 	void Input();
 	void Output(Screen const& screen);
+	virtual void ExecuteEscapeSequence(string const& sequence);
 
 protected:
 	Framebuffer& fb;
+private:
 	PTY& pty;
 	bool active;
+	bool escape_mode;
+	string escape_sequence;
 };
 
 #endif

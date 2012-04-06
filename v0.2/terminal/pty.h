@@ -8,7 +8,7 @@ using namespace std;
 class PTY
 {
 public:
-	enum { NO_DATA = -1 };
+	enum { NO_DATA = -100 };
 
 	explicit PTY(const string terminal="vinterm");
 	~PTY();

@@ -10,6 +10,7 @@ class Options;
 class Framebuffer;
 class Chars;
 class Font;
+class Blink;
 
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
@@ -27,6 +28,7 @@ public:
 
 private:
 	void initializeChars();
+	void CheckForCursor();
 
 	Options const& options;
 	const Font* const font;
@@ -35,6 +37,8 @@ private:
 	const int border_x, border_y;
 	const int w, h;
 	SDL_Surface* screen;
+	Blink* blink;
+	int old_cursor_x, old_cursor_y;
 };
 
 typedef enum { QUIT=256 } Keys;

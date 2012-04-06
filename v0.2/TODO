@@ -1,4 +1,12 @@
-- blink & cursor
-- scroll up/down
-- adjust Makefile
-- comment main
+- blink & cursor (ok)
+- delay (ok)
+- scroll up/down (ok)
+- basic escape sequence (ok)
+- abort on exit (ok)
+- adjust Makefile (ok)
+- comment main / HACKING (ok)
+- check for memory leaks
+- complete terminal support
+- write manual page
+- add icon
+- check artifacts when clearing the screen
