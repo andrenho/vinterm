@@ -12,7 +12,7 @@ class Terminal
 {
 public:
 	Terminal(Framebuffer& fb, PTY& pty);
-	~Terminal();
+	virtual ~Terminal();
 
 	bool Active() const { return active; }
 	void Input();

@@ -1,5 +1,7 @@
 #include "terminal/framebuffer.h"
 
+#include <cstdlib>
+
 Framebuffer::Framebuffer()
 	: dirty(new set<int>), w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1)
@@ -114,4 +116,46 @@ Framebuffer::ScrollDown()
 			Put(Ch(x,y).Ch, Ch(x,y).Attr, x, y+1);
 	for(int x(0); x<w; x++)
 		Put(' ', Attribute(), x, scroll_top);
+}
+
+
+void 
+Framebuffer::MoveCursor(Direction dir, int moves)
+{
+	int x = 0, y = 0;
+	switch(dir)
+	{
+		case UP: y = -1; break;
+		case DOWN: y = 1; break;
+		case LEFT: x = -1; break;
+		case RIGHT: x = 1; break;
+		default: abort();
+	}
+
+	if(moves == 0)
+		moves = 1;
+
+	cursor_x += (x * moves);
+	cursor_y += (y * moves);
+
+	if(cursor_x < 0)
+	{
+		fprintf(stderr, "warning: application tried to move cursor to x < 0.\n");
+		cursor_x = 0;
+	}
+	else if(cursor_x >= w)
+	{
+		fprintf(stderr, "warning: application tried to move cursor to x >= w.\n");
+		cursor_x = w-1;
+	}
+	if(cursor_y < 0)
+	{
+		fprintf(stderr, "warning: application tried to move cursor to y < 0.\n");
+		cursor_y = 0;
+	}
+	else if(cursor_y >= h)
+	{
+		fprintf(stderr, "warning: application tried to move cursor to y >= h.\n");
+		cursor_y = h-1;
+	}
 }
