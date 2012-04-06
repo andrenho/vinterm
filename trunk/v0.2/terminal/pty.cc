@@ -81,6 +81,8 @@ PTY::Get() const
 	{
 		if(errno == EAGAIN)
 			return NO_DATA;
+		else if(errno == EIO)
+			return EOF;
 		else
 		{
 			perror("read");

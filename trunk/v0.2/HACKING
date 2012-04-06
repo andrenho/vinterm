@@ -1,24 +1,49 @@
+To have a basic understanding on how the program works, read the comments in 
+main.cc.
+
 The basics of display the terminal information on the screen is:
 
-  Console -> Terminal -> Screen
+  Screen (input) -> PTY -> Terminal -> Framebuffer -> Screen(output)
+                    ^ |
+                    | '-> |Virtual
+                    '---- |terminal
 
-Where the `Console` connects to a PTY, the `Terminal` arranges the text on
-the screen (advancing lines, etc) and `Screen` puts on the screen, using the
-old fonts, to the user.
+The keys pressed by the user on `Screen` are sent to the `PTY`, that is 
+connected to a virtual terminal. The information sent by the virtual terminal
+is received by the `PTY` and sent to the `Terminal`, that'll process the
+escape codes and send them to the `Framebuffer`, where the text is formatted
+screenwise. `Screen` reads the data from the `Framebuffer` and display them
+to the user using the old-style fonts.
 
 Vintage Terminal has the following classes:
 
+Main.............. Initialize everything (not a class)
 Options........... Setup the options, read the arguments and the config file
-Font.............. Load font, resizing it
-Chars............. Setup the characters with attributes, and apply the filters
-Console........... Connect to the PTY
-Terminal.......... Format the characters on the terminal
-  VT100........... Support VT100 extensions
-Screen............ Display everything to the user
-Filter............ Each one of the filters that'll be applied to the image
-  FilterBright
-  FilterInexact
-  FilterScanline
+
+Graphic/
+  Blink........... Controls the blinking of the cursor
+  Chars........... Setup the characters with attributes, and apply the filters
+  Font............ Load font, resizing it
+  Screen.......... Display everything to the user
+
+Terminal/
+  CharAttr........ A pair of a character and its attribute
+  PTY............. Connect to the PTY (virtual terminal on the OS)
+  Terminal........ Translate the escape sequences and special chars
+    Vinterm....... Use custom escape codes
+  Framebuffer..... Format the characters on the terminal
+
+Filters/
+  Filter.......... Each one of the filters that'll be applied to the image
+    FilterBright
+    FilterInexact
+    FilterScanline
+
+The following files are also distributed in the data/ dir:
+
+mda9.bmp.......... A image containing the MDA (IBM) font
+vinterm.info...... Terminfo file containing the custom escape codes
+vinterm_profile... A bash file to be read on the initialization of vinterm.
 
 When checking for memory leaks, use valgrind with the suppresions file 
 vinterm.supp. That'll hide X11, SDL and forkpty memory leaks.
