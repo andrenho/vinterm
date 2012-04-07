@@ -10,10 +10,6 @@ if [ "$SHELL" == "/bin/bash" ]; then
   . ~/.bashrc
 fi
 
-# welcome message
-echo "This is a ALHPA RELEASE of Vintage Terminal. Use at YOUR OWN RISK."
-echo
-
 # vim - disable GPM
 alias vim='vim "+set mouse="'
 alias vi=vim

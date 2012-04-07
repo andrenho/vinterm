@@ -137,4 +137,5 @@ PTY::Debug(char c, bool sending) const
 		printf("\n");
 		debug_ct = 0;
 	}
+	fflush(stdout);
 }

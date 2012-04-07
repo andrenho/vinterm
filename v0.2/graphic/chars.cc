@@ -48,6 +48,8 @@ Chars::CreateChar(const uint8_t c, const Attribute attr) const
 	int color(160);
 	if(attr.Highlight)
 		color = 255;
+	else if(attr.Dim)
+		color = 110;
 	if(attr.Reverse)
 	{
 		int t(bg_color);

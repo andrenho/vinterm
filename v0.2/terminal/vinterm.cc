@@ -82,6 +82,56 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 	case 'w': // get into insert mode
 		fb.InsertMode = p[0];
 		break;
+	case 'y': // save/restore screen
+		if(p[0] == 1)
+			fb.SaveScreen();
+		else if(p[0] == 0)
+			fb.RestoreScreen();
+		else
+			Terminal::ExecuteEscapeSequence(sequence);
+		break;
+	case 'm': // enable character attributes
+		for(vector<int>::iterator it = p.begin(); it < p.end(); ++it)
+		{
+			if(*it == 0 && it == p.begin())
+				fb.SetAttr(NONE, true);
+			else if(*it == 1)
+				fb.SetAttr(HIGHLIGHT, true);
+			else if(*it == 2)
+				fb.SetAttr(DIM, true);
+			else if(*it == 4)
+				fb.SetAttr(UNDERLINE, true);
+			else if(*it == 5)
+				fb.SetAttr(BLINK, true);
+			else if(*it == 7)
+				fb.SetAttr(REVERSE, true);
+			else if(*it != 0)
+			{
+				Terminal::ExecuteEscapeSequence(sequence);
+				break;
+			}
+		}
+		break;
+	case 'n': // disable character attributes
+		for(vector<int>::iterator it = p.begin(); it < p.end(); ++it)
+		{
+			if(*it == 1)
+				fb.SetAttr(HIGHLIGHT, false);
+			else if(*it == 2)
+				fb.SetAttr(DIM, false);
+			else if(*it == 4)
+				fb.SetAttr(UNDERLINE, false);
+			else if(*it == 5)
+				fb.SetAttr(BLINK, false);
+			else if(*it == 7)
+				fb.SetAttr(REVERSE, false);
+			else if(*it != 0)
+			{
+				Terminal::ExecuteEscapeSequence(sequence);
+				break;
+			}
+		}
+		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);
 	}
