@@ -3,16 +3,21 @@
 #include <cstdlib>
 
 Framebuffer::Framebuffer()
-	: dirty(new set<int>), InsertMode(false), w(80), h(24), 
-	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1)	  
+	: dirty(new set<int>), InsertMode(false), current_attr(Attribute()),
+	  w(80), h(24), 
+	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
+	  saved_x(0), saved_y(0)
 {
 	chars.insert(chars.begin(), w*h, Char());
+	for(int x=0; x<w; x+=8)
+		tabs.insert(x);
 }
 
 
 Framebuffer::~Framebuffer()
 {
 	chars.clear();
+	saved_screen.clear();
 	dirty->clear();
 	delete dirty;
 }
@@ -249,6 +254,62 @@ Framebuffer::InsertChars(int n)
 	}
 	for(int x=cursor_x; x<(cursor_x+n); x++)
 		Put(' ', current_attr, x, cursor_y); // XXX - attribute?
+}
+
+
+void 
+Framebuffer::SaveScreen()
+{
+	// copy screen contents
+	saved_screen.clear();
+	saved_screen.assign(chars.begin(), chars.end());
+	saved_x = cursor_x;
+	saved_y = cursor_y;
+
+	// clear screen
+	cursor_x = cursor_y = 0;
+	for(int y = cursor_y; y < h; y++)
+		ClearRow(false, y);
+}
+
+
+void 
+Framebuffer::RestoreScreen()
+{
+	chars.assign(saved_screen.begin(), saved_screen.end());
+	saved_screen.clear();
+	cursor_x = saved_x;
+	cursor_y = saved_y;
+	ValidateCursorPosition();
+
+	for(int i=0; i < (w*h); i++)
+		dirty->insert(i);
+}
+
+
+void Framebuffer::SetAttr(AttrType attr, bool value)
+{
+	switch(attr)
+	{
+	case NONE:
+		current_attr = Attribute();
+		break;
+	case HIGHLIGHT:
+		current_attr.Highlight = value;
+		break;
+	case UNDERLINE:
+		current_attr.Underline = value;
+		break;
+	case BLINK:
+		current_attr.Blink = value;
+		break;
+	case REVERSE:
+		current_attr.Reverse = value;
+		break;
+	case DIM:
+		current_attr.Dim = value;
+		break;
+	}
 }
 
 

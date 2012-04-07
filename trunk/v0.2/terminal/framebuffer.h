@@ -10,6 +10,7 @@ using namespace std;
 class Options;
 
 typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
+typedef enum { NONE, HIGHLIGHT, UNDERLINE, BLINK, REVERSE, DIM } AttrType;
 
 class Framebuffer
 {
@@ -46,6 +47,10 @@ public:
 	void DeleteChars(int n);
 	void EraseChars(int n);
 
+	// save/restore screen
+	void SaveScreen();
+	void RestoreScreen();
+
 	// insert
 	void InsertChars(int n);
 
@@ -56,17 +61,22 @@ public:
 	inline int CursorY() const { return cursor_y; }
 	inline Char Ch(int x, int y) const { return chars[x+(y*W())]; }
 
+	// attributes
+	void SetAttr(AttrType attr, bool value);
+
 	mutable set<int>* dirty;
 	int InsertMode;
 
 private:
 	void ValidateCursorPosition();
 
+	Attribute current_attr;
 	int w, h;
 	int cursor_x, cursor_y;
 	int scroll_top, scroll_bottom;
-	Attribute current_attr;
-	vector<Char> chars;
+	vector<Char> chars, saved_screen;
+	int saved_x, saved_y;
+	set<int> tabs;
 };
 
 #endif
