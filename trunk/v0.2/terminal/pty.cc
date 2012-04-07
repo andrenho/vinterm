@@ -8,8 +8,8 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-
-PTY::PTY(const string terminal)
+PTY::PTY(bool debug_terminal, const string terminal)
+	: debug(debug_terminal), debug_ct(0)
 {
 	CopyStartupFile();       
 	OpenPTY(terminal);
@@ -23,7 +23,7 @@ PTY::~PTY()
 
 
 void 
-PTY::CopyStartupFile()
+PTY::CopyStartupFile() const
 {
 	system("cp -n " DATADIR "/vinterm_profile $HOME/.vinterm_profile");
 }
@@ -92,16 +92,49 @@ PTY::Get() const
 	else if(nread == 0)
 		return EOF;
 	else
+	{
+#ifdef DEBUG
+		Debug(c, false);
+#endif
 		return c;
+	}
 }
 
 
 void 
 PTY::Send(const char c)
 {
+#ifdef DEBUG
+	Debug(c, true);
+#endif
 	if(write(fd, &c, 1) == -1)
 	{
 		perror("write");
 		abort();
+	}
+}
+
+
+void 
+PTY::Debug(char c, bool sending) const
+{
+	if(!debug)
+		return;
+
+	char c1 = '[', c2 = ']';
+	if(sending)
+	{
+		c1 = '<';
+		c2 = '>';
+	}
+	if(c <= 32)
+		printf("%c%3d%c ", c1, c, c2);
+	else
+		printf("%c %c %c ", c1, c, c2);
+	debug_ct++;
+	if(debug_ct > 12)
+	{
+		printf("\n");
+		debug_ct = 0;
 	}
 }

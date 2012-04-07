@@ -66,7 +66,7 @@ Terminal::InputChar(const char c)
 		fb.Backspace();
 		break;
 	default:
-		fb.Put(c);
+		fb.Put(c, false);
 	}
 }
 

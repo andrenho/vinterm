@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 	/* The PTY is the class that connects to the virtual terminal. It
 	 * receives the characters sent by the terminal, and sends the chars
 	 * inputted by the user to the terminal. */
-	PTY pty;
+	PTY pty(options.debug_terminal);
 
 	/* The terminal is the class that connects the PTY with the framebuffer.
 	 * It reads the data from the PTY and stores it on the framebuffer,

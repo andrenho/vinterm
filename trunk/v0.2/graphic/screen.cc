@@ -124,6 +124,7 @@ Screen::Update()
 
 		// draw char
 		SDL_BlitSurface(sf, NULL, screen, &r);
+		//SDL_Flip(screen);
 
 		// register char location for later update
 		rects.push_back(r);
