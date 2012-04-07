@@ -30,11 +30,57 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 	case 'D': // move cursor forward
 		fb.MoveCursor(Direction::LEFT, p[0]);
 		break;
-	case 'H': // move cursor home
-		fb.Home();
+	case 'H': // move cursor to home or specified position
+		fb.SetCursorPosition((p[1] == 0 ? 1 : p[1]), 
+				     (p[0] == 0 ? 1 : p[0]));
 		break;
-	case 'L': // move cursor to lower left of the screen
-		fb.LowerLeft();
+	case 'c': // move cursor to absolute column
+		fb.SetCursorPosition(p[0]+1, fb.CursorY()+1);
+		break;
+	case 'l': // move cursor to lower left of the screen
+		fb.SetCursorPosition(fb.W(), fb.H());
+		break;
+	case 's': // save cursor position
+		saved_x = fb.CursorX();
+		saved_y = fb.CursorY();
+		break;
+	case 'R': // restore cursor position
+		fb.SetCursorPosition(saved_x+1, saved_y+1);
+		break;
+	case 'U': // scroll reverse one line
+		fb.RecedeCursorY();
+		break;
+	case 'S': // scroll up terminal
+		for(int i=0; i<p[0]; i++)
+			fb.ScrollUp();
+		break;
+	case 'r': // set scrolling region
+		fb.SetScrollingRegion(p[0], p[1]);
+		break;
+	case 'L': // add line below cursor
+		fb.AddLinesBelowCursor(p[0] == 0 ? 1 : p[0]);
+		break;
+	case 'K': // erase line
+		fb.ClearRow(p[0]);
+		break;
+	case 'J': // erase everything from cursor
+		for(int y = fb.CursorY(); y < fb.H(); y++)
+			fb.ClearRow(false, y);
+		break;
+	case 'M': // delete lines
+		fb.DeleteLines(p[0] == 0 ? 1 : p[0]);
+		break;
+	case 'P': // delete chars
+		fb.DeleteChars(p[0] == 0 ? 1 : p[0]);
+		break;
+	case 'X': // erase chars
+		fb.EraseChars(p[0]);
+		break;
+	case 'I': // insert chars
+		fb.InsertChars(p[0] == 0 ? 1 : p[0]);
+		break;
+	case 'w': // get into insert mode
+		fb.InsertMode = p[0];
 		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);
