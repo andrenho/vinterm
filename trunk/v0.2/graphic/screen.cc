@@ -84,6 +84,8 @@ Screen::Update()
 
 		// verify if it's the cursor
 		bool cursor = (x == fb.CursorX() && y == fb.CursorY());
+		if(fb.CursorVisibility == NOT_VISIBLE)
+			cursor = false;
 
 		// get character to draw and adjust attribute
 		Char ch = fb.Ch(x, y);
@@ -98,6 +100,8 @@ Screen::Update()
 		}
 		else if(attr.Invisible)
 			c = ' ';
+		if(cursor && fb.CursorVisibility == VERY_VISIBLE)
+			attr.Highlight = true;
 
 		SDL_Surface* sf = chars->Char(c, attr, x+y);
 		if(!sf)

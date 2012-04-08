@@ -125,7 +125,7 @@ Chars::CreateChar(const uint8_t c, const Attribute attr) const
 SDL_Surface* 
 Chars::Char(const uint8_t c, const Attribute attr, int rnd) const 
 {
-	if(c == ' ' && attr.Reverse)
+	if(c == ' ' && attr.Reverse && !attr.Highlight)
 	{
 		// here we need to make a little gimmick and each time return
 		// a different image to avoid artifacts on the screen
