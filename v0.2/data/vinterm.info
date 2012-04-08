@@ -137,9 +137,9 @@ vinterm| vintage terminal,
 	flash=\E[F,
 
 # cursor intensity
-	cvvis=\E[?2u,
-	civis=\E[?1u,
-	cnorm=\E[?0u,
+	civis=\E[0u,
+	cnorm=\E[1u,
+	cvvis=\E[2u,
 
 
 #	acsc=``aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
