@@ -3,10 +3,10 @@
 #include <cstdlib>
 
 Framebuffer::Framebuffer()
-	: dirty(new set<int>), InsertMode(false), current_attr(Attribute()),
-	  w(80), h(24), 
+	: dirty(new set<int>), InsertMode(false), CursorVisibility(VISIBLE), 
+	  current_attr(Attribute()), w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
-	  saved_x(0), saved_y(0), flashing(false)
+	  saved_x(0), saved_y(0), flashing(false) 
 {
 	chars.insert(chars.begin(), w*h, Char());
 	for(int x=0; x<w; x+=8)
