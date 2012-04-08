@@ -6,7 +6,7 @@ Framebuffer::Framebuffer()
 	: dirty(new set<int>), InsertMode(false), current_attr(Attribute()),
 	  w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
-	  saved_x(0), saved_y(0)
+	  saved_x(0), saved_y(0), flashing(false)
 {
 	chars.insert(chars.begin(), w*h, Char());
 	for(int x=0; x<w; x+=8)
@@ -53,6 +53,10 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 {
 	if(InsertMode && !ignore_insert_mode)
 		InsertChars(1);
+
+	// check if flashing
+	if(flashing)
+		attr.Reverse = !attr.Reverse;
 
 	// put char on the grid
 	int pos = x + (y * W());
@@ -287,6 +291,14 @@ Framebuffer::RestoreScreen()
 }
 
 
+void Framebuffer::RegisterBlinks() const
+{
+	for(int i=0; i<(w*h); i++)
+		if(chars[i].Attr.Blink)
+			dirty->insert(i);
+}
+
+
 void Framebuffer::SetAttr(AttrType attr, bool value)
 {
 	switch(attr)
@@ -309,6 +321,26 @@ void Framebuffer::SetAttr(AttrType attr, bool value)
 	case DIM:
 		current_attr.Dim = value;
 		break;
+	case INVISIBLE:
+		current_attr.Invisible = value;
+		break;
+	default:
+		abort();
+	}
+}
+
+
+void
+Framebuffer::Flash(bool reverse)
+{
+	if(reverse || flashing)
+	{
+		for(int i=0; i<(w*h); i++)
+		{
+			chars[i].Attr.Reverse = !chars[i].Attr.Reverse;
+			dirty->insert(i);
+		}
+		flashing = reverse;
 	}
 }
 
