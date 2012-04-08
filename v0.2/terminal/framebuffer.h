@@ -13,6 +13,7 @@ typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
 typedef enum { 
 	NONE, HIGHLIGHT, UNDERLINE, BLINK, REVERSE, DIM, INVISIBLE
 } AttrType;
+typedef enum { VERY_VISIBLE=2, VISIBLE=1, NOT_VISIBLE=0 } CrsVisibility;
 
 class Framebuffer
 {
@@ -74,6 +75,7 @@ public:
 
 	mutable set<int>* dirty;
 	int InsertMode;
+	CrsVisibility CursorVisibility;
 
 private:
 	void ValidateCursorPosition();

@@ -136,12 +136,15 @@ vinterm| vintage terminal,
 	bel=^G,
 	flash=\E[F,
 
+# cursor intensity
+	cvvis=\E[?2u,
+	civis=\E[?1u,
+	cnorm=\E[?0u,
+
+
 #	acsc=``aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
 #	am,
 #	bce,
-#	cvvis=\E[?25h,
-#	civis=\E[?25l,
-#	cnorm=\E[?12l\E[?25h,
 #	colors#8,
 #	cols#80,
 #	cr=^M,

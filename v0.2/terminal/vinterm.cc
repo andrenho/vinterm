@@ -136,8 +136,17 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 			}
 		}
 		break;
-	case 'F':
+	case 'F': // flash (visible bell)
 		fb.Flash();
+		break;
+	case 'u': // cursor visibility
+		switch(p[0])
+		{
+			case 0: fb.CursorVisibility = NOT_VISIBLE; break;
+			case 1: fb.CursorVisibility = VISIBLE; break;
+			case 2: fb.CursorVisibility = VERY_VISIBLE; break;
+			default: Terminal::ExecuteEscapeSequence(sequence);
+		}
 		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);
