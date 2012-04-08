@@ -10,7 +10,9 @@ using namespace std;
 class Options;
 
 typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
-typedef enum { NONE, HIGHLIGHT, UNDERLINE, BLINK, REVERSE, DIM } AttrType;
+typedef enum { 
+	NONE, HIGHLIGHT, UNDERLINE, BLINK, REVERSE, DIM, INVISIBLE
+} AttrType;
 
 class Framebuffer
 {
@@ -18,6 +20,7 @@ public:
 	Framebuffer();
 	~Framebuffer();
 
+	// write on the screen
 	void Put(const char c, bool ignore_insert_mode=true);
 	void Put(const char c, const int x, const int y, 
 			bool ignore_insert_mode=true);
@@ -54,6 +57,10 @@ public:
 	// insert
 	void InsertChars(int n);
 
+	// bells
+	void Flash(bool reverse=true);
+	bool Flashing() const { return flashing; }
+
 	// information about the framebuffer
 	inline int W() const { return w; }
 	inline int H() const { return h; }
@@ -62,6 +69,7 @@ public:
 	inline Char Ch(int x, int y) const { return chars[x+(y*W())]; }
 
 	// attributes
+	void RegisterBlinks() const;
 	void SetAttr(AttrType attr, bool value);
 
 	mutable set<int>* dirty;
@@ -77,6 +85,7 @@ private:
 	vector<Char> chars, saved_screen;
 	int saved_x, saved_y;
 	set<int> tabs;
+	bool flashing;
 };
 
 #endif

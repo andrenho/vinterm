@@ -72,7 +72,7 @@ Screen::Update()
 	vector<SDL_Rect> rects;
 
 	// check if cursor changed position, and register the change
-	CheckForCursor();
+	CheckForBlink();
 
 	// update data from the framebuffer
 	set<int>::const_iterator n;
@@ -96,6 +96,8 @@ Screen::Update()
 			else if(!cursor)
 				c = ' ';
 		}
+		else if(attr.Invisible)
+			c = ' ';
 
 		SDL_Surface* sf = chars->Char(c, attr, x+y);
 		if(!sf)
@@ -124,7 +126,6 @@ Screen::Update()
 
 		// draw char
 		SDL_BlitSurface(sf, NULL, screen, &r);
-		//SDL_Flip(screen);
 
 		// register char location for later update
 		rects.push_back(r);
@@ -136,6 +137,10 @@ Screen::Update()
 
 	// gives the OS some rest
 	SDL_Delay(5);
+
+	// holds for flashing
+	if(fb.Flashing())
+		SDL_Delay(options.flashing_speed);
 }
 
 
@@ -167,13 +172,14 @@ Screen::Input() const
 
 
 void
-Screen::CheckForCursor()
+Screen::CheckForBlink()
 {
 	// blink, if necessary
 	if(blink->TimeToBlink())
 	{
 		blink->DoBlink(fb);
 		fb.dirty->insert(fb.CursorX() + fb.CursorY() * fb.W());
+		fb.RegisterBlinks();
 	}
 
 	// register a change where the cursor was and where it is now

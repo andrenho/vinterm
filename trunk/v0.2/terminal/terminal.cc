@@ -21,6 +21,8 @@ Terminal::~Terminal()
 void
 Terminal::Input()
 {
+	fb.Flash(false);
+
 	// read data from the PTY
 	int i;
 

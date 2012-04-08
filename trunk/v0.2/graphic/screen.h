@@ -28,7 +28,7 @@ public:
 
 private:
 	void initializeChars();
-	void CheckForCursor();
+	void CheckForBlink();
 
 	Options const& options;
 	const Font* const font;

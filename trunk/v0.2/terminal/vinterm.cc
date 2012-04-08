@@ -105,6 +105,8 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 				fb.SetAttr(BLINK, true);
 			else if(*it == 7)
 				fb.SetAttr(REVERSE, true);
+			else if(*it == 8)
+				fb.SetAttr(INVISIBLE, true);
 			else if(*it != 0)
 			{
 				Terminal::ExecuteEscapeSequence(sequence);
@@ -125,12 +127,17 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 				fb.SetAttr(BLINK, false);
 			else if(*it == 7)
 				fb.SetAttr(REVERSE, false);
+			else if(*it == 8)
+				fb.SetAttr(INVISIBLE, false);
 			else if(*it != 0)
 			{
 				Terminal::ExecuteEscapeSequence(sequence);
 				break;
 			}
 		}
+		break;
+	case 'F':
+		fb.Flash();
 		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);

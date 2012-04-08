@@ -11,7 +11,7 @@ Options::Options(const int argc, char** const argv)
 	  border_x(30), border_y(40),
 	  background_color(SDL_Color { 30, 30, 30 }),
 	  bright_color(SDL_Color { 140, 255, 190 }),
-	  blink_speed(500)
+	  blink_speed(500), flashing_speed(100)
 {
 	ParseArguments(argc, argv);
 	AddFilters();

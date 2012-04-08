@@ -21,7 +21,7 @@ public:
 	bool debug_terminal;
 	const int border_x, border_y;
 	const SDL_Color background_color, bright_color;
-	const uint32_t blink_speed;
+	const uint32_t blink_speed, flashing_speed;
 
 private:
 	void ParseArguments(int argc, char* argv[]);
