@@ -8,6 +8,7 @@ using namespace std;
 
 #include "terminal/charattr.h"
 class Options;
+class Blink;
 
 typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
 typedef enum { 
@@ -18,7 +19,7 @@ typedef enum { VERY_VISIBLE=2, VISIBLE=1, NOT_VISIBLE=0 } CrsVisibility;
 class Framebuffer
 {
 public:
-	Framebuffer();
+	Framebuffer(Options const& options);
 	~Framebuffer();
 
 	// write on the screen
@@ -76,6 +77,7 @@ public:
 	mutable set<int>* dirty;
 	int InsertMode;
 	CrsVisibility CursorVisibility;
+	Blink* blink;
 
 private:
 	void ValidateCursorPosition();
