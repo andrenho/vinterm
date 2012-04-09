@@ -1,12 +1,12 @@
 # vinterm version
-VERSION = 0.1.3
+VERSION = 0.2.0
 
 # system libraries
 SDL = yes
 X11 = no
 
 # add debugging info
-DEBUG = yes
+DEBUG = no
 
 # Customize below to fit your system
 

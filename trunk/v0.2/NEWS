@@ -1,3 +1,7 @@
+Version 0.2.0
+-------------
+  - Full terminal capabilites implemented.
+
 Version 0.1.2
 -------------
   - Changed initialization file to run .bashrc on startup.
