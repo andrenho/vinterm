@@ -10,6 +10,7 @@ SRC = main.cc			\
       terminal/pty.cc		\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
+      graphic/audio.cc		\
       graphic/chars.cc		\
       graphic/font.cc		\
       graphic/input.cc		\

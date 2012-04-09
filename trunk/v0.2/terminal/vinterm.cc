@@ -207,6 +207,9 @@ Vinterm::KeyPressed(int key)
 	case INSERT:    pty.Send("\033[2~"); break;
 	case END:       pty.Send("\033[4~"); break;
 
+	case CT_PAGE_UP:   pty.Send("\033[5;5~"); break;
+	case CT_PAGE_DOWN: pty.Send("\033[6;5~"); break;
+
 	default:
 		Terminal::KeyPressed(key);
 	}
