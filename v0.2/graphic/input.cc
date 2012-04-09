@@ -67,9 +67,15 @@ Event(Blink* blink)
 			case SDLK_DELETE:
 				return DELETE;
 			case SDLK_PAGEUP:
-				return PAGE_UP;
+				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
+					return CT_PAGE_UP;
+				else
+					return PAGE_UP;
 			case SDLK_PAGEDOWN:
-				return PAGE_DOWN;
+				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
+					return CT_PAGE_DOWN;
+				else
+					return PAGE_DOWN;
 			case SDLK_INSERT:
 				return INSERT;
 			case SDLK_END:
