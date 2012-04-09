@@ -18,6 +18,7 @@ SRC = main.cc			\
       filters/filter_inexact.cc \
       filters/filter_scanline.cc
 OBJ = ${SRC:.cc=.o}
+HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL
 DATA = data/vinterm_profile data/vinterm.info data/mda9.bmp
 
@@ -48,7 +49,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p vinterm-${VERSION}
-	@cp --parents config.mk Makefile ${DIST} ${SRC} ${DATA} vinterm-${VERSION}
+	@cp --parents config.mk Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} vinterm-${VERSION}
 	@tar -cf vinterm-${VERSION}.tar vinterm-${VERSION}
 	@gzip vinterm-${VERSION}.tar
 	@rm -rf vinterm-${VERSION}
