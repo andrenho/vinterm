@@ -1,0 +1,7 @@
+To install `Vintage Terminal`, follow these steps:
+
+  1. Edit config.mk to adapt settings to your system (usually not needed)
+  2. Run `make`
+  3. Run `make install` with administrator privileges
+
+That's it. Now just type `vinterm` to run the terminal emulator.

@@ -3,12 +3,12 @@ main.cc.
 
 The basics of display the terminal information on the screen is:
 
-  Screen (input) -> PTY -> Terminal -> Framebuffer -> Screen(output)
+           Input -> PTY -> Terminal -> Framebuffer -> Screen
                     ^ |
                     | '-> |Virtual
                     '---- |terminal
 
-The keys pressed by the user on `Screen` are sent to the `PTY`, that is 
+The keys pressed by the user on `Input` are sent to the `PTY`, that is 
 connected to a virtual terminal. The information sent by the virtual terminal
 is received by the `PTY` and sent to the `Terminal`, that'll process the
 escape codes and send them to the `Framebuffer`, where the text is formatted
@@ -21,12 +21,13 @@ Main.............. Initialize everything (not a class)
 Options........... Setup the options, read the arguments and the config file
 
 Graphic/
-  Blink........... Controls the blinking of the cursor
   Chars........... Setup the characters with attributes, and apply the filters
   Font............ Load font, resizing it
+  Input........... Read user input
   Screen.......... Display everything to the user
 
 Terminal/
+  Blink........... Controls the blinking of the cursor
   CharAttr........ A pair of a character and its attribute
   PTY............. Connect to the PTY (virtual terminal on the OS)
   Terminal........ Translate the escape sequences and special chars
