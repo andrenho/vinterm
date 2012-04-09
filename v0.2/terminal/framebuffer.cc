@@ -2,8 +2,12 @@
 
 #include <cstdlib>
 
-Framebuffer::Framebuffer()
+#include "options.h"
+#include "terminal/blink.h"
+
+Framebuffer::Framebuffer(Options const& options)
 	: dirty(new set<int>), InsertMode(false), CursorVisibility(VISIBLE), 
+	  blink(new Blink(options.blink_speed)), 
 	  current_attr(Attribute()), w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
 	  saved_x(0), saved_y(0), flashing(false) 
@@ -20,6 +24,7 @@ Framebuffer::~Framebuffer()
 	saved_screen.clear();
 	dirty->clear();
 	delete dirty;
+	delete blink;
 }
 
 

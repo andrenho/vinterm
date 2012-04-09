@@ -116,6 +116,21 @@ PTY::Send(const char c)
 
 
 void 
+PTY::Send(string s)
+{
+#ifdef DEBUG
+	for(string::const_iterator c = s.begin(); c < s.end(); c++)
+		Debug(*c, true);
+#endif
+	if(write(fd, s.c_str(), s.length()) == -1)
+	{
+		perror("write");
+		abort();
+	}
+}
+
+
+void 
 PTY::Debug(char c, bool sending) const
 {
 	if(!debug)

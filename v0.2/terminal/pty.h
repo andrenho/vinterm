@@ -16,6 +16,7 @@ public:
 
 	int Get() const;
 	void Send(const char c);
+	void Send(string s);
 
 private:
 	void CopyStartupFile() const;

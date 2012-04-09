@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	/* Initialize the framebuffer. The framebuffer is a (initially) 80x25
 	 * grid of characters and their attributes, and represents the console
 	 * that the user sees. */
-	Framebuffer fb;
+	Framebuffer fb(options);
 
 	/* The PTY is the class that connects to the virtual terminal. It
 	 * receives the characters sent by the terminal, and sends the chars

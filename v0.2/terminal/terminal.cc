@@ -5,6 +5,7 @@ using namespace std;
 
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
+#include "graphic/input.h"
 #include "graphic/screen.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty)
@@ -88,18 +89,25 @@ void
 Terminal::Output(Screen const& screen)
 {
 	// write data to the PTY
-	int ch = screen.Input();
+	int ch = Event(fb.blink);
 
 	switch(ch)
 	{
 	case 0: // discard
 		break;
-	case Keys::QUIT:
+	case QUIT:
 		active = false;
 		break;
 	default:
-		pty.Send((const char)ch);
+		KeyPressed(ch);
 	}
+}
+
+
+void
+Terminal::KeyPressed(int ch)
+{
+	pty.Send((const char)ch);
 }
 
 

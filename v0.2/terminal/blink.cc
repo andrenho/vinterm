@@ -1,4 +1,4 @@
-#include "graphic/blink.h"
+#include "terminal/blink.h"
 
 #include "SDL.h"
 #include "terminal/framebuffer.h"

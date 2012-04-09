@@ -1,8 +1,11 @@
 #include "terminal/vinterm.h"
 
 #include <cctype>
+#include <sstream>
 
+#include "graphic/input.h"
 #include "terminal/framebuffer.h"
+#include "terminal/pty.h"
 
 void 
 Vinterm::ExecuteEscapeSequence(string const& sequence)
@@ -173,4 +176,38 @@ Vinterm::ParseEscapeSequence(string const& sequence, vector<int>& params)
 	}
 
 	return cmd;
+}
+
+
+void
+Vinterm::KeyPressed(int key)
+{
+	switch(key)
+	{
+	case F1: case F2: case F3: case F4: case F5: case F6:
+	case F7: case F8: case F9: case F10: case F11: case F12:
+		{
+			stringstream s;
+			s << "\033[" << (key-F1+1) << "k";
+			pty.Send(s.str());
+		}
+		break;
+	case K_UP:      pty.Send("\033[A"); break;
+	case K_DOWN:    pty.Send("\033[B"); break;
+	case K_RIGHT:   pty.Send("\033[C"); break;
+	case K_LEFT:    pty.Send("\033[D"); break;
+	case SH_UP:     pty.Send("\033[a"); break;
+	case SH_DOWN:   pty.Send("\033[b"); break;
+	case SH_RIGHT:  pty.Send("\033[c"); break;
+	case SH_LEFT:   pty.Send("\033[d"); break;
+	case HOME:      pty.Send("\033[1~"); break;
+	case DELETE:    pty.Send("\033[3~"); break;
+	case PAGE_UP:   pty.Send("\033[5~"); break;
+	case PAGE_DOWN: pty.Send("\033[6~"); break;
+	case INSERT:    pty.Send("\033[2~"); break;
+	case END:       pty.Send("\033[4~"); break;
+
+	default:
+		Terminal::KeyPressed(key);
+	}
 }

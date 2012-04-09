@@ -6,8 +6,8 @@
 using namespace std;
 
 #include "options.h"
+#include "terminal/blink.h"
 #include "terminal/framebuffer.h"
-#include "graphic/blink.h"
 #include "graphic/chars.h"
 #include "graphic/font.h"
 
@@ -18,7 +18,6 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 	  border_y(options.border_y * options.scale),
 	  w(fb.W() * font->char_w * options.scale + (border_x * 2)), 
 	  h(fb.H() * font->char_h * options.scale + (border_y * 2)),
-	  blink(new Blink(options.blink_speed)), 
 	  old_cursor_x(0), old_cursor_y(0)
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -44,7 +43,6 @@ Screen::~Screen()
 {
 	delete font;
 	delete chars;
-	delete blink;
 	SDL_Quit();
 }
 
@@ -93,7 +91,7 @@ Screen::Update()
 		Attribute attr = ch.Attr;
 		if(attr.Blink || cursor)
 		{
-			if(blink->State())
+			if(fb.blink->State())
 				attr.Reverse = !attr.Reverse;
 			else if(!cursor)
 				c = ' ';
@@ -148,40 +146,13 @@ Screen::Update()
 }
 
 
-int
-Screen::Input() const
-{
-	// read chars and send them to the console
-	SDL_Event e;
-	uint16_t c;
-
-	while(SDL_PollEvent(&e))
-	{
-		switch(e.type)
-		{
-		case SDL_KEYDOWN:
-			c = e.key.keysym.unicode;
-			if(c != 0)
-			{
-				blink->ResetClock();
-				return c;
-			}
-			break;
-		case SDL_QUIT:
-			return QUIT;
-		}
-	}
-	return 0;
-}
-
-
 void
 Screen::CheckForBlink()
 {
 	// blink, if necessary
-	if(blink->TimeToBlink())
+	if(fb.blink->TimeToBlink())
 	{
-		blink->DoBlink(fb);
+		fb.blink->DoBlink(fb);
 		fb.dirty->insert(fb.CursorX() + fb.CursorY() * fb.W());
 		fb.RegisterBlinks();
 	}

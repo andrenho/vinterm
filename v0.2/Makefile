@@ -5,13 +5,14 @@ include config.mk
 
 SRC = main.cc			\
       options.cc		\
+      terminal/blink.cc		\
       terminal/framebuffer.cc	\
       terminal/pty.cc		\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
-      graphic/blink.cc		\
       graphic/chars.cc		\
       graphic/font.cc		\
+      graphic/input.cc		\
       graphic/screen.cc		\
       filters/filter_bright.cc  \
       filters/filter_inexact.cc \
