@@ -22,6 +22,7 @@ The following features are planned:
   * Different colors for the monochrome monitor (ambar, blue, gray...)
   * Different types of old monitors (DEC terminals, TV...)
   * Ability to configure every aspect of the image
+  * Window resize
   * Full screen
   * MS-DOS console emulation for Windows
 
