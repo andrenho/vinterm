@@ -3,10 +3,15 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cerrno>
-#include <pty.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+
+#if (defined __APPLE__ && defined __MACH__)
+#  include <util.h>
+#else
+#  include <pty.h>
+#endif
 
 PTY::PTY(bool debug_terminal, const string terminal)
 	: debug(debug_terminal), debug_ct(0)
