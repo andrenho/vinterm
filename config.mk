@@ -7,6 +7,7 @@ X11 = no
 
 # add debugging info
 DEBUG = yes
+DUMA = no
 
 # Customize below to fit your system
 
@@ -31,6 +32,10 @@ ifeq (${X11},yes)
   LDFLAGS += -L/usr/X11R6/lib -lX11 -lutil
 endif
 
+# Duma libraries
+ifeq (${DUMA}, yes)
+  LDFLAGS += -lduma
+endif
 
 ifeq (${DEBUG},yes)
   # debug flags

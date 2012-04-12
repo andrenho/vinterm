@@ -65,6 +65,8 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 
 	// put char on the grid
 	int pos = x + (y * W());
+	if(pos < 0 || pos >= (W() * H()))
+		abort();
 	chars[pos].Ch = c;
 	chars[pos].Attr = attr;
 
