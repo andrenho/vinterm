@@ -194,6 +194,9 @@ Framebuffer::SetScrollingRegion(int top, int bottom)
 	scroll_top = top-1;
 	scroll_bottom = bottom-1;
 	cursor_x = cursor_y = 0;
+
+	if(scroll_bottom < scroll_top)
+		cerr << "warning: scroll_bottom < scroll_top!" << endl;
 }
 
 
