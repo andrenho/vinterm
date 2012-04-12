@@ -16,7 +16,7 @@ MANPREFIX = ${PREFIX}/share/man
 VINTERMPREFIX = ${PREFIX}/share/vinterm
 
 # basic flags
-CXXFLAGS = -std=c++0x -DVERSION=\"${VERSION}\" -DDATADIR=\"${VINTERMPREFIX}\" -pedantic -Wall -I. -I/usr/include
+CXXFLAGS = -DVERSION=\"${VERSION}\" -DDATADIR=\"${VINTERMPREFIX}\" -pedantic -Wall -I. -I/usr/include -std=c++0x
 LDFLAGS = -L/usr/lib -lutil
 
 # SDL libraries
