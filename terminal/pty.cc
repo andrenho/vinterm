@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <sys/ioctl.h>
 
 #if (defined __APPLE__ && defined __MACH__)
 #  include <util.h>
@@ -54,8 +55,6 @@ PTY::OpenPTY(string const& terminal)
 			perror("putenv");
 			abort();
 		}
-		setenv("LINES", "24", 1);
-		setenv("COLUMNS", "80", 1);
 		setenv("ENV", "$HOME/.vinterm_profile", 1);
 		if(execlp(shell, "sh", (void*)0) == -1)
 		{
@@ -158,4 +157,14 @@ PTY::Debug(char c, bool sending) const
 		debug_ct = 0;
 	}
 	fflush(stdout);
+}
+
+
+void
+PTY::Resize(uint16_t w, uint16_t h)
+{
+	struct winsize ws = { h, w, 0, 0 };
+	if(ioctl(fd, TIOCSWINSZ, &ws) < 0)
+		fprintf(stderr, "Couldn't set window size.\n");
+	
 }

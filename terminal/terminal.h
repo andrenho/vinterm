@@ -14,11 +14,14 @@ public:
 	Terminal(Framebuffer& fb, PTY& pty);
 	virtual ~Terminal();
 
-	bool Active() const { return active; }
 	void Input();
-	void Output(Screen const& screen);
+	void Output(Screen& screen);
+	void Resize(int new_w, int new_h);
+
 	virtual void ExecuteEscapeSequence(string const& sequence);
 	virtual void KeyPressed(int key);
+
+	bool Active() const { return active; }
 
 protected:
 	Framebuffer& fb;

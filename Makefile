@@ -13,7 +13,6 @@ SRC = main.cc			\
       graphic/audio.cc		\
       graphic/chars.cc		\
       graphic/font.cc		\
-      graphic/input.cc		\
       graphic/screen.cc		\
       filters/filter_bright.cc  \
       filters/filter_inexact.cc \

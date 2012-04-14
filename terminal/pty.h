@@ -17,6 +17,7 @@ public:
 	int Get() const;
 	void Send(const char c);
 	void Send(string s);
+	void Resize(uint16_t w, uint16_t h);
 
 private:
 	void CopyStartupFile() const;

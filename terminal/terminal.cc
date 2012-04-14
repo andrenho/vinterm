@@ -5,7 +5,6 @@ using namespace std;
 
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
-#include "graphic/input.h"
 #include "graphic/screen.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty)
@@ -86,10 +85,22 @@ Terminal::InputEscapeChar(const char c)
 
 
 void 
-Terminal::Output(Screen const& screen)
+Terminal::Resize(int new_w, int new_h)
 {
+	fb.Resize(new_w, new_h);
+	pty.Resize(new_w, new_h);
+}
+
+
+void 
+Terminal::Output(Screen& screen)
+{
+	if(screen.keyQueue.empty())
+		return;
+
 	// write data to the PTY
-	int ch = Event(fb.blink);
+	int ch = screen.keyQueue[0];
+	screen.keyQueue.pop_front();
 
 	switch(ch)
 	{

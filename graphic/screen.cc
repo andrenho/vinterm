@@ -22,7 +22,7 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 {
 	SDL_Init(SDL_INIT_VIDEO);
 
-       	screen = SDL_SetVideoMode(w, h, 8, SDL_SWSURFACE);
+       	screen = SDL_SetVideoMode(w, h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
 	if(!screen)
 	{
 		fprintf(stderr, "It was not possible to open the display: %s\n",
@@ -137,6 +137,9 @@ Screen::Update()
 	// update screen
 	SDL_UpdateRects(screen, rects.size(), &rects[0]);
 
+	// check for events
+	DoEvents();
+
 	// gives the OS some rest
 	SDL_Delay(5);
 
@@ -165,4 +168,108 @@ Screen::CheckForBlink()
 		old_cursor_x = fb.CursorX();
 		old_cursor_y = fb.CursorY();
 	}
+}
+
+
+void
+Screen::DoEvents()
+{
+	SDL_Event e;
+	uint16_t c;
+
+	while(SDL_PollEvent(&e))
+	{
+		Uint8* k = SDL_GetKeyState(NULL);
+		switch(e.type)
+		{
+		case SDL_KEYDOWN:
+			switch(e.key.keysym.sym)
+			{
+			case SDLK_F1:
+				keyQueue.push_back(F1);
+			case SDLK_F2:
+				keyQueue.push_back(F2);
+			case SDLK_F3:
+				keyQueue.push_back(F3);
+			case SDLK_F4:
+				keyQueue.push_back(F4);
+			case SDLK_F5:
+				keyQueue.push_back(F5);
+			case SDLK_F6:
+				keyQueue.push_back(F6);
+			case SDLK_F7:
+				keyQueue.push_back(F7);
+			case SDLK_F8:
+				keyQueue.push_back(F8);
+			case SDLK_F9:
+				keyQueue.push_back(F9);
+			case SDLK_F10:
+				keyQueue.push_back(F10);
+			case SDLK_F11:
+				keyQueue.push_back(F11);
+			case SDLK_F12:
+				keyQueue.push_back(F12);
+			case SDLK_UP:
+				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+					keyQueue.push_back(SH_UP);
+				else
+					keyQueue.push_back(K_UP);
+			case SDLK_DOWN:
+				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+					keyQueue.push_back(SH_DOWN);
+				else
+					keyQueue.push_back(K_DOWN);
+			case SDLK_LEFT:
+				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+					keyQueue.push_back(SH_LEFT);
+				else
+					keyQueue.push_back(K_LEFT);
+			case SDLK_RIGHT:
+				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+					keyQueue.push_back(SH_RIGHT);
+				else
+					keyQueue.push_back(K_RIGHT);
+			case SDLK_HOME:
+				keyQueue.push_back(HOME);
+			case SDLK_DELETE:
+				keyQueue.push_back(DELETE);
+			case SDLK_PAGEUP:
+				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
+					keyQueue.push_back(CT_PAGE_UP);
+				else
+					keyQueue.push_back(PAGE_UP);
+			case SDLK_PAGEDOWN:
+				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
+					keyQueue.push_back(CT_PAGE_DOWN);
+				else
+					keyQueue.push_back(PAGE_DOWN);
+			case SDLK_INSERT:
+				keyQueue.push_back(INSERT);
+			case SDLK_END:
+				keyQueue.push_back(END);
+			default:
+				c = e.key.keysym.unicode;
+				if(c != 0)
+				{
+					fb.blink->ResetClock();
+					keyQueue.push_back(c);
+				}
+			}
+			break;
+
+		case SDL_VIDEORESIZE:
+			Resize(e.resize.w, e.resize.h);
+			break;
+
+		case SDL_QUIT:
+			keyQueue.push_back(QUIT);
+		}
+	}
+}
+
+
+void
+Screen::Resize(int new_w, int new_h)
+{
+	
 }

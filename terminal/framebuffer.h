@@ -22,6 +22,9 @@ public:
 	Framebuffer(Options const& options);
 	~Framebuffer();
 
+	// resize screen
+	void Resize(int w, int h);
+
 	// write on the screen
 	void Put(const char c, bool ignore_insert_mode=true);
 	void Put(const char c, const int x, const int y, 
