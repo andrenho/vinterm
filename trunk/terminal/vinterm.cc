@@ -3,7 +3,7 @@
 #include <cctype>
 #include <sstream>
 
-#include "graphic/input.h"
+#include "graphic/screen.h"
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
 

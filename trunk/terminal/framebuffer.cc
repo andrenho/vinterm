@@ -1,6 +1,7 @@
 #include "terminal/framebuffer.h"
 
 #include <cstdlib>
+#include <iostream>
 
 #include "options.h"
 #include "terminal/blink.h"
@@ -25,6 +26,30 @@ Framebuffer::~Framebuffer()
 	dirty->clear();
 	delete dirty;
 	delete blink;
+}
+
+
+void 
+Framebuffer::Resize(int new_w, int new_h)
+{
+	vector<Char> old_chars;
+	old_chars.assign(chars.begin(), chars.end());
+
+	chars.clear();
+	for(int x=0; x<min(w, new_w); x++)
+		for(int y=0; y<min(h, new_h); y++)
+			chars[x+y*new_w] = old_chars[x+y*w];
+
+	scroll_bottom += (new_h - h);
+	w = new_w;
+	h = new_h;
+
+	if(scroll_bottom < scroll_top)
+		scroll_bottom = scroll_top;
+	if(cursor_x >= w)
+		cursor_x = w-1;
+	if(cursor_y >= h)
+		cursor_y = h-1;
 }
 
 
