@@ -26,6 +26,7 @@ typedef struct Char {
 	char Ch;
 	Attribute Attr;
 	Char() : Ch(' ') { }
+	bool operator!=(const Char& c) { return Ch != c.Ch || Attr != c.Attr; }
 } Char;
 
 #endif

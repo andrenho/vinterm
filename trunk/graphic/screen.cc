@@ -258,7 +258,9 @@ Screen::DoEvents()
 			break;
 
 		case SDL_VIDEORESIZE:
-			Resize(e.resize.w, e.resize.h);
+			keyQueue.push_back(RESIZE);
+			keyQueue.push_back(e.resize.w);
+			keyQueue.push_back(e.resize.h);
 			break;
 
 		case SDL_QUIT:
@@ -269,7 +271,25 @@ Screen::DoEvents()
 
 
 void
-Screen::Resize(int new_w, int new_h)
+Screen::Resize(int new_w, int new_h, int& ts_w, int& ts_h)
 {
+	// detect new terminal size
+	ts_w = (new_w - (border_x * 2)) / options.scale / font->char_w;
+	ts_h = (new_h - (border_y * 2)) / options.scale / font->char_h;
+
+	printf("%d %d\n", ts_w, ts_h);
+
+       	screen = SDL_SetVideoMode(new_w, new_h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
+	if(!screen)
+	{
+		fprintf(stderr, "It was not possible to open the display: %s\n",
+				SDL_GetError());
+		exit(1);
+	}
+	//SDL_SetColors(screen, palette, 0, 256);
+	initializePalette(screen, options);
+	SDL_Flip(screen);
 	
+	w = new_w;
+	h = new_h;
 }
