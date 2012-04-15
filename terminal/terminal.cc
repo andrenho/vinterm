@@ -99,12 +99,22 @@ Terminal::Output(Screen& screen)
 		return;
 
 	// write data to the PTY
+	int x, y, ts_w, ts_h;
 	int ch = screen.keyQueue[0];
 	screen.keyQueue.pop_front();
 
 	switch(ch)
 	{
 	case 0: // discard
+		break;
+	case RESIZE:
+		x = screen.keyQueue[0];
+		screen.keyQueue.pop_front();
+		y = screen.keyQueue[0];
+		screen.keyQueue.pop_front();
+		screen.Resize(x, y, ts_w, ts_h);
+		if(ts_w != fb.W() || ts_h != fb.H())
+			Resize(ts_w, ts_h);
 		break;
 	case QUIT:
 		active = false;

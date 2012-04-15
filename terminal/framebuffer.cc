@@ -36,9 +36,14 @@ Framebuffer::Resize(int new_w, int new_h)
 	old_chars.assign(chars.begin(), chars.end());
 
 	chars.clear();
+	chars.insert(chars.begin(), new_w*new_h, Char());
 	for(int x=0; x<min(w, new_w); x++)
 		for(int y=0; y<min(h, new_h); y++)
-			chars[x+y*new_w] = old_chars[x+y*w];
+			if(chars[x+y*new_w] != old_chars[x+y*w])
+			{
+				chars[x+y*new_w] = old_chars[x+y*w];
+				dirty->insert(x+y*new_w);
+			}
 
 	scroll_bottom += (new_h - h);
 	w = new_w;

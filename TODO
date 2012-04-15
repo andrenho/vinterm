@@ -1,12 +1,2 @@
-- blink & cursor (ok)
-- delay (ok)
-- scroll up/down (ok)
-- basic escape sequence (ok)
-- abort on exit (ok)
-- adjust Makefile (ok)
-- comment main / HACKING (ok)
-- check for memory leaks (ok)
-- complete terminal support
-- write manual page
-- add icon
-- check artifacts when clearing the screen
+- problem when pressing keys up/down, etc
+- resize screen
