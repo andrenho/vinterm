@@ -11,6 +11,8 @@ using namespace std;
 #include "graphic/chars.h"
 #include "graphic/font.h"
 
+SDL_Color Screen::palette[256];
+
 Screen::Screen(Options const& options, Framebuffer const& fb)
 	: options(options), font(new Font()), 
 	  chars(new Chars(options, *font)), fb(fb),
@@ -22,7 +24,7 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 {
 	SDL_Init(SDL_INIT_VIDEO);
 
-       	screen = SDL_SetVideoMode(w, h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
+	screen = SDL_SetVideoMode(w, h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
 	if(!screen)
 	{
 		fprintf(stderr, "It was not possible to open the display: %s\n",
@@ -54,7 +56,6 @@ Screen::initializePalette(SDL_Surface* sf, Options const& options)
 	double rg((options.bright_color.g - options.background_color.g) / 255.0);
 	double rb((options.bright_color.b - options.background_color.b) / 255.0);
 
-	SDL_Color palette[256];
 	for(double i(0); i<256; i++)
 		palette[(Uint8)i] = SDL_Color {
 			(Uint8)(options.background_color.r + (rr * i)),
@@ -285,16 +286,14 @@ Screen::Resize(int new_w, int new_h, int& ts_w, int& ts_h)
 
 	printf("%d %d\n", ts_w, ts_h);
 
-       	screen = SDL_SetVideoMode(new_w, new_h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
+	screen = SDL_SetVideoMode(new_w, new_h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
 	if(!screen)
 	{
 		fprintf(stderr, "It was not possible to open the display: %s\n",
 				SDL_GetError());
 		exit(1);
 	}
-	//SDL_SetColors(screen, palette, 0, 256);
-	initializePalette(screen, options);
-	SDL_Flip(screen);
+	SDL_SetColors(screen, palette, 0, 256);
 	
 	w = new_w;
 	h = new_h;

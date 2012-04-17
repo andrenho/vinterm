@@ -33,7 +33,9 @@ public:
 
 	SDL_Surface* ScreenSurface() const { return screen; }
 	static void initializePalette(SDL_Surface* sf, Options const& options);
+
 	deque<int> keyQueue;
+	static SDL_Color palette[256];
 
 private:
 	void initializeChars();
