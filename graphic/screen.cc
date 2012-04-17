@@ -186,67 +186,73 @@ Screen::DoEvents()
 			switch(e.key.keysym.sym)
 			{
 			case SDLK_F1:
-				keyQueue.push_back(F1);
+				keyQueue.push_back(F1); break;
 			case SDLK_F2:
-				keyQueue.push_back(F2);
+				keyQueue.push_back(F2); break;
 			case SDLK_F3:
-				keyQueue.push_back(F3);
+				keyQueue.push_back(F3); break;
 			case SDLK_F4:
-				keyQueue.push_back(F4);
+				keyQueue.push_back(F4); break;
 			case SDLK_F5:
-				keyQueue.push_back(F5);
+				keyQueue.push_back(F5); break;
 			case SDLK_F6:
-				keyQueue.push_back(F6);
+				keyQueue.push_back(F6); break;
 			case SDLK_F7:
-				keyQueue.push_back(F7);
+				keyQueue.push_back(F7); break;
 			case SDLK_F8:
-				keyQueue.push_back(F8);
+				keyQueue.push_back(F8); break;
 			case SDLK_F9:
-				keyQueue.push_back(F9);
+				keyQueue.push_back(F9); break;
 			case SDLK_F10:
-				keyQueue.push_back(F10);
+				keyQueue.push_back(F10); break;
 			case SDLK_F11:
-				keyQueue.push_back(F11);
+				keyQueue.push_back(F11); break;
 			case SDLK_F12:
-				keyQueue.push_back(F12);
+				keyQueue.push_back(F12); break;
 			case SDLK_UP:
 				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
 					keyQueue.push_back(SH_UP);
 				else
 					keyQueue.push_back(K_UP);
+				break;
 			case SDLK_DOWN:
 				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
 					keyQueue.push_back(SH_DOWN);
 				else
 					keyQueue.push_back(K_DOWN);
+				break;
 			case SDLK_LEFT:
 				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
 					keyQueue.push_back(SH_LEFT);
 				else
 					keyQueue.push_back(K_LEFT);
+				break;
 			case SDLK_RIGHT:
 				if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
 					keyQueue.push_back(SH_RIGHT);
 				else
 					keyQueue.push_back(K_RIGHT);
+				break;
 			case SDLK_HOME:
-				keyQueue.push_back(HOME);
+				keyQueue.push_back(HOME); break;
 			case SDLK_DELETE:
-				keyQueue.push_back(DELETE);
+				keyQueue.push_back(DELETE); break;
 			case SDLK_PAGEUP:
 				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
 					keyQueue.push_back(CT_PAGE_UP);
 				else
 					keyQueue.push_back(PAGE_UP);
+				break;
 			case SDLK_PAGEDOWN:
 				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
 					keyQueue.push_back(CT_PAGE_DOWN);
 				else
 					keyQueue.push_back(PAGE_DOWN);
+				break;
 			case SDLK_INSERT:
-				keyQueue.push_back(INSERT);
+				keyQueue.push_back(INSERT); break;
 			case SDLK_END:
-				keyQueue.push_back(END);
+				keyQueue.push_back(END); break;
 			default:
 				c = e.key.keysym.unicode;
 				if(c != 0)
