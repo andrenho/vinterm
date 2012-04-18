@@ -24,7 +24,7 @@ enum {
 
 typedef struct FullScreenInfo {
 	bool isFullScreen;
-	int old_w, old_h;
+	int old_w, old_h, old_border_x;
 	
 	FullScreenInfo() : isFullScreen(false), old_w(0), old_h(0) { }
 } FullScreenInfo;
@@ -50,13 +50,12 @@ private:
 	void initializeChars();
 	void CheckForBlink();
 	void DoEvents();
-	void FullScreen(bool columns80);
 
 	Options const& options;
 	const Font* const font;
 	Chars* const chars;
 	Framebuffer const& fb;
-	const int border_x, border_y;
+	int border_x, border_y;
 	int w, h;
 	SDL_Surface* screen;
 	int old_cursor_x, old_cursor_y;

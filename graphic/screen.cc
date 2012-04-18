@@ -212,7 +212,13 @@ Screen::DoEvents()
 				keyQueue.push_back(F10); break;
 			case SDLK_F11:
 				if(k[SDLK_RCTRL] || k[SDLK_LCTRL])
-					FullScreen(k[SDLK_RSHIFT] || k[SDLK_LSHIFT]);
+				{
+					// full screen
+					keyQueue.push_back(RESIZE);
+					keyQueue.push_back(desktop_w);
+					keyQueue.push_back(desktop_h);
+					keyQueue.push_back((k[SDLK_RSHIFT] || k[SDLK_LSHIFT]) + 1);
+				}
 				else
 					keyQueue.push_back(F11); 
 				break;
@@ -294,6 +300,14 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 	{
 		new_w = fs_info.old_w;
 		new_h = fs_info.old_h;
+		border_x = fs_info.old_border_x;
+	}
+
+	// if fullscreen with 80 columns, get the correct border width
+	if(full_screen == 2 && !fs_info.isFullScreen)
+	{
+		fs_info.old_border_x = border_x;
+		border_x = (desktop_w - (font->char_w * options.scale * 80)) / 2;
 	}
 
 	// detect new terminal size
@@ -311,6 +325,8 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 		flags |= SDL_FULLSCREEN;
 		fs_info.old_w = screen->w;
 		fs_info.old_h = screen->h;
+		if(full_screen == 1)
+			fs_info.old_border_x = border_x;
 	}
 
 	// create new screen
@@ -330,14 +346,4 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 	// store new size
 	w = new_w;
 	h = new_h;
-}
-
-
-void 
-Screen::FullScreen(bool columns80)
-{
-	keyQueue.push_back(RESIZE);
-	keyQueue.push_back(desktop_w);
-	keyQueue.push_back(desktop_h);
-	keyQueue.push_back(1);
 }
