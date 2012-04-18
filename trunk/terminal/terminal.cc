@@ -113,8 +113,7 @@ Terminal::Output(Screen& screen)
 		h = screen.keyQueue[0];
 		screen.keyQueue.pop_front();
 		screen.Resize(w, h, ts_w, ts_h);
-		if(ts_w != fb.W() || ts_h != fb.H())
-			Resize(ts_w, ts_h);
+		Resize(ts_w, ts_h);
 		break;
 	case QUIT:
 		active = false;

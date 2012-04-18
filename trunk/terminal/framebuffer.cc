@@ -35,6 +35,7 @@ Framebuffer::Resize(int new_w, int new_h)
 	vector<Char> old_chars;
 	old_chars.assign(chars.begin(), chars.end());
 
+	// resize chars
 	chars.clear();
 	chars.insert(chars.begin(), new_w*new_h, Char());
 	for(int x=0; x<min(w, new_w); x++)
@@ -43,10 +44,23 @@ Framebuffer::Resize(int new_w, int new_h)
 			if(chars[x+y*new_w] != old_chars[x+y*w])
 			{
 				chars[x+y*new_w] = old_chars[x+y*w];
+				dirty->insert(x+y*new_w);
 			}
-			dirty->insert(x+y*new_w);
 		}
 
+	// resize saved screen
+	if(!saved_screen.empty())
+	{
+		old_chars.clear();
+		old_chars.assign(saved_screen.begin(), saved_screen.end());
+		saved_screen.clear();
+		saved_screen.insert(saved_screen.begin(), new_w*new_h, Char());
+		for(int x=0; x<min(w, new_w); x++)
+			for(int y=0; y<min(h, new_h); y++)
+				saved_screen[x+y*new_w] = old_chars[x+y*w];
+	}
+
+	// new parameters
 	scroll_bottom += (new_h - h);
 	w = new_w;
 	h = new_h;

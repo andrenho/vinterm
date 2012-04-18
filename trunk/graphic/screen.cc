@@ -284,7 +284,10 @@ Screen::Resize(int new_w, int new_h, int& ts_w, int& ts_h)
 	ts_w = (new_w - (border_x * 2)) / options.scale / font->char_w;
 	ts_h = (new_h - (border_y * 2)) / options.scale / font->char_h;
 
-	printf("%d %d\n", ts_w, ts_h);
+	if(ts_w < 1)
+		ts_w = 1;
+	if(ts_h < 1)
+		ts_h = 1;
 
 	screen = SDL_SetVideoMode(new_w, new_h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
 	if(!screen)
