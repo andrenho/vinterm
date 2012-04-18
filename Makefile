@@ -49,7 +49,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p vinterm-${VERSION}
-	@cp --parents config.mk Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} vinterm-${VERSION}
+	@cp --parents config.mk vinterm.1 Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} vinterm-${VERSION}
 	@tar -cf vinterm-${VERSION}.tar vinterm-${VERSION}
 	@gzip vinterm-${VERSION}.tar
 	@rm -rf vinterm-${VERSION}
@@ -66,10 +66,11 @@ install: all
 	@echo installing data to ${DESTDIR}${VINTERMPREFIX}
 	@mkdir -p ${DESTDIR}${VINTERMPREFIX}
 	@cp -f ${DATA} ${DESTDIR}${VINTERMPREFIX}
-#	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
-#	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
-#	@sed "s/VERSION/${VERSION}/g" < st.1 > ${DESTDIR}${MANPREFIX}/man1/st.1
-#	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/st.1
+	@echo installing manual page to ${DESTDIR}${MANPREFIX}/man1
+	@mkdir -p ${DESTDIR}${MANPREFIX}/man1
+	@sed "s/VERSION/${VERSION}/g" < vinterm.1 > ${DESTDIR}${MANPREFIX}/man1/vinterm.1
+	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/vinterm.1
+	@echo compiling terminfo data
 	@tic -s data/vinterm.info
 
 # TODO - check data
