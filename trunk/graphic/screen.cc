@@ -24,6 +24,10 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 {
 	SDL_Init(SDL_INIT_VIDEO);
 
+	SDL_VideoInfo const* vi = SDL_GetVideoInfo();
+	desktop_w = vi->current_w;
+	desktop_h = vi->current_h;
+
 	screen = SDL_SetVideoMode(w, h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
 	if(!screen)
 	{
@@ -207,7 +211,11 @@ Screen::DoEvents()
 			case SDLK_F10:
 				keyQueue.push_back(F10); break;
 			case SDLK_F11:
-				keyQueue.push_back(F11); break;
+				if(k[SDLK_RCTRL] || k[SDLK_LCTRL])
+					FullScreen(k[SDLK_RSHIFT] || k[SDLK_LSHIFT]);
+				else
+					keyQueue.push_back(F11); 
+				break;
 			case SDLK_F12:
 				keyQueue.push_back(F12); break;
 			case SDLK_UP:
@@ -268,6 +276,7 @@ Screen::DoEvents()
 			keyQueue.push_back(RESIZE);
 			keyQueue.push_back(e.resize.w);
 			keyQueue.push_back(e.resize.h);
+			keyQueue.push_back(0);
 			break;
 
 		case SDL_QUIT:
@@ -278,18 +287,34 @@ Screen::DoEvents()
 
 
 void
-Screen::Resize(int new_w, int new_h, int& ts_w, int& ts_h)
+Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 {
+	// if returning from full screen, restore previous size
+	if(full_screen && fs_info.isFullScreen)
+	{
+		new_w = fs_info.old_w;
+		new_h = fs_info.old_h;
+	}
+
 	// detect new terminal size
 	ts_w = (new_w - (border_x * 2)) / options.scale / font->char_w;
 	ts_h = (new_h - (border_y * 2)) / options.scale / font->char_h;
-
 	if(ts_w < 1)
 		ts_w = 1;
 	if(ts_h < 1)
 		ts_h = 1;
 
-	screen = SDL_SetVideoMode(new_w, new_h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
+	// set flags
+	Uint32 flags = SDL_SWSURFACE | SDL_RESIZABLE;
+	if(full_screen && !fs_info.isFullScreen)
+	{
+		flags |= SDL_FULLSCREEN;
+		fs_info.old_w = screen->w;
+		fs_info.old_h = screen->h;
+	}
+
+	// create new screen
+	screen = SDL_SetVideoMode(new_w, new_h, 8, flags);
 	if(!screen)
 	{
 		fprintf(stderr, "It was not possible to open the display: %s\n",
@@ -297,7 +322,22 @@ Screen::Resize(int new_w, int new_h, int& ts_w, int& ts_h)
 		exit(1);
 	}
 	SDL_SetColors(screen, palette, 0, 256);
+
+	// adjust fullscreen information
+	if(full_screen)
+		fs_info.isFullScreen = !fs_info.isFullScreen;
 	
+	// store new size
 	w = new_w;
 	h = new_h;
+}
+
+
+void 
+Screen::FullScreen(bool columns80)
+{
+	keyQueue.push_back(RESIZE);
+	keyQueue.push_back(desktop_w);
+	keyQueue.push_back(desktop_h);
+	keyQueue.push_back(1);
 }

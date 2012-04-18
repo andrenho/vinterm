@@ -99,7 +99,7 @@ Terminal::Output(Screen& screen)
 		return;
 
 	// write data to the PTY
-	int w, h, ts_w, ts_h;
+	int w, h, fs, ts_w, ts_h;
 	int ch = screen.keyQueue[0];
 	screen.keyQueue.pop_front();
 
@@ -112,7 +112,9 @@ Terminal::Output(Screen& screen)
 		screen.keyQueue.pop_front();
 		h = screen.keyQueue[0];
 		screen.keyQueue.pop_front();
-		screen.Resize(w, h, ts_w, ts_h);
+		fs = screen.keyQueue[0];
+		screen.keyQueue.pop_front();
+		screen.Resize(w, h, fs, ts_w, ts_h);
 		Resize(ts_w, ts_h);
 		break;
 	case QUIT:
