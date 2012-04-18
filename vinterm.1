@@ -1,4 +1,32 @@
 .TH vinterm 1 "April 18, 2012" "version VERSION" "USER COMMANDS"
-
 .SH NAME
 vinterm \- Vintage-style terminal emulator
+.SH SYNOPSIS
+.B vinterm 
+.RB [
+.IR options " ]"
+.SH DESCRIPTION
+Use a terminal in style, like in the good old days! 
+.B "Vintage Terminal "
+is a terminal emulator that simulates the looks of a 1980s monitor.
+.SH OPTIONS
+.TP 6
+.BI \-s " scale" "=SCALE"
+zoom the image by SCALE (default=1)
+.TP 
+.BI \-\-version
+display version information and exit
+.TP
+.BI \-\-help
+display the help message and exit
+.SH FILES
+.TP 5
+\fI$HOME/.vinterm_profile
+executable that is run as soon as vinterm is open.
+.SH BUGS
+\`Vintage Terminal\` is still in beta stage and probably contains many bugs.
+.B "USE IT AT YOUR OWN RISK."
+.SH AUTHOR
+Andre Wagner <andre.nho@gmail.com>
+.SH SEE ALSO
+xterm(1)
