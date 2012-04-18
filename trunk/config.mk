@@ -6,7 +6,7 @@ SDL = yes
 X11 = no
 
 # add debugging info
-DEBUG = yes
+DEBUG = no
 DUMA = no
 
 # Customize below to fit your system

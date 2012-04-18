@@ -80,7 +80,7 @@ uninstall:
 	@echo removing data from ${DESTDIR}${VINTERMPREFIX}
 	@rm -f ${DESTDIR}${VINTERMPREFIX}/*
 	@rmdir ${DESTDIR}${VINTERMPREFIX}
-#	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
-#	@rm -f ${DESTDIR}${MANPREFIX}/man1/st.1
+	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
+	@rm -f ${DESTDIR}${MANPREFIX}/man1/vinterm.1
 
 .PHONY: all options clean dist install uninstall
