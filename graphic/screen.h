@@ -22,6 +22,14 @@ enum {
 };
 
 
+typedef struct FullScreenInfo {
+	bool isFullScreen;
+	int old_w, old_h;
+	
+	FullScreenInfo() : isFullScreen(false), old_w(0), old_h(0) { }
+} FullScreenInfo;
+
+
 class Screen
 {
 public:
@@ -29,7 +37,8 @@ public:
 	~Screen();
 
 	void Update();
-	void Resize(int new_w, int new_h, int& ts_w, int& ts_h);
+	void Resize(int new_w, int new_h, int full_screen, 
+			int& ts_w, int& ts_h);
 
 	SDL_Surface* ScreenSurface() const { return screen; }
 	static void initializePalette(SDL_Surface* sf, Options const& options);
@@ -41,6 +50,7 @@ private:
 	void initializeChars();
 	void CheckForBlink();
 	void DoEvents();
+	void FullScreen(bool columns80);
 
 	Options const& options;
 	const Font* const font;
@@ -50,6 +60,8 @@ private:
 	int w, h;
 	SDL_Surface* screen;
 	int old_cursor_x, old_cursor_y;
+	int desktop_w, desktop_h;
+	FullScreenInfo fs_info;
 };
 
 #endif
