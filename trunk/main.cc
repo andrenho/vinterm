@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 	/* The terminal is the class that connects the PTY with the framebuffer.
 	 * It reads the data from the PTY and stores it on the framebuffer,
 	 * translating the escape codes from the specific terminal on demand. */
-	Vinterm terminal(fb, pty);
+	Vinterm terminal(fb, pty, options);
 
 	/* Opens the screen that the user will interact with. It reads the
 	 * characters from the framebuffer and display them on the screen, using

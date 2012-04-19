@@ -9,8 +9,8 @@ using namespace std;
 class Vinterm : public Terminal
 {
 public:
-	Vinterm(Framebuffer& fb, PTY& pty) 
-		: Terminal(fb, pty), saved_x(0), saved_y(0) { }
+	Vinterm(Framebuffer& fb, PTY& pty, Options const& options) 
+		: Terminal(fb, pty, options), saved_x(0), saved_y(0) { }
 	
 	virtual void ExecuteEscapeSequence(string const& sequence);
 	void KeyPressed(int key);
