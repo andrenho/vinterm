@@ -151,3 +151,9 @@ Terminal::ExecuteEscapeSequence(string const& sequence)
 			cerr << *c;
 	cerr << endl;
 }
+
+
+void 
+Terminal::SetEncoding(string const& encoding)
+{
+}

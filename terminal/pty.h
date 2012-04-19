@@ -5,13 +5,14 @@
 #include <ostream>
 using namespace std;
 
+class Options;
+
 class PTY
 {
 public:
 	enum { NO_DATA = -100 };
 
-	explicit PTY(bool debug_terminal=false, 
-			const string terminal="vinterm");
+	PTY(Options const& options, const string terminal="vinterm");
 	~PTY();
 
 	int Get() const;
@@ -26,6 +27,7 @@ private:
 
 	int fd;
 	mutable bool active;
+	Options const& options;
 	const bool debug;
 	mutable int debug_ct;
 };

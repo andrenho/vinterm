@@ -13,7 +13,6 @@ int main(int argc, char** argv)
 	/* Read and initialize options from the program arguments. In the
 	 * future, will also read from a configuration file. */
 	Options options(argc, argv);
-	cout << options.CurrentEncoding << endl;
 
 	/* Initialize the framebuffer. The framebuffer is a (initially) 80x25
 	 * grid of characters and their attributes, and represents the console
@@ -23,7 +22,7 @@ int main(int argc, char** argv)
 	/* The PTY is the class that connects to the virtual terminal. It
 	 * receives the characters sent by the terminal, and sends the chars
 	 * inputted by the user to the terminal. */
-	PTY pty(options.debug_terminal);
+	PTY pty(options);
 
 	/* The terminal is the class that connects the PTY with the framebuffer.
 	 * It reads the data from the PTY and stores it on the framebuffer,
@@ -34,6 +33,10 @@ int main(int argc, char** argv)
 	 * characters from the framebuffer and display them on the screen, using
 	 * transforming them in the 80s style. */
 	Screen screen(options, fb);
+
+	/* Now that the font was loaded (in Screen), set up the terminal
+	   encoding. */
+	terminal.SetEncoding(screen.FontEncoding());
 
 	/* The main loop is very simple. It executes these steps continually:
 	 *

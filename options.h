@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <vector>
+#include <string>
 #include "SDL.h"
 using namespace std;
 
@@ -22,7 +23,7 @@ public:
 	const int border_x, border_y;
 	const SDL_Color background_color, bright_color;
 	const uint32_t blink_speed, flashing_speed;
-	const char* CurrentEncoding;
+	string CurrentEncoding;
 
 private:
 	void ParseArguments(int argc, char* argv[]);
