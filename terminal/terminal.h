@@ -1,17 +1,19 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
 
+#include <iconv.h>
 #include <string>
 using namespace std;
 
 class Framebuffer;
 class Screen;
 class PTY;
+class Options;
 
 class Terminal
 {
 public:
-	Terminal(Framebuffer& fb, PTY& pty);
+	Terminal(Framebuffer& fb, PTY& pty, Options const& options);
 	virtual ~Terminal();
 
 	void Input();
@@ -27,14 +29,18 @@ public:
 protected:
 	Framebuffer& fb;
 	PTY& pty;
+	Options const& options;
 
 private:
 	void InputChar(const char c);
 	void InputEscapeChar(const char c);
+	char ConvertByte(const char c);
 
 	bool active;
 	bool escape_mode;
 	string escape_sequence;
+	string encoding;
+	iconv_t cd;
 };
 
 #endif

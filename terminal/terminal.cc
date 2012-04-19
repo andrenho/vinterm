@@ -3,19 +3,23 @@
 #include <iostream>
 using namespace std;
 
+#include "options.h"
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
 #include "graphic/screen.h"
 #include "graphic/audio.h"
 
-Terminal::Terminal(Framebuffer& fb, PTY& pty)
-	: fb(fb), pty(pty), active(true), escape_mode(false)
+Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
+	: fb(fb), pty(pty), options(options), active(true), escape_mode(false), 
+	  encoding("")
 {
 }
 
 
 Terminal::~Terminal()
 {
+	if(!encoding.empty())
+		iconv_close(cd);
 }
 
 
@@ -47,6 +51,8 @@ Terminal::Input()
 void
 Terminal::InputChar(const char c)
 {
+	char cv;
+
 	switch(c)
 	{
 	case 27: // ESC
@@ -73,7 +79,8 @@ Terminal::InputChar(const char c)
 		fb.Backspace();
 		break;
 	default:
-		fb.Put(c, false);
+		cv = ConvertByte(c);
+		fb.Put(cv, false);
 	}
 }
 
@@ -156,4 +163,23 @@ Terminal::ExecuteEscapeSequence(string const& sequence)
 void 
 Terminal::SetEncoding(string const& encoding)
 {
+	this->encoding = encoding;
+
+	cd = iconv_open(options.CurrentEncoding.c_str(), encoding.c_str());
+	if(cd == (iconv_t)-1)
+	{
+		if(errno == EINVAL)
+			cerr << "conversion from " << options.CurrentEncoding <<
+				" to " << encoding << " not available." << endl;
+		else
+			perror("iconv_open");
+		this->encoding = "";
+
+	}
+}
+
+char
+Terminal::ConvertByte(const char c)
+{
+	return c;
 }
