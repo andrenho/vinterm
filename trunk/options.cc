@@ -3,6 +3,8 @@
 #include <getopt.h>
 #include <locale.h>
 #include <langinfo.h>
+#include <iostream>
+using namespace std;
 
 #include "filters/filter_inexact.h"
 #include "filters/filter_scanline.h"
@@ -27,7 +29,7 @@ Options::Options(const int argc, char** const argv)
 	{
 		cerr << "warning: the current locale could not be identified."
 			<< endl;
-		CurrentEncoding = NULL;
+		CurrentEncoding = string();
 	}
 }
 

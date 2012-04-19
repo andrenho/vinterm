@@ -17,6 +17,7 @@ public:
 	void Input();
 	void Output(Screen& screen);
 	void Resize(int new_w, int new_h);
+	void SetEncoding(string const& encoding);
 
 	virtual void ExecuteEscapeSequence(string const& sequence);
 	virtual void KeyPressed(int key);

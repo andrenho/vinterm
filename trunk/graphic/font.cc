@@ -5,7 +5,7 @@
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
 Font::Font()
-	: char_w(9), char_h(14), ch(new uint8_t*[256])
+	: char_w(9), char_h(14), ch(new uint8_t*[256]), Encoding("ibm437")
 {
 	SDL_Surface* sf(SDL_LoadBMP(DATADIR "/mda9.bmp"));
 	if(!sf)

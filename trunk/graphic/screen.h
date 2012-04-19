@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "graphic/audio.h"
+#include "graphic/font.h"
 
 class Options;
 class Framebuffer;
@@ -44,6 +45,8 @@ public:
 
 	SDL_Surface* ScreenSurface() const { return screen; }
 	static void initializePalette(SDL_Surface* sf, Options const& options);
+
+	string const& FontEncoding() const { return font->Encoding; }
 
 	deque<int> keyQueue;
 	static SDL_Color palette[256];
