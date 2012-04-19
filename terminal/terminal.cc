@@ -6,6 +6,7 @@ using namespace std;
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
 #include "graphic/screen.h"
+#include "graphic/audio.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty)
 	: fb(fb), pty(pty), active(true), escape_mode(false)
@@ -63,6 +64,10 @@ Terminal::InputChar(const char c)
 		break;
 	case '\a': // beep
 		cout << "Beep!" << endl; // TODO
+		{
+			Audio a;
+			a.Beep();
+		}
 		break;
 	case '\b': // backspace
 		fb.Backspace();
