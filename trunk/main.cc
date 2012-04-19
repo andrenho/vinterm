@@ -13,6 +13,7 @@ int main(int argc, char** argv)
 	/* Read and initialize options from the program arguments. In the
 	 * future, will also read from a configuration file. */
 	Options options(argc, argv);
+	cout << options.CurrentEncoding << endl;
 
 	/* Initialize the framebuffer. The framebuffer is a (initially) 80x25
 	 * grid of characters and their attributes, and represents the console

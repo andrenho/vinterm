@@ -1,6 +1,8 @@
 #include "options.h"
 
 #include <getopt.h>
+#include <locale.h>
+#include <langinfo.h>
 
 #include "filters/filter_inexact.h"
 #include "filters/filter_scanline.h"
@@ -15,6 +17,18 @@ Options::Options(const int argc, char** const argv)
 {
 	ParseArguments(argc, argv);
 	AddFilters();
+
+	// find out current encoding
+	char* loc = setlocale(LC_ALL, "");
+
+	if(loc)
+		CurrentEncoding = nl_langinfo(_NL_CTYPE_CODESET_NAME);
+	else
+	{
+		cerr << "warning: the current locale could not be identified."
+			<< endl;
+		CurrentEncoding = NULL;
+	}
 }
 
 void
