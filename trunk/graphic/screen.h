@@ -7,6 +7,8 @@
 #include <deque>
 using namespace std;
 
+#include "graphic/audio.h"
+
 class Options;
 class Framebuffer;
 class Chars;
@@ -45,6 +47,7 @@ public:
 
 	deque<int> keyQueue;
 	static SDL_Color palette[256];
+	Audio audio;
 
 private:
 	void initializeChars();

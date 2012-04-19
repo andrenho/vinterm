@@ -6,8 +6,10 @@ terminal emulator that simulates the looks of a 1980s monitor.
 
 Vintage Terminal has the following features:
 
-  * Complete monochrome terminal capabilites implemented.
+  * Complete monochrome terminal capabilites implemented;
   * Scaling (zoom) with the argument `-s`;
+  * Ability to resize the window;
+  * Full screen (CTRL+F11) and full screen with 80 columns (CTRL+SHIFT+F11);
   * Has a authentic old look based on a IBM 5151 monitor.
 
 This is a very early alpha release, so is not yet for the faint of heart. USE
@@ -22,8 +24,7 @@ The following features are planned:
   * Different colors for the monochrome monitor (ambar, blue, gray...)
   * Different types of old monitors (DEC terminals, TV...)
   * Ability to configure every aspect of the image
-  * Window resize
-  * Full screen
   * MS-DOS console emulation for Windows
 
-`Vintage Terminal` has only been tested on Linux so far.
+`Vintage Terminal` has only been tested on Linux so far, but has been reported
+to work on MacOSX. See INSTALL for details.

@@ -342,6 +342,9 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 	// adjust fullscreen information
 	if(full_screen)
 		fs_info.isFullScreen = !fs_info.isFullScreen;
+
+	// show/hide mouse
+	SDL_ShowCursor(fs_info.isFullScreen ? SDL_DISABLE : SDL_ENABLE);
 	
 	// store new size
 	w = new_w;

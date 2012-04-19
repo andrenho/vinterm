@@ -1,6 +1,9 @@
-Version 0.2.1
+Version 0.3.0
 -------------
   - Window resize/maximize implemented
+  - Full screen (CTRL+F11)
+  - Full screen with 80 columns (CTRL+SHIFT+F11)
+  - Manual page written
 
 Version 0.2.0
 -------------
