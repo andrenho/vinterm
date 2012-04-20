@@ -41,7 +41,7 @@ private:
 	string escape_sequence;
 	string encoding;
 
-	iconv_t cd_in;
+	iconv_t cd_in, cd_out;
 	char* inbuf;
 	size_t inbuf_pos;
 };
