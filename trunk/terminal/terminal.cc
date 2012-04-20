@@ -19,7 +19,10 @@ Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 Terminal::~Terminal()
 {
 	if(!encoding.empty())
+	{
 		iconv_close(cd_in);
+		iconv_close(cd_out);
+	}
 }
 
 
@@ -142,7 +145,20 @@ Terminal::Output(Screen& screen)
 void
 Terminal::KeyPressed(int ch)
 {
-	pty.Send((const char)ch);
+	if(ch > 127)
+	{
+		char* inbuf = (char*)calloc(2, 1);
+		inbuf[0] = (char)ch;
+		inbuf[1] = 0;
+		char* wrptr = (char*)calloc(4, 1);
+		size_t sz_a = 1, sz_b = 4;
+		char* t = wrptr;
+		size_t nconv = iconv(cd_in, &inbuf, &sz_a, &wrptr, &sz_b);
+		pty.Send((const char)t[0]);
+		pty.Send((const char)t[1]);
+	}
+	else
+		pty.Send((const char)ch);
 }
 
 
@@ -175,7 +191,19 @@ Terminal::SetEncoding(string const& encoding)
 		else
 			perror("iconv_open");
 		this->encoding = "";
+		return;
+	}
 
+	cd_out = iconv_open("iso-8859-1", encoding.c_str());
+	if(cd_out == (iconv_t)-1)
+	{
+		if(errno == EINVAL)
+			cerr << "conversion from " << encoding <<
+				" to iso-8859-1 not available." << endl;
+		else
+			perror("iconv_open");
+		this->encoding = "";
+		return;
 	}
 }
 
