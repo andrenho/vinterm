@@ -11,7 +11,7 @@ using namespace std;
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 	: fb(fb), pty(pty), options(options), active(true), escape_mode(false), 
-	  encoding("")
+	  encoding(""), inbuf((char*)calloc(4, 1)), inbuf_pos(0)
 {
 }
 
@@ -19,7 +19,7 @@ Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 Terminal::~Terminal()
 {
 	if(!encoding.empty())
-		iconv_close(cd);
+		iconv_close(cd_in);
 }
 
 
@@ -80,7 +80,8 @@ Terminal::InputChar(const char c)
 		break;
 	default:
 		cv = ConvertByte(c);
-		fb.Put(cv, false);
+		if(cv)
+			fb.Put(cv, false);
 	}
 }
 
@@ -165,8 +166,8 @@ Terminal::SetEncoding(string const& encoding)
 {
 	this->encoding = encoding;
 
-	cd = iconv_open(options.CurrentEncoding.c_str(), encoding.c_str());
-	if(cd == (iconv_t)-1)
+	cd_in = iconv_open(encoding.c_str(), options.CurrentEncoding.c_str());
+	if(cd_in == (iconv_t)-1)
 	{
 		if(errno == EINVAL)
 			cerr << "conversion from " << options.CurrentEncoding <<
@@ -181,5 +182,22 @@ Terminal::SetEncoding(string const& encoding)
 char
 Terminal::ConvertByte(const char c)
 {
-	return c;
+	if((unsigned char)c < 128)
+	{
+		inbuf_pos = 0;
+		return c;
+	}
+
+	char* wrptr = (char*)calloc(8, 1);
+	size_t sz = 8;
+	inbuf[inbuf_pos++] = c;
+	char* t = wrptr;
+	size_t nconv = iconv(cd_in, &inbuf, &inbuf_pos, &wrptr, &sz);
+	if(nconv == 0)
+	{
+		inbuf_pos = 0;
+		return t[0];
+	}
+	else
+		return 0;
 }
