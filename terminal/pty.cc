@@ -149,7 +149,7 @@ PTY::Debug(char c, bool sending) const
 		c2 = '>';
 	}
 	if(c <= 32)
-		printf("%c%3d%c ", c1, c, c2);
+		printf("%c%3d%c ", c1, (unsigned char)c, c2);
 	else
 		printf("%c %c %c ", c1, c, c2);
 	debug_ct++;

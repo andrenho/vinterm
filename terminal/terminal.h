@@ -40,7 +40,10 @@ private:
 	bool escape_mode;
 	string escape_sequence;
 	string encoding;
-	iconv_t cd;
+
+	iconv_t cd_in;
+	char* inbuf;
+	size_t inbuf_pos;
 };
 
 #endif
