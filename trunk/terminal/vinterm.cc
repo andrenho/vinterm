@@ -180,7 +180,7 @@ Vinterm::ParseEscapeSequence(string const& sequence, vector<int>& params)
 
 
 void
-Vinterm::KeyPressed(int key)
+Vinterm::KeyPressed(uint32_t key)
 {
 	switch(key)
 	{

@@ -22,7 +22,7 @@ public:
 	void SetEncoding(string const& encoding);
 
 	virtual void ExecuteEscapeSequence(string const& sequence);
-	virtual void KeyPressed(int key);
+	virtual void KeyPressed(uint32_t key);
 
 	bool Active() const { return active; }
 

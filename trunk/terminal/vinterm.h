@@ -13,7 +13,7 @@ public:
 		: Terminal(fb, pty, options), saved_x(0), saved_y(0) { }
 	
 	virtual void ExecuteEscapeSequence(string const& sequence);
-	void KeyPressed(int key);
+	void KeyPressed(uint32_t key);
 
 private:
 	char ParseEscapeSequence(string const& sequence, vector<int>& params);
