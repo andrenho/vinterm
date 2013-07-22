@@ -108,12 +108,12 @@ PTY::Get() const
 
 
 void 
-PTY::Send(const char c)
+PTY::Send(const uint8_t c)
 {
 #ifdef DEBUG
 	Debug(c, true);
 #endif
-	if(write(fd, &c, 1) == -1)
+	if(write(fd, &c, sizeof(c)) == -1)
 	{
 		perror("write");
 		abort();

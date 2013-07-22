@@ -116,7 +116,7 @@ Terminal::Output(Screen& screen)
 
 	// write data to the PTY
 	int w, h, fs, ts_w, ts_h;
-	int ch = screen.keyQueue[0];
+	uint32_t ch = screen.keyQueue[0];
 	screen.keyQueue.pop_front();
 
 	switch(ch)
@@ -143,22 +143,30 @@ Terminal::Output(Screen& screen)
 
 
 void
-Terminal::KeyPressed(int ch)
+Terminal::KeyPressed(uint32_t ch)
 {
-	if(ch > 127)
+	if(ch <= 127)
+		pty.Send(ch);
+	else 
 	{
+		pty.Send(0xc3);
+		pty.Send(0xa1);
+		/*
 		char* inbuf = (char*)calloc(2, 1);
 		inbuf[0] = (char)ch;
 		inbuf[1] = 0;
 		char* wrptr = (char*)calloc(4, 1);
-		//size_t sz_a = 1, sz_b = 4;
+		size_t sz_a = 1, sz_b = 4;
 		char* t = wrptr;
-		//size_t nconv = iconv(cd_in, &inbuf, &sz_a, &wrptr, &sz_b);
+		size_t nconv = iconv(cd_in, &inbuf, &sz_a, &wrptr, &sz_b);
 		pty.Send((const char)t[0]);
 		pty.Send((const char)t[1]);
+		*/
+		/*
+		pty.Send(ch >> 8);
+		pty.Send(ch & 0xff);
+		*/
 	}
-	else
-		pty.Send((const char)ch);
 }
 
 

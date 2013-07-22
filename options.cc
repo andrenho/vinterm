@@ -134,6 +134,10 @@ Options::Help(int status)
 	fprintf(f, "      --help           display this help and exit\n");
 	fprintf(f, "      --version        display version information and exit\n");
 	fprintf(f, "\n");
+	fprintf(f, "Keys:\n");
+	fprintf(f, "  CTRL+F11             full screen\n");
+	fprintf(f, "  CTRL+SHIFT+F11       full screen with 80 columns\n");
+	fprintf(f, "\n");
 	fprintf(f, "Report bugs to: <http://code.google.com/p/vinterm/issues/>\n");
 	fprintf(f, "`Vintage Terminal` home page: <http://code.google.com/p/vinterm/>\n");
 

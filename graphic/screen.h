@@ -48,7 +48,7 @@ public:
 
 	string const& FontEncoding() const { return font->Encoding; }
 
-	deque<int> keyQueue;
+	deque<uint32_t> keyQueue;
 	static SDL_Color palette[256];
 	Audio audio;
 
