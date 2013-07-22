@@ -82,7 +82,7 @@ Terminal::InputChar(const char c)
 		fb.Backspace();
 		break;
 	default:
-		cv = ConvertByte(c);
+		cv = ConvertByteInput(c);
 		if(cv)
 			fb.Put(cv, false);
 	}
@@ -145,28 +145,30 @@ Terminal::Output(Screen& screen)
 void
 Terminal::KeyPressed(uint32_t ch)
 {
-	if(ch <= 127)
-		pty.Send(ch);
-	else 
+	char *iso = (char*)calloc(2, sizeof(char));
+	iso[0] = (char)ch;
+	char *converted = (char*)calloc(5, sizeof(char));
+	char *converted_start = converted;
+
+	size_t ibl = 2; // len of iso
+	size_t obl = 5; // len of converted
+
+	size_t ret = iconv(cd_out, &iso, &ibl, &converted, &obl);
+
+	if(ret == (size_t)-1)
 	{
-		pty.Send(0xc3);
-		pty.Send(0xa1);
-		/*
-		char* inbuf = (char*)calloc(2, 1);
-		inbuf[0] = (char)ch;
-		inbuf[1] = 0;
-		char* wrptr = (char*)calloc(4, 1);
-		size_t sz_a = 1, sz_b = 4;
-		char* t = wrptr;
-		size_t nconv = iconv(cd_in, &inbuf, &sz_a, &wrptr, &sz_b);
-		pty.Send((const char)t[0]);
-		pty.Send((const char)t[1]);
-		*/
-		/*
-		pty.Send(ch >> 8);
-		pty.Send(ch & 0xff);
-		*/
+		perror("iconv");
+		return;
 	}
+	else
+	{
+		int i = 0;
+		while(converted_start[i])
+			pty.Send(converted_start[i++]);
+		//printf("%ld bytes converted\n", ret);
+		//printf("result: '%s'\n", converted_start);
+	}
+
 }
 
 
@@ -202,12 +204,13 @@ Terminal::SetEncoding(string const& encoding)
 		return;
 	}
 
-	cd_out = iconv_open("iso-8859-1", encoding.c_str());
+	cd_out = iconv_open(options.CurrentEncoding.c_str(), "ISO-8859-1");
 	if(cd_out == (iconv_t)-1)
 	{
 		if(errno == EINVAL)
-			cerr << "conversion from " << encoding <<
-				" to iso-8859-1 not available." << endl;
+			cerr << "conversion from ISO-8859-1 to " << 
+				options.CurrentEncoding.c_str() <<
+				" not available." << endl;
 		else
 			perror("iconv_open");
 		this->encoding = "";
@@ -216,7 +219,7 @@ Terminal::SetEncoding(string const& encoding)
 }
 
 char
-Terminal::ConvertByte(const char c)
+Terminal::ConvertByteInput(const char c)
 {
 	if((unsigned char)c < 128)
 	{
