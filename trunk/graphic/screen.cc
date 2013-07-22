@@ -117,15 +117,15 @@ Screen::Update()
 			- (options.scale * chars->start_at_y);
 		SDL_Rect r = { 
 			(Sint16)xx, (Sint16)yy, 
-			(Sint16)sf->w, (Sint16)sf->h 
+			(Uint16)sf->w, (Uint16)sf->h 
 		};
 
 		// clear char
 		SDL_Rect r2 = { 
 			(Sint16)(xx+(options.scale * chars->start_at_y)),
 			(Sint16)(yy+(options.scale * chars->start_at_y)),
-			(Sint16)(font->char_w * options.scale),
-			(Sint16)(font->char_h * options.scale+1)
+			(Uint16)(font->char_w * options.scale),
+			(Uint16)(font->char_h * options.scale+1)
 		};
 		if(x == 0) { r2.x-=2; r2.w+=2; } else if(x == (w-1)) { r2.w+=2; }
 		if(y == 0) { r2.y-=2; r2.h+=2; } else if(y == (h-1)) { r2.h+=2; }

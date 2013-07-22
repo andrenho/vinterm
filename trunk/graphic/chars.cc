@@ -61,27 +61,27 @@ Chars::CreateChar(const uint8_t c, const Attribute attr) const
 	SDL_FillRect(s, NULL, bg_color);
 	if(options.scale == 1)
 	{
-		for(int x(0); x<font.char_w; x++)
-			for(int y(0); y<font.char_h; y++)
+		for(uint16_t x(0); x<font.char_w; x++)
+			for(uint16_t y(0); y<font.char_h; y++)
 				P(s, x + start_at_x, y + start_at_y) = 
 					font.ch[c][y*font.char_w+x] ? color : bg_color;
 		if(attr.Underline)
 		{
 			SDL_Rect r = { 0, (Sint16)font.char_h, 
-				(Sint16)font.char_w, 1 };
+				font.char_w, 1 };
 			SDL_FillRect(s, &r, color);
 		}
 	}
 	else
 	{
-		for(int x(0); x<font.char_w; x++)
-			for(int y(0); y<font.char_h; y++)
+		for(uint16_t x(0); x<font.char_w; x++)
+			for(uint16_t y(0); y<font.char_h; y++)
 			{
 				SDL_Rect r = {
 					(Sint16)((x + start_at_x) * options.scale),
 					(Sint16)((y + start_at_y) * options.scale),
-					(Sint16)options.scale, 
-					(Sint16)options.scale };
+					(Uint16)options.scale, 
+					(Uint16)options.scale };
 				if(font.ch[c][y*font.char_w+x])
 					SDL_FillRect(s, &r, color);
 			}
@@ -89,8 +89,8 @@ Chars::CreateChar(const uint8_t c, const Attribute attr) const
 		{
 			SDL_Rect r = { 0, 
 				(Sint16)(font.char_h * options.scale), 
-				(Sint16)(font.char_w * options.scale), 
-				(Sint16)options.scale };
+				(Uint16)(font.char_w * options.scale), 
+				(Uint16)options.scale };
 			SDL_FillRect(s, &r, color);
 		}
 	}
@@ -105,14 +105,14 @@ Chars::CreateChar(const uint8_t c, const Attribute attr) const
 	// remove borders from the reverse - avoid artifacts
 	if(attr.Reverse)
 	{
-		const int S(options.scale);
+		const uint16_t S(options.scale);
 		SDL_Rect r[4] = {
-			{ 0, 0, (Sint16)(start_at_x*S), (Sint16)s->h },
-			{ 0, 0, (Sint16)s->w, (Sint16)(start_at_y*S) },
+			{ 0, 0, (Uint16)(start_at_x*S), (Uint16)s->h },
+			{ 0, 0, (Uint16)s->w, (Uint16)(start_at_y*S) },
 			{ (Sint16)(s->w - (start_at_x*S)), 0, 
-				(Sint16)(start_at_x*S), (Sint16)s->h },
+				(Uint16)(start_at_x*S), (Uint16)s->h },
 			{ 0, (Sint16)(s->h - (start_at_y*S)), 
-				(Sint16)s->w, (Sint16)(start_at_y*S) }
+				(Uint16)s->w, (Uint16)(start_at_y*S) }
 		};
 		for(int i(0); i<4; i++)
 			SDL_FillRect(s, &r[i], 0);

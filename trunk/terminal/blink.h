@@ -8,7 +8,7 @@ class Framebuffer;
 class Blink
 {
 public:
-	Blink(const int milliseconds);
+	Blink(const uint32_t milliseconds);
 
 	void DoBlink(Framebuffer const& fb);
 	bool TimeToBlink() const;
@@ -17,7 +17,7 @@ public:
 
 private:
 	bool state;
-	const int milliseconds;
+	const uint32_t milliseconds;
 	uint32_t last_blink;
 };
 

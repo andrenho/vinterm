@@ -17,7 +17,7 @@ public:
 
 	inline const vector<Filter*>* PreFilters() const { return &prefilters; }
 
-	int scale;
+	uint16_t scale;
 	const int w, h;
 	bool debug_terminal;
 	const int border_x, border_y;
