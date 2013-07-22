@@ -34,7 +34,7 @@ protected:
 private:
 	void InputChar(const char c);
 	void InputEscapeChar(const char c);
-	char ConvertByte(const char c);
+	char ConvertByteInput(const char c);
 
 	bool active;
 	bool escape_mode;
