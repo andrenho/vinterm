@@ -151,9 +151,9 @@ Terminal::KeyPressed(int ch)
 		inbuf[0] = (char)ch;
 		inbuf[1] = 0;
 		char* wrptr = (char*)calloc(4, 1);
-		size_t sz_a = 1, sz_b = 4;
+		//size_t sz_a = 1, sz_b = 4;
 		char* t = wrptr;
-		size_t nconv = iconv(cd_in, &inbuf, &sz_a, &wrptr, &sz_b);
+		//size_t nconv = iconv(cd_in, &inbuf, &sz_a, &wrptr, &sz_b);
 		pty.Send((const char)t[0]);
 		pty.Send((const char)t[1]);
 	}

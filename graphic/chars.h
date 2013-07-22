@@ -20,7 +20,7 @@ public:
 	SDL_Surface* Char(const uint8_t c, const Attribute attr,
 			int rnd=0) const;
 
-	const int start_at_x, start_at_y;
+	const uint16_t start_at_x, start_at_y;
 
 private:
 	SDL_Surface* CreateChar(const uint8_t c, const Attribute attr) const;

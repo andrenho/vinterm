@@ -3,7 +3,7 @@
 #include "SDL.h"
 #include "terminal/framebuffer.h"
 
-Blink::Blink(const int milliseconds)
+Blink::Blink(const uint32_t milliseconds)
 	: state(true), milliseconds(milliseconds)
 {
 	ResetClock();
