@@ -11,7 +11,8 @@ using namespace std;
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 	: fb(fb), pty(pty), options(options), active(true), escape_mode(false), 
-	  encoding(""), inbuf((char*)calloc(4, 1)), inbuf_pos(0)
+	  encoding(""), inbuf((char*)calloc(4, 1)), original_inbuf(inbuf), 
+	  inbuf_pos(0)
 {
 }
 
@@ -23,7 +24,7 @@ Terminal::~Terminal()
 		iconv_close(cd_in);
 		iconv_close(cd_out);
 	}
-	free(inbuf);
+	free(original_inbuf);
 }
 
 
@@ -230,21 +231,30 @@ Terminal::ConvertByteInput(const char c)
 	}
 
 	char* wrptr = (char*)calloc(8, 1);
+	char* free_me = wrptr;
 	size_t sz = 8;
+	if(inbuf_pos >= 3)
+		abort();
 	inbuf[inbuf_pos++] = c;
 	char* t = wrptr;
 	size_t nconv = iconv(cd_in, &inbuf, &inbuf_pos, &wrptr, &sz);
 	if(nconv == 0)
 	{
 		inbuf_pos = 0;
-		return t[0];
+		char ch = t[0];
+		free(free_me);
+		return ch;
 	}
 	else
 	{
 		if(errno == EINVAL)
+		{
+			free(free_me);
 			return 0; // incomplete sequence, will read next char
+		}
 		else
 		{
+			free(free_me);
 			inbuf_pos = 0;
 			return (char)254; // complete but invalid sequence
 		}

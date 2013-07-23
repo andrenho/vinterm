@@ -42,7 +42,7 @@ private:
 	string encoding;
 
 	iconv_t cd_in, cd_out;
-	char* inbuf;
+	char *inbuf, *original_inbuf;
 	size_t inbuf_pos;
 };
 
