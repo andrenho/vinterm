@@ -3,6 +3,7 @@ Version 0.4.0
   - UNICODE/multiple locales environment implemented
     - (font is still not unicode)
   - Changed font codepage from ibm437 to ibm850
+  - Added window icon
 
 Version 0.3.0
 -------------

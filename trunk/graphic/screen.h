@@ -67,6 +67,7 @@ private:
 	int old_cursor_x, old_cursor_y;
 	int desktop_w, desktop_h;
 	FullScreenInfo fs_info;
+	SDL_Surface* icon;
 };
 
 #endif

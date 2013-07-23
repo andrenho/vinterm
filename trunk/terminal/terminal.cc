@@ -23,6 +23,7 @@ Terminal::~Terminal()
 		iconv_close(cd_in);
 		iconv_close(cd_out);
 	}
+	free(inbuf);
 }
 
 
@@ -145,13 +146,14 @@ Terminal::Output(Screen& screen)
 void
 Terminal::KeyPressed(uint32_t ch)
 {
-	char *iso = (char*)calloc(2, sizeof(char));
-	iso[0] = (char)ch;
-	char *converted = (char*)calloc(5, sizeof(char));
-	char *converted_start = converted;
-
 	size_t ibl = 2; // len of iso
 	size_t obl = 5; // len of converted
+
+	char *iso = (char*)calloc(ibl, sizeof(char));
+	char *iso_ptr = iso;
+	iso[0] = (char)ch;
+	char *converted = (char*)calloc(obl, sizeof(char));
+	char *converted_start = converted;
 
 	size_t ret = iconv(cd_out, &iso, &ibl, &converted, &obl);
 
@@ -165,10 +167,10 @@ Terminal::KeyPressed(uint32_t ch)
 		int i = 0;
 		while(converted_start[i])
 			pty.Send(converted_start[i++]);
-		//printf("%ld bytes converted\n", ret);
-		//printf("result: '%s'\n", converted_start);
 	}
 
+	free(iso_ptr);
+	free(converted_start);
 }
 
 
