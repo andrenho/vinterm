@@ -24,10 +24,21 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 {
 	SDL_Init(SDL_INIT_VIDEO);
 
+	// check window size
 	SDL_VideoInfo const* vi = SDL_GetVideoInfo();
 	desktop_w = vi->current_w;
 	desktop_h = vi->current_h;
 
+	// load icon
+	SDL_Surface* icon = SDL_LoadBMP(DATADIR "/icon.bmp");
+	if(icon)
+	{
+		Uint32 colorkey = SDL_MapRGB(icon->format, 255, 0, 255);
+		SDL_SetColorKey(icon, SDL_SRCCOLORKEY, colorkey);
+		SDL_WM_SetIcon(icon, NULL);
+	}
+
+	// create icon
 	screen = SDL_SetVideoMode(w, h, 8, SDL_SWSURFACE|SDL_RESIZABLE);
 	if(!screen)
 	{
@@ -37,10 +48,12 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 	}
 	SDL_WM_SetCaption("Vintage Emulator " VERSION, "Vintage Emulator");
 
+	// setup keyboard
 	SDL_EnableUNICODE(1);
 	SDL_EnableKeyRepeat(SDL_DEFAULT_REPEAT_DELAY, 
 			SDL_DEFAULT_REPEAT_INTERVAL);
 
+	// setup palette
 	initializePalette(screen, options);
 }
 
