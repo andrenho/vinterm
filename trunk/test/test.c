@@ -1,14 +1,8 @@
-#include <curses.h>
+#include <stdio.h>
 
 int main()
 {
-	initscr();
-	keypad(stdscr, TRUE);
-
-	refresh();
-	int i = getch() == KEY_NPAGE;
-	endwin();
-
-	printf("%d\n", i);
+	printf("%c%c%c", 0xe2, 0x94, 0x9c);
+	printf("%c%c%c\n", 0xe2, 0x94, 0x82);
 	return 0;
 }

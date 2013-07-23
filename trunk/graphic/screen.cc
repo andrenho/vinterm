@@ -203,6 +203,7 @@ Screen::DoEvents()
 		switch(e.type)
 		{
 		case SDL_KEYDOWN:
+			fb.blink->ResetClock();
 			switch(e.key.keysym.sym)
 			{
 			case SDLK_F1:
@@ -286,10 +287,7 @@ Screen::DoEvents()
 			default:
 				c = e.key.keysym.unicode;
 				if(c != 0)
-				{
-					fb.blink->ResetClock();
 					keyQueue.push_back(c);
-				}
 			}
 			break;
 

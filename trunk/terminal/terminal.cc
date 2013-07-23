@@ -235,7 +235,8 @@ Terminal::ConvertByteInput(const char c)
 	size_t sz = 8;
 	if(inbuf_pos >= 3)
 		abort();
-	inbuf[inbuf_pos++] = c;
+	original_inbuf[inbuf_pos++] = c;
+	inbuf = original_inbuf;
 	char* t = wrptr;
 	size_t nconv = iconv(cd_in, &inbuf, &inbuf_pos, &wrptr, &sz);
 	if(nconv == 0)

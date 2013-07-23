@@ -10,7 +10,7 @@ class Options;
 class PTY
 {
 public:
-	enum { NO_DATA = -100 };
+	enum { NO_DATA = 1000 };
 
 	PTY(Options const& options, const string terminal="vinterm");
 	~PTY();
