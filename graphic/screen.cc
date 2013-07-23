@@ -20,7 +20,7 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 	  border_y(options.border_y * options.scale),
 	  w(fb.W() * font->char_w * options.scale + (border_x * 2)), 
 	  h(fb.H() * font->char_h * options.scale + (border_y * 2)),
-	  old_cursor_x(0), old_cursor_y(0)
+	  old_cursor_x(0), old_cursor_y(0), icon(nullptr)
 {
 	SDL_Init(SDL_INIT_VIDEO);
 
@@ -30,7 +30,7 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 	desktop_h = vi->current_h;
 
 	// load icon
-	SDL_Surface* icon = SDL_LoadBMP(DATADIR "/icon.bmp");
+	icon = SDL_LoadBMP(DATADIR "/icon.bmp");
 	if(icon)
 	{
 		Uint32 colorkey = SDL_MapRGB(icon->format, 255, 0, 255);
@@ -60,6 +60,8 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 
 Screen::~Screen()
 {
+	if(icon)
+		SDL_FreeSurface(icon);
 	delete font;
 	delete chars;
 	SDL_Quit();
