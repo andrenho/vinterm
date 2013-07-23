@@ -5,15 +5,15 @@
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
 Font::Font()
-	: char_w(9), char_h(14), ch(new uint8_t*[256]), Encoding("ibm437")
+	: char_w(9), char_h(14), ch(new uint8_t*[256]), Encoding("ibm850")
 {
-	SDL_Surface* sf(SDL_LoadBMP(DATADIR "/mda9.bmp"));
+	SDL_Surface* sf(SDL_LoadBMP(DATADIR "/850.bmp"));
 	if(!sf)
 	{
-		sf = SDL_LoadBMP("data/mda9.bmp");
+		sf = SDL_LoadBMP("data/850.bmp");
 		if(!sf)
 		{
-			fprintf(stderr, "File mda9.bmp could not be found.\n");
+			fprintf(stderr, "File 850.bmp could not be found.\n");
 			exit(1);
 		}
 	}
