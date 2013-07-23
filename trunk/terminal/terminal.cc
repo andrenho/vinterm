@@ -238,5 +238,13 @@ Terminal::ConvertByteInput(const char c)
 		return t[0];
 	}
 	else
-		return 0;
+	{
+		if(errno == EINVAL)
+			return 0; // incomplete sequence, will read next char
+		else
+		{
+			inbuf_pos = 0;
+			return (char)254; // complete but invalid sequence
+		}
+	}
 }
