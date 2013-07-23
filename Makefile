@@ -20,7 +20,7 @@ SRC = main.cc			\
 OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL
-DATA = data/vinterm_profile data/vinterm.info data/mda9.bmp data/beep.wav
+DATA = data/vinterm_profile data/vinterm.info data/850.bmp data/beep.wav data/icon.bmp
 
 all: options vinterm
 
