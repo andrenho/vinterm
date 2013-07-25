@@ -250,13 +250,13 @@ void
 Framebuffer::AddLinesBelowCursor(int n)
 {
 	int save_sc_top = scroll_top;
-	int save_sc_bt = scroll_bottom;
+//	int save_sc_bt = scroll_bottom;
 	scroll_top = cursor_y;
-	scroll_bottom = h-1;
+//	scroll_bottom = h-1;
 	for(int i=0; i<n; i++)
 		ScrollDown();
 	scroll_top = save_sc_top;
-	scroll_bottom = save_sc_bt;
+//	scroll_bottom = save_sc_bt;
 }
 
 
@@ -275,13 +275,13 @@ void
 Framebuffer::DeleteLines(int n)
 {
 	int save_sc_top = scroll_top;
-	int save_sc_bt = scroll_bottom;
+	//int save_sc_bt = scroll_bottom;
 	scroll_top = cursor_y;
-	scroll_bottom = h-1;
+	//scroll_bottom = h-1;
 	for(int i=0; i<n; i++)
 		ScrollUp();
 	scroll_top = save_sc_top;
-	scroll_bottom = save_sc_bt;
+	//scroll_bottom = save_sc_bt;
 }
 
 

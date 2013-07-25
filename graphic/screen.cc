@@ -55,6 +55,12 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 
 	// setup palette
 	initializePalette(screen, options);
+
+	// resize
+	keyQueue.push_back(RESIZE);
+	keyQueue.push_back(w);
+	keyQueue.push_back(h);
+	keyQueue.push_back(0);
 }
 
 
