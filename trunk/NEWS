@@ -5,6 +5,10 @@ Version 0.4.0
   - Changed font codepage from ibm437 to ibm850
   - Added window icon
   - Cursor improvements
+  - When starting vinterm in a tiling window manager, the size of the
+    framebuffer wasn't being set correctly
+  - Corrected various positioning problems that caused problems with editors
+    like ViM and nano.
 
 Version 0.3.0
 -------------

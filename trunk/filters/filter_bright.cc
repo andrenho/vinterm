@@ -11,11 +11,19 @@ FilterBright::Apply(SDL_Surface* const sf, Options const& opt) const
 {
 	int sp((6-opt.scale)*2 + sharpness);
 
+	// adjust pixel luminosity
 	uint8_t* bsf(new uint8_t[sf->w * sf->h]);
 	for(int x(0); x<sf->w; x++)
 		for(int y(0); y<sf->h; y++)
+		{
 			ApplyPixel(sf, x, y, sp, bsf);
+			if(x < opt.scale)
+				bsf[(y*sf->w)+x] = P(sf, x, y);
+			if(y < opt.scale)
+				bsf[(y*sf->w)+x] = P(sf, x, y);
+		}
 
+	// recreate surface
 	for(int x(0); x<sf->w; x++)
 		for(int y(0); y<sf->h; y++)
 			P(sf, x, y) = bsf[(y*sf->w)+x];
@@ -46,6 +54,14 @@ FilterBright::ApplyPixel(SDL_Surface* const sf, const int x, const int y,
 		int fy(y + dirs[i].y);
 		if(fx < 0 || fy < 0 || fx >= sf->w || fy >= sf->h)
 			continue;
+		if(fx < 0)
+			fx = sf->w - 1;
+		if(fy < 0)
+			fy = sf->h - 1;
+		if(fx >= sf->w)
+			fx = 0;
+		if(fx >= sf->h)
+			fy = 0;
 		total_light += P(sf, fx, fy);
 	}
 
@@ -57,4 +73,5 @@ FilterBright::ApplyPixel(SDL_Surface* const sf, const int x, const int y,
 	if(c > 50)
 		c += (int)(brightness * 10);
 	bsf[(y*sf->w)+x] = max(min(c, 255), 0);
+
 }

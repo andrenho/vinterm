@@ -17,6 +17,7 @@ public:
 private:
 	void ApplyPixel(SDL_Surface* const sf, const int x, const int y, 
 			const int sp, uint8_t* bsf) const;
+	void AdjustBorders(uint8_t* bsf, int w, int h) const;
 
 	const double brightness;
 	const int sharpness;
