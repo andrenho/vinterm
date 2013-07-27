@@ -6,6 +6,7 @@
 #include <istream>
 using namespace std;
 
+#include "terminal/backtrack.h"
 #include "terminal/charattr.h"
 class Options;
 class Blink;
@@ -21,6 +22,10 @@ class Framebuffer
 public:
 	Framebuffer(Options const& options);
 	~Framebuffer();
+
+	// backtracking
+	void BackTrack();
+	void ForeTrack();
 
 	// resize screen
 	void Resize(int w, int h);
@@ -93,6 +98,8 @@ private:
 	int saved_x, saved_y;
 	set<int> tabs;
 	bool flashing;
+	Backtrack* backtrack;
+	int current_backtrack;
 };
 
 #endif
