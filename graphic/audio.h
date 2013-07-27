@@ -1,7 +1,7 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include "SDL.h"
+#include <ao/ao.h>
 
 class Audio
 {
@@ -12,7 +12,8 @@ public:
 	void Beep();
 
 private:
-	Uint8* buf;
+	ao_device *device;
+	ao_sample_format format;
 };
 
 #endif

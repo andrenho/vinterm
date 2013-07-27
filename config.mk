@@ -2,6 +2,7 @@
 VERSION = 0.4.0
 
 # system libraries
+AO = yes
 SDL = yes
 X11 = no
 
@@ -24,6 +25,12 @@ LDFLAGS = -L/usr/lib -lutil
 ifeq (${SDL},yes)
   CXXFLAGS += `sdl-config --cflags` -D_SDL
   LDFLAGS += `sdl-config --libs`
+endif
+
+# AO library
+ifeq (${AO},yes)
+  CXXFLAGS += `pkg-config --cflags ao`
+  LDFLAGS += `pkg-config --libs ao`
 endif
 
 # X11 libraries
