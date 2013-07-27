@@ -125,6 +125,12 @@ Terminal::Output(Screen& screen)
 	{
 	case 0: // discard
 		break;
+	case SH_PAGE_UP:
+		fb.BackTrack();
+		break;
+	case SH_PAGE_DOWN:
+		fb.ForeTrack();
+		break;
 	case RESIZE:
 		w = screen.keyQueue[0];
 		screen.keyQueue.pop_front();

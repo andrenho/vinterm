@@ -11,7 +11,8 @@ Framebuffer::Framebuffer(Options const& options)
 	  blink(new Blink(options.blink_speed)), 
 	  current_attr(Attribute()), w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
-	  saved_x(0), saved_y(0), flashing(false) 
+	  saved_x(0), saved_y(0), flashing(false), 
+	  backtrack(new Backtrack(*this, 5)), current_backtrack(0)
 {
 	chars.insert(chars.begin(), w*h, Char());
 	for(int x=0; x<w; x+=8)
@@ -24,8 +25,50 @@ Framebuffer::~Framebuffer()
 	chars.clear();
 	saved_screen.clear();
 	dirty->clear();
+	delete backtrack;
 	delete dirty;
 	delete blink;
+}
+
+
+void
+Framebuffer::BackTrack()
+{
+	if(current_backtrack > backtrack->Screens())
+		return; // TODO - beep
+	if(current_backtrack == 0)
+		SaveScreen();
+	current_backtrack++;
+	for(int x=0; x<W(); x++)
+		for(int y=0; y<H(); y++)
+		{
+			Char c = backtrack->Get(current_backtrack, x, y);
+			Put(c.Ch, c.Attr, x, y);
+		}
+	CursorVisibility = NOT_VISIBLE;
+}
+
+
+void
+Framebuffer::ForeTrack()
+{
+	if(current_backtrack == 0)
+		return;
+
+	current_backtrack--;
+	if(current_backtrack == 0)
+	{
+		RestoreScreen();
+		CursorVisibility = VISIBLE;
+		return;
+	}
+
+	for(int x=0; x<W(); x++)
+		for(int y=0; y<H(); y++)
+		{
+			Char c = backtrack->Get(current_backtrack, x, y);
+			Put(c.Ch, c.Attr, x, y);
+		}
 }
 
 
@@ -215,9 +258,18 @@ Framebuffer::SetCursorPosition(int x, int y)
 void
 Framebuffer::ScrollUp()
 {
+	// add line to backtrack
+	vector<Char> line;
+	for(int x(0); x<w; x++)
+		line.push_back(Ch(x, 0));
+	backtrack->PushLine(line);
+
+	// move everything up
 	for(int y(scroll_top+1); y<=scroll_bottom; y++)
 		for(int x(0); x<w; x++)
 			Put(Ch(x,y).Ch, Ch(x,y).Attr, x, y-1);
+
+	// clear last line
 	for(int x(0); x<w; x++)
 		Put(' ', Attribute(), x, scroll_bottom);
 }

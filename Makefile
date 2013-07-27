@@ -6,6 +6,7 @@ include config.mk
 SRC = main.cc			\
       options.cc		\
       terminal/blink.cc		\
+      terminal/backtrack.cc     \
       terminal/framebuffer.cc	\
       terminal/pty.cc		\
       terminal/terminal.cc	\

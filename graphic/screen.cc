@@ -277,12 +277,16 @@ Screen::DoEvents()
 			case SDLK_PAGEUP:
 				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
 					keyQueue.push_back(CT_PAGE_UP);
+				else if(k[SDLK_LSHIFT] || k[SDLK_RSHIFT])
+					keyQueue.push_back(SH_PAGE_UP);
 				else
 					keyQueue.push_back(PAGE_UP);
 				break;
 			case SDLK_PAGEDOWN:
 				if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
 					keyQueue.push_back(CT_PAGE_DOWN);
+				else if(k[SDLK_LSHIFT] || k[SDLK_RSHIFT])
+					keyQueue.push_back(SH_PAGE_DOWN);
 				else
 					keyQueue.push_back(PAGE_DOWN);
 				break;
