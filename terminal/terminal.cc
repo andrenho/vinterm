@@ -44,6 +44,8 @@ Terminal::Input()
 			return;
 		}
 
+		fb.ForetrackToScreen();
+
 		const char c = (const char)i;
 		if(escape_mode)
 			InputEscapeChar(c);
@@ -155,6 +157,9 @@ Terminal::KeyPressed(uint32_t ch)
 {
 	size_t ibl = 2; // len of iso
 	size_t obl = 5; // len of converted
+
+	// if screen is rolled back, restore
+	fb.ForetrackToScreen();
 
 	char *iso = (char*)calloc(ibl, sizeof(char));
 	char *iso_ptr = iso;

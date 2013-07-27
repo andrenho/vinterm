@@ -34,7 +34,7 @@ Framebuffer::~Framebuffer()
 void
 Framebuffer::BackTrack()
 {
-	if(current_backtrack > backtrack->Screens())
+	if(current_backtrack >= backtrack->Screens())
 		return; // TODO - beep
 	if(current_backtrack == 0)
 		SaveScreen();
@@ -54,21 +54,31 @@ Framebuffer::ForeTrack()
 {
 	if(current_backtrack == 0)
 		return;
+	else if(current_backtrack == 1)
+		ForetrackToScreen();
+	else
+	{
+		current_backtrack--;
 
-	current_backtrack--;
-	if(current_backtrack == 0)
+		for(int x=0; x<W(); x++)
+			for(int y=0; y<H(); y++)
+			{
+				Char c = backtrack->Get(current_backtrack, x, y);
+				Put(c.Ch, c.Attr, x, y);
+			}
+	}
+}
+
+
+void
+Framebuffer::ForetrackToScreen()
+{
+	if(current_backtrack > 0)
 	{
 		RestoreScreen();
 		CursorVisibility = VISIBLE;
-		return;
+		current_backtrack = 0;
 	}
-
-	for(int x=0; x<W(); x++)
-		for(int y=0; y<H(); y++)
-		{
-			Char c = backtrack->Get(current_backtrack, x, y);
-			Put(c.Ch, c.Attr, x, y);
-		}
 }
 
 
@@ -438,7 +448,7 @@ void Framebuffer::SetAttr(AttrType attr, bool value)
 void
 Framebuffer::Flash(bool reverse)
 {
-	if(reverse || flashing)
+	if(reverse || flashing) 
 	{
 		for(int i=0; i<(w*h); i++)
 		{

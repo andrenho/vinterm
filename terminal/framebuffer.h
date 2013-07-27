@@ -26,6 +26,7 @@ public:
 	// backtracking
 	void BackTrack();
 	void ForeTrack();
+	void ForetrackToScreen();
 
 	// resize screen
 	void Resize(int w, int h);

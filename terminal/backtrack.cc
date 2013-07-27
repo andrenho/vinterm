@@ -47,5 +47,5 @@ Backtrack::PrepareBacktrack()
 unsigned int
 Backtrack::TotalLines() const
 {
-	return framebuffer.H() * n_screens;
+	return framebuffer.H() * (n_screens);
 }
