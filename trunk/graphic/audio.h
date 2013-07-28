@@ -1,19 +1,26 @@
 #ifndef AUDIO_H
 #define AUDIO_H
 
-#include <ao/ao.h>
+#ifdef AO
+#  include <ao/ao.h>
+#endif
+
+class Options;
 
 class Audio
 {
 public:
-	Audio();
+	Audio(Options const& options);
 	~Audio();
 
-	void Beep();
+	void Beep() const;
 
 private:
+	bool active;
+#ifdef AO
 	ao_device *device;
 	ao_sample_format format;
+#endif
 };
 
 #endif

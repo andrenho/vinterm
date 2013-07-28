@@ -26,7 +26,6 @@ private:
 	void Debug(char c, bool sending) const;
 
 	int fd;
-	mutable bool active;
 	Options const& options;
 	const bool debug;
 	mutable int debug_ct;

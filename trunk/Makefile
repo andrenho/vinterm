@@ -1,7 +1,12 @@
 # Vintage Terminal
 # See LICENSE file for copyright and license details.
 
+#
+# Please make your configuration changes in the `config.mk` file.
+# 
+
 include config.mk
+include libraries.mk
 
 SRC = main.cc			\
       options.cc		\
@@ -21,11 +26,12 @@ SRC = main.cc			\
 OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL
-DATA = data/vinterm_profile data/vinterm.info data/850.bmp data/beep.wav data/icon.bmp
+DATA = data/vinterm_profile data/vinterm.info data/850.bmp data/icon.bmp
 
 all: options vinterm
 
 options:
+	@echo
 	@echo Vintage Terminal build options:
 	@echo "CXXFLAGS = ${CXXFLAGS}"
 	@echo "LDFLAGS  = ${LDFLAGS}"
@@ -35,7 +41,7 @@ options:
 	@echo CC $<
 	@${CC} -c ${CXXFLAGS} -o $@ $<
 
-${OBJ}: config.mk
+${OBJ}: config.mk libraries.mk
 
 vinterm: depend ${OBJ} data/vinterm.info
 	@echo CC -o $@
@@ -50,7 +56,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p vinterm-${VERSION}
-	@cp --parents config.mk vinterm.1 Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} vinterm-${VERSION}
+	@cp --parents config.mk libraries.mk vinterm.1 Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} vinterm-${VERSION}
 	@tar -cf vinterm-${VERSION}.tar vinterm-${VERSION}
 	@gzip vinterm-${VERSION}.tar
 	@rm -rf vinterm-${VERSION}

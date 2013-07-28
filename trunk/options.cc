@@ -15,7 +15,8 @@ Options::Options(const int argc, char** const argv)
 	  border_x(30), border_y(40),
 	  background_color(SDL_Color { 30, 30, 30 }),
 	  bright_color(SDL_Color { 140, 255, 190 }),
-	  blink_speed(500), flashing_speed(100)
+	  blink_speed(500), flashing_speed(100),
+	  audio_active(true)
 {
 	ParseArguments(argc, argv);
 	AddFilters();
@@ -41,16 +42,17 @@ Options::ParseArguments(int argc, char* argv[])
 	{
 		int idx(0);
 		static struct option long_opt[] = {
-			{ "scale",   required_argument, 0, 0 },
+			{ "scale",    required_argument, 0, 's' },
+			{ "no-audio", no_argument,       0, 'a' },
 #ifdef DEBUG
-			{ "debug-terminal", no_argument,0, 0 },
+			{ "debug-terminal", no_argument, 0, '@' },
 #endif
-			{ "version", no_argument,       0, 0 },
-			{ "help",    no_argument,       0, 0 },
-			{ 0,         0,                 0, 0 }
+			{ "version",  no_argument,       0, 'v' },
+			{ "help",     no_argument,       0, '?' },
+			{ 0,          0,                 0, 0 }
 		};
 
-		if((c = getopt_long(argc, argv, "@s:", long_opt, &idx)) == -1)
+		if((c = getopt_long(argc, argv, "s:a@", long_opt, &idx)) == -1)
 			break;
 		
 		switch(c)
@@ -70,7 +72,9 @@ Options::ParseArguments(int argc, char* argv[])
 				exit(1);
 			}
 			break;
-
+		case 'a':
+			audio_active = false;
+			break;
 		case '@':
 #ifdef DEBUG
 			debug_terminal = true;
@@ -79,7 +83,9 @@ Options::ParseArguments(int argc, char* argv[])
 			exit(1);
 #endif
 			break;
-
+		case 'v':
+			Version();
+			break;
 		case '?':
 			Help(EXIT_FAILURE);
 			break;
@@ -131,6 +137,7 @@ Options::Help(int status)
 	fprintf(f, "\n");
 	fprintf(f, "Options:\n");
 	fprintf(f, "  -s, --scale=SCALE    zoom the image by SCALE (default=1)\n");
+	fprintf(f, "  -a, --no-audio       disable audible beep\n");
 	fprintf(f, "      --help           display this help and exit\n");
 	fprintf(f, "      --version        display version information and exit\n");
 	fprintf(f, "\n");
@@ -149,7 +156,7 @@ void
 Options::Version()
 {
 	printf("`Vintage Terminal` (vinterm) " VERSION "\n");
-	printf("Copyright (C) 2012 André Wagner\n");
+	printf("Copyright (C) 2012-2013 André Wagner\n");
 	printf("License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\n");
 	printf("This is free software: you are free to change and redistribute it.\n");
 	printf("There is NO WARRANTY, to the extent permitted by law.\n");

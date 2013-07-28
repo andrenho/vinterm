@@ -50,7 +50,6 @@ public:
 
 	deque<uint32_t> keyQueue;
 	static SDL_Color palette[256];
-	Audio audio;
 
 private:
 	void initializeChars();

@@ -35,7 +35,7 @@ void
 Framebuffer::BackTrack()
 {
 	if(current_backtrack >= backtrack->Screens())
-		return; // TODO - beep
+		return;
 	if(current_backtrack == 0)
 		SaveScreen();
 	current_backtrack++;
