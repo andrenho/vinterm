@@ -4,7 +4,9 @@ vinterm \- Vintage-style terminal emulator
 .SH SYNOPSIS
 .B vinterm 
 .RB [
-.IR options " ]"
+.IR OPTIONS " ]"
+.RB [
+.IR COMMAND " ]"
 .SH DESCRIPTION
 Use a terminal in style, like in the good old days! 
 .B "Vintage Terminal "
@@ -22,6 +24,10 @@ display version information and exit
 .TP
 .BI \-\-help
 display the help message and exit
+.SH COMMAND
+COMMAND must be the last argument, and sent directly to the terminal on 
+initialization, along with a new line. It can be used to auto-start
+applications on the terminal.
 .SH SPECIAL KEYS
 .TP 5
 \fICONTROL + F11

@@ -30,6 +30,14 @@ Terminal::~Terminal()
 }
 
 
+void 
+Terminal::SendString(string s)
+{
+	for(char const& c : s)
+		pty.Send(c);
+}
+
+
 void
 Terminal::Input()
 {
