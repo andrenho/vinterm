@@ -4,9 +4,10 @@ LINUX INSTRUCTIONS
 To install `Vintage Terminal`, follow these steps:
 
   1. Install SDL library, if not already installed <http://www.libsdl.org>
-  2. Edit config.mk to adapt settings to your system (usually not needed)
-  3. Run `make`
-  4. Run `make install` with administrator privileges
+  2. Install AO library, if not already installed <http://www.xiph.org/ao/>
+  3. Edit config.mk to adapt settings to your system (usually not needed)
+  4. Run `make`
+  5. Run `make install` with administrator privileges
 
 That's it. Now just type `vinterm` to run the terminal emulator.
 
@@ -18,8 +19,9 @@ To install `Vintage Terminal`, follow these steps:
 
   1. Install MacPorts
   2. port install libsdl
-  3. port install gcc47
-  4. make CC=g++-mp-4.7
-  5. make install
+  3. port install libao
+  4. port install gcc47
+  5. make CC=g++-mp-4.7
+  6. make install
 
 That's it. Now just type `vinterm` to run the terminal emulator.

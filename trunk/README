@@ -6,20 +6,22 @@ terminal emulator that simulates the looks of a 1980s monitor.
 
 Vintage Terminal has the following features:
 
-  * Complete monochrome terminal capabilites implemented;
+  * Full terminal capabilities implemented;
   * Scaling (zoom) with the argument `-s`;
-  * Ability to resize the window;
-  * Full screen (CTRL+F11) and full screen with 80 columns (CTRL+SHIFT+F11);
+  * Window resize/maximize;
+  * Full screen (`CTRL + F11`) and full screen with 80 columns (`CTRL + SHIFT + F11`);
+  * UNICODE support (no unicode font yet);
   * Has a authentic old look based on a IBM 5151 monitor.
 
 This is a very early alpha release, so is not yet for the faint of heart. USE
 AT YOUR OWN RISK.
 
-Vintage Terminal requires the SDL library. <http://www.libsdl.org/>
+Vintage Terminal requires the SDL library <http://www.libsdl.org/>. The AO
+library is an optional dependency for hearing beeps 
+<http://http://www.xiph.org/ao/>.
 
 The following features are planned:
 
-  * Unicode support
   * Mouse support
   * Different colors for the monochrome monitor (ambar, blue, gray...)
   * Different types of old monitors (DEC terminals, TV...)
