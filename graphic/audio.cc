@@ -7,21 +7,21 @@
 
 #define BUF_SIZE 4096
 
+#include "options.h"
+
 #include <iostream>
 using namespace std;
 
-Audio::Audio()
+Audio::Audio(Options const& options)
+	: active(false)
 {
+	if(!options.audio_active)
+		return;
+#ifdef AO
 	int default_driver;
-
-	/* -- Initialize -- */
-
-	fprintf(stderr, "libao example program\n");
-
 	ao_initialize();
 
-	/* -- Setup for default driver -- */
-
+	// Setup for default driver
 	default_driver = ao_default_driver_id();
 
         memset(&format, 0, sizeof(format));
@@ -30,27 +30,39 @@ Audio::Audio()
 	format.rate = 44100;
 	format.byte_format = AO_FMT_LITTLE;
 
-	/* -- Open driver -- */
+	// open driver
 	device = ao_open_live(default_driver, &format, NULL /* no options */);
 	if (device == NULL) {
-		fprintf(stderr, "Error opening device.\n");
-		return;
+		cerr << "Error opening audio device." << endl;
+		ao_close(device);
+		ao_shutdown();
+		active = false;
 	}
+	else
+		active = true;
+#endif
 }
 
 
 Audio::~Audio()
 {
-	/* -- Close and shutdown -- */
-	ao_close(device);
-
-	ao_shutdown();
+#ifdef AO
+	if(active)
+	{
+		ao_close(device);
+		ao_shutdown();
+	}
+#endif
 }
 
 
 void 
-Audio::Beep()
+Audio::Beep() const
 {
+#ifdef AO
+	if(!active)
+		return;
+
 	char *buffer;
 	int buf_size;
 	int sample;
@@ -72,4 +84,5 @@ Audio::Beep()
 		buffer[4*i+1] = buffer[4*i+3] = (sample >> 8) & 0xff;
 	}
 	ao_play(device, buffer, buf_size);
+#endif
 }

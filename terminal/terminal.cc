@@ -10,7 +10,8 @@ using namespace std;
 #include "graphic/audio.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
-	: fb(fb), pty(pty), options(options), active(true), escape_mode(false), 
+	: fb(fb), pty(pty), options(options), audio(new Audio(options)),
+	  active(true), escape_mode(false), 
 	  encoding(""), inbuf((char*)calloc(4, 1)), original_inbuf(inbuf), 
 	  inbuf_pos(0)
 {
@@ -25,6 +26,7 @@ Terminal::~Terminal()
 		iconv_close(cd_out);
 	}
 	free(original_inbuf);
+	delete audio;
 }
 
 
@@ -76,11 +78,7 @@ Terminal::InputChar(const char c)
 		fb.Tab();
 		break;
 	case '\a': // beep
-		cout << "Beep!" << endl; // TODO
-		{
-			Audio a;
-			a.Beep();
-		}
+		audio->Beep();
 		break;
 	case '\b': // backspace
 		fb.Backspace();

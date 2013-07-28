@@ -5,6 +5,8 @@
 #include <string>
 using namespace std;
 
+#include "graphic/audio.h"
+
 class Framebuffer;
 class Screen;
 class PTY;
@@ -35,6 +37,8 @@ private:
 	void InputChar(const char c);
 	void InputEscapeChar(const char c);
 	char ConvertByteInput(const char c);
+
+	Audio const* audio;
 
 	bool active;
 	bool escape_mode;

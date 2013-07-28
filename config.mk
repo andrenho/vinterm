@@ -1,16 +1,15 @@
-# vinterm version
-VERSION = 0.4.0
+#################################
+#                               #
+#  CONFIGURE YOUR CHOICES HERE  #
+#                               #
+#################################
 
-# system libraries
-AO = yes
-SDL = yes
-X11 = no
+# vinterm version
+VERSION = 0.4.1
 
 # add debugging info
 DEBUG = yes
 DUMA = no
-
-# Customize below to fit your system
 
 # paths
 PREFIX = /usr/local
@@ -20,24 +19,6 @@ VINTERMPREFIX = ${PREFIX}/share/vinterm
 # basic flags
 CXXFLAGS = -DVERSION=\"${VERSION}\" -DDATADIR=\"${VINTERMPREFIX}\" -pedantic -Wall -I. -I/usr/include -std=c++0x
 LDFLAGS = -L/usr/lib -lutil
-
-# SDL libraries
-ifeq (${SDL},yes)
-  CXXFLAGS += `sdl-config --cflags` -D_SDL
-  LDFLAGS += `sdl-config --libs`
-endif
-
-# AO library
-ifeq (${AO},yes)
-  CXXFLAGS += `pkg-config --cflags ao`
-  LDFLAGS += `pkg-config --libs ao`
-endif
-
-# X11 libraries
-ifeq (${X11},yes)
-  CXXFLAGS += -I/usr/X11R6/include -D_X11
-  LDFLAGS += -L/usr/X11R6/lib -lX11 -lutil
-endif
 
 # Duma libraries
 ifeq (${DUMA}, yes)
