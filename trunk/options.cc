@@ -54,6 +54,9 @@ Options::ParseArguments(int argc, char* argv[])
 
 		if((c = getopt_long(argc, argv, "s:a@", long_opt, &idx)) == -1)
 			break;
+
+		if(c == -1)
+			break;
 		
 		switch(c)
 		{
@@ -94,6 +97,17 @@ Options::ParseArguments(int argc, char* argv[])
 			abort();
 		}
 	}
+
+	// remaining commandline arguments
+	if(optind < argc)
+	{
+		while(optind < argc)
+		{
+			toBeRun += argv[optind++];
+			toBeRun += " ";
+		}
+		toBeRun += "\n";
+	}
 }
 
 
@@ -131,7 +145,7 @@ Options::Help(int status)
 	if(status == EXIT_FAILURE)
 		f = stderr;
 
-	fprintf(f, "Usage: vinterm [OPTIONS]...\n");
+	fprintf(f, "Usage: vinterm [OPTIONS] [COMMAND]\n");
 	fprintf(f, "`Vintage Terminal` is a terminal emulator that simulates the look of a old\n");
 	fprintf(f, "monitor.\n");
 	fprintf(f, "\n");
@@ -140,6 +154,9 @@ Options::Help(int status)
 	fprintf(f, "  -a, --no-audio       disable audible beep\n");
 	fprintf(f, "      --help           display this help and exit\n");
 	fprintf(f, "      --version        display version information and exit\n");
+	fprintf(f, "\n");
+	fprintf(f, "COMMAND must be the last argument, and sent directly to the terminal on\n");
+	fprintf(f, "initialization, along with a new line.\n");
 	fprintf(f, "\n");
 	fprintf(f, "Keys:\n");
 	fprintf(f, "  CTRL+F11             full screen\n");

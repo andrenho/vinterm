@@ -3,6 +3,8 @@ Version 0.4.1
   - Added the ability to rollback the terminal
   - Added audible beep
   - Makefile changed to detect libraries and ease configuation
+  - Commands can now be started in the terminal initializtiaon from the 
+    commandline.
 
 Version 0.4.0
 -------------

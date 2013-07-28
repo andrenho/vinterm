@@ -24,6 +24,7 @@ public:
 	const SDL_Color background_color, bright_color;
 	const uint32_t blink_speed, flashing_speed;
 	bool audio_active;
+	string toBeRun;
 	string CurrentEncoding;
 
 private:

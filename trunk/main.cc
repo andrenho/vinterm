@@ -46,6 +46,7 @@ int main(int argc, char** argv)
 	 *   3. Update everything in the screen for the user.
 	 *
 	 * The loop exits when a EOF is received from the terminal. */
+	terminal.SendString(options.toBeRun);
 	while(terminal.Active())
 	{
 		terminal.Input();
