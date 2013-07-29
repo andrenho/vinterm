@@ -71,9 +71,8 @@ Audio::Beep() const
 	float length = 0.05;
 
 	/* -- Play some stuff -- */
-	buf_size = format.bits/8 * format.channels * format.rate * length;
-	buffer = (char*)calloc(buf_size,
-			sizeof(char));
+	buf_size = format.bits/8 * format.channels * format.rate * length + 4;
+	buffer = (char*)calloc(buf_size, sizeof(char));
 
 	for (i = 0; i < format.rate*length; i++) {
 		sample = (int)(0.75 * 32768.0 *
@@ -84,5 +83,7 @@ Audio::Beep() const
 		buffer[4*i+1] = buffer[4*i+3] = (sample >> 8) & 0xff;
 	}
 	ao_play(device, buffer, buf_size);
+
+	free(buffer);
 #endif
 }
