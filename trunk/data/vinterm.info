@@ -201,10 +201,6 @@ vinterm| vintage terminal,
 #	khts=?m
 	kend=\E[4~,
 
-# other special keys (xterm extensions)
-	kPRV5=\E[5;5~,
-	kPRV6=\E[6;5~,
-
 # extended special key descriptions
 #	kDC=\E[?,
 #	kEND=?,

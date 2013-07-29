@@ -21,7 +21,7 @@ public:
 	void Resize(uint16_t w, uint16_t h);
 
 private:
-	void CopyStartupFile() const;
+	//void CopyStartupFile() const;
 	void OpenPTY(string const& terminal);
 	void Debug(char c, bool sending) const;
 

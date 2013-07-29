@@ -19,7 +19,7 @@
 PTY::PTY(Options const& options, const string terminal)
 	: fd(0), options(options), debug(options.debug_terminal), debug_ct(0)
 {
-	CopyStartupFile();       
+	//CopyStartupFile();       
 	OpenPTY(terminal);
 }
 
@@ -30,11 +30,13 @@ PTY::~PTY()
 }
 
 
+/*
 void 
 PTY::CopyStartupFile() const
 {
 	system("cp -n " DATADIR "/vinterm_profile $HOME/.vinterm_profile");
 }
+*/
 
 
 void 
@@ -57,7 +59,7 @@ PTY::OpenPTY(string const& terminal)
 			perror("putenv");
 			abort();
 		}
-		setenv("ENV", "$HOME/.vinterm_profile", 1);
+		setenv("ENV", DATADIR "/vinterm_profile", 1);
 		if(execlp(shell, "sh", (void*)0) == -1)
 		{
 			perror("execlp");
