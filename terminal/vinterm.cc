@@ -2,6 +2,7 @@
 
 #include <cctype>
 #include <sstream>
+#include <iostream>
 
 #include "graphic/screen.h"
 #include "terminal/framebuffer.h"
@@ -151,8 +152,85 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 			default: Terminal::ExecuteEscapeSequence(sequence);
 		}
 		break;
+	case 't': // alternate charset
+		if(p[0] == 1)
+			alternateCharset = true;
+		else if(p[0] == 0)
+			alternateCharset = false;
+		else
+			Terminal::ExecuteEscapeSequence(sequence);
+		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);
+	}
+}
+
+
+void
+Vinterm::InputAlternateChar(const char c)
+{
+	switch(c)
+	{
+	case '`': // diamond
+		fb.Put((char)254, false); break;
+	case 'a': // checker board
+		fb.Put((char)177, false); break;
+	case 'f': // degree symbol
+		fb.Put((char)248, false); break;
+	case 'g': // plus/minus
+		fb.Put((char)241, false); break;
+	case 'i': // lantern
+		fb.Put((char)173, false); break;
+	case 'j': // lower right corner
+		fb.Put((char)217, false); break;
+	case 'k': // upper right corner
+		fb.Put((char)191, false); break;
+	case 'l': // upper left corner
+		fb.Put((char)218, false); break;
+	case 'm': // lower left corner
+		fb.Put((char)192, false); break;
+	case 'n': // plus
+		fb.Put('+', false); break;
+	case 'o': // scan line 1
+		fb.Put((char)238, false); break; // TODO
+	case 'p': // scan line 3
+		fb.Put((char)238, false); break;
+	case 'q': // horizontal line
+		fb.Put((char)196, false); break;
+	case 'r': // scan line 6
+		fb.Put((char)196, false); break;
+	case 's': // scan line 9
+		fb.Put((char)196, false); break; // TODO
+	case 't': // left tee
+		fb.Put((char)195, false); break;
+	case 'u': // right tee
+		fb.Put((char)180, false); break;
+	case 'v': // bottom tee
+		fb.Put((char)193, false); break;
+	case 'w': // top tee (T)
+		fb.Put((char)194, false); break;
+	case 'x': // vertical line
+		fb.Put((char)179, false); break;
+	case ',': // left arrow
+		fb.Put((char)174, false); break;
+	case '+': // right arrow
+		fb.Put((char)175, false); break;
+	case 'y': // less or eq
+		fb.Put((char)254, false); break;
+	case 'z': // more or eq
+		fb.Put((char)254, false); break;
+	case '{': // pi
+		fb.Put((char)244, false); break;
+	case '|': // not equal
+		fb.Put((char)254, false); break;
+	case '}': // uk pound
+		fb.Put((char)156, false); break;
+	case '~': // bullet
+		fb.Put((char)250, false); break;
+	case '0': // solid square
+		fb.Put((char)219, false); break;
+	default:
+		fb.Put(c, false);
 	}
 }
 
@@ -162,8 +240,7 @@ Vinterm::ParseEscapeSequence(string const& sequence, vector<int>& params)
 {
 	char cmd = sequence[sequence.length()-1];
 
-	for(string::const_iterator c = sequence.begin();
-			c < sequence.end(); c++)
+	for(string::const_iterator c = sequence.begin(); c < sequence.end(); c++)
 	{
 		string s;
 		while(isdigit(*c))
