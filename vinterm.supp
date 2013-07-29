@@ -8,6 +8,18 @@
 }
 {
    <insert_a_suppression_name_here>
+   Memcheck:Param
+   semctl(IPC_SET, arg.buf)
+   fun:semctl@@GLIBC_2.2
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_pcm_dmix_open
+   fun:_snd_pcm_dmix_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
    fun:_XlcDefaultMapModifiers
@@ -16,6 +28,190 @@
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
    fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -32,8 +228,5979 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
    fun:strdup
    fun:memcpy
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/valgrind/memcheck-x86-linux
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:snd_config_update_r
+   fun:snd_config_update
+   fun:snd_pcm_open
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -47,6 +6214,88 @@
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
    fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -77,6 +6326,534 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:decompose_rpath
+   fun:cache_rpath.part.3
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_error
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
    fun:_XlcCreateLC
@@ -87,6 +6864,30 @@
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
    fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -106,9 +6907,129 @@
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_config_hook_load_for_all_cards
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_config_searcha_hooks
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_pcm_dmix_open
+   fun:_snd_pcm_dmix_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_empty_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_asym_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_empty_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
    fun:calloc
    obj:/usr/lib/libdl-2.17.so
    fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:snd_config_update_r
+   fun:snd_config_update
+   fun:snd_pcm_open
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
    fun:main
 }
 {
@@ -125,6 +7046,30 @@
    obj:/usr/lib/libSDL-1.2.so.0.11.4
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
    fun:main
 }
 {
@@ -152,6 +7097,46 @@
    fun:_dl_catch_error
    fun:dlopen
    fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_plug_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_asym_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_empty_open
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -204,6 +7189,76 @@
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   fun:snd_config_update
+   fun:snd_pcm_open
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_pcm_rate_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:ao_initialize
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
    fun:realloc
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
@@ -216,6 +7271,163 @@
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
    fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_config_hook_load_for_all_cards
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_config_searcha_hooks
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_empty_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_asym_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_empty_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:/usr/lib/libao.so.4.0.0
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_plug_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_asym_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:_snd_pcm_empty_open
+   obj:/usr/lib/libasound.so.2.0.0
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_pcm_dmix_open
+   fun:_snd_pcm_dmix_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:snd_pcm_rate_open
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -623,6 +7835,16 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
+   fun:_dl_close_worker
+   fun:_dl_close
+   obj:/usr/lib/libdl-2.17.so
+   fun:dlclose
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
    fun:_XlcAddCharSet
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
@@ -634,6 +7856,64 @@
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
    fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -668,6 +7948,57 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:open_path
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_error
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
    fun:_XlcAddCT
    fun:_XlcInitCTInfo
    obj:/usr/lib/libX11.so.6.3.0
@@ -679,6 +8010,15 @@
    obj:/usr/lib/libSDL-1.2.so.0.11.4
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -748,6 +8088,24 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
    fun:_XlcCreateDefaultCharSet
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
@@ -764,31 +8122,54 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
-   fun:local_strdup
-   fun:openaux
-   fun:_dl_catch_error
-   fun:dl_open_worker
-   fun:_dl_catch_error
-   obj:/usr/lib/libdl-2.17.so
-   fun:_dl_catch_error
-   fun:dlopen
-   fun:main
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
-   fun:_dl_new_object
-   fun:_dl_map_object_from_fd
-   fun:_dl_map_object
-   fun:openaux
-   fun:_dl_catch_error
-   fun:dl_open_worker
-   fun:_dl_catch_error
-   obj:/usr/lib/libdl-2.17.so
-   fun:_dl_catch_error
-   fun:dlopen
-   fun:main
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -836,11 +8217,28 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
-   fun:_dl_close_worker
-   fun:_dl_close
-   obj:/usr/lib/libdl-2.17.so
-   fun:dlclose
-   fun:main
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   fun:strdup
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -857,6 +8255,34 @@
    fun:_XOpenLC
    fun:_XlcCurrentLC
    obj:/usr/lib/libSDL-1.2.so.0.11.4
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_check_map_versions
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
 }
 {
    <insert_a_suppression_name_here>
@@ -893,6 +8319,21 @@
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
+   fun:malloc
+   fun:add_to_global
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
    fun:calloc
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
@@ -910,6 +8351,18 @@
    <insert_a_suppression_name_here>
    Memcheck:Leak
    fun:malloc
+   fun:_dl_close_worker
+   fun:_dl_close
+   obj:/usr/lib/libdl-2.17.so
+   fun:dlclose
+   fun:_ZN8TerminalD1Ev
+   fun:_ZN7VintermD1Ev
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
@@ -921,6 +8374,22 @@
    fun:_XOpenLC
    fun:_XlcCurrentLC
    obj:/usr/lib/libSDL-1.2.so.0.11.4
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:local_strdup
+   fun:openaux
+   fun:_dl_catch_error
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
 }
 {
    <insert_a_suppression_name_here>
@@ -943,6 +8412,28 @@
    Memcheck:Leak
    fun:malloc
    fun:strdup
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_error
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:strdup
    obj:/usr/lib/libX11.so.6.3.0
    obj:/usr/lib/libX11.so.6.3.0
    fun:_XlcCreateLocaleDataBase
@@ -953,18 +8444,6 @@
    fun:_XOpenLC
    fun:_XlcCurrentLC
    obj:/usr/lib/libSDL-1.2.so.0.11.4
-}
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   fun:calloc
-   fun:_dl_check_map_versions
-   fun:dl_open_worker
-   fun:_dl_catch_error
-   obj:/usr/lib/libdl-2.17.so
-   fun:_dl_catch_error
-   fun:dlopen
-   fun:main
 }
 {
    <insert_a_suppression_name_here>
@@ -1079,6 +8558,14 @@
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libc-2.17.so
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
    fun:calloc
    fun:_dl_new_object
    fun:_dl_map_object_from_fd
@@ -1107,22 +8594,6 @@
    obj:/usr/lib/libSDL-1.2.so.0.11.4
    fun:SDL_VideoInit
    fun:SDL_InitSubSystem
-}
-{
-   <insert_a_suppression_name_here>
-   Memcheck:Leak
-   fun:calloc
-   fun:_dl_new_object
-   fun:_dl_map_object_from_fd
-   fun:_dl_map_object
-   fun:openaux
-   fun:_dl_catch_error
-   fun:dl_open_worker
-   fun:_dl_catch_error
-   obj:/usr/lib/libdl-2.17.so
-   fun:_dl_catch_error
-   fun:dlopen
-   fun:main
 }
 {
    <insert_a_suppression_name_here>
@@ -1159,6 +8630,14 @@
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:*
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
    fun:calloc
    fun:_XlcCreateDefaultCharSet
    fun:_XlcAddCT
@@ -1175,6 +8654,28 @@
 {
    <insert_a_suppression_name_here>
    Memcheck:Leak
+   fun:calloc
+   fun:_dl_check_map_versions
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+   fun:_ZN8TerminalC1ER11FramebufferR3PTYRK7Options
+   fun:_ZN7VintermC1ER11FramebufferR3PTYRK7Options
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
    fun:malloc
    obj:/usr/lib/libX11.so.6.3.0
    fun:_XrmInternalStringToQuark
@@ -1187,4 +8688,27 @@
    fun:_XlcCreateLC
    fun:_XlcUtf8Loader
    fun:_XOpenLC
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:_dl_new_object
+   fun:_dl_map_object_from_fd
+   fun:_dl_map_object
+   fun:openaux
+   fun:_dl_catch_error
+   fun:dl_open_worker
+   fun:_dl_catch_error
+   obj:/usr/lib/libdl-2.17.so
+   fun:_dl_catch_error
+   fun:dlopen
+   fun:_ZN5AudioC1ERK7Options
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   obj:/usr/lib/libasound.so.2.0.0
+   obj:/usr/lib/libasound.so.2.0.0
 }
