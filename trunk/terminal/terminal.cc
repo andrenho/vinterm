@@ -10,8 +10,8 @@ using namespace std;
 #include "graphic/audio.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
-	: fb(fb), pty(pty), options(options), audio(new Audio(options)),
-	  active(true), escape_mode(false), 
+	: fb(fb), pty(pty), options(options), alternateCharset(false),
+	  audio(new Audio(options)), active(true), escape_mode(false), 
 	  encoding(""), inbuf((char*)calloc(4, 1)), original_inbuf(inbuf), 
 	  inbuf_pos(0)
 {
@@ -92,11 +92,24 @@ Terminal::InputChar(const char c)
 		fb.Backspace();
 		break;
 	default:
-		cv = ConvertByteInput(c);
-		if(cv)
-			fb.Put(cv, false);
+		if(alternateCharset)
+			InputAlternateChar(c);
+		else
+		{
+			cv = ConvertByteInput(c);
+			if(cv)
+				fb.Put(cv, false);
+		}
 	}
 }
+
+
+void
+Terminal::InputAlternateChar(const char c)
+{
+	fb.Put(c, false);
+}
+
 
 void 
 Terminal::InputEscapeChar(const char c)

@@ -126,11 +126,14 @@ vinterm| vintage terminal,
 	dim=\E[2m,
 	invis=\E[8m,
 #	prot=?,
-#	smacs=\E(0,
-#	rmacs=\E(B,
+	smacs=\E[1t,
+	rmacs=\E[0t,
 #	enacs=?,
 	sgr0=\E[0m,
 #	sgr=%?%p9%t\E(0%e\E(B%;\E[0%?%p6%t;1%;%?%p2%t;4%;%?%p1%p3%|%t;7%;%?%p4%t;5%;%?%p7%t;8%;m,
+
+# line graphics
+	acsc=++\,\,aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~00,
 
 # bells
 	bel=^G,
@@ -222,9 +225,6 @@ vinterm| vintage terminal,
 
 # glitches
 	xenl,
-
-# line graphics
-#	acsc=``aaffggiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
 
 # other
 	am,
