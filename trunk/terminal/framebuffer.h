@@ -39,7 +39,7 @@ public:
 			bool ignore_insert_mode=true);
 
 	// methods that move the cursor
-	void AdvanceCursorY();
+	bool AdvanceCursorY();
 	void RecedeCursorY();
 	void CarriageReturn();
 	void Tab();

@@ -174,9 +174,11 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 }
 
 
-void 
+bool
 Framebuffer::AdvanceCursorY()
 {
+	bool update_scr = false;
+
 	++cursor_y;
 
 	// advance page
@@ -184,8 +186,11 @@ Framebuffer::AdvanceCursorY()
 	{
 		ScrollUp();
 		--cursor_y;
+		update_scr = true;
 	}
 	ValidateCursorPosition();
+
+	return update_scr;
 }
 
 

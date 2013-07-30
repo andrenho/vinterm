@@ -57,15 +57,19 @@ Terminal::Input()
 		fb.ForetrackToScreen();
 
 		const char c = (const char)i;
+		bool update_scr = false;
 		if(escape_mode)
 			InputEscapeChar(c);
 		else
-			InputChar(c);
+			update_scr = InputChar(c);
+
+		if(update_scr)
+			return;
 	}
 }
 
 
-void
+bool
 Terminal::InputChar(const char c)
 {
 	char cv;
@@ -77,8 +81,7 @@ Terminal::InputChar(const char c)
 		escape_sequence = "\033";
 		break;
 	case '\n': // new line
-		fb.AdvanceCursorY();
-		break;
+		return fb.AdvanceCursorY();
 	case '\r': // carriage return
 		fb.CarriageReturn();
 		break;
@@ -101,6 +104,8 @@ Terminal::InputChar(const char c)
 				fb.Put(cv, false);
 		}
 	}
+
+	return false;
 }
 
 
