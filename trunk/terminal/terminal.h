@@ -6,6 +6,7 @@
 using namespace std;
 
 #include "graphic/audio.h"
+#include "terminal/mouse.h"
 
 class Framebuffer;
 class Screen;
@@ -28,6 +29,8 @@ public:
 	virtual void KeyPressed(uint32_t key);
 
 	bool Active() const { return active; }
+
+	Mouse mouse;
 
 protected:
 	Framebuffer& fb;

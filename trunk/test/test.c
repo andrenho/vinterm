@@ -2,6 +2,8 @@
 
 int main()
 {
+	MEVENT event;
+
 	initscr();
 	start_color();
 	raw();
@@ -22,6 +24,9 @@ int main()
 	init_pair(1, COLOR_CYAN, COLOR_RED);
 	attrset(COLOR_PAIR(1)); printw("COLOR_PAIR\n");
 
+	// mouse
+	mousemask(ALL_MOUSE_EVENTS, NULL);
+
 	// ending
 	attrset(A_NORMAL);
 	mvprintw(23, 1, "Press F10 to end");
@@ -29,7 +34,12 @@ int main()
 
 	// press F10
 	int ch;
-	while((ch = getch()) != KEY_F(10)) { }
+	while((ch = getch()) != KEY_F(10)) 
+	{ 
+		if(ch == KEY_MOUSE)
+			if(getmouse(&event) == OK)
+				break;
+	}
 
 	endwin();
 

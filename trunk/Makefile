@@ -13,6 +13,7 @@ SRC = main.cc			\
       terminal/blink.cc		\
       terminal/backtrack.cc     \
       terminal/framebuffer.cc	\
+      terminal/mouse.cc         \
       terminal/pty.cc		\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\

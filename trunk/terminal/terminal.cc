@@ -11,9 +11,9 @@ using namespace std;
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 	: fb(fb), pty(pty), options(options), alternateCharset(false),
-	  audio(new Audio(options)), active(true), escape_mode(false), 
-	  encoding(""), inbuf((char*)calloc(4, 1)), original_inbuf(inbuf), 
-	  inbuf_pos(0)
+	  audio(new Audio(options)), active(true), 
+	  escape_mode(false), encoding(""), inbuf((char*)calloc(4, 1)), 
+	  original_inbuf(inbuf), inbuf_pos(0)
 {
 }
 
@@ -33,8 +33,7 @@ Terminal::~Terminal()
 void 
 Terminal::SendString(string s)
 {
-	for(char const& c : s)
-		pty.Send(c);
+	pty.Send(s);
 }
 
 
@@ -144,6 +143,7 @@ Terminal::Output(Screen& screen)
 
 	// write data to the PTY
 	int w, h, fs, ts_w, ts_h;
+	string s;
 	uint32_t ch = screen.keyQueue[0];
 	screen.keyQueue.pop_front();
 
@@ -166,6 +166,12 @@ Terminal::Output(Screen& screen)
 		screen.keyQueue.pop_front();
 		screen.Resize(w, h, fs, ts_w, ts_h);
 		Resize(ts_w, ts_h);
+		break;
+	case MPRESS:
+	case MRELEASE:
+		s = mouse.Translate(ch, screen.keyQueue);
+		if(!s.empty())
+			SendString(s);
 		break;
 	case QUIT:
 		active = false;

@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 	/* Opens the screen that the user will interact with. It reads the
 	 * characters from the framebuffer and display them on the screen, using
 	 * transforming them in the 80s style. */
-	Screen screen(options, fb);
+	Screen screen(options, fb, terminal.mouse);
 
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */

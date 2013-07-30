@@ -26,6 +26,7 @@ hi Function		cterm=bold           term=bold
 hi Repeat		cterm=bold           term=bold
 hi Operator		cterm=NONE           term=NONE
 hi Ignore		cterm=underline      term=underline
+hi Visual		cterm=reverse        term=reverse
 hi Error		cterm=reverse        term=reverse
 hi Todo			cterm=reverse,bold   term=reverse,bold
 

@@ -1,6 +1,7 @@
 #include "graphic/screen.h"
 
 #include <cstdlib>
+#include <iostream>
 #include <set>
 #include "SDL.h"
 using namespace std;
@@ -8,13 +9,14 @@ using namespace std;
 #include "options.h"
 #include "terminal/blink.h"
 #include "terminal/framebuffer.h"
+#include "terminal/mouse.h"
 #include "graphic/chars.h"
 #include "graphic/font.h"
 
 SDL_Color Screen::palette[256];
 
-Screen::Screen(Options const& options, Framebuffer const& fb)
-	: options(options), font(new Font()), 
+Screen::Screen(Options const& options, Framebuffer const& fb, Mouse const& mouse)
+	: options(options), mouse(mouse), font(new Font()), 
 	  chars(new Chars(options, *font)), fb(fb),
 	  border_x(options.border_x * options.scale),
 	  border_y(options.border_y * options.scale),
@@ -61,6 +63,9 @@ Screen::Screen(Options const& options, Framebuffer const& fb)
 	keyQueue.push_back(w);
 	keyQueue.push_back(h);
 	keyQueue.push_back(0);
+
+	// hide cursor
+	SDL_ShowCursor(SDL_DISABLE);
 }
 
 
@@ -202,6 +207,7 @@ Screen::DoEvents()
 {
 	SDL_Event e;
 	uint16_t c;
+	int x, y;
 
 	while(SDL_PollEvent(&e))
 	{
@@ -209,6 +215,7 @@ Screen::DoEvents()
 		switch(e.type)
 		{
 		case SDL_KEYDOWN:
+			SDL_ShowCursor(SDL_DISABLE);
 			fb.blink->ResetClock();
 			switch(e.key.keysym.sym)
 			{
@@ -308,6 +315,26 @@ Screen::DoEvents()
 			keyQueue.push_back(0);
 			break;
 
+		case SDL_MOUSEBUTTONUP:
+		case SDL_MOUSEBUTTONDOWN:
+			SDL_ShowCursor(SDL_ENABLE);
+			CharPosition(e.button, x, y);
+			if(x >= 0 && y >= 0)
+			{
+				SDLMod mod = SDL_GetModState();
+				mouse.AddButtonPressToQueue(keyQueue,
+						e.type == SDL_MOUSEBUTTONDOWN,
+						x, y, e.button.button,
+						mod & KMOD_SHIFT,
+						mod & KMOD_CTRL,
+						mod & KMOD_ALT);
+			}
+			break;
+
+		case SDL_MOUSEMOTION:
+			SDL_ShowCursor(SDL_ENABLE);
+			break;
+
 		case SDL_QUIT:
 			keyQueue.push_back(QUIT);
 		}
@@ -372,4 +399,16 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 	// store new size
 	w = new_w;
 	h = new_h;
+}
+
+
+void 
+Screen::CharPosition(SDL_MouseButtonEvent const& m, int& x, int& y) const
+{
+	x = (m.x - border_x + (options.scale * chars->start_at_x)) / font->char_w;
+	if(x >= fb.W())
+		x = -1;
+	y = (m.y - border_y + (options.scale * chars->start_at_y)) / font->char_h;
+	if(y >= fb.H())
+		y = -1;
 }

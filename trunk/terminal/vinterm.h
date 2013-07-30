@@ -9,8 +9,7 @@ using namespace std;
 class Vinterm : public Terminal
 {
 public:
-	Vinterm(Framebuffer& fb, PTY& pty, Options const& options) 
-		: Terminal(fb, pty, options), saved_x(0), saved_y(0) { }
+	Vinterm(Framebuffer& fb, PTY& pty, Options const& options);
 	
 	virtual void ExecuteEscapeSequence(string const& sequence);
 	virtual void InputAlternateChar(const char c);

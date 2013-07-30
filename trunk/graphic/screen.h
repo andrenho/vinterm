@@ -14,6 +14,7 @@ class Options;
 class Framebuffer;
 class Chars;
 class Font;
+class Mouse;
 
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
@@ -21,7 +22,8 @@ enum {
 	F1=256, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
 	K_UP, K_DOWN, K_LEFT, K_RIGHT, HOME, DELETE, PAGE_UP, PAGE_DOWN,
 	INSERT, END, SH_UP, SH_DOWN, SH_LEFT, SH_RIGHT, CT_PAGE_UP,
-	CT_PAGE_DOWN, SH_PAGE_UP, SH_PAGE_DOWN, QUIT, RESIZE
+	CT_PAGE_DOWN, SH_PAGE_UP, SH_PAGE_DOWN, QUIT, RESIZE,
+	MPRESS, MRELEASE
 };
 
 
@@ -36,7 +38,7 @@ typedef struct FullScreenInfo {
 class Screen
 {
 public:
-	Screen(Options const& options, Framebuffer const& fb);
+	Screen(Options const& options, Framebuffer const& fb, Mouse const& mouse);
 	~Screen();
 
 	void Update();
@@ -55,8 +57,10 @@ private:
 	void initializeChars();
 	void CheckForBlink();
 	void DoEvents();
+	void CharPosition(SDL_MouseButtonEvent const& m, int& x, int& y) const;
 
 	Options const& options;
+	Mouse const& mouse;
 	const Font* const font;
 	Chars* const chars;
 	Framebuffer const& fb;

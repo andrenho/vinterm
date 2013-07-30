@@ -8,6 +8,12 @@
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
 
+Vinterm::Vinterm(Framebuffer& fb, PTY& pty, Options const& options) 
+	: Terminal(fb, pty, options), saved_x(0), saved_y(0)
+{
+}
+
+
 void 
 Vinterm::ExecuteEscapeSequence(string const& sequence)
 {
@@ -41,9 +47,9 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 	case 'c': // move cursor to absolute column
 		fb.SetCursorPosition(p[0]+1, fb.CursorY()+1);
 		break;
-	case 'l': // move cursor to lower left of the screen
+	/* case 'l': // move cursor to lower left of the screen
 		fb.SetCursorPosition(fb.W(), fb.H());
-		break;
+		break; */
 	case 's': // save cursor position
 		saved_x = fb.CursorX();
 		saved_y = fb.CursorY();
@@ -140,9 +146,6 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 			}
 		}
 		break;
-	case 'F': // flash (visible bell)
-		fb.Flash();
-		break;
 	case 'u': // cursor visibility
 		switch(p[0])
 		{
@@ -159,6 +162,15 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 			alternateCharset = false;
 		else
 			Terminal::ExecuteEscapeSequence(sequence);
+		break;
+	case 'F': // flash (visible bell)
+		fb.Flash();
+		break;
+	case 'h': // mouse mode
+		mouse.SetMode(p[0]);
+		break;
+	case 'l': // reset mode
+		mouse.ResetMode(p[0]);
 		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);
