@@ -14,20 +14,20 @@ if exists("syntax_on")
 endif
 
 let g:colors_name = "vinterm"
-hi Normal		term=NONE
-hi Comment		term=standout
-hi Constant		term=underline
-hi Special		term=bold
-hi Identifier		term=bold
-hi Statement 		term=bold
-hi PreProc		term=bold
-hi Type			term=bold
-hi Function		term=bold
-hi Repeat		term=bold
-hi Operator		term=NONE
-hi Ignore		term=underline
-hi Error		term=reverse
-hi Todo			term=reverse,bold
+hi Normal		cterm=NONE           term=NONE          
+hi Comment		cterm=standout       term=standout
+hi Constant		cterm=underline      term=underline
+hi Special		cterm=bold           term=bold
+hi Identifier		cterm=bold           term=bold
+hi Statement 		cterm=bold           term=bold
+hi PreProc		cterm=bold           term=bold
+hi Type			cterm=bold           term=bold
+hi Function		cterm=bold           term=bold
+hi Repeat		cterm=bold           term=bold
+hi Operator		cterm=NONE           term=NONE
+hi Ignore		cterm=underline      term=underline
+hi Error		cterm=reverse        term=reverse
+hi Todo			cterm=reverse,bold   term=reverse,bold
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.
