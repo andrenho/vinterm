@@ -192,7 +192,7 @@ Vinterm::InputAlternateChar(const char c)
 	case 'n': // plus
 		fb.Put('+', false); break;
 	case 'o': // scan line 1
-		fb.Put((char)238, false); break; // TODO
+		fb.Put((char)238, false); break;
 	case 'p': // scan line 3
 		fb.Put((char)238, false); break;
 	case 'q': // horizontal line
@@ -200,7 +200,7 @@ Vinterm::InputAlternateChar(const char c)
 	case 'r': // scan line 6
 		fb.Put((char)196, false); break;
 	case 's': // scan line 9
-		fb.Put((char)196, false); break; // TODO
+		fb.Put((char)196, false); break;
 	case 't': // left tee
 		fb.Put((char)195, false); break;
 	case 'u': // right tee
