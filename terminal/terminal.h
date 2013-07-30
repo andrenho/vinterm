@@ -36,7 +36,7 @@ protected:
 	bool alternateCharset;
 
 private:
-	void InputChar(const char c);
+	bool InputChar(const char c);
 	virtual void InputAlternateChar(const char c);
 	void InputEscapeChar(const char c);
 	char ConvertByteInput(const char c);

@@ -49,8 +49,8 @@ int main(int argc, char** argv)
 	terminal.SendString(options.toBeRun);
 	while(terminal.Active())
 	{
-		terminal.Input();
 		terminal.Output(screen);
+		terminal.Input();
 		screen.Update();
 	}
 
