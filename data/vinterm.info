@@ -229,3 +229,10 @@ vinterm| vintage terminal,
 # other
 	am,
 	bce,
+
+# mouse
+	btns#3,
+	kmous=\E[M,
+#	minfo=\E[R,
+#	reqmp=\E[T,
+#	getm=\E[U,
