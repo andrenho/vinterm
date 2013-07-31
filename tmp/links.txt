@@ -1,1 +1,1 @@
-http://www.xfree86.org/current/ctlseqs.html
+http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
