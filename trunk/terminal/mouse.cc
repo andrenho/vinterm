@@ -46,17 +46,33 @@ Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
 	s += 'M';
 
 	// button
-	s += (char)32;
+	int button = keyQueue[0];
 	keyQueue.pop_front();
+	int keys = keyQueue[0];
 	keyQueue.pop_front();
 
+	uint8_t b = 32;
+	if(button <= 3)
+		b += (button-1);
+	else if(button == 4)
+		b += 64;
+	else if(button == 5)
+		b += 65;
+	if(keys & 0x4) // shift
+		b += 4;
+	if(keys & 0x2) // meta
+		b += 8;
+	if(keys & 0x1) // control
+		b += 16;
+	s += (char)b;
+
 	// x
-	int x = keyQueue[0] + 33;
+	uint8_t x = keyQueue[0] + 33;
 	keyQueue.pop_front();
 	s += (char)x;
 
 	// y
-	int y = keyQueue[0] + 33;
+	uint8_t y = keyQueue[0] + 33;
 	keyQueue.pop_front();
 	s += (char)y;
 

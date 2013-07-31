@@ -326,8 +326,8 @@ Screen::DoEvents()
 						e.type == SDL_MOUSEBUTTONDOWN,
 						x, y, e.button.button,
 						mod & KMOD_SHIFT,
-						mod & KMOD_CTRL,
-						mod & KMOD_ALT);
+						mod & KMOD_ALT,
+						mod & KMOD_CTRL);
 			}
 			break;
 
