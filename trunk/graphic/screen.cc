@@ -405,10 +405,10 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 void 
 Screen::CharPosition(SDL_MouseButtonEvent const& m, int& x, int& y) const
 {
-	x = (m.x - border_x + (options.scale * chars->start_at_x)) / font->char_w;
+	x = (m.x - border_x + (options.scale * chars->start_at_x)) / font->char_w / options.scale;
 	if(x >= fb.W())
 		x = -1;
-	y = (m.y - border_y + (options.scale * chars->start_at_y)) / font->char_h;
+	y = (m.y - border_y + (options.scale * chars->start_at_y)) / font->char_h / options.scale;
 	if(y >= fb.H())
 		y = -1;
 }
