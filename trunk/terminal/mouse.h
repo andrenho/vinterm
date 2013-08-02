@@ -9,7 +9,7 @@ using namespace std;
 class Mouse
 {
 public:
-	Mouse() : mode(0) { }
+	Mouse() : mode(0), last_press_x(-1), last_press_y(-1) { }
 
 	void SetMode(int n);
 	void ResetMode(int n);
@@ -18,9 +18,11 @@ public:
 			int x, int y, int button, 
 			bool shift, bool meta, bool ctrl) const;
 	string Translate(int ch, deque<uint32_t>& keyQueue);
+	bool Captured() const;
 
 private:
 	int mode;
+	int last_press_x, last_press_y;
 };
 
 #endif

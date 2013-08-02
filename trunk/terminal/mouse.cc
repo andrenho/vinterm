@@ -23,13 +23,15 @@ void
 Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y, 
 			int button, bool shift, bool meta, bool ctrl) const
 {
+	// check mode
 	if(mode < 1000)
 		return;
 
+	// add to queue
 	if(press)
 		keyQueue.push_back(MPRESS);
 	else
-		return;
+		keyQueue.push_back(MRELEASE);
 	keyQueue.push_back(button);
 	keyQueue.push_back((shift << 2) | (meta << 1) | ctrl);
 	keyQueue.push_back(x);
@@ -40,6 +42,7 @@ Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y
 string 
 Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
 {
+	cat << "a" << endl;
 	string s;
 	s += (char)27;
 	s += "[";
@@ -52,12 +55,17 @@ Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
 	keyQueue.pop_front();
 
 	uint8_t b = 32;
-	if(button <= 3)
-		b += (button-1);
-	else if(button == 4)
-		b += 64;
-	else if(button == 5)
-		b += 65;
+	if(ch == MRELEASE)
+		b += 3;
+	else
+	{
+		if(button <= 3)
+			b += (button-1);
+		else if(button == 4)
+			b += 64;
+		else if(button == 5)
+			b += 65;
+	}
 	if(keys & 0x4) // shift
 		b += 4;
 	if(keys & 0x2) // meta
@@ -77,4 +85,11 @@ Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
 	s += (char)y;
 
 	return s;
+}
+
+
+bool 
+Mouse::Captured() const
+{
+	return mode > 1000;
 }

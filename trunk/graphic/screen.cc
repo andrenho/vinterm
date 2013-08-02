@@ -337,6 +337,7 @@ Screen::DoEvents()
 
 		case SDL_QUIT:
 			keyQueue.push_back(QUIT);
+			break;
 		}
 	}
 }
