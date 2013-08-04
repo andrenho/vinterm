@@ -42,7 +42,6 @@ Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y
 string 
 Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
 {
-	cat << "a" << endl;
 	string s;
 	s += (char)27;
 	s += "[";
