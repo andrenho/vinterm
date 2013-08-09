@@ -2,6 +2,7 @@
 #define MOUSE_H
 
 #include <cstdint>
+#include <ctime>
 #include <deque>
 #include <string>
 using namespace std;

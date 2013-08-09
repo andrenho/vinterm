@@ -17,6 +17,21 @@ typedef enum {
 } AttrType;
 typedef enum { VERY_VISIBLE=2, VISIBLE=1, NOT_VISIBLE=0 } CrsVisibility;
 
+
+struct Selection
+{
+	Selection() { Reset(); }
+	void Reset() { 
+		start_backtrack = -1; start_x = -1; start_y = -1;
+		end_backtrack = -1; end_x = -1; end_y = -1;
+	}
+	bool Active() const { return start_backtrack != -1 && end_backtrack != -1; }
+
+	int start_backtrack, start_x, start_y;
+	int end_backtrack, end_x, end_y;
+};
+
+
 class Framebuffer
 {
 public:
@@ -73,19 +88,20 @@ public:
 	bool Flashing() const { return flashing; }
 
 	// information about the framebuffer
+	Char Ch(int x, int y) const;
 	inline int W() const { return w; }
 	inline int H() const { return h; }
 	inline int CursorX() const { return cursor_x; }
 	inline int CursorY() const { return cursor_y; }
-	inline Char Ch(int x, int y) const { return chars[x+(y*W())]; }
 
 	// attributes
 	void RegisterBlinks() const;
 	void SetAttr(AttrType attr, bool value);
 
 	// selection
-	void StartSelection(int x, int y);
-	void EndSelection(int x, int y);
+	void SetStartSelection(int x, int y);
+	void SetEndSelection(int x, int y);
+	void SetNoSelection();
 
 	mutable set<int>* dirty;
 	int InsertMode;
@@ -94,6 +110,7 @@ public:
 
 private:
 	void ValidateCursorPosition();
+	bool IsSelected(int x, int y) const;
 
 	Attribute current_attr;
 	int w, h;
@@ -105,6 +122,7 @@ private:
 	bool flashing;
 	Backtrack* backtrack;
 	int current_backtrack;
+	Selection selection;
 };
 
 #endif
