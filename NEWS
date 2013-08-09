@@ -1,3 +1,7 @@
+Version 0.5.0
+-------------
+  - Mouse support for applications
+
 Version 0.4.1
 -------------
   - Added the ability to rollback the terminal

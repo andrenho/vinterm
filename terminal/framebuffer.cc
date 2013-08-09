@@ -489,3 +489,17 @@ Framebuffer::ValidateCursorPosition()
 		cursor_y = h-1;
 	}
 }
+
+
+void 
+Framebuffer::StartSelection(int x, int y)
+{
+	cout << "Selection started at " << x << " "  << y << endl;
+}
+
+
+void 
+Framebuffer::EndSelection(int x, int y)
+{
+	cout << "Selection ended at " << x << " "  << y << endl;
+}

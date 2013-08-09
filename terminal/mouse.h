@@ -6,10 +6,12 @@
 #include <string>
 using namespace std;
 
+class Terminal;
+
 class Mouse
 {
 public:
-	Mouse() : mode(0), last_press_x(-1), last_press_y(-1) { }
+	Mouse();
 
 	void SetMode(int n);
 	void ResetMode(int n);
@@ -22,9 +24,13 @@ public:
 	string Translate(int ch, deque<uint32_t>& keyQueue);
 	bool Captured() const;
 
+	void setTerminal(Terminal* terminal) { this->terminal = terminal; }
+
 private:
 	int mode;
 	int last_press_x, last_press_y;
+	Terminal* terminal;
+	bool selection_started;
 };
 
 #endif
