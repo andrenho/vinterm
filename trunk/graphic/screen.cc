@@ -15,7 +15,7 @@ using namespace std;
 
 SDL_Color Screen::palette[256];
 
-Screen::Screen(Options const& options, Framebuffer const& fb, Mouse const& mouse)
+Screen::Screen(Options const& options, Framebuffer const& fb, Mouse& mouse)
 	: options(options), mouse(mouse), font(new Font()), 
 	  chars(new Chars(options, *font)), fb(fb),
 	  border_x(options.border_x * options.scale),
@@ -208,6 +208,7 @@ Screen::DoEvents()
 	SDL_Event e;
 	uint16_t c;
 	int x, y;
+	uint8_t state;
 
 	while(SDL_PollEvent(&e))
 	{
@@ -318,7 +319,7 @@ Screen::DoEvents()
 		case SDL_MOUSEBUTTONUP:
 		case SDL_MOUSEBUTTONDOWN:
 			SDL_ShowCursor(SDL_ENABLE);
-			CharPosition(e.button, x, y);
+			CharPosition(e.button.x, e.button.y, x, y);
 			if(x >= 0 && y >= 0)
 			{
 				SDLMod mod = SDL_GetModState();
@@ -333,6 +334,12 @@ Screen::DoEvents()
 
 		case SDL_MOUSEMOTION:
 			SDL_ShowCursor(SDL_ENABLE);
+			state = SDL_GetMouseState(NULL, NULL);
+			if(state & (SDL_BUTTON(1) | SDL_BUTTON(2) | SDL_BUTTON(3)))
+			{
+				CharPosition(e.motion.x, e.motion.y, x, y);
+				mouse.Drag(keyQueue, x, y, state);
+			}
 			break;
 
 		case SDL_QUIT:
@@ -404,12 +411,12 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 
 
 void 
-Screen::CharPosition(SDL_MouseButtonEvent const& m, int& x, int& y) const
+Screen::CharPosition(int mx, int my, int& x, int& y) const
 {
-	x = (m.x - border_x + (options.scale * chars->start_at_x)) / font->char_w / options.scale;
+	x = (mx - border_x + (options.scale * chars->start_at_x)) / font->char_w / options.scale;
 	if(x >= fb.W())
 		x = -1;
-	y = (m.y - border_y + (options.scale * chars->start_at_y)) / font->char_h / options.scale;
+	y = (my - border_y + (options.scale * chars->start_at_y)) / font->char_h / options.scale;
 	if(y >= fb.H())
 		y = -1;
 }

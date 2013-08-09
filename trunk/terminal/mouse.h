@@ -16,7 +16,9 @@ public:
 
 	void AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, 
 			int x, int y, int button, 
-			bool shift, bool meta, bool ctrl) const;
+			bool shift, bool meta, bool ctrl, bool motion=false);
+	void Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button);
+
 	string Translate(int ch, deque<uint32_t>& keyQueue);
 	bool Captured() const;
 
