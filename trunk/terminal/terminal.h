@@ -28,7 +28,10 @@ public:
 	virtual void ExecuteEscapeSequence(string const& sequence);
 	virtual void KeyPressed(uint32_t key);
 
+	void PasteFromClipboard();
+
 	bool Active() const { return active; }
+	Framebuffer& FB() const { return fb; }
 
 	Mouse mouse;
 

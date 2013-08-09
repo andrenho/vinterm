@@ -15,6 +15,7 @@ Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 	  escape_mode(false), encoding(""), inbuf((char*)calloc(4, 1)), 
 	  original_inbuf(inbuf), inbuf_pos(0)
 {
+	mouse.setTerminal(this);
 }
 
 
@@ -302,4 +303,11 @@ Terminal::ConvertByteInput(const char c)
 			return (char)254; // complete but invalid sequence
 		}
 	}
+}
+
+
+void 
+Terminal::PasteFromClipboard()
+{
+	cout << "Paste!" << endl;
 }

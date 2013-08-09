@@ -83,6 +83,10 @@ public:
 	void RegisterBlinks() const;
 	void SetAttr(AttrType attr, bool value);
 
+	// selection
+	void StartSelection(int x, int y);
+	void EndSelection(int x, int y);
+
 	mutable set<int>* dirty;
 	int InsertMode;
 	CrsVisibility CursorVisibility;
