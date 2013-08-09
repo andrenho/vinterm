@@ -169,6 +169,7 @@ Terminal::Output(Screen& screen)
 		break;
 	case MPRESS:
 	case MRELEASE:
+	case MDRAG:
 		s = mouse.Translate(ch, screen.keyQueue);
 		if(!s.empty())
 			SendString(s);

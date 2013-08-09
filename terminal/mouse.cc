@@ -21,14 +21,19 @@ Mouse::ResetMode(int n)
 
 void 
 Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y, 
-			int button, bool shift, bool meta, bool ctrl) const
+			int button, bool shift, bool meta, bool ctrl, bool motion)
 {
+	last_press_x = x;
+	last_press_y = y;
+
 	// check mode
 	if(mode < 1000)
 		return;
 
 	// add to queue
-	if(press)
+	if(motion)
+		keyQueue.push_back(MDRAG);
+	else if(press)
 		keyQueue.push_back(MPRESS);
 	else
 		keyQueue.push_back(MRELEASE);
@@ -36,6 +41,15 @@ Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y
 	keyQueue.push_back((shift << 2) | (meta << 1) | ctrl);
 	keyQueue.push_back(x);
 	keyQueue.push_back(y);
+}
+
+
+void 
+Mouse::Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button)
+{
+	if(x != last_press_x || y != last_press_y)
+		AddButtonPressToQueue(keyQueue, true, x, y, button, 
+				false, false, false, true);
 }
 
 
@@ -54,9 +68,12 @@ Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
 	keyQueue.pop_front();
 
 	uint8_t b = 32;
-	if(ch == MRELEASE)
+	if(ch == MDRAG)
+		b += 32;
+	else if(ch == MRELEASE)
 		b += 3;
-	else
+	
+	if(ch == MDRAG || ch == MPRESS)
 	{
 		if(button <= 3)
 			b += (button-1);

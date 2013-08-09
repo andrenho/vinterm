@@ -23,7 +23,7 @@ enum {
 	K_UP, K_DOWN, K_LEFT, K_RIGHT, HOME, DELETE, PAGE_UP, PAGE_DOWN,
 	INSERT, END, SH_UP, SH_DOWN, SH_LEFT, SH_RIGHT, CT_PAGE_UP,
 	CT_PAGE_DOWN, SH_PAGE_UP, SH_PAGE_DOWN, QUIT, RESIZE,
-	MPRESS, MRELEASE
+	MPRESS, MRELEASE, MDRAG
 };
 
 
@@ -38,7 +38,7 @@ typedef struct FullScreenInfo {
 class Screen
 {
 public:
-	Screen(Options const& options, Framebuffer const& fb, Mouse const& mouse);
+	Screen(Options const& options, Framebuffer const& fb, Mouse& mouse);
 	~Screen();
 
 	void Update();
@@ -57,17 +57,17 @@ private:
 	void initializeChars();
 	void CheckForBlink();
 	void DoEvents();
-	void CharPosition(SDL_MouseButtonEvent const& m, int& x, int& y) const;
+	void CharPosition(int mx, int my, int& x, int& y) const;
 
 	Options const& options;
-	Mouse const& mouse;
+	Mouse& mouse;
 	const Font* const font;
 	Chars* const chars;
 	Framebuffer const& fb;
 	int border_x, border_y;
 	int w, h;
 	SDL_Surface* screen;
-	int old_cursor_x, old_cursor_y;
+	int old_cursor_x, old_cursor_y; // used for blink
 	int desktop_w, desktop_h;
 	FullScreenInfo fs_info;
 	SDL_Surface* icon;
