@@ -50,10 +50,15 @@ Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y
 	}
 
 	// mouse terminal selection mode
-	if(mode < 1000)
+	if(mode < 1000 && !motion)
 	{
-		if(!motion && !press && button == 1)
-			selection_started = false;
+		if(button == 1)
+		{
+			if(press)
+				terminal->FB().SetNoSelection();
+			else
+				selection_started = false;
+		}
 		if(button == 2 && press && !motion)
 			terminal->PasteFromClipboard();
 	}
@@ -78,9 +83,9 @@ Mouse::Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button)
 		if(!selection_started)
 		{
 			selection_started = true;
-			terminal->FB().StartSelection(last_press_x, last_press_y);
+			terminal->FB().SetStartSelection(last_press_x, last_press_y);
 		}
-		terminal->FB().EndSelection(x, y);
+		terminal->FB().SetEndSelection(x, y);
 	}
 
 	last_press_x = x;

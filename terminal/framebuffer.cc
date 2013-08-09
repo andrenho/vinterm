@@ -31,6 +31,20 @@ Framebuffer::~Framebuffer()
 }
 
 
+Char 
+Framebuffer::Ch(int x, int y) const 
+{
+	if(!IsSelected(x, y))
+		return chars[x+(y*W())]; 
+	else
+	{
+		Char ch = chars[x+(y*W())];
+		ch.Attr.Reverse = !ch.Attr.Reverse;
+		return ch;
+	}
+}
+
+
 void
 Framebuffer::BackTrack()
 {
@@ -155,6 +169,9 @@ void
 Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 			bool ignore_insert_mode)
 {
+	// restart selection
+	SetNoSelection();
+
 	if(InsertMode && !ignore_insert_mode)
 		InsertChars(1);
 
@@ -492,14 +509,40 @@ Framebuffer::ValidateCursorPosition()
 
 
 void 
-Framebuffer::StartSelection(int x, int y)
+Framebuffer::SetStartSelection(int x, int y)
 {
-	cout << "Selection started at " << x << " "  << y << endl;
+	selection.start_backtrack = 0;
+	selection.start_x = x;
+	selection.start_y = y;
 }
 
 
 void 
-Framebuffer::EndSelection(int x, int y)
+Framebuffer::SetEndSelection(int x, int y)
 {
-	cout << "Selection ended at " << x << " "  << y << endl;
+	selection.end_backtrack = 0;
+	selection.end_x = x;
+	selection.end_y = y;
+}
+
+
+void 
+Framebuffer::SetNoSelection()
+{
+	selection.Reset();
+}
+
+
+bool 
+Framebuffer::IsSelected(int x, int y) const
+{
+	if(!selection.Active())
+		return false;
+
+	if(y >= selection.start_y && y <= selection.end_y 
+			&& x >= selection.start_x && x <= selection.end_x)
+		cout << x << " " << y << endl;
+
+	return (y >= selection.start_y && y <= selection.end_y 
+			&& x >= selection.start_x && x <= selection.end_x);
 }
