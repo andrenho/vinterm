@@ -29,6 +29,7 @@ hi Ignore		cterm=underline      term=underline
 hi Visual		cterm=reverse        term=reverse
 hi Error		cterm=reverse        term=reverse
 hi Todo			cterm=reverse,bold   term=reverse,bold
+hi Search               cterm=reverse        term=reverse
 
 " Common groups that link to default highlighting.
 " You can specify other highlighting easily.

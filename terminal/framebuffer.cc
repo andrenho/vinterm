@@ -34,14 +34,14 @@ Framebuffer::~Framebuffer()
 Char 
 Framebuffer::Ch(int x, int y) const 
 {
-	if(!IsSelected(x, y))
+	//if(!IsSelected(x, y))
 		return chars[x+(y*W())]; 
-	else
+	/*else
 	{
 		Char ch = chars[x+(y*W())];
 		ch.Attr.Reverse = !ch.Attr.Reverse;
 		return ch;
-	}
+	}*/
 }
 
 
@@ -523,12 +523,24 @@ Framebuffer::SetEndSelection(int x, int y)
 	selection.end_backtrack = 0;
 	selection.end_x = x;
 	selection.end_y = y;
+
+	if(selection.Active())
+	{
+		cout << "Selection from " << selection.start_x << " " << 
+			selection.start_y << " to " << selection.end_x <<
+			" " << selection.end_y << endl;
+		for(int x=selection.start_x; x<=selection.end_x; x++)
+			for(int y=selection.start_y; y<=selection.end_y; y++)
+				dirty->insert(x+y*W());
+	}
 }
 
 
 void 
 Framebuffer::SetNoSelection()
 {
+	for(int i=0; i < (w*h); i++)
+		dirty->insert(i);
 	selection.Reset();
 }
 
@@ -538,10 +550,6 @@ Framebuffer::IsSelected(int x, int y) const
 {
 	if(!selection.Active())
 		return false;
-
-	if(y >= selection.start_y && y <= selection.end_y 
-			&& x >= selection.start_x && x <= selection.end_x)
-		cout << x << " " << y << endl;
 
 	return (y >= selection.start_y && y <= selection.end_y 
 			&& x >= selection.start_x && x <= selection.end_x);

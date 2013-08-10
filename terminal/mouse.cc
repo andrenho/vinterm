@@ -15,7 +15,6 @@ void
 Mouse::SetMode(int n)
 {
 	mode = n;
-	cout << "Mode set to " << n << endl;
 }
 
 
