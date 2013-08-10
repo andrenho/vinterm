@@ -131,6 +131,8 @@ Screen::Update()
 			c = ' ';
 		if(cursor && fb.CursorVisibility == VERY_VISIBLE)
 			attr.Highlight = true;
+		if(fb.IsSelected(x, y))
+			attr.Reverse = !attr.Reverse;
 
 		SDL_Surface* sf = chars->Char(c, attr, x+y);
 		if(!sf)

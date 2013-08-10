@@ -102,6 +102,7 @@ public:
 	void SetStartSelection(int x, int y);
 	void SetEndSelection(int x, int y);
 	void SetNoSelection();
+	bool IsSelected(int x, int y) const;
 
 	mutable set<int>* dirty;
 	int InsertMode;
@@ -110,7 +111,6 @@ public:
 
 private:
 	void ValidateCursorPosition();
-	bool IsSelected(int x, int y) const;
 
 	Attribute current_attr;
 	int w, h;
