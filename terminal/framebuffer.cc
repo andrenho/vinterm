@@ -531,7 +531,7 @@ Framebuffer::SetEndSelection(int x, int y)
 			" " << selection.end_y << endl;
 		for(int i=(selection.start_x+selection.start_y*W());
 				i<=(selection.end_x+selection.end_y*W()); ++i)
-			dirty->insert(x+y*W());
+			dirty->insert(i);
 	}
 }
 
