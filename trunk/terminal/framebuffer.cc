@@ -529,9 +529,9 @@ Framebuffer::SetEndSelection(int x, int y)
 		cout << "Selection from " << selection.start_x << " " << 
 			selection.start_y << " to " << selection.end_x <<
 			" " << selection.end_y << endl;
-		for(int x=selection.start_x; x<=selection.end_x; x++)
-			for(int y=selection.start_y; y<=selection.end_y; y++)
-				dirty->insert(x+y*W());
+		for(int i=(selection.start_x+selection.start_y*W());
+				i<=(selection.end_x+selection.end_y*W()); ++i)
+			dirty->insert(x+y*W());
 	}
 }
 
@@ -539,9 +539,12 @@ Framebuffer::SetEndSelection(int x, int y)
 void 
 Framebuffer::SetNoSelection()
 {
-	for(int i=0; i < (w*h); i++)
-		dirty->insert(i);
-	selection.Reset();
+	if(selection.Active())
+	{
+		for(int i=0; i < (w*h); i++)
+			dirty->insert(i);
+		selection.Reset();
+	}
 }
 
 
@@ -551,6 +554,6 @@ Framebuffer::IsSelected(int x, int y) const
 	if(!selection.Active())
 		return false;
 
-	return (y >= selection.start_y && y <= selection.end_y 
-			&& x >= selection.start_x && x <= selection.end_x);
+	return ((x+y*W()) >= (selection.start_x+selection.start_y*W())
+	     && (x+y*W()) <= (selection.end_x+selection.end_y*W()));
 }
