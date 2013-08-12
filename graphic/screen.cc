@@ -330,7 +330,8 @@ Screen::DoEvents()
 						x, y, e.button.button,
 						mod & KMOD_SHIFT,
 						mod & KMOD_ALT,
-						mod & KMOD_CTRL);
+						mod & KMOD_CTRL, false,
+						&clipboard);
 			}
 			break;
 

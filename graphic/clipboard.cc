@@ -19,26 +19,32 @@ Clipboard::Read()
 	Display* dpy = XOpenDisplay(NULL);
 	string s;
 
-	Window Sown = XGetSelectionOwner(dpy, XA_PRIMARY);
-	if(Sown != None) 
+	for(int i=0; i<2; i++)
 	{
-		Atom type;
-		unsigned long len, bytes_left, dummy;
-		int format;
-		unsigned char* data;
-
-		XConvertSelection(dpy, XA_PRIMARY, XA_STRING, None, Sown, CurrentTime);
 		XFlush(dpy);
-		XGetWindowProperty(dpy, Sown, XA_STRING, 0, 0, 0, AnyPropertyType,
-				&type, &format, &len, &bytes_left, &data);
-		if(bytes_left > 0)
+		Window Sown = XGetSelectionOwner(dpy, XA_PRIMARY);
+		if(Sown != None) 
 		{
-			int result = XGetWindowProperty(dpy, Sown, XA_STRING, 0,
-					bytes_left, 0, AnyPropertyType,
-					&type, &format, &len, &dummy, &data);
-			if(result == Success)
-				s = string((char*)data);
-			XFree(data);
+			Atom type;
+			unsigned long len, bytes_left, dummy;
+			int format;
+			unsigned char* data;
+
+			XConvertSelection(dpy, XA_PRIMARY, XA_STRING, None, Sown, 
+					CurrentTime);
+			XFlush(dpy);
+			XGetWindowProperty(dpy, Sown, XA_STRING, 0, 0, 0, 
+					AnyPropertyType, &type, &format, &len, 
+					&bytes_left, &data);
+			if(bytes_left > 0)
+			{
+				int result = XGetWindowProperty(dpy, Sown, XA_STRING, 0,
+						bytes_left, 0, AnyPropertyType,
+						&type, &format, &len, &dummy, &data);
+				if(result == Success)
+					s = string((char*)data);
+				XFree(data);
+			}
 		}
 	}
 
