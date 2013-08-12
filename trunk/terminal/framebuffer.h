@@ -21,14 +21,11 @@ typedef enum { VERY_VISIBLE=2, VISIBLE=1, NOT_VISIBLE=0 } CrsVisibility;
 struct Selection
 {
 	Selection() { Reset(); }
-	void Reset() { 
-		start_backtrack = -1; start_x = -1; start_y = -1;
-		end_backtrack = -1; end_x = -1; end_y = -1;
-	}
-	bool Active() const { return start_backtrack != -1 && end_backtrack != -1; }
+	void Reset() { start = -1; end = -1; } 
+	bool Active() const { return start != -1 && end != -1; }
 
-	int start_backtrack, start_x, start_y;
-	int end_backtrack, end_x, end_y;
+	int start;
+	int end;
 };
 
 
