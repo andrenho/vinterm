@@ -23,8 +23,8 @@ Clipboard::Read()
 	if(Sown != None) 
 	{
 		Atom type;
-		unsigned long len, bytes_left;
-		int format, dummy;
+		unsigned long len, bytes_left, dummy;
+		int format;
 		unsigned char* data;
 
 		XConvertSelection(dpy, XA_PRIMARY, XA_STRING, None, Sown, CurrentTime);
@@ -37,7 +37,7 @@ Clipboard::Read()
 					bytes_left, 0, AnyPropertyType,
 					&type, &format, &len, &dummy, &data);
 			if(result == Success)
-				s = string(data);
+				s = string((char*)data);
 			XFree(data);
 		}
 	}
