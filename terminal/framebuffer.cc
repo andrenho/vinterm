@@ -2,6 +2,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <utility>
 
 #include "options.h"
 #include "terminal/blink.h"
@@ -511,26 +512,28 @@ Framebuffer::ValidateCursorPosition()
 void 
 Framebuffer::SetStartSelection(int x, int y)
 {
-	selection.start_backtrack = 0;
-	selection.start_x = x;
-	selection.start_y = y;
+	selection.start = x+y*W();
 }
 
 
 void 
 Framebuffer::SetEndSelection(int x, int y)
 {
-	selection.end_backtrack = 0;
-	selection.end_x = x;
-	selection.end_y = y;
+	int old_start = selection.start;
+	int old_end = selection.end;
+
+	selection.end = x+y*W();
+
+	/* if(selection.start > selection.end)
+		swap(selection.start, selection.end); */
 
 	if(selection.Active())
 	{
-		cout << "Selection from " << selection.start_x << " " << 
-			selection.start_y << " to " << selection.end_x <<
-			" " << selection.end_y << endl;
-		for(int i=(selection.start_x+selection.start_y*W());
-				i<=(selection.end_x+selection.end_y*W()); ++i)
+		cout << "Selection from " << selection.start << " to " << 
+			selection.end << endl;
+		int st = min(selection.start, min(old_start, min(selection.end, old_end)));
+		int en = max(selection.start, max(old_start, max(selection.end, old_end)));
+		for(int i=st; i<=en; ++i)
 			dirty->insert(i);
 	}
 }
@@ -554,6 +557,6 @@ Framebuffer::IsSelected(int x, int y) const
 	if(!selection.Active())
 		return false;
 
-	return ((x+y*W()) >= (selection.start_x+selection.start_y*W())
-	     && (x+y*W()) <= (selection.end_x+selection.end_y*W()));
+	return ((x+y*W()) >= min(selection.start, selection.end)) 
+	    && ((x+y*W()) <= max(selection.start, selection.end));
 }
