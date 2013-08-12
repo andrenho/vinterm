@@ -18,6 +18,7 @@ SRC = main.cc			\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
       graphic/audio.cc		\
+      graphic/clipboard.cc	\
       graphic/chars.cc		\
       graphic/font.cc		\
       graphic/screen.cc		\

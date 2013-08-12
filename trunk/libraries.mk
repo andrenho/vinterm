@@ -1,6 +1,6 @@
 # system libraries
 SDL = $(shell sdl-config --cflags > /dev/null 2> /dev/null; echo $$?)
-AO = $(shell pkg-config --cflags ao > /dev/null 2> /dev/null; echo $$?)
+AO  = $(shell pkg-config --cflags ao > /dev/null 2> /dev/null; echo $$?)
 #X11 = no
 
 
@@ -21,6 +21,7 @@ else
 endif
 
 # X11 libraries
+LDFLAGS += -lX11
 #ifeq (${X11},yes)
 #  CXXFLAGS += -I/usr/X11R6/include -D_X11
 #  LDFLAGS += -L/usr/X11R6/lib -lX11 -lutil

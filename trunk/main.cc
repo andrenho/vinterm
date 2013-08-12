@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "options.h"
+#include "graphic/clipboard.h"
 #include "graphic/screen.h"
 #include "terminal/pty.h"
 #include "terminal/framebuffer.h"
@@ -33,6 +34,9 @@ int main(int argc, char** argv)
 	 * characters from the framebuffer and display them on the screen, using
 	 * transforming them in the 80s style. */
 	Screen screen(options, fb, terminal.mouse);
+
+	Clipboard clp;
+	cout << clp.Read() << endl;
 
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */

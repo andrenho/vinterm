@@ -1,0 +1,532 @@
+X Windows Copy-Paste mini HOWTO
+Stelios Xathakis, <axanth@tee.gr>
+v0.5, 18 Dec 1998
+
+This document describes how to implement clipboard functions in 
+X Windows programs. The reader should be familiar with basic Xlib
+programming and have access to the man pages of Xlib functions.
+
+1.  Introduction
+
+Copy-paste operations is one of the basic features of graphic window
+environments since it allows transfering data between individual applications
+and therefore increases the functionality of the desktop as an application
+set. The X Windows system protocol was designed to have special structures
+to support 'simple' copy-paste operations -- which is the base to more
+sophisticated clipboard implementations.
+
+The documentation on the subject of how clipboard features can be introduced
+in X applications in almost non-existent. It's hard to find which functions
+of Xlib should be used and even after those functions are detected their
+usage is something the reader has to guess (refering to ``Xlib - C Language
+X Interface'').
+
+2.  You already have copy-paste
+
+Copy-paste exists in all X Windows implementions, independent of the Window
+Manager. In case you didn't know, it just requires a 3-button mouse and
+the procedure is the same for all desktop environments as long as
+applications supports it. To copy some text between two xterms, first
+select the desired text by pressing the left mouse button over it.
+Then move to pointer to the second xterm and press the middle button.
+It is important to have this feature for testing the copy-paste programs.
+
+In the case you are a PC user and your three mouse button acts like a
+two mouse button, search for a little switch in your mouse. If located,
+change it from 'MS' to the other option and run XF86Setup to reconfigure
+your mouse settings.
+
+3.  The 'simple' copy-paste
+
+The procedure described above will be from now on refered as the 'simple'
+copy-paste operation. We can make the following observations on it.
+
+  a) Copy and paste are not two seperate actions but just one dual operation
+     taking place with a middle button click.
+
+  b) There is no need for a 'Clipboard' application. The two applications, 
+     since copy-paste is one action, can agree to transfer data directly
+     between them.
+
+  c) There is no 'cut' operation. Alternatively, cut can be performed by
+     a copy-paste first (that's X Window's protocol job) and then by a cut
+     which however will be up to the application to perform. That makes
+     sense because one application shouldn't be able to delete another
+     application's data.
+
+The above senario is a secure basic way of a program getting data from
+another program and only when this is allowed. This 'simple' copy-paste
+mechanism is however the base for more sophisticated approaches to
+a 'clipboard'.
+
+4.  Xlib copy-paste support
+
+Xlib supports ways in which 'simple' copy-paste can be performed, and it's
+part of the "Inter-Client Communication Functions". We must however recall
+that the X Window System is a 'platfrom independent, network transparent'
+system, which excuses the complexity of those functions.
+
+4.1  Xlib elements
+
+We shall need the following Xlib entities.
+
+Atoms     : An Atom can be viewed as variable type (like strings) which defines
+            a compliant way between all X applications of defining data types.
+            Predefined atoms can be found in the Xatoms.h header file.
+
+Properties: A Property can be viewed as a 'network transparent variable'.
+            Every window has it's own values to it's properties which all
+            other applications connected to the same X server can access.
+            There are some predefined properties but the protocol also
+            allows addtitional user defined. The type of a property is 
+            given by an Atom. For example the name of a window is a predefined
+            property (variable) of atom (type) XA_STRING.
+
+Selections: Selections is just what we need. A Selection can be viewed as a
+            'network transparent pointer to network transparent variables'.
+            This 'pointer' can only be pointing at one variable (Property)
+            at any time or it may not be pointing to any property at all.
+            Just like selected text, only one application may have selected
+            text and any application can get control of being the 'owner' of
+            selected text. Selected text is a Selection.
+
+We can now imagine what really happens when 'simple' copy-paste is
+performed. When selecting some text on 'Application1' this application
+becomes the 'owner' of a prearranged Property, i.e. the Selection pointer
+points to the window of 'Application1'. When the middle mouse button is
+pressed on 'Application2', this application queries the X server about
+the current owner of the selection. The X server responds that the owner
+is 'Application1' and then 'Application2' gets the prearranged property
+from the window of 'Application1'.
+
+4.2  Xlib functions
+
+The Xlib functions for managing the above elements are : 
+
+XGetSelectionOwner(), which returns the window which currently owns a
+	specific Selection or None.
+
+XSetSelectionOwner(), request that our window will be the owner.
+
+XConvertSelection(), converts a specified Selection to a specified type.
+	This one is most useful, actually it instructs the application
+	with the selected text to move it to a world readable Property
+	of a specified type.
+
+XGetWindowProperty(), get selected text from Property.
+
+XChangeWindowProperty(), change the contents of selection if we are owner.
+
+The man pages for the above functions will give a more detailed reference
+of their arguments. Those functions can be best explained though an example
+
+4.3  Events
+
+The events relative to selections are
+
+- SelectionClear:   Ownership of a Selection is lost (i.e. some other
+                    application has selected text and is the owner of
+                    currently selected text).
+
+- SelectionRequest: This event occurs on a call XConvertSelection from
+                    another application. In other words someone wants
+                    our data (if we are indeed owner).
+
+- SelectionNotify:  In response to XConvertSelection the application
+                    that requested the conversion will receive that event
+                    from which it can check success or failure to perform
+                    the conversion.
+
+5.  Copy-paste from an xterm
+
+This first example is a program that every two seconds will notify us about
+the selected text in an application, if text is selected in any application.
+
+5.1  Sample program Example1.cc
+
+To compile this program the command is
+
+	gcc -L/usr/X11R6/lib -lX11 Example1.cc
+
+=========================Example1.cc=============================
+#include <X11/Xlib.h> 
+#include <X11/Xatom.h>
+#include <assert.h>   
+#include <unistd.h>   
+#include <stdio.h>
+#include <stdlib.h>
+
+main()
+{
+	Display *dpy = XOpenDisplay(NULL);
+	assert(dpy);
+	Window w = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy), 0, 0, 
+				     200, 100, 0, 0, 0);
+	XSelectInput(dpy, w, StructureNotifyMask);
+	XMapWindow(dpy, w);
+	XEvent e;
+	for(;;) {
+		XNextEvent(dpy, &e);
+		if (e.type == MapNotify) break;
+	}
+	XFlush(dpy);
+	// Copy from application
+	Atom a1, a2, type;
+	XSelectInput(dpy, w, StructureNotifyMask+ExposureMask);
+	int format, result;
+	unsigned long len, bytes_left, dummy;
+	unsigned char *data;
+	Window Sown;
+	for (int ii = 0; ii < 50; ii++) {
+		Sown = XGetSelectionOwner (dpy, XA_PRIMARY);
+		printf ("Selection owner%i\n", (int)Sown);
+		if (Sown != None) {
+			XConvertSelection (dpy, XA_PRIMARY, XA_STRING, None,
+						 Sown, CurrentTime);
+			XFlush (dpy);
+			//
+			// Do not get any data, see how much data is there
+			//
+			XGetWindowProperty (dpy, Sown, 
+				XA_STRING, 	  // Tricky..
+				0, 0,	  	  // offset - len
+				0, 	 	  // Delete 0==FALSE
+				AnyPropertyType,  //flag
+				&type,		  // return type
+				&format,	  // return format
+				&len, &bytes_left,  //that 
+				&data);				
+			printf ("type:%i len:%i format:%i byte_left:%i\n", 
+				(int)type, len, format, bytes_left);
+			// DATA is There
+			if (bytes_left > 0)
+			{
+				result = XGetWindowProperty (dpy, Sown, 
+					XA_STRING, 0,bytes_left,0,
+					AnyPropertyType, &type,&format,
+					&len, &dummy, &data);
+				if (result == Success)
+					printf ("DATA IS HERE!!```%s'''\n",
+						 data);
+				else printf ("FAIL\n");
+				XFree (data);
+			}
+		}
+		sleep(2);
+	}
+}
+===========================Example1.cc End==============================
+
+When the program is executed it will open a small black window (a window
+has to be created) and every two seconds check if there is any selected
+text in another application. To see the result, open an xterm and select
+some text. Example1, will then print on it's standard output the selection
+owner window id (xterm with selected text therefore), information about the
+selection (number of bytes, type, format) and finally the selected text.
+
+5.2  How it works
+
+After the usual initialization code, the program will enter a for () loop with
+50 repeats of 2 second interval between them. In this loop the first function
+called is XGetSelectionOwner with Selection argument XA_PRIMARY. 
+_Personal_Experience has shown that XA_PRIMARY is the Selection Atom (type)
+that responds to the copy-paste features. If the return value on
+XGetSelectionOwner is not 'None' then an application with selected text exists
+and the program proceeds to the data transfer.
+
+If an owner exists then XConvertSelection must be called to convert the 
+'selected text' Selection to a Property of the owner. The agruments of
+XConvertSelection are: dpy, XA_PRIMARY (the Selection), XA_STRING (Atom to
+convert the Selection to), None (Property (-it just works-)), the owner ID,
+and 'CurrentTime'. The manual documentation calls the 'owner ID' the
+'requestor'. Normally the 'requestor' would be our application, however
+the 'requestor' is actually the owner. If the 'requestor' was our
+application then SelectionNotify event would have to be expected.
+
+Next the function XGetWindowProperty is called to retrieve the data. In the
+specific program XGetWindowProperty is called twice, once instructed to get
+0 elements of data so that selected text lenght will be checked from the
+bytes_left parameter. The second time it is called to actually get the
+text to variable 'data'. The man page gives a detailed description of
+XGetWindowProperty function but there are three things that should be noted.
+First the requested Property is XA_STRING (-it just works-) and second
+care should be taken to check the format parameter which identifies the
+unit length in bits (usually 8). Finally the 'data' pointer in internally
+allocated from Xlib; there is no need to malloc for it but XFree() should
+be called when we're done with it.
+
+5.3  An Alternative way
+
+It would be possible to set the 'requestor' parameter to our application's
+window. In that case the result from XConvertSelection function would
+be that the specified selection will be copied to a Property of our window.
+Also a SelectionNotify event would be expected from which we can check
+if the conversion was successful.
+
+The changes in this alternative way are demonstrated below
+
+===========================Changes to Example1=========================
+				.....
+	XConvertSelection (dpy, XA_PRIMARY, XA_STRING, None,
+			w, CurrentTime);  // w == our window's ID
+	XFlush (dpy);
+	XNextEvent (dpy, &e);
+	if (e.type == SelectionNotify)
+	{
+		printf ("Notified about XConvertSelection\n");
+		if (e.xselection.property == XA_STRING)
+			printf ("It is not 'None' so it is Ok\n");
+	}
+	//
+	// Do not get any data, see how much data is there
+	//
+	XGetWindowProperty (dpy, w, XA_STRING, 0, 0, 0,	AnyPropertyType,
+			&type, &format,	&len, &bytes_left, &data);				
+	printf ("type:%i len:%i format:%i byte_left:%i\n", 
+		(int)type, len, format, bytes_left);
+	// DATA is There
+	if (bytes_left > 0)
+	{
+		result = XGetWindowProperty (dpy, w, XA_STRING, 0,bytes_left,0,
+			AnyPropertyType, &type,&format,	&len, &dummy, &data);
+				......
+========================Changes to Example1 End========================
+
+This way has the advantage of checking for successful result for the
+conversion. Also through the event blocking function XNextEvent, it
+has better synchronization, since the program will be notified when the
+selection conversion is performed and may not attempt to read the
+property before that has happened. For that it is a good idea to set
+the event mask to NoEventMask with XSelectInput since the Select* events
+can't be masked
+
+6.  Copy-paste to an xterm
+
+The second program is the inverse procedure. Our sample program will be the
+owner of selected text and other applications will be getting data from it
+
+6.1  Sample program Example2.cc
+
+To compile this program the command is
+
+	gcc -L/usr/X11R6/lib -lX11 Example2.cc
+
+===========================Example2.cc============================
+#include <X11/Xlib.h> 
+#include <X11/Xatom.h>
+#include <assert.h>   
+#include <unistd.h>   
+#include <stdio.h>
+#include <stdlib.h>
+
+main()
+{
+	Display *dpy = XOpenDisplay(NULL);
+	assert(dpy);
+	Window w = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy), 0, 0, 
+				     200, 100, 0, 0, 0);
+	XSelectInput(dpy, w, StructureNotifyMask);
+	XMapWindow(dpy, w);
+	XSelectionRequestEvent *req;
+	XEvent e, respond;
+	for(;;) {
+		XNextEvent(dpy, &e);
+		if (e.type == MapNotify) break;
+	}
+	XFlush(dpy);
+	//
+	Atom a1, a2, a3, type;
+	XSelectInput(dpy, w, StructureNotifyMask+ExposureMask);
+	int format, result;
+	unsigned long len, bytes_left, dummy;
+	unsigned char *data;
+	Window Sown;
+	for (int ii = 0; ii < 50; ii++) {
+		XSetSelectionOwner (dpy, XA_PRIMARY, w, CurrentTime);
+		XFlush (dpy);
+		XNextEvent (dpy, &e);
+		if (e.type == SelectionRequest)
+		//
+		// Somebody wants our data
+		//
+		{
+			req=&(e.xselectionrequest);
+			printf ("Selection Request from Mr %i I am %i\n",
+				(int)e.xselection.requestor, (int)w);
+			printf ("prop:%i tar:%i sel:%i\n", req->property,
+				req->target, req->selection);
+			if (req->target == XA_STRING)
+			{
+				XChangeProperty (dpy,
+					req->requestor,
+					req->property,
+					XA_STRING,
+					8,
+					PropModeReplace,
+					(unsigned char*) "It Works",
+					8);
+				respond.xselection.property=req->property;
+			}
+			else // Strings only please
+			{
+				printf ("No String %i\n",
+					(int)req->target);
+				respond.xselection.property= None;
+			}
+	 		respond.xselection.type= SelectionNotify;
+			respond.xselection.display= req->display;
+			respond.xselection.requestor= req->requestor;
+			respond.xselection.selection=req->selection;
+			respond.xselection.target= req->target;
+			respond.xselection.time = req->time;
+			XSendEvent (dpy, req->requestor,0,0,&respond);
+			XFlush (dpy);
+		}
+	}
+}
+=========================Example2.cc End==============================
+
+To see the program working open two xterm windows. On xterm1 execute the
+program. Then move the pointer to xterm2 and press the middle mouse button.
+The result should be the text "It Works" appearing on xterm2 (as if it was
+selected text on an application), while in xterm1 some information about the
+procedure progress is printed.
+
+6.2  How it works
+
+After the basic initialization the program enters a 50 step loop. The first
+action is to get ownership for the copy-paste Selection. The function
+XSetSelectionOwner is used for that with argument XA_PRIMARY as the desired
+Selection. We may notice that if any text was selected before the execution
+of Example2 it will be instantly unselected when the program gets ownership
+of the XA_PRIMARY Selection.
+
+The next step is to wait for a SelectionRequest event. This event will be
+the result of another application calling XConvertSelection on the Selection
+the program is currently owner. The XA_PRIMARY Selection should be then
+converted as the event instructs to another property which the application
+that requested can read. For that the function XChangeProperty is called,
+to pass the data to the Property the aplication requested. In this case
+a check is made that the event requests conversion to string, while in
+other cases no conversion is performed.
+
+Finally the event SelectionNotify has to be sent back to the application
+that requested XConvertSelection. In this event, all the fields of the
+event.xselection struct will be the same as the SelectionRequest event
+that was accepted before except from the 'type' and 'property' members.
+The 'property' member has to be either the same as the one in the
+SelectionRequest event for successful conversion of 'None' for failure.
+
+7.  Practical Considerations
+
+When writting a program that will implement the 'simple' copy-paste
+mechanism, a few things should be noted. 
+
+ - The program will be the only responsible for highlighting it's
+   selected text.
+ - The program should check for SelectionClear events which notify
+   that it is no longer owner of a Selection and therefore text should
+   be unhighlighted.
+ - The Selection* family of events can't be masked, so such events
+   can always be detected from XNextEvent.
+ - Selected text may be very big so it is a good idea to check it's
+   length first and then maybe perform an incremental reading -- the
+   XGetWindowProperty helps in that.
+ - On SelectionRequest event check should be made if the program is
+   indeed the owner of the requested Selection.
+ - Applications using Selections should be polite since there is no
+   control who really wants ownership and who is just playing!
+
+8.  The 'simpler' copy-paste
+
+Xlib provides functions that implement a very simple form of copy-paste.
+Those functions are XStoreBytes, XStoreBuffer, XFetchBytes, XFetchBuffer
+and XRotateBuffers. Even though those functions are easier to use than
+Selections, they are not as powerful. Furthermore they are not supported
+by other applications as much as Selections are.
+
+Those functions transfer text strings only from a program to some buffers
+which are Properties of the root window. Experts say they should be avoided
+unless used between applications of the same programmer and do not intend
+to copy-paste with other applications.
+
+9.  The 'complicated' copy-paste
+
+More sophisticated copy-paste features include the use of a clipboard 
+application to which our program can send data, and transfer and
+recongintion of any type of data. Both features depend on the desktop
+currently used. There is no standard protocol and most applications are
+unlikely to support it (unless written specificly for a desktop).
+
+In the case of the clipboard application, it would help in a situation
+when we wish to select some text, right click over it and choose copy from
+a pulldown menu. That can be implemented inside the application where the
+selected text is copied to a location in memory and that location will
+be returned to XGetWindowPriority requests. There are problems however
+since when another application gets ownership of the Selection our data
+can no longer be sent away.
+
+The use of a global 'Clipboard' application is a better solution but requires
+a widely accepted protocol of how programs will communicate with it.
+This 'Clipboard' application should be the constant owner of a Property, but
+not of the XA_PRIMARY Property so it will not disable the 'simple'
+copy-paste which many applications support. Furthermore, we wouldn't want
+to click on the clipboard to copy data to it, so our program should
+send some kind of signal to the clipboard that it has selected data it
+wants them copied.
+
+To send various types of data is another tricky issue which still needs
+agreement between applications. All kinds of data could be uuencoded
+and sent as strings but then the requesting application should somehow
+know that it must uudecode it. Recognising the format afterwards is
+another problem.
+
+10.  What about KDE & GNOME?
+
+KDE and GNOME are two free desktop implementations which can help in the
+solution of the 'complicated' copy-paste problem. Those projects can
+define copy-paste protocols which currently don't exist.
+
+Initial aim of this document was to present copy-paste code in a (KDE,GNOME)
+desktop without the use of (QT,GTK) but simply with Xlib functions.
+'Writting (KDE,GNOME) applications' is a misused phrase. Both project
+developers insist that 'writting (KDE,GNOME) application' means using
+strictly (QT,GTK) with desktop extentions. In that case all features
+like copy-paste, drag'n'drop will be available but then your program
+will be a '(KDE,GNOME) application' and may have a hard time running on
+other window/desktop managers. My view of 'writting (KDE,GNOME) apps'
+is that our application can 'talk' to the desktop and doesn't have to be
+a complete lookalike. People should use (QT,GTK) because it is the easiest
+way, not because it's the only way.
+
+The 'simple' Copy-Paste presented before should work in both desktops
+however.
+
+Unfortunately, i don't have either KDE nor GNOME installed. If a desktop
+is installed and the sources are there, it wouldn't require more than 1 day
+of hacking to reveal the existing protocol. If you have (KDE,GNOME)
+installed and the sources (KDE-QT,GNOME-GTK) in your (home,work), you may
+want to invite me over to search them a little bit. It doesn't really matter
+if you are on the other side of the world, I can always take my personal jet
+and be there in a couple of minutes, afterall it's the symbolic gesture that
+counts :)
+
+11.  Disclaimer and stuff
+
+The information contained in this document has derrived from personal
+experimenting and a little hacking. It is not confirmed on a 'correct'
+document. Therefore some things may not be presented in the best way.
+There may be inaccuracies and even errors. Though everything written
+is tested, it just the way i figure things work. Typically i have to
+state that this document COMES WITH NO WARRANTY, NOT EVEN FOR THE
+RELIABILLITY OF THE INFORMATION IT CONTAINS.
+
+This document is copyright 1998 by Stelios Xanthakis. You may freely
+use, reproduce even sell this document, provided that it is not modified.
+
+Many thanks go to Christopher Tronche (http://tronche.com) for the
+free Xlib documentation.
+
+If you are aware of anything I forgot to mention or know any better ways
+of implementing copy-paste, please send me a mail. Most wanted are tips
+about implementing copy-paste in KDE, GNOME desktops with Xlib functions.
