@@ -307,7 +307,7 @@ Terminal::ConvertByteInput(const char c)
 
 
 void 
-Terminal::PasteFromClipboard()
+Terminal::Paste(string s)
 {
-	cout << "Paste!" << endl;
+	SendString(s);
 }
