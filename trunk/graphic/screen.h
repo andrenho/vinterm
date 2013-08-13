@@ -8,7 +8,6 @@
 using namespace std;
 
 #include "graphic/audio.h"
-#include "graphic/clipboard.h"
 #include "graphic/font.h"
 
 class Options;
@@ -72,7 +71,6 @@ private:
 	int desktop_w, desktop_h;
 	FullScreenInfo fs_info;
 	SDL_Surface* icon;
-	Clipboard clipboard;
 };
 
 #endif

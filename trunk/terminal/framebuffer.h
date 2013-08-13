@@ -6,7 +6,7 @@
 #include <istream>
 using namespace std;
 
-#include "graphic/clipboard.h"
+#include "terminal/clipboard.h"
 #include "terminal/backtrack.h"
 #include "terminal/charattr.h"
 class Options;
@@ -51,6 +51,7 @@ public:
 			bool ignore_insert_mode=true);
 	void Put(const char c, Attribute attr, const int x, const int y,
 			bool ignore_insert_mode=true);
+	void MarkLinefeed();
 
 	// methods that move the cursor
 	bool AdvanceCursorY();
@@ -98,7 +99,6 @@ public:
 	void SetAttr(AttrType attr, bool value);
 
 	// selection
-	void setClipboard(Clipboard* c) const { this->clipboard = c; }
 	void SetStartSelection(int x, int y);
 	void SetEndSelection(int x, int y);
 	void SetNoSelection();
@@ -108,6 +108,7 @@ public:
 	int InsertMode;
 	CrsVisibility CursorVisibility;
 	Blink* blink;
+	Clipboard clipboard;
 
 private:
 	void ValidateCursorPosition();
@@ -123,7 +124,6 @@ private:
 	Backtrack* backtrack;
 	int current_backtrack;
 	Selection selection;
-	mutable Clipboard* clipboard;
 };
 
 #endif
