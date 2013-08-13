@@ -27,8 +27,7 @@ Mouse::ResetMode(int n)
 
 void 
 Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y, 
-			int button, bool shift, bool meta, bool ctrl, 
-			bool motion, Clipboard* clipboard)
+			int button, bool shift, bool meta, bool ctrl, bool motion)
 {
 	last_press_x = x;
 	last_press_y = y;
@@ -59,8 +58,8 @@ Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y
 			else
 				selection_started = false;
 		}
-		if(button == 2 && press && !motion)
-			terminal->Paste(clipboard->Read());
+		/* if(button == 2 && press && !motion)
+			terminal->Paste(clipboard->Read()); */
 	}
 }
 

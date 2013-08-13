@@ -7,7 +7,6 @@
 #include <string>
 using namespace std;
 
-class Clipboard;
 class Terminal;
 
 class Mouse
@@ -20,8 +19,7 @@ public:
 
 	void AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, 
 			int x, int y, int button, 
-			bool shift, bool meta, bool ctrl, bool motion=false,
-			Clipboard* clipboard=nullptr);
+			bool shift, bool meta, bool ctrl, bool motion=false);
 	void Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button);
 
 	string Translate(int ch, deque<uint32_t>& keyQueue);

@@ -529,12 +529,15 @@ Framebuffer::SetEndSelection(int x, int y)
 
 	if(selection.Active())
 	{
-		cout << "Selection from " << selection.start << " to " << 
-			selection.end << endl;
 		int st = min(selection.start, min(old_start, min(selection.end, old_end)));
 		int en = max(selection.start, max(old_start, max(selection.end, old_end)));
+		string selection;
 		for(int i=st; i<=en; ++i)
+		{
+			selection += chars[i].Ch;
 			dirty->insert(i);
+		}
+		clipboard->Store(selection);
 	}
 }
 
