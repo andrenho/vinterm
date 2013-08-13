@@ -12,13 +12,13 @@ SRC = main.cc			\
       options.cc		\
       terminal/blink.cc		\
       terminal/backtrack.cc     \
+      terminal/clipboard.cc	\
       terminal/framebuffer.cc	\
       terminal/mouse.cc         \
       terminal/pty.cc		\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
       graphic/audio.cc		\
-      graphic/clipboard.cc	\
       graphic/chars.cc		\
       graphic/font.cc		\
       graphic/screen.cc		\

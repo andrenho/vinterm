@@ -7,6 +7,7 @@ using namespace std;
 #include "terminal/pty.h"
 #include "terminal/framebuffer.h"
 #include "terminal/vinterm.h"
+#include "terminal/clipboard.h"
 
 int main(int argc, char** argv)
 {
@@ -37,6 +38,9 @@ int main(int argc, char** argv)
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */
 	terminal.SetEncoding(screen.FontEncoding());
+
+	/* Initialize clipboard. */
+	fb.clipboard.ConnectToWM();
 
 	/* The main loop is very simple. It executes these steps continually:
 	 *

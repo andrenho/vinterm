@@ -66,10 +66,6 @@ Screen::Screen(Options const& options, Framebuffer const& fb, Mouse& mouse)
 
 	// hide cursor
 	SDL_ShowCursor(SDL_DISABLE);
-
-	// setup clipboard
-	fb.setClipboard(&clipboard);
-	clipboard.GetWMInfo();
 }
 
 
@@ -185,7 +181,7 @@ Screen::Update()
 		SDL_Delay(options.flashing_speed);
 
 	// respond to clipboard requests
-	clipboard.Respond();
+	fb.clipboard.Respond();
 }
 
 
@@ -331,7 +327,7 @@ Screen::DoEvents()
 			if(!mouse.Captured() && e.button.button == 2  // paste
 					&& e.type == SDL_MOUSEBUTTONDOWN) 
 			{
-				for(char c : clipboard.Read())
+				for(char c : fb.clipboard.Read())
 					keyQueue.push_back(c);
 			}
 			else   // send mouse event to application

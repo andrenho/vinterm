@@ -25,7 +25,8 @@ public:
 typedef struct Char {
 	char Ch;
 	Attribute Attr;
-	Char() : Ch(' ') { }
+	Char() : Ch(' '), Linefeed(false) { }
+	bool Linefeed : 1;
 	bool operator!=(const Char& c) { return Ch != c.Ch || Attr != c.Attr; }
 } Char;
 

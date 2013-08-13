@@ -191,6 +191,12 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 	dirty->insert(pos);
 }
 
+void
+Framebuffer::MarkLinefeed()
+{
+	chars[cursor_x+(cursor_y*W())].Linefeed = true;
+}
+
 
 bool
 Framebuffer::AdvanceCursorY()
@@ -531,13 +537,24 @@ Framebuffer::SetEndSelection(int x, int y)
 	{
 		int st = min(selection.start, min(old_start, min(selection.end, old_end)));
 		int en = max(selection.start, max(old_start, max(selection.end, old_end)));
+
+		// update screen
+		for(int i=st; i<=en; ++i)
+			dirty->insert(i);
+
+		// add to clipboard
 		string selection;
 		for(int i=st; i<=en; ++i)
 		{
 			selection += chars[i].Ch;
-			dirty->insert(i);
+			if(chars[i].Linefeed)
+			{
+				selection += "\n";
+				int y = i / W();
+				i = ((y+1) * W()) - 1;
+			}
 		}
-		clipboard->Store(selection);
+		clipboard.Store(selection);
 	}
 }
 
