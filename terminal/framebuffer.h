@@ -6,10 +6,12 @@
 #include <istream>
 using namespace std;
 
+#include "graphic/clipboard.h"
 #include "terminal/backtrack.h"
 #include "terminal/charattr.h"
 class Options;
 class Blink;
+class Clipboard;
 
 typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
 typedef enum { 
@@ -96,6 +98,7 @@ public:
 	void SetAttr(AttrType attr, bool value);
 
 	// selection
+	void setClipboard(Clipboard* c) const { this->clipboard = c; }
 	void SetStartSelection(int x, int y);
 	void SetEndSelection(int x, int y);
 	void SetNoSelection();
@@ -120,6 +123,7 @@ private:
 	Backtrack* backtrack;
 	int current_backtrack;
 	Selection selection;
+	mutable Clipboard* clipboard;
 };
 
 #endif

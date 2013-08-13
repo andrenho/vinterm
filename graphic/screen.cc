@@ -58,7 +58,7 @@ Screen::Screen(Options const& options, Framebuffer const& fb, Mouse& mouse)
 	// setup palette
 	initializePalette(screen, options);
 
-	// resize
+	// schedule resize
 	keyQueue.push_back(RESIZE);
 	keyQueue.push_back(w);
 	keyQueue.push_back(h);
@@ -66,6 +66,10 @@ Screen::Screen(Options const& options, Framebuffer const& fb, Mouse& mouse)
 
 	// hide cursor
 	SDL_ShowCursor(SDL_DISABLE);
+
+	// setup clipboard
+	fb.setClipboard(&clipboard);
+	clipboard.GetWMInfo();
 }
 
 
@@ -179,6 +183,9 @@ Screen::Update()
 	// holds for flashing
 	if(fb.Flashing())
 		SDL_Delay(options.flashing_speed);
+
+	// respond to clipboard requests
+	clipboard.Respond();
 }
 
 
@@ -318,20 +325,28 @@ Screen::DoEvents()
 			keyQueue.push_back(0);
 			break;
 
-		case SDL_MOUSEBUTTONUP:
 		case SDL_MOUSEBUTTONDOWN:
+		case SDL_MOUSEBUTTONUP:
 			SDL_ShowCursor(SDL_ENABLE);
-			CharPosition(e.button.x, e.button.y, x, y);
-			if(x >= 0 && y >= 0)
+			if(!mouse.Captured() && e.button.button == 2  // paste
+					&& e.type == SDL_MOUSEBUTTONDOWN) 
 			{
-				SDLMod mod = SDL_GetModState();
-				mouse.AddButtonPressToQueue(keyQueue,
-						e.type == SDL_MOUSEBUTTONDOWN,
-						x, y, e.button.button,
-						mod & KMOD_SHIFT,
-						mod & KMOD_ALT,
-						mod & KMOD_CTRL, false,
-						&clipboard);
+				for(char c : clipboard.Read())
+					keyQueue.push_back(c);
+			}
+			else   // send mouse event to application
+			{
+				CharPosition(e.button.x, e.button.y, x, y);
+				if(x >= 0 && y >= 0)
+				{
+					SDLMod mod = SDL_GetModState();
+					mouse.AddButtonPressToQueue(keyQueue,
+							e.type == SDL_MOUSEBUTTONDOWN,
+							x, y, e.button.button,
+							mod & KMOD_SHIFT,
+							mod & KMOD_ALT,
+							mod & KMOD_CTRL, false);
+				}
 			}
 			break;
 

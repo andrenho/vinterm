@@ -139,47 +139,47 @@ Terminal::Resize(int new_w, int new_h)
 void 
 Terminal::Output(Screen& screen)
 {
-	if(screen.keyQueue.empty())
-		return;
-
-	// write data to the PTY
-	int w, h, fs, ts_w, ts_h;
-	string s;
-	uint32_t ch = screen.keyQueue[0];
-	screen.keyQueue.pop_front();
-
-	switch(ch)
+	while(!screen.keyQueue.empty())
 	{
-	case 0: // discard
-		break;
-	case SH_PAGE_UP:
-		fb.BackTrack();
-		break;
-	case SH_PAGE_DOWN:
-		fb.ForeTrack();
-		break;
-	case RESIZE:
-		w = screen.keyQueue[0];
+		// write data to the PTY
+		int w, h, fs, ts_w, ts_h;
+		string s;
+		uint32_t ch = screen.keyQueue[0];
 		screen.keyQueue.pop_front();
-		h = screen.keyQueue[0];
-		screen.keyQueue.pop_front();
-		fs = screen.keyQueue[0];
-		screen.keyQueue.pop_front();
-		screen.Resize(w, h, fs, ts_w, ts_h);
-		Resize(ts_w, ts_h);
-		break;
-	case MPRESS:
-	case MRELEASE:
-	case MDRAG:
-		s = mouse.Translate(ch, screen.keyQueue);
-		if(!s.empty())
-			SendString(s);
-		break;
-	case QUIT:
-		active = false;
-		break;
-	default:
-		KeyPressed(ch);
+
+		switch(ch)
+		{
+		case 0: // discard
+			break;
+		case SH_PAGE_UP:
+			fb.BackTrack();
+			break;
+		case SH_PAGE_DOWN:
+			fb.ForeTrack();
+			break;
+		case RESIZE:
+			w = screen.keyQueue[0];
+			screen.keyQueue.pop_front();
+			h = screen.keyQueue[0];
+			screen.keyQueue.pop_front();
+			fs = screen.keyQueue[0];
+			screen.keyQueue.pop_front();
+			screen.Resize(w, h, fs, ts_w, ts_h);
+			Resize(ts_w, ts_h);
+			break;
+		case MPRESS:
+		case MRELEASE:
+		case MDRAG:
+			s = mouse.Translate(ch, screen.keyQueue);
+			if(!s.empty())
+				SendString(s);
+			break;
+		case QUIT:
+			active = false;
+			break;
+		default:
+			KeyPressed(ch);
+		}
 	}
 }
 
@@ -303,11 +303,4 @@ Terminal::ConvertByteInput(const char c)
 			return (char)254; // complete but invalid sequence
 		}
 	}
-}
-
-
-void 
-Terminal::Paste(string s)
-{
-	SendString(s);
 }
