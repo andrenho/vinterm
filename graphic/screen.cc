@@ -134,6 +134,9 @@ Screen::Update()
 		if(fb.IsSelected(x, y))
 			attr.Reverse = !attr.Reverse;
 
+		if(ch.Linefeed)
+			attr.Reverse = !attr.Reverse;
+
 		SDL_Surface* sf = chars->Char(c, attr, x+y);
 		if(!sf)
 			abort();

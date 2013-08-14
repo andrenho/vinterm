@@ -50,7 +50,7 @@ public:
 	void Put(const char c, const int x, const int y, 
 			bool ignore_insert_mode=true);
 	void Put(const char c, Attribute attr, const int x, const int y,
-			bool ignore_insert_mode=true);
+			bool ignore_insert_mode=true, bool linefeed=false);
 	void MarkLinefeed();
 
 	// methods that move the cursor
