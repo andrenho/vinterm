@@ -168,7 +168,7 @@ Framebuffer::Put(const char c, const int x, const int y,
 
 void 
 Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
-			bool ignore_insert_mode)
+			bool ignore_insert_mode, bool linefeed)
 {
 	// restart selection
 	SetNoSelection();
@@ -186,6 +186,7 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 		abort();
 	chars[pos].Ch = c;
 	chars[pos].Attr = attr;
+	chars[pos].Linefeed = linefeed;
 
 	// add to list of positions to be updated on the screen
 	dirty->insert(pos);
@@ -194,6 +195,7 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 void
 Framebuffer::MarkLinefeed()
 {
+	//cout << cursor_x << " " << cursor_y << endl;
 	chars[cursor_x+(cursor_y*W())].Linefeed = true;
 }
 
@@ -306,7 +308,7 @@ Framebuffer::ScrollUp()
 	// move everything up
 	for(int y(scroll_top+1); y<=scroll_bottom; y++)
 		for(int x(0); x<w; x++)
-			Put(Ch(x,y).Ch, Ch(x,y).Attr, x, y-1);
+			Put(Ch(x,y).Ch, Ch(x,y).Attr, x, y-1, Ch(x,y).Linefeed);
 
 	// clear last line
 	for(int x(0); x<w; x++)
