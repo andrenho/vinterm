@@ -238,6 +238,6 @@ vinterm| vintage terminal,
 #	getm=\E[U,
 
 # status bar (title)
-	tsl=\E]0;,
-	fsl=^G,
+	tsl=\E[E,
+	fsl=\E[G,
 	hs,
