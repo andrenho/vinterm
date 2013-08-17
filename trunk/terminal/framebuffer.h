@@ -122,7 +122,7 @@ private:
 	bool flashing;
 	Backtrack* backtrack;
 	int current_backtrack;
-	int screen_advances;
+	int screen_advances; // screen advance (new line at bottom) counter
 	Selection selection;
 };
 
