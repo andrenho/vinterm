@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="128"
+   height="112"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="icon_32.png"
+   inkscape:export-filename="/home/andre/projects/vinterm/data/icon_32.png"
+   inkscape:export-xdpi="22.5"
+   inkscape:export-ydpi="22.5">
+  <metadata
+     id="metadata3174">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1916"
+     inkscape:window-height="1041"
+     id="namedview3172"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="1.9107143"
+     inkscape:cx="-67.962616"
+     inkscape:cy="-2.1460334"
+     inkscape:window-x="0"
+     inkscape:window-y="18"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2">
+    <sodipodi:guide
+       orientation="0,1"
+       position="28.785047,76.803738"
+       id="guide4061" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="34.280374,67.514019"
+       id="guide4063" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="41.738318,57.831776"
+       id="guide4065" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="52.598131,25.383178"
+       id="guide4067" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="20.542056,28.523364"
+       id="guide4069" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="33.88785,35.196262"
+       id="guide4071" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="40.560748,40.82243"
+       id="guide4073" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="55.476636,37.682243"
+       id="guide4075" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="62.542056,36.766355"
+       id="guide4077" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="80.336449,34.803738"
+       id="guide4079" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="87.401869,35.588785"
+       id="guide4081" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="104.54206,35.196262"
+       id="guide4083" />
+  </sodipodi:namedview>
+  <defs
+     id="defs6">
+    <linearGradient
+       id="linearGradient3624">
+      <stop
+         id="stop3626"
+         style="stop-color:#b7b4a7;stop-opacity:1"
+         offset="0" />
+      <stop
+         id="stop3628"
+         style="stop-color:#e8e8e4;stop-opacity:1"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       x1="61.917576"
+       y1="104.45963"
+       x2="61.917576"
+       y2="7.4596353"
+       id="linearGradient4331"
+       xlink:href="#linearGradient3624"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(2.082426,0.040364)"
+       spreadMethod="pad" />
+    <filter
+       x="-0.5"
+       y="-0.5"
+       width="2"
+       height="2"
+       color-interpolation-filters="sRGB"
+       id="filter3722">
+      <feGaussianBlur
+         stdDeviation="1.5"
+         result="result6"
+         id="feGaussianBlur3724" />
+      <feComposite
+         in2="result6"
+         operator="atop"
+         in="SourceGraphic"
+         result="result8"
+         id="feComposite3726" />
+      <feComposite
+         in2="SourceAlpha"
+         operator="atop"
+         in="result8"
+         result="fbSourceGraphic"
+         id="feComposite3728" />
+      <feColorMatrix
+         id="feColorMatrix3856"
+         values="0 0 0 -1 0 0 0 0 -1 0 0 0 0 -1 0 0 0 0 1 0"
+         in="fbSourceGraphic"
+         result="fbSourceGraphicAlpha" />
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="1.500000"
+         in="fbSourceGraphicAlpha"
+         id="feGaussianBlur3858" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.500000 0 "
+         type="matrix"
+         result="bluralpha"
+         id="feColorMatrix3860" />
+      <feOffset
+         result="offsetBlur"
+         dy="0.50000"
+         dx="0.50000"
+         in="bluralpha"
+         id="feOffset3862" />
+      <feMerge
+         id="feMerge3864">
+        <feMergeNode
+           in="offsetBlur"
+           id="feMergeNode3866" />
+        <feMergeNode
+           in="fbSourceGraphic"
+           id="feMergeNode3868" />
+      </feMerge>
+    </filter>
+    <filter
+       x="-0.5"
+       y="-2"
+       width="2"
+       height="5"
+       color-interpolation-filters="sRGB"
+       id="oglow">
+      <feGaussianBlur
+         result="blur"
+         stdDeviation="1.000000"
+         in="SourceAlpha"
+         id="feGaussianBlur4224" />
+      <feColorMatrix
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 0.250000 0 "
+         type="matrix"
+         result="bluralpha"
+         id="feColorMatrix4226" />
+      <feOffset
+         result="offsetBlur"
+         dy="0.000000"
+         dx="0.000000"
+         in="bluralpha"
+         id="feOffset4228" />
+      <feMerge
+         id="feMerge4230">
+        <feMergeNode
+           in="offsetBlur"
+           id="feMergeNode4232" />
+        <feMergeNode
+           in="SourceGraphic"
+           id="feMergeNode4234" />
+      </feMerge>
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3984"
+       x="-0.12318564"
+       width="1.2463713"
+       y="-0.72503549"
+       height="2.450071">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.84587474"
+         id="feGaussianBlur3986" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4921"
+       x="-0.02122401"
+       width="1.042448"
+       y="-0.60615878"
+       height="2.2123176">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.75365741"
+         id="feGaussianBlur4923" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4925"
+       x="-0.049326071"
+       width="1.0986521"
+       y="-0.45584118"
+       height="1.9116824">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.75365741"
+         id="feGaussianBlur4927" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter4929">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.75365741"
+         id="feGaussianBlur4931" />
+    </filter>
+  </defs>
+  <rect
+     width="120"
+     height="96"
+     ry="8"
+     x="4"
+     y="8"
+     id="outer"
+     style="fill:url(#linearGradient4331);fill-opacity:1;stroke:#2e2222;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3722)" />
+  <rect
+     width="100"
+     height="76"
+     ry="1"
+     x="14"
+     y="18"
+     id="term"
+     style="fill:#181818;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  <path
+     d="m 113.55042,44 c 0,0 -14.20461,-2.109335 -25.54706,-2.109335 -37.425792,0 -73.52844,9.77847 -73.52844,10.738435 l 0,-34.102922 99.0755,0 0,25.473822 z"
+     id="termhi"
+     style="fill:#282828;fill-opacity:1;stroke:none" />
+  <text
+     xml:space="preserve"
+     style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis"
+     x="43.308411"
+     y="39.644859"
+     id="text4777"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4779"
+       x="43.308411"
+       y="39.644859" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:8px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis"
+     x="19.495327"
+     y="24.467291"
+     id="text4781"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4783"
+       x="19.495327"
+       y="24.467291" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:6px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis"
+     x="19.364487"
+     y="30.485981"
+     id="text4785"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4787"
+       x="19.364487"
+       y="30.485981" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:4px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#14ff13;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis;filter:url(#filter4925)"
+     x="19.495327"
+     y="27.607477"
+     id="text4789"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4791"
+       x="19.495327"
+       y="27.607477"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1">~/projects/vinterm$ ls</tspan><tspan
+       sodipodi:role="line"
+       x="19.495327"
+       y="32.607475"
+       id="tspan4793"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:4px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#14ff13;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis;filter:url(#filter4929)"
+     x="19.88785"
+     y="33.364487"
+     id="text4817"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4819"
+       x="19.88785"
+       y="33.364487"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1">AUTHORS   findleaks*   LICENSE   options.cc   terminal/</tspan><tspan
+       sodipodi:role="line"
+       x="19.88785"
+       y="38.364487"
+       id="tspan4821"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1">config.mk   gensuppr*  main.c       terminal.h   test/</tspan><tspan
+       sodipodi:role="line"
+       x="19.88785"
+       y="43.364487"
+       id="tspan4823"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1">extra/          INSTALL      Makefile</tspan><tspan
+       sodipodi:role="line"
+       x="19.88785"
+       y="48.364487"
+       id="tspan4827"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1" /><tspan
+       sodipodi:role="line"
+       x="19.88785"
+       y="53.364487"
+       id="tspan4831"
+       style="font-weight:bold;-inkscape-font-specification:Terminal Dosis Bold;fill:#14ff13;fill-opacity:1">~/projects/vinterm$ _</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:4px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#14ff13;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis;filter:url(#filter4921)"
+     x="19.207336"
+     y="86.616821"
+     id="text4789-0"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       x="19.207336"
+       y="86.616821"
+       id="tspan4793-6"
+       style="font-weight:bold;fill:#14ff13;fill-opacity:1;-inkscape-font-specification:Terminal Dosis Bold">COLOR        LIST        CLOAD        FILES        RUN         EXIT</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:4px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Terminal Dosis;-inkscape-font-specification:Terminal Dosis"
+     x="92.504669"
+     y="85.308411"
+     id="text4881"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan4883"
+       x="92.504669"
+       y="85.308411">        </tspan></text>
+</svg>
