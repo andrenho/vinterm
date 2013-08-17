@@ -85,6 +85,8 @@ install: all
 	@echo compiling terminfo data
 	@tic -s data/vinterm.info
 	@echo installing icons
+	@cp -f icon/icon_16.png  /usr/share/icons/hicolor/16x16/apps/vinterm.png
+	@cp -f icon/icon_22.png  /usr/share/icons/hicolor/22x22/apps/vinterm.png
 	@cp -f icon/icon_32.png  /usr/share/icons/hicolor/32x32/apps/vinterm.png
 	@cp -f icon/icon_48.png  /usr/share/icons/hicolor/48x48/apps/vinterm.png
 	@cp -f icon/icon_64.png  /usr/share/icons/hicolor/64x64/apps/vinterm.png
@@ -102,6 +104,8 @@ uninstall:
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/vinterm.1
 	@echo removing icons
+	@rm -f /usr/share/icons/hicolor/16x16/apps/vinterm.png
+	@rm -f /usr/share/icons/hicolor/22x22/apps/vinterm.png
 	@rm -f /usr/share/icons/hicolor/32x32/apps/vinterm.png
 	@rm -f /usr/share/icons/hicolor/48x48/apps/vinterm.png
 	@rm -f /usr/share/icons/hicolor/64x64/apps/vinterm.png
