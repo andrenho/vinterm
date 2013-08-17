@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Vinterm
+GenericName=Terminal
+Comment=Vintage Terminal
+Exec=vinterm %f
+Icon=vinterm
+Icon=/usr/share/icons/hicolor/scalable/apps/vinterm.svg
+Terminal=false
+Type=Application
+Categories=System;
+X-Desktop-File-Install-Version=0.21
