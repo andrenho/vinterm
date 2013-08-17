@@ -236,3 +236,8 @@ vinterm| vintage terminal,
 #	minfo=\E[R,
 #	reqmp=\E[T,
 #	getm=\E[U,
+
+# status bar (title)
+	tsl=\E]0;,
+	fsl=^G,
+	hs,
