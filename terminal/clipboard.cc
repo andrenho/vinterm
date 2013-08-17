@@ -34,7 +34,9 @@ Clipboard::Read() const
 	{
 		XFlush(dpy);
 		Window Sown = XGetSelectionOwner(dpy, XA_PRIMARY);
-		if(Sown != None) 
+		if(Sown == window)
+			return str_clipboard;
+		else if(Sown != None) 
 		{
 			Atom type;
 			unsigned long len, bytes_left, dummy;

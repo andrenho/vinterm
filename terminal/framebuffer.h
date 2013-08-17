@@ -50,8 +50,7 @@ public:
 	void Put(const char c, const int x, const int y, 
 			bool ignore_insert_mode=true);
 	void Put(const char c, Attribute attr, const int x, const int y,
-			bool ignore_insert_mode=true, bool linefeed=false);
-	void MarkLinefeed();
+			bool ignore_insert_mode=true);
 
 	// methods that move the cursor
 	bool AdvanceCursorY();
@@ -123,6 +122,7 @@ private:
 	bool flashing;
 	Backtrack* backtrack;
 	int current_backtrack;
+	int screen_advances;
 	Selection selection;
 };
 

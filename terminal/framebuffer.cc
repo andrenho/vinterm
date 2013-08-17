@@ -13,7 +13,8 @@ Framebuffer::Framebuffer(Options const& options)
 	  current_attr(Attribute()), w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
 	  saved_x(0), saved_y(0), flashing(false), 
-	  backtrack(new Backtrack(*this, 5)), current_backtrack(0)
+	  backtrack(new Backtrack(*this, 5)), current_backtrack(0),
+	  screen_advances(0)
 {
 	chars.insert(chars.begin(), w*h, Char());
 	for(int x=0; x<w; x+=8)
@@ -148,6 +149,7 @@ Framebuffer::Put(const char c, bool ignore_insert_mode)
 	if(cursor_x >= w)
 	{
 		cursor_x = 0;
+		cout << "non-line-break in line " << cursor_y << endl;
 		AdvanceCursorY();
 	}
 	ValidateCursorPosition();
@@ -168,7 +170,7 @@ Framebuffer::Put(const char c, const int x, const int y,
 
 void 
 Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
-			bool ignore_insert_mode, bool linefeed)
+			bool ignore_insert_mode)
 {
 	// restart selection
 	SetNoSelection();
@@ -186,17 +188,9 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 		abort();
 	chars[pos].Ch = c;
 	chars[pos].Attr = attr;
-	chars[pos].Linefeed = linefeed;
 
 	// add to list of positions to be updated on the screen
 	dirty->insert(pos);
-}
-
-void
-Framebuffer::MarkLinefeed()
-{
-	//cout << cursor_x << " " << cursor_y << endl;
-	chars[cursor_x+(cursor_y*W())].Linefeed = true;
 }
 
 
@@ -212,7 +206,11 @@ Framebuffer::AdvanceCursorY()
 	{
 		ScrollUp();
 		--cursor_y;
-		update_scr = true;
+
+		// verify if needs to update screen
+		screen_advances++;
+		if(screen_advances % H() == 0)
+			update_scr = true;
 	}
 	ValidateCursorPosition();
 
@@ -308,7 +306,7 @@ Framebuffer::ScrollUp()
 	// move everything up
 	for(int y(scroll_top+1); y<=scroll_bottom; y++)
 		for(int x(0); x<w; x++)
-			Put(Ch(x,y).Ch, Ch(x,y).Attr, x, y-1, Ch(x,y).Linefeed);
+			Put(Ch(x,y).Ch, Ch(x,y).Attr, x, y-1);
 
 	// clear last line
 	for(int x(0); x<w; x++)
@@ -548,12 +546,15 @@ Framebuffer::SetEndSelection(int x, int y)
 		string selection;
 		for(int i=st; i<=en; ++i)
 		{
+			// add to selection
 			selection += chars[i].Ch;
-			if(chars[i].Linefeed)
+
+			// check for EOL
+			if(i % W() == (W()-1))
 			{
+				while(selection[selection.size()-1] == ' ')
+					selection.pop_back();
 				selection += "\n";
-				int y = i / W();
-				i = ((y+1) * W()) - 1;
 			}
 		}
 		clipboard.Store(selection);
