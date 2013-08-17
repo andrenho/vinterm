@@ -32,7 +32,7 @@ Screen::Screen(Options const& options, Framebuffer const& fb, Mouse& mouse)
 	desktop_h = vi->current_h;
 
 	// load icon
-	icon = SDL_LoadBMP(DATADIR "/icon.bmp");
+	icon = SDL_LoadBMP(DATADIR "/icon_16.bmp");
 	if(icon)
 	{
 		Uint32 colorkey = SDL_MapRGB(icon->format, 255, 0, 255);

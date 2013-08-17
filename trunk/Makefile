@@ -28,7 +28,10 @@ SRC = main.cc			\
 OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL
-DATA = data/vinterm_profile data/vinterm.info data/850.bmp data/icon.bmp
+ICONS = icon/icon_16.png icon/icon_32.png icon/icon_64.png \
+	icon/icon_128.png icon/icon.svg
+DATA = data/vinterm_profile data/vinterm.info data/850.bmp data/vinterm.desktop \
+       data/icon_16.bmp
 
 all: options vinterm
 
@@ -58,7 +61,7 @@ clean:
 dist: clean
 	@echo creating dist tarball
 	@mkdir -p vinterm-${VERSION}
-	@cp --parents config.mk libraries.mk vinterm.1 Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} vinterm-${VERSION}
+	@cp --parents config.mk libraries.mk vinterm.1 Makefile ${DIST} ${SRC} ${HEADERS} ${DATA} ${ICONS} vinterm-${VERSION}
 	@tar -cf vinterm-${VERSION}.tar vinterm-${VERSION}
 	@gzip vinterm-${VERSION}.tar
 	@rm -rf vinterm-${VERSION}
@@ -81,6 +84,13 @@ install: all
 	@chmod 644 ${DESTDIR}${MANPREFIX}/man1/vinterm.1
 	@echo compiling terminfo data
 	@tic -s data/vinterm.info
+	@echo installing icons
+	@cp -f icon/icon_32.png  /usr/share/icons/hicolor/32x32/apps/vinterm.png
+	@cp -f icon/icon_48.png  /usr/share/icons/hicolor/48x48/apps/vinterm.png
+	@cp -f icon/icon_64.png  /usr/share/icons/hicolor/64x64/apps/vinterm.png
+	@cp -f icon/icon_128.png /usr/share/icons/hicolor/128x128/apps/vinterm.png
+	@cp -f icon/icon.svg     /usr/share/icons/hicolor/scalable/apps/vinterm.svg
+	@cp -f data/vinterm.desktop /usr/share/applications
 
 # TODO - check data
 uninstall:
@@ -91,5 +101,12 @@ uninstall:
 	@rmdir ${DESTDIR}${VINTERMPREFIX}
 	@echo removing manual page from ${DESTDIR}${MANPREFIX}/man1
 	@rm -f ${DESTDIR}${MANPREFIX}/man1/vinterm.1
+	@echo removing icons
+	@rm -f /usr/share/icons/hicolor/32x32/apps/vinterm.png
+	@rm -f /usr/share/icons/hicolor/48x48/apps/vinterm.png
+	@rm -f /usr/share/icons/hicolor/64x64/apps/vinterm.png
+	@rm -f /usr/share/icons/hicolor/128x128/apps/vinterm.png
+	@rm -f /usr/share/icons/hicolor/scalable/apps/vinterm.svg
+	@rm -f /usr/share/applications/vinterm.desktop
 
 .PHONY: all options clean dist install uninstall
