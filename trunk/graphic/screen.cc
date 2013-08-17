@@ -182,6 +182,13 @@ Screen::Update()
 
 	// respond to clipboard requests
 	fb.clipboard.Respond();
+
+	// check the window title
+	char *title, *icon;
+	SDL_WM_GetCaption(&title, &icon);
+	if(strcmp(title, fb.terminalTitle().c_str()) != 0)
+		SDL_WM_SetCaption(fb.terminalTitle().c_str(),
+				  fb.terminalTitle().c_str());
 }
 
 

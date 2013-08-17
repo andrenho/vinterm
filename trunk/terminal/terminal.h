@@ -38,6 +38,7 @@ protected:
 	PTY& pty;
 	Options const& options;
 	bool alternateCharset;
+	bool readingStatusLine;
 
 private:
 	bool InputChar(const char c);

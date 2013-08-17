@@ -172,6 +172,13 @@ Vinterm::ExecuteEscapeSequence(string const& sequence)
 	case 'l': // reset mode
 		mouse.ResetMode(p[0]);
 		break;
+	case 'E': // start reading window name
+		readingStatusLine = true;
+		fb.setTerminalTitle("");
+		break;
+	case 'G': // stop reading window name
+		readingStatusLine = false;
+		break;
 	default:
 		Terminal::ExecuteEscapeSequence(sequence);
 	}

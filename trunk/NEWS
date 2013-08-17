@@ -3,6 +3,7 @@ Version 0.5.0
   - Mouse support for applications
   - Copy/paste mouse support for terminal (still a little buggy)
   - Faster screen update on long text output
+  - Window title update upon request from applications
 
 Version 0.4.1
 -------------

@@ -11,7 +11,7 @@ using namespace std;
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 	: fb(fb), pty(pty), options(options), alternateCharset(false),
-	  audio(new Audio(options)), active(true), 
+	  readingStatusLine(false), audio(new Audio(options)), active(true), 
 	  escape_mode(false), encoding(""), inbuf((char*)calloc(4, 1)), 
 	  original_inbuf(inbuf), inbuf_pos(0)
 {
@@ -100,8 +100,16 @@ Terminal::InputChar(const char c)
 		else
 		{
 			cv = ConvertByteInput(c);
-			if(cv)
-				fb.Put(cv, false);
+			if(cv) 
+			{
+				if(readingStatusLine)
+				{
+					string s = fb.terminalTitle();
+					fb.setTerminalTitle(s + cv);
+				}
+				else
+					fb.Put(cv, false);
+			}
 		}
 	}
 

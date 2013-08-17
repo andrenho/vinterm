@@ -15,3 +15,6 @@ export NETHACKOPTIONS="nocolor"
 # other aliases
 alias ls='ls --color -F'
 alias vim='vim -c "execute \"set <PageUp>=\\e[5;*~\" | execute \"set <PageDown>=\\e[6;*~\" | execute \"set ttymouse=xterm2\""'
+
+# window title
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033[E%s@%s:%s\033[G" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
