@@ -83,7 +83,6 @@ Terminal::InputChar(const char c)
 	case '\n': // new line
 		return fb.AdvanceCursorY();
 	case '\r': // carriage return
-		fb.MarkLinefeed();
 		fb.CarriageReturn();
 		break;
 	case '\t': // tab
