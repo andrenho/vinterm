@@ -19,7 +19,7 @@ Options::Options(const int argc, char** const argv)
 	  background_color(SDL_Color { 30, 30, 30 }),
 	  bright_color(SDL_Color { 140, 255, 190 }),
 	  blink_speed(500), flashing_speed(100),
-	  audio_active(true)
+	  audio_disabled(false)
 {
 	ReadConfigFile();
 	ParseArguments(argc, argv);
@@ -65,6 +65,7 @@ Options::ReadConfigFile()
 
 	// read data
 	cfg.lookupValue("scale", scale);
+	cfg.lookupValue("no_audio", audio_disabled);
 }
 
 
@@ -83,6 +84,9 @@ Options::WriteConfigFile()
 
 	fprintf(f, "# zoom level of terminal\n");
 	fprintf(f, "scale = %d\n", scale);
+	fprintf(f, "\n");
+	fprintf(f, "# disable audible beep\n");
+	fprintf(f, "no_audio = %s\n", audio_disabled ? "true" : "false");
 
 	fclose(f);
 }
@@ -130,7 +134,7 @@ Options::ParseArguments(int argc, char* argv[])
 			}
 			break;
 		case 'a':
-			audio_active = false;
+			audio_disabled = true;
 			break;
 		case '@':
 #ifdef DEBUG

@@ -15,7 +15,7 @@ using namespace std;
 Audio::Audio(Options const& options)
 	: active(false)
 {
-	if(!options.audio_active)
+	if(options.audio_disabled)
 		return;
 #ifdef AO
 	int default_driver;

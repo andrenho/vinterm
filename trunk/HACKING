@@ -40,7 +40,6 @@ Terminal/
   PTY............. Connect to the PTY (virtual terminal on the OS)
   Terminal........ Translate the escape sequences and special chars
     Vinterm....... Use custom escape codes
-  Translator...... Translates between codepages
 
 Filters/
   Filter.......... Each one of the filters that'll be applied to the image
