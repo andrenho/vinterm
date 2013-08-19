@@ -1,14 +1,14 @@
 # system libraries
-SDL    = $(shell sdl-config --cflags > /dev/null 2> /dev/null; echo $$?)
+SDL2   = $(shell sdl2-config --cflags > /dev/null 2> /dev/null; echo $$?)
 AO     = $(shell pkg-config --cflags ao > /dev/null 2> /dev/null; echo $$?)
 CONFIG = $(shell pkg-config --cflags libconfig++ > /dev/null 2> /dev/null; echo $$?)
 
 # SDL libraries
-ifeq (${SDL},0)
-  CXXFLAGS += `sdl-config --cflags` -D_SDL
-  LDFLAGS += `sdl-config --libs`
+ifeq (${SDL2},0)
+  CXXFLAGS += `sdl2-config --cflags` -D_SDL2
+  LDFLAGS += `sdl2-config --libs`
 else
-  $(error The SDL library was not detected in the system. Please install it and try again)
+  $(error The SDL2 library was not detected in the system. Please install it and try again)
 endif
 
 # AO library
@@ -18,9 +18,6 @@ ifeq (${AO},0)
 else
   $(warning IMPORTANT: The AO library was not detected in the system. The installation will continue but the audible beep in the terminal will not be avaliable)
 endif
-
-# X11 libraries
-LDFLAGS += -lX11
 
 # libconfig++ library
 ifeq (${CONFIG},0)
