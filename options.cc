@@ -1,5 +1,7 @@
 #include "options.h"
 
+#include <cstring>
+
 #include <getopt.h>
 #include <locale.h>
 #include <langinfo.h>
@@ -9,21 +11,14 @@ using namespace std;
 #include <libconfig.h++>
 using namespace libconfig;
 
-#include "filters/filter_inexact.h"
-#include "filters/filter_scanline.h"
-#include "filters/filter_bright.h"
-
 Options::Options(const int argc, char** const argv) 
 	: scale(1), w(80), h(25), debug_terminal(false), 
 	  border_x(30), border_y(40),
-	  background_color(SDL_Color { 30, 30, 30 }),
-	  bright_color(SDL_Color { 140, 255, 190 }),
 	  blink_speed(500), flashing_speed(100),
 	  audio_disabled(false)
 {
 	ReadConfigFile();
 	ParseArguments(argc, argv);
-	AddFilters();
 
 	// find out current encoding
 	char* loc = setlocale(LC_ALL, "");
@@ -169,30 +164,8 @@ Options::ParseArguments(int argc, char* argv[])
 }
 
 
-void
-Options::AddFilters()
-{
-	if(scale == 1)
-	{
-		prefilters.push_back(new FilterBright(3,10));
-		prefilters.push_back(new FilterScanline(0.9));
-		prefilters.push_back(new FilterInexact(15));
-	}
-	else
-	{
-		prefilters.push_back(new FilterBright(2,0));
-		prefilters.push_back(new FilterScanline());
-		prefilters.push_back(new FilterInexact(30));
-	}
-}
-
-
 Options::~Options()
 {
-	vector<Filter*>::reverse_iterator filter;
-	for(filter = prefilters.rbegin(); filter < prefilters.rend(); filter++)
-		delete (*filter);
-	prefilters.clear();
 }
 
 
