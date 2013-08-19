@@ -30,7 +30,7 @@ OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL
 ICONS = icon/icon_16.png icon/icon_32.png icon/icon_64.png \
-	icon/icon_128.png icon/icon.svg
+	icon/icon_128.png icon/icon.svg icon/icon_22.png icon/icon_48.png
 DATA = data/vinterm_profile data/vinterm.info data/850.bmp data/vinterm.desktop \
        data/icon_16.bmp
 

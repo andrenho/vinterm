@@ -23,7 +23,7 @@ public:
 	const int border_x, border_y;
 	const SDL_Color background_color, bright_color;
 	const uint32_t blink_speed, flashing_speed;
-	bool audio_active;
+	bool audio_disabled;
 	string toBeRun;
 	string CurrentEncoding;
 
