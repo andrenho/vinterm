@@ -10,6 +10,7 @@ using namespace std;
 #include "terminal/blink.h"
 #include "terminal/framebuffer.h"
 #include "terminal/mouse.h"
+#include "terminal/keyqueue.h"
 #include "graphic/chars.h"
 #include "graphic/font.h"
 
@@ -133,6 +134,9 @@ Screen::Update()
 			attr.Highlight = true;
 		if(fb.IsSelected(x, y))
 			attr.Reverse = !attr.Reverse;
+
+		/* if(attr.ContinueNextLine)
+			attr.Reverse = true; */
 
 		SDL_Surface* sf = chars->Char(c, attr, x+y);
 		if(!sf)
@@ -343,7 +347,7 @@ Screen::DoEvents()
 				if(x >= 0 && y >= 0)
 				{
 					SDLMod mod = SDL_GetModState();
-					mouse.AddButtonPressToQueue(keyQueue,
+					mouse.AddButtonPressToQueue(
 							e.type == SDL_MOUSEBUTTONDOWN,
 							x, y, e.button.button,
 							mod & KMOD_SHIFT,
@@ -359,7 +363,7 @@ Screen::DoEvents()
 			if(state & (SDL_BUTTON(1) | SDL_BUTTON(2) | SDL_BUTTON(3)))
 			{
 				CharPosition(e.motion.x, e.motion.y, x, y);
-				mouse.Drag(keyQueue, x, y, state);
+				mouse.Drag(x, y, state);
 			}
 			break;
 

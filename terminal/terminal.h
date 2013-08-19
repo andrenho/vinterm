@@ -5,9 +5,9 @@
 #include <string>
 using namespace std;
 
-#include "graphic/audio.h"
 #include "terminal/mouse.h"
 
+class Audio;
 class Framebuffer;
 class Screen;
 class PTY;

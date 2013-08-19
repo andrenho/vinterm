@@ -6,6 +6,9 @@
 #include <iostream>
 using namespace std;
 
+#include <libconfig.h++>
+using namespace libconfig;
+
 #include "filters/filter_inexact.h"
 #include "filters/filter_scanline.h"
 #include "filters/filter_bright.h"
@@ -18,6 +21,7 @@ Options::Options(const int argc, char** const argv)
 	  blink_speed(500), flashing_speed(100),
 	  audio_active(true)
 {
+	ReadConfigFile();
 	ParseArguments(argc, argv);
 	AddFilters();
 
@@ -33,6 +37,56 @@ Options::Options(const int argc, char** const argv)
 		CurrentEncoding = string();
 	}
 }
+
+
+void
+Options::ReadConfigFile()
+{
+	// open and parse file
+	Config cfg;
+	try 
+	{
+		char filename[1024];
+		snprintf(filename, 1023, "%s/.vinterm.conf", getenv("HOME"));
+		cfg.readFile(filename);
+	}
+	catch(FileIOException& e)
+	{
+		cerr << "warning: config file not found, creating one." << endl;
+		WriteConfigFile();
+		return;
+	}
+	catch(ParseException& e)
+	{
+		cerr << "error: invalid syntax on config file, ignoring... (" << 
+			e.getError() << ")" << endl;
+		return;
+	}
+
+	// read data
+	cfg.lookupValue("scale", scale);
+}
+
+
+void
+Options::WriteConfigFile()
+{
+	char filename[1024];
+	snprintf(filename, 1023, "%s/.vinterm.conf", getenv("HOME"));
+	FILE* f = fopen(filename, "w");
+	if(!f) {
+		cerr << "error: it wasn't possible to write config file:";
+		perror(NULL); 
+		cerr << endl;
+		return;
+	}
+
+	fprintf(f, "# zoom level of terminal\n");
+	fprintf(f, "scale = %d\n", scale);
+
+	fclose(f);
+}
+
 
 void
 Options::ParseArguments(int argc, char* argv[])

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "graphic/screen.h"
+#include "terminal/keyqueue.h"
 #include "terminal/terminal.h"
 #include "terminal/framebuffer.h"
 
@@ -26,8 +26,8 @@ Mouse::ResetMode(int n)
 
 
 void 
-Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y, 
-			int button, bool shift, bool meta, bool ctrl, bool motion)
+Mouse::AddButtonPressToQueue(bool press, int x, int y, int button, bool shift, 
+		bool meta, bool ctrl, bool motion)
 {
 	last_press_x = x;
 	last_press_y = y;
@@ -65,7 +65,7 @@ Mouse::AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, int x, int y
 
 
 void 
-Mouse::Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button)
+Mouse::Drag(int x, int y, uint8_t button)
 {
 	// only if the mouse has changed character
 	if(x == last_press_x && y == last_press_y)
@@ -73,8 +73,7 @@ Mouse::Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button)
 
 	// mode 1002 (application mode with motion)
 	if(mode >= 1002)
-		AddButtonPressToQueue(keyQueue, true, x, y, button, 
-				false, false, false, true);
+		AddButtonPressToQueue(true, x, y, button, false, false, false, true);
 
 	// mouse terminal selection mode
 	if(mode < 1000)
@@ -93,7 +92,7 @@ Mouse::Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button)
 
 
 string 
-Mouse::Translate(int ch, deque<uint32_t>& keyQueue)
+Mouse::Translate(int ch)
 {
 	string s;
 	s += (char)27;

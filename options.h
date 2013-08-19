@@ -17,7 +17,7 @@ public:
 
 	inline const vector<Filter*>* PreFilters() const { return &prefilters; }
 
-	uint16_t scale;
+	int scale;
 	const int w, h;
 	bool debug_terminal;
 	const int border_x, border_y;
@@ -28,6 +28,8 @@ public:
 	string CurrentEncoding;
 
 private:
+	void ReadConfigFile();
+	void WriteConfigFile();
 	void ParseArguments(int argc, char* argv[]);
 	void AddFilters();
 	void Help(int status);
