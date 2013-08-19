@@ -1,6 +1,5 @@
 #include "terminal/blink.h"
 
-#include "SDL.h"
 #include "terminal/framebuffer.h"
 
 Blink::Blink(const uint32_t milliseconds)
@@ -13,7 +12,9 @@ Blink::Blink(const uint32_t milliseconds)
 void 
 Blink::ResetClock()
 {
-	last_blink = SDL_GetTicks();
+	// TODO
+	// last_blink = SDL_GetTicks();
+	last_blink = 0;
 	state = true;
 }
 
@@ -21,7 +22,9 @@ Blink::ResetClock()
 bool 
 Blink::TimeToBlink() const
 {
-	uint32_t now = SDL_GetTicks();
+	// TODO
+	//uint32_t now = SDL_GetTicks();
+	uint32_t now = 0;
 
 	return (now - last_blink) > milliseconds;
 }
@@ -31,5 +34,8 @@ void
 Blink::DoBlink(Framebuffer const& fb)
 {
 	state = !state;
-	last_blink = SDL_GetTicks();
+
+	// TODO
+	// last_blink = SDL_GetTicks();
+	last_blink = 0;
 }

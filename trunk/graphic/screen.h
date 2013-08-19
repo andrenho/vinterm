@@ -7,6 +7,8 @@ using namespace std;
 
 #include "graphic/audio.h"
 
+#include "SDL2/SDL.h"
+
 class Options;
 class Framebuffer;
 class Chars;
@@ -27,6 +29,9 @@ private:
 	Options const& options;
 	Framebuffer const& fb;
 	Mouse& mouse;
+
+	SDL_Window* win;
+	SDL_Renderer* ren;
 };
 
 #endif
