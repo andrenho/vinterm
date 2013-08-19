@@ -20,12 +20,7 @@ SRC = main.cc			\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
       graphic/audio.cc		\
-      graphic/chars.cc		\
-      graphic/font.cc		\
-      graphic/screen.cc		\
-      filters/filter_bright.cc  \
-      filters/filter_inexact.cc \
-      filters/filter_scanline.cc
+      graphic/screen.cc
 OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL

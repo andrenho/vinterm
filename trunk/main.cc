@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */
-	terminal.SetEncoding(screen.FontEncoding());
+//	terminal.SetEncoding(screen.FontEncoding());
 
 	/* Initialize clipboard. */
 	fb.clipboard.ConnectToWM();
