@@ -6,8 +6,9 @@ using namespace std;
 #include "options.h"
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
-#include "graphic/screen.h"
+#include "terminal/keyqueue.h"
 #include "graphic/audio.h"
+#include "graphic/screen.h"
 
 Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
 	: fb(fb), pty(pty), options(options), alternateCharset(false),
@@ -147,13 +148,13 @@ Terminal::Resize(int new_w, int new_h)
 void 
 Terminal::Output(Screen& screen)
 {
-	while(!screen.keyQueue.empty())
+	while(!keyQueue.empty())
 	{
 		// write data to the PTY
 		int w, h, fs, ts_w, ts_h;
 		string s;
-		uint32_t ch = screen.keyQueue[0];
-		screen.keyQueue.pop_front();
+		uint32_t ch = keyQueue[0];
+		keyQueue.pop_front();
 
 		switch(ch)
 		{
@@ -166,19 +167,19 @@ Terminal::Output(Screen& screen)
 			fb.ForeTrack();
 			break;
 		case RESIZE:
-			w = screen.keyQueue[0];
-			screen.keyQueue.pop_front();
-			h = screen.keyQueue[0];
-			screen.keyQueue.pop_front();
-			fs = screen.keyQueue[0];
-			screen.keyQueue.pop_front();
+			w = keyQueue[0];
+			keyQueue.pop_front();
+			h = keyQueue[0];
+			keyQueue.pop_front();
+			fs = keyQueue[0];
+			keyQueue.pop_front();
 			screen.Resize(w, h, fs, ts_w, ts_h);
 			Resize(ts_w, ts_h);
 			break;
 		case MPRESS:
 		case MRELEASE:
 		case MDRAG:
-			s = mouse.Translate(ch, screen.keyQueue);
+			s = mouse.Translate(ch);
 			if(!s.empty())
 				SendString(s);
 			break;

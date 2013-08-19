@@ -5,7 +5,7 @@ The basics of display the terminal information on the screen is:
 
            Input -> PTY -> Terminal -> Framebuffer -> Screen
                     ^ |
-                    | '-> |Virtual
+                    | '-> |OS Virtual
                     '---- |terminal
 
 The keys pressed by the user on `Input` are sent to the `PTY`, that is 
@@ -14,6 +14,9 @@ is received by the `PTY` and sent to the `Terminal`, that'll process the
 escape codes and send them to the `Framebuffer`, where the text is formatted
 screenwise. `Screen` reads the data from the `Framebuffer` and display them
 to the user using the old-style fonts.
+
+The keys pressed by the user are sent from the OS to the terminal through a
+key queue (Keyqueue).
 
 Vintage Terminal has the following classes:
 
@@ -27,12 +30,17 @@ Graphic/
   Screen.......... Display everything to the user
 
 Terminal/
+  Backtrack....... Controls the rolling back of screens
   Blink........... Controls the blinking of the cursor
+  Clipboard....... Cut to/pastes from the OS clipboard
   CharAttr........ A pair of a character and its attribute
+  Framebuffer..... Format the characters on the terminal
+  Keyqueue........ Queue of characters sent from the user to the terminal
+  Mouse........... Sends the mouse special chars to the terminal
   PTY............. Connect to the PTY (virtual terminal on the OS)
   Terminal........ Translate the escape sequences and special chars
     Vinterm....... Use custom escape codes
-  Framebuffer..... Format the characters on the terminal
+  Translator...... Translates between codepages
 
 Filters/
   Filter.......... Each one of the filters that'll be applied to the image
@@ -43,8 +51,12 @@ Filters/
 The following files are also distributed in the data/ dir:
 
 mda9.bmp.......... A image containing the MDA (IBM) font
+icon_16.bmp....... Application icon
 vinterm.info...... Terminfo file containing the custom escape codes
 vinterm_profile... A bash file to be read on the initialization of vinterm.
+vinterm.desktop... Creates a link to the application in the WM
+
+Directory icon/ contains the application icon in various sizes.
 
 When checking for memory leaks, use valgrind with the suppresions file 
 vinterm.supp. That'll hide X11, SDL and forkpty memory leaks.

@@ -17,12 +17,11 @@ public:
 	void SetMode(int n);
 	void ResetMode(int n);
 
-	void AddButtonPressToQueue(deque<uint32_t>& keyQueue, bool press, 
-			int x, int y, int button, 
+	void AddButtonPressToQueue(bool press, int x, int y, int button, 
 			bool shift, bool meta, bool ctrl, bool motion=false);
-	void Drag(deque<uint32_t>& keyQueue, int x, int y, uint8_t button);
+	void Drag(int x, int y, uint8_t button);
 
-	string Translate(int ch, deque<uint32_t>& keyQueue);
+	string Translate(int ch);
 	bool Captured() const;
 
 	void setTerminal(Terminal* terminal) { this->terminal = terminal; }

@@ -14,6 +14,7 @@ SRC = main.cc			\
       terminal/backtrack.cc     \
       terminal/clipboard.cc	\
       terminal/framebuffer.cc	\
+      terminal/keyqueue.cc      \
       terminal/mouse.cc         \
       terminal/pty.cc		\
       terminal/terminal.cc	\
@@ -86,7 +87,7 @@ install: all
 	@tic -s data/vinterm.info
 	@echo installing icons
 	@cp -f icon/icon_16.png  /usr/share/icons/hicolor/16x16/apps/vinterm.png
-	@cp -f icon/icon_22.png  /usr/share/icons/hicolor/22x22/apps/vinterm.png
+	#@cp -f icon/icon_22.png  /usr/share/icons/hicolor/22x22/apps/vinterm.png
 	@cp -f icon/icon_32.png  /usr/share/icons/hicolor/32x32/apps/vinterm.png
 	@cp -f icon/icon_48.png  /usr/share/icons/hicolor/48x48/apps/vinterm.png
 	@cp -f icon/icon_64.png  /usr/share/icons/hicolor/64x64/apps/vinterm.png

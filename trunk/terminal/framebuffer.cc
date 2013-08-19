@@ -148,8 +148,9 @@ Framebuffer::Put(const char c, bool ignore_insert_mode)
 {
 	if(cursor_x >= w)
 	{
-		cursor_x = 0;
 		cout << "non-line-break in line " << cursor_y << endl;
+		chars[cursor_x - 1 + cursor_y * W()].Attr.ContinueNextLine = true;
+		cursor_x = 0;
 		AdvanceCursorY();
 	}
 	ValidateCursorPosition();
@@ -550,7 +551,7 @@ Framebuffer::SetEndSelection(int x, int y)
 			selection += chars[i].Ch;
 
 			// check for EOL
-			if(i % W() == (W()-1))
+			if(i % W() == (W()-1) && !chars[i].Attr.ContinueNextLine)
 			{
 				while(selection[selection.size()-1] == ' ')
 					selection.pop_back();

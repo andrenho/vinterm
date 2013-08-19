@@ -5,13 +5,15 @@ class Attribute {
 public:
 	Attribute() 
 		: Reverse(false), Underline(false), Highlight(false), 
-		  Blink(false), Dim(false), Invisible(false) { }
+		  Blink(false), Dim(false), Invisible(false),
+		  ContinueNextLine(false) { }
 	bool Reverse    : 1;
 	bool Underline  : 1;
 	bool Highlight  : 1;
 	bool Blink      : 1;
 	bool Dim        : 1;
 	bool Invisible  : 1;
+	bool ContinueNextLine : 1; // if it's a newline without a linebreak
 
 	operator long int() const 
 	{ 

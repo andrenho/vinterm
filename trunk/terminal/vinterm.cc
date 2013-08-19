@@ -4,9 +4,9 @@
 #include <sstream>
 #include <iostream>
 
-#include "graphic/screen.h"
 #include "terminal/framebuffer.h"
 #include "terminal/pty.h"
+#include "terminal/keyqueue.h"
 
 Vinterm::Vinterm(Framebuffer& fb, PTY& pty, Options const& options) 
 	: Terminal(fb, pty, options), saved_x(0), saved_y(0)
