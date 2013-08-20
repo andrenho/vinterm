@@ -51,7 +51,8 @@ int main(int argc, char** argv)
 	 *   1. Read data from the terminal (Input);
 	 *   2. Read keys pressed by the user and send them to the terminal
 	 *      (Output);
-	 *   3. Update everything in the screen for the user.
+	 *   3. Update everything in the screen for the user;
+	 *   4. Check for events.
 	 *
 	 * The loop exits when a EOF is received from the terminal. */
 	//terminal.SendString(options.toBeRun);
@@ -60,6 +61,7 @@ int main(int argc, char** argv)
 		terminal.Output(screen);
 		terminal.Input();
 		screen.Update();
+		screen.CheckEvents();
 	}
 
 	return 0;
