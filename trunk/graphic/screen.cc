@@ -3,9 +3,11 @@
 #include <iostream>
 
 #include "terminal/keyqueue.h"
+#include "render/renderer.h"
 
-Screen::Screen(Options const& options, Framebuffer const& fb, Mouse& mouse)
-	: options(options), fb(fb), mouse(mouse),
+Screen::Screen(Options const& options, Framebuffer const& fb, 
+		Renderer const& renderer, Mouse& mouse)
+	: options(options), fb(fb), renderer(renderer), mouse(mouse),
 	  win(nullptr), ren(nullptr)
 {
 	// initialize SDL
@@ -73,15 +75,7 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 void
 Screen::Update()
 {
-	SDL_Texture* tx = SDL_CreateTexture(ren, SDL_PIXELFORMAT_ARGB8888,
-			SDL_TEXTUREACCESS_STREAMING, 400, 400);
-	uint32_t* pixels = new uint32_t[400 * 400];
-	pixels[10+10*400] = 0xffffffff;
-	SDL_UpdateTexture(tx, NULL, pixels, 400 * sizeof(uint32_t));
-	SDL_RenderClear(ren);
-	SDL_RenderCopy(ren, tx, NULL, NULL);
-	SDL_RenderPresent(ren);
-	delete[] pixels;
+	renderer.Render(ren, fb);
 }
 
 

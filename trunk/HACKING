@@ -4,7 +4,7 @@ main.cc.
 The basics of display the terminal information on the screen is:
 
            Input -> PTY -> Terminal -> CharMatrix -> Framebuffer -> Screen
-                    ^ |
+                    ^ |                                       Renderer
                     | '-> |OS Virtual
                     '---- |terminal
 
@@ -14,7 +14,7 @@ is received by the `PTY` and sent to the `Terminal`, that'll process the
 escape codes and send them to the `CharMatrix`, where the text is formatted
 screenwise. The `Framebuffer` draws the screen from the `CharMatrix`. `Screen`
 reads the data from the `Framebuffer` and display is to the user using the 
-old-style fonts.
+old-style fonts using a `Renderer`.
 
 The keys pressed by the user are sent from the OS to the terminal through a
 key queue (Keyqueue).
@@ -41,11 +41,8 @@ Terminal/
   Terminal........ Translate the escape sequences and special chars
     Vinterm....... Use custom escape codes
 
-Filters/
-  Filter.......... Each one of the filters that'll be applied to the image
-    FilterBright
-    FilterInexact
-    FilterScanline
+Renderer/
+  Monochrome...... Draws the characters like a monochrome monitor
 
 The following files are also distributed in the data/ dir:
 
