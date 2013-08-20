@@ -1,9 +1,9 @@
 #include "terminal/backtrack.h"
 
-#include "terminal/framebuffer.h"
+#include "terminal/charmatrix.h"
 
-Backtrack::Backtrack(Framebuffer const& framebuffer, int n_screens)
-	: framebuffer(framebuffer), n_screens(n_screens)
+Backtrack::Backtrack(CharMatrix const& charmatrix, int n_screens)
+	: charmatrix(charmatrix), n_screens(n_screens)
 {
 	PrepareBacktrack();
 }
@@ -27,7 +27,7 @@ Backtrack::PushLine(vector<Char>& line)
 Char 
 Backtrack::Get(int backscreen, unsigned int x, int y) const
 {
-	unsigned int n = (framebuffer.H() - y - 1) + (framebuffer.H() * (backscreen - 1));
+	unsigned int n = (charmatrix.H() - y - 1) + (charmatrix.H() * (backscreen - 1));
 	if(n >= lines.size())
 		return Char();
 	vector<Char> const& l = lines[n];
@@ -47,5 +47,5 @@ Backtrack::PrepareBacktrack()
 unsigned int
 Backtrack::TotalLines() const
 {
-	return framebuffer.H() * (n_screens);
+	return charmatrix.H() * (n_screens);
 }

@@ -3,14 +3,14 @@
 
 #include <stdint.h>
 
-class Framebuffer;
+class CharMatrix;
 
 class Blink
 {
 public:
 	Blink(const uint32_t milliseconds);
 
-	void DoBlink(Framebuffer const& fb);
+	void DoBlink(CharMatrix const& cm);
 	bool TimeToBlink() const;
 	void ResetClock();
 	bool State() const { return state; }

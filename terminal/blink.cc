@@ -1,6 +1,6 @@
 #include "terminal/blink.h"
 
-#include "terminal/framebuffer.h"
+#include "terminal/charmatrix.h"
 
 Blink::Blink(const uint32_t milliseconds)
 	: state(true), milliseconds(milliseconds)
@@ -31,7 +31,7 @@ Blink::TimeToBlink() const
 
 
 void
-Blink::DoBlink(Framebuffer const& fb)
+Blink::DoBlink(CharMatrix const& cm)
 {
 	state = !state;
 

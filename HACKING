@@ -3,7 +3,7 @@ main.cc.
 
 The basics of display the terminal information on the screen is:
 
-           Input -> PTY -> Terminal -> Framebuffer -> Screen
+           Input -> PTY -> Terminal -> CharMatrix -> Framebuffer -> Screen
                     ^ |
                     | '-> |OS Virtual
                     '---- |terminal
@@ -11,9 +11,10 @@ The basics of display the terminal information on the screen is:
 The keys pressed by the user on `Input` are sent to the `PTY`, that is 
 connected to a virtual terminal. The information sent by the virtual terminal
 is received by the `PTY` and sent to the `Terminal`, that'll process the
-escape codes and send them to the `Framebuffer`, where the text is formatted
-screenwise. `Screen` reads the data from the `Framebuffer` and display them
-to the user using the old-style fonts.
+escape codes and send them to the `CharMatrix`, where the text is formatted
+screenwise. The `Framebuffer` draws the screen from the `CharMatrix`. `Screen`
+reads the data from the `Framebuffer` and display is to the user using the 
+old-style fonts.
 
 The keys pressed by the user are sent from the OS to the terminal through a
 key queue (Keyqueue).
@@ -24,17 +25,16 @@ Main.............. Initialize everything (not a class)
 Options........... Setup the options, read the arguments and the config file
 
 Graphic/
-  Chars........... Setup the characters with attributes, and apply the filters
-  Font............ Load font, resizing it
-  Input........... Read user input
-  Screen.......... Display everything to the user
+  Audio........... Beeps
+  Framebuffer..... A pixel map of the screen
+  Screen.......... Display everything to the user, with the filters
 
 Terminal/
   Backtrack....... Controls the rolling back of screens
   Blink........... Controls the blinking of the cursor
   Clipboard....... Cut to/pastes from the OS clipboard
   CharAttr........ A pair of a character and its attribute
-  Framebuffer..... Format the characters on the terminal
+  CharMatrix...... Format the characters on the terminal
   Keyqueue........ Queue of characters sent from the user to the terminal
   Mouse........... Sends the mouse special chars to the terminal
   PTY............. Connect to the PTY (virtual terminal on the OS)

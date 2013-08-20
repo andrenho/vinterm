@@ -1,4 +1,4 @@
-#include "terminal/framebuffer.h"
+#include "terminal/charmatrix.h"
 
 #include <cstdlib>
 #include <iostream>
@@ -7,7 +7,7 @@
 #include "options.h"
 #include "terminal/blink.h"
 
-Framebuffer::Framebuffer(Options const& options)
+CharMatrix::CharMatrix(Options const& options)
 	: dirty(new set<int>), InsertMode(false), CursorVisibility(VISIBLE), 
 	  blink(new Blink(options.blink_speed)), 
 	  current_attr(Attribute()), w(80), h(24), 
@@ -22,7 +22,7 @@ Framebuffer::Framebuffer(Options const& options)
 }
 
 
-Framebuffer::~Framebuffer()
+CharMatrix::~CharMatrix()
 {
 	chars.clear();
 	saved_screen.clear();
@@ -34,7 +34,7 @@ Framebuffer::~Framebuffer()
 
 
 Char 
-Framebuffer::Ch(int x, int y) const 
+CharMatrix::Ch(int x, int y) const 
 {
 	//if(!IsSelected(x, y))
 		return chars[x+(y*W())]; 
@@ -48,7 +48,7 @@ Framebuffer::Ch(int x, int y) const
 
 
 void
-Framebuffer::BackTrack()
+CharMatrix::BackTrack()
 {
 	if(current_backtrack >= backtrack->Screens())
 		return;
@@ -66,7 +66,7 @@ Framebuffer::BackTrack()
 
 
 void
-Framebuffer::ForeTrack()
+CharMatrix::ForeTrack()
 {
 	if(current_backtrack == 0)
 		return;
@@ -87,7 +87,7 @@ Framebuffer::ForeTrack()
 
 
 void
-Framebuffer::ForetrackToScreen()
+CharMatrix::ForetrackToScreen()
 {
 	if(current_backtrack > 0)
 	{
@@ -99,7 +99,7 @@ Framebuffer::ForetrackToScreen()
 
 
 void 
-Framebuffer::Resize(int new_w, int new_h)
+CharMatrix::Resize(int new_w, int new_h)
 {
 	vector<Char> old_chars;
 	old_chars.assign(chars.begin(), chars.end());
@@ -144,7 +144,7 @@ Framebuffer::Resize(int new_w, int new_h)
 
 
 void 
-Framebuffer::Put(const char c, bool ignore_insert_mode)
+CharMatrix::Put(const char c, bool ignore_insert_mode)
 {
 	if(cursor_x >= w)
 	{
@@ -162,7 +162,7 @@ Framebuffer::Put(const char c, bool ignore_insert_mode)
 
 
 void 
-Framebuffer::Put(const char c, const int x, const int y, 
+CharMatrix::Put(const char c, const int x, const int y, 
 		bool ignore_insert_mode)
 {
 	Put(c, current_attr, x, y, ignore_insert_mode);
@@ -170,7 +170,7 @@ Framebuffer::Put(const char c, const int x, const int y,
 
 
 void 
-Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
+CharMatrix::Put(const char c, Attribute attr, const int x, const int y,
 			bool ignore_insert_mode)
 {
 	// restart selection
@@ -196,7 +196,7 @@ Framebuffer::Put(const char c, Attribute attr, const int x, const int y,
 
 
 bool
-Framebuffer::AdvanceCursorY()
+CharMatrix::AdvanceCursorY()
 {
 	bool update_scr = false;
 
@@ -219,7 +219,7 @@ Framebuffer::AdvanceCursorY()
 }
 
 
-void Framebuffer::RecedeCursorY()
+void CharMatrix::RecedeCursorY()
 {
 	--cursor_y;
 	
@@ -233,14 +233,14 @@ void Framebuffer::RecedeCursorY()
 
 
 void
-Framebuffer::CarriageReturn()
+CharMatrix::CarriageReturn()
 {
 	cursor_x = 0;
 }
 
 
 void
-Framebuffer::Tab()
+CharMatrix::Tab()
 {
 	++cursor_x;
 	while((cursor_x % 8) != 0)
@@ -256,7 +256,7 @@ Framebuffer::Tab()
 
 
 void
-Framebuffer::Backspace()
+CharMatrix::Backspace()
 {
 	if(cursor_x > 0)
 		--cursor_x;
@@ -264,7 +264,7 @@ Framebuffer::Backspace()
 
 
 void 
-Framebuffer::MoveCursor(Direction dir, int moves)
+CharMatrix::MoveCursor(Direction dir, int moves)
 {
 	int x = 0, y = 0;
 	switch(dir)
@@ -287,7 +287,7 @@ Framebuffer::MoveCursor(Direction dir, int moves)
 
 
 void 
-Framebuffer::SetCursorPosition(int x, int y)
+CharMatrix::SetCursorPosition(int x, int y)
 {
 	cursor_x = x-1;
 	cursor_y = y-1;
@@ -296,7 +296,7 @@ Framebuffer::SetCursorPosition(int x, int y)
 
 
 void
-Framebuffer::ScrollUp()
+CharMatrix::ScrollUp()
 {
 	// add line to backtrack
 	vector<Char> line;
@@ -316,7 +316,7 @@ Framebuffer::ScrollUp()
 
 
 void
-Framebuffer::ScrollDown()
+CharMatrix::ScrollDown()
 {
 	for(int y(scroll_bottom-1); y>=scroll_top; y--)
 		for(int x(0); x<w; x++)
@@ -327,7 +327,7 @@ Framebuffer::ScrollDown()
 
 
 void 
-Framebuffer::SetScrollingRegion(int top, int bottom)
+CharMatrix::SetScrollingRegion(int top, int bottom)
 {
 	scroll_top = top-1;
 	scroll_bottom = bottom-1;
@@ -339,7 +339,7 @@ Framebuffer::SetScrollingRegion(int top, int bottom)
 
 
 void 
-Framebuffer::AddLinesBelowCursor(int n)
+CharMatrix::AddLinesBelowCursor(int n)
 {
 	int save_sc_top = scroll_top;
 	scroll_top = cursor_y;
@@ -350,7 +350,7 @@ Framebuffer::AddLinesBelowCursor(int n)
 
 
 void 
-Framebuffer::ClearRow(bool upto_cursor, int y)
+CharMatrix::ClearRow(bool upto_cursor, int y)
 {
 	if(y == -1) 
 		y = cursor_y;
@@ -361,7 +361,7 @@ Framebuffer::ClearRow(bool upto_cursor, int y)
 
 
 void
-Framebuffer::DeleteLines(int n)
+CharMatrix::DeleteLines(int n)
 {
 	int save_sc_top = scroll_top;
 	//int save_sc_bt = scroll_bottom;
@@ -374,7 +374,7 @@ Framebuffer::DeleteLines(int n)
 }
 
 
-void Framebuffer::DeleteChars(int n)
+void CharMatrix::DeleteChars(int n)
 {
 	for(int x=cursor_x; x <= w-n; x++)
 	{
@@ -386,7 +386,7 @@ void Framebuffer::DeleteChars(int n)
 }
 
 
-void Framebuffer::EraseChars(int n)
+void CharMatrix::EraseChars(int n)
 {
 	for(int x=cursor_x; x<(cursor_x+n); x++)
 		Put(' ', x, cursor_y); // XXX - attribute?
@@ -394,7 +394,7 @@ void Framebuffer::EraseChars(int n)
 
 
 void 
-Framebuffer::InsertChars(int n)
+CharMatrix::InsertChars(int n)
 {
 	for(int x=w-n-1; x >= cursor_x; x--)
 	{
@@ -407,7 +407,7 @@ Framebuffer::InsertChars(int n)
 
 
 void 
-Framebuffer::SaveScreen()
+CharMatrix::SaveScreen()
 {
 	// copy screen contents
 	saved_screen.clear();
@@ -423,7 +423,7 @@ Framebuffer::SaveScreen()
 
 
 void 
-Framebuffer::RestoreScreen()
+CharMatrix::RestoreScreen()
 {
 	chars.assign(saved_screen.begin(), saved_screen.end());
 	saved_screen.clear();
@@ -436,7 +436,7 @@ Framebuffer::RestoreScreen()
 }
 
 
-void Framebuffer::RegisterBlinks() const
+void CharMatrix::RegisterBlinks() const
 {
 	for(int i=0; i<(w*h); i++)
 		if(chars[i].Attr.Blink)
@@ -444,7 +444,7 @@ void Framebuffer::RegisterBlinks() const
 }
 
 
-void Framebuffer::SetAttr(AttrType attr, bool value)
+void CharMatrix::SetAttr(AttrType attr, bool value)
 {
 	switch(attr)
 	{
@@ -476,7 +476,7 @@ void Framebuffer::SetAttr(AttrType attr, bool value)
 
 
 void
-Framebuffer::Flash(bool reverse)
+CharMatrix::Flash(bool reverse)
 {
 	if(reverse || flashing) 
 	{
@@ -491,7 +491,7 @@ Framebuffer::Flash(bool reverse)
 
 
 void
-Framebuffer::ValidateCursorPosition()
+CharMatrix::ValidateCursorPosition()
 {
 	if(cursor_x < 0)
 	{
@@ -517,14 +517,14 @@ Framebuffer::ValidateCursorPosition()
 
 
 void 
-Framebuffer::SetStartSelection(int x, int y)
+CharMatrix::SetStartSelection(int x, int y)
 {
 	selection.start = x+y*W();
 }
 
 
 void 
-Framebuffer::SetEndSelection(int x, int y)
+CharMatrix::SetEndSelection(int x, int y)
 {
 	int old_start = selection.start;
 	int old_end = selection.end;
@@ -564,7 +564,7 @@ Framebuffer::SetEndSelection(int x, int y)
 
 
 void 
-Framebuffer::SetNoSelection()
+CharMatrix::SetNoSelection()
 {
 	if(selection.Active())
 	{
@@ -576,7 +576,7 @@ Framebuffer::SetNoSelection()
 
 
 bool 
-Framebuffer::IsSelected(int x, int y) const
+CharMatrix::IsSelected(int x, int y) const
 {
 	if(!selection.Active())
 		return false;

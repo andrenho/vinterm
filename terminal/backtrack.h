@@ -6,12 +6,12 @@
 using namespace std;
 
 #include "terminal/charattr.h"
-class Framebuffer;
+class CharMatrix;
 
 class Backtrack
 {
 public:
-	Backtrack(Framebuffer const& framebuffer, int n_screens);
+	Backtrack(CharMatrix const& charmatrix, int n_screens);
 	~Backtrack();
 
 	void PushLine(vector<Char>& line);
@@ -23,7 +23,7 @@ private:
 	void PrepareBacktrack();
 	unsigned int TotalLines() const;
 
-	Framebuffer const& framebuffer;
+	CharMatrix const& charmatrix;
 	int n_screens;
 	deque<vector<Char>> lines;
 };

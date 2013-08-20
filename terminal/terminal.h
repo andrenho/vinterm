@@ -8,7 +8,7 @@ using namespace std;
 #include "terminal/mouse.h"
 
 class Audio;
-class Framebuffer;
+class CharMatrix;
 class Screen;
 class PTY;
 class Options;
@@ -16,7 +16,7 @@ class Options;
 class Terminal
 {
 public:
-	Terminal(Framebuffer& fb, PTY& pty, Options const& options);
+	Terminal(CharMatrix& cm, PTY& pty, Options const& options);
 	virtual ~Terminal();
 
 	void Input();
@@ -29,12 +29,12 @@ public:
 	virtual void KeyPressed(uint32_t key);
 
 	bool Active() const { return active; }
-	Framebuffer& FB() const { return fb; }
+	CharMatrix& CM() const { return cm; }
 
 	Mouse mouse;
 
 protected:
-	Framebuffer& fb;
+	CharMatrix& cm;
 	PTY& pty;
 	Options const& options;
 	bool alternateCharset;

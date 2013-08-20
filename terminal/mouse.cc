@@ -4,7 +4,7 @@
 
 #include "terminal/keyqueue.h"
 #include "terminal/terminal.h"
-#include "terminal/framebuffer.h"
+#include "terminal/charmatrix.h"
 
 Mouse::Mouse() 
 	: mode(0), last_press_x(-1), last_press_y(-1), selection_started(false)
@@ -54,7 +54,7 @@ Mouse::AddButtonPressToQueue(bool press, int x, int y, int button, bool shift,
 		if(button == 1)
 		{
 			if(press)
-				terminal->FB().SetNoSelection();
+				terminal->CM().SetNoSelection();
 			else
 				selection_started = false;
 		}
@@ -81,9 +81,9 @@ Mouse::Drag(int x, int y, uint8_t button)
 		if(!selection_started)
 		{
 			selection_started = true;
-			terminal->FB().SetStartSelection(last_press_x, last_press_y);
+			terminal->CM().SetStartSelection(last_press_x, last_press_y);
 		}
-		terminal->FB().SetEndSelection(x, y);
+		terminal->CM().SetEndSelection(x, y);
 	}
 
 	last_press_x = x;
