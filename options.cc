@@ -12,10 +12,8 @@ using namespace std;
 using namespace libconfig;
 
 Options::Options(const int argc, char** const argv) 
-	: scale(1), w(80), h(25), debug_terminal(false), 
-	  border_x(30), border_y(40),
-	  blink_speed(500), flashing_speed(100),
-	  audio_disabled(false)
+	: debug_terminal(false), audio_disabled(false),
+	  blink_speed(500), flashing_speed(100)
 {
 	ReadConfigFile();
 	ParseArguments(argc, argv);
@@ -59,7 +57,6 @@ Options::ReadConfigFile()
 	}
 
 	// read data
-	cfg.lookupValue("scale", scale);
 	cfg.lookupValue("no_audio", audio_disabled);
 }
 
@@ -77,9 +74,6 @@ Options::WriteConfigFile()
 		return;
 	}
 
-	fprintf(f, "# zoom level of terminal\n");
-	fprintf(f, "scale = %d\n", scale);
-	fprintf(f, "\n");
 	fprintf(f, "# disable audible beep\n");
 	fprintf(f, "no_audio = %s\n", audio_disabled ? "true" : "false");
 
@@ -95,7 +89,6 @@ Options::ParseArguments(int argc, char* argv[])
 	{
 		int idx(0);
 		static struct option long_opt[] = {
-			{ "scale",    required_argument, 0, 's' },
 			{ "no-audio", no_argument,       0, 'a' },
 #ifdef DEBUG
 			{ "debug-terminal", no_argument, 0, '@' },
@@ -105,7 +98,7 @@ Options::ParseArguments(int argc, char* argv[])
 			{ 0,          0,                 0, 0 }
 		};
 
-		if((c = getopt_long(argc, argv, "s:a@", long_opt, &idx)) == -1)
+		if((c = getopt_long(argc, argv, ":a@", long_opt, &idx)) == -1)
 			break;
 
 		if(c == -1)
@@ -120,13 +113,6 @@ Options::ParseArguments(int argc, char* argv[])
 				Version();
 			else
 				Help(EXIT_FAILURE);
-		case 's':
-			scale = strtol(optarg, NULL, 10);
-			if(scale < 1 || scale > 6)
-			{
-				fprintf(stderr, "error: Scale must be a value between 1 and 6.\n");
-				exit(1);
-			}
 			break;
 		case 'a':
 			audio_disabled = true;
@@ -181,7 +167,6 @@ Options::Help(int status)
 	fprintf(f, "monitor.\n");
 	fprintf(f, "\n");
 	fprintf(f, "Options:\n");
-	fprintf(f, "  -s, --scale=SCALE    zoom the image by SCALE (default=1)\n");
 	fprintf(f, "  -a, --no-audio       disable audible beep\n");
 	fprintf(f, "      --help           display this help and exit\n");
 	fprintf(f, "      --version        display version information and exit\n");

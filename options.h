@@ -12,14 +12,11 @@ public:
 	Options(const int argc, char** const argv);
 	~Options();
 
-	int scale;
-	const int w, h;
 	bool debug_terminal;
-	const int border_x, border_y;
-	const uint32_t blink_speed, flashing_speed;
 	bool audio_disabled;
 	string toBeRun;
 	string CurrentEncoding;
+	const uint32_t blink_speed, flashing_speed;
 
 private:
 	void ReadConfigFile();

@@ -11,12 +11,14 @@ using namespace std;
 
 class Options;
 class Framebuffer;
+class Renderer;
 class Mouse;
 
 class Screen
 {
 public:
-	Screen(Options const& options, Framebuffer const& fb, Mouse& mouse);
+	Screen(Options const& options, Framebuffer const& fb, 
+			Renderer const& renderer, Mouse& mouse);
 	~Screen();
 
 	void Update();
@@ -27,6 +29,7 @@ public:
 private:
 	Options const& options;
 	Framebuffer const& fb;
+	Renderer const& renderer;
 	Mouse& mouse;
 
 	SDL_Window* win;
