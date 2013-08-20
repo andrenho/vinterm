@@ -22,6 +22,7 @@ public:
 	void Update();
 	void Resize(int new_w, int new_h, int full_screen, 
 			int& ts_w, int& ts_h);
+	void CheckEvents();
 
 private:
 	Options const& options;
