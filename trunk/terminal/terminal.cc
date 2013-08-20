@@ -4,14 +4,14 @@
 using namespace std;
 
 #include "options.h"
-#include "terminal/framebuffer.h"
+#include "terminal/charmatrix.h"
 #include "terminal/pty.h"
 #include "terminal/keyqueue.h"
 #include "graphic/audio.h"
 #include "graphic/screen.h"
 
-Terminal::Terminal(Framebuffer& fb, PTY& pty, Options const& options)
-	: fb(fb), pty(pty), options(options), alternateCharset(false),
+Terminal::Terminal(CharMatrix& cm, PTY& pty, Options const& options)
+	: cm(cm), pty(pty), options(options), alternateCharset(false),
 	  readingStatusLine(false), audio(new Audio(options)), active(true), 
 	  escape_mode(false), encoding(""), inbuf((char*)calloc(4, 1)), 
 	  original_inbuf(inbuf), inbuf_pos(0)
@@ -42,7 +42,7 @@ Terminal::SendString(string s)
 void
 Terminal::Input()
 {
-	fb.Flash(false);
+	cm.Flash(false);
 
 	// read data from the PTY
 	int i;
@@ -55,7 +55,7 @@ Terminal::Input()
 			return;
 		}
 
-		fb.ForetrackToScreen();
+		cm.ForetrackToScreen();
 
 		const char c = (const char)i;
 		bool update_scr = false;
@@ -82,18 +82,18 @@ Terminal::InputChar(const char c)
 		escape_sequence = "\033";
 		break;
 	case '\n': // new line
-		return fb.AdvanceCursorY();
+		return cm.AdvanceCursorY();
 	case '\r': // carriage return
-		fb.CarriageReturn();
+		cm.CarriageReturn();
 		break;
 	case '\t': // tab
-		fb.Tab();
+		cm.Tab();
 		break;
 	case '\a': // beep
 		audio->Beep();
 		break;
 	case '\b': // backspace
-		fb.Backspace();
+		cm.Backspace();
 		break;
 	default:
 		if(alternateCharset)
@@ -105,11 +105,11 @@ Terminal::InputChar(const char c)
 			{
 				if(readingStatusLine)
 				{
-					string s = fb.terminalTitle();
-					fb.setTerminalTitle(s + cv);
+					string s = cm.terminalTitle();
+					cm.setTerminalTitle(s + cv);
 				}
 				else
-					fb.Put(cv, false);
+					cm.Put(cv, false);
 			}
 		}
 	}
@@ -121,7 +121,7 @@ Terminal::InputChar(const char c)
 void
 Terminal::InputAlternateChar(const char c)
 {
-	fb.Put(c, false);
+	cm.Put(c, false);
 }
 
 
@@ -140,7 +140,7 @@ Terminal::InputEscapeChar(const char c)
 void 
 Terminal::Resize(int new_w, int new_h)
 {
-	fb.Resize(new_w, new_h);
+	cm.Resize(new_w, new_h);
 	pty.Resize(new_w, new_h);
 }
 
@@ -161,10 +161,10 @@ Terminal::Output(Screen& screen)
 		case 0: // discard
 			break;
 		case SH_PAGE_UP:
-			fb.BackTrack();
+			cm.BackTrack();
 			break;
 		case SH_PAGE_DOWN:
-			fb.ForeTrack();
+			cm.ForeTrack();
 			break;
 		case RESIZE:
 			w = keyQueue[0];
@@ -200,7 +200,7 @@ Terminal::KeyPressed(uint32_t ch)
 	size_t obl = 5; // len of converted
 
 	// if screen is rolled back, restore
-	fb.ForetrackToScreen();
+	cm.ForetrackToScreen();
 
 	char *iso = (char*)calloc(ibl, sizeof(char));
 	char *iso_ptr = iso;

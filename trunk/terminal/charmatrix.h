@@ -1,5 +1,5 @@
-#ifndef FRAMEBUFFER_H
-#define FRAMEBUFFER_H
+#ifndef CHARMATRIX_H
+#define CHARMATRIX_H
 
 #include <set>
 #include <vector>
@@ -31,11 +31,11 @@ struct Selection
 };
 
 
-class Framebuffer
+class CharMatrix
 {
 public:
-	Framebuffer(Options const& options);
-	~Framebuffer();
+	CharMatrix(Options const& options);
+	~CharMatrix();
 
 	// backtracking
 	void BackTrack();

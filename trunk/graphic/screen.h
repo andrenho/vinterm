@@ -11,8 +11,6 @@ using namespace std;
 
 class Options;
 class Framebuffer;
-class Chars;
-class Font;
 class Mouse;
 
 class Screen

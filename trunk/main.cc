@@ -3,9 +3,10 @@
 using namespace std;
 
 #include "options.h"
+#include "graphic/framebuffer.h"
 #include "graphic/screen.h"
 #include "terminal/pty.h"
-#include "terminal/framebuffer.h"
+#include "terminal/charmatrix.h"
 #include "terminal/vinterm.h"
 #include "terminal/clipboard.h"
 
@@ -15,32 +16,35 @@ int main(int argc, char** argv)
 	 * future, will also read from a configuration file. */
 	Options options(argc, argv);
 
-	/* Initialize the framebuffer. The framebuffer is a (initially) 80x25
+	/* Initialize the charmatrix. The charmatrix is a (initially) 80x25
 	 * grid of characters and their attributes, and represents the console
 	 * that the user sees. */
-	Framebuffer fb(options);
+	CharMatrix cm(options);
 
 	/* The PTY is the class that connects to the virtual terminal. It
 	 * receives the characters sent by the terminal, and sends the chars
 	 * inputted by the user to the terminal. */
 	PTY pty(options);
 
-	/* The terminal is the class that connects the PTY with the framebuffer.
-	 * It reads the data from the PTY and stores it on the framebuffer,
+	/* The terminal is the class that connects the PTY with the charmatrix.
+	 * It reads the data from the PTY and stores it on the charmatrix,
 	 * translating the escape codes from the specific terminal on demand. */
-	Vinterm terminal(fb, pty, options);
+	Vinterm terminal(cm, pty, options);
 
 	/* Opens the screen that the user will interact with. It reads the
-	 * characters from the framebuffer and display them on the screen, using
+	 * characters from the charmatrix and draws the pixels. */
+	Framebuffer framebuffer(options, cm);
+
+	/* The screen reads data from the pixes and display them on the screen, 
 	 * transforming them in the 80s style. */
-	Screen screen(options, fb, terminal.mouse);
+	Screen screen(options, framebuffer, terminal.mouse);
 
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */
 //	terminal.SetEncoding(screen.FontEncoding());
 
 	/* Initialize clipboard. */
-	fb.clipboard.ConnectToWM();
+	cm.clipboard.ConnectToWM();
 
 	/* The main loop is very simple. It executes these steps continually:
 	 *

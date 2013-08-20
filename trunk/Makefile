@@ -13,13 +13,14 @@ SRC = main.cc			\
       terminal/blink.cc		\
       terminal/backtrack.cc     \
       terminal/clipboard.cc	\
-      terminal/framebuffer.cc	\
+      terminal/charmatrix.cc	\
       terminal/keyqueue.cc      \
       terminal/mouse.cc         \
       terminal/pty.cc		\
       terminal/terminal.cc	\
       terminal/vinterm.cc	\
       graphic/audio.cc		\
+      graphic/framebuffer.cc    \
       graphic/screen.cc
 OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h
