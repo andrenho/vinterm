@@ -5,7 +5,7 @@
 #include "terminal/keyqueue.h"
 #include "render/renderer.h"
 
-Screen::Screen(Options const& options, Framebuffer const& fb, 
+Screen::Screen(Options const& options, Framebuffer& fb, 
 		Renderer const& renderer, Mouse& mouse)
 	: options(options), fb(fb), renderer(renderer), mouse(mouse),
 	  win(nullptr), ren(nullptr)
@@ -65,7 +65,7 @@ Screen::~Screen()
 void
 Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 {
-	renderer.Resize(new_w, new_h, ts_w, ts_h);
+	renderer.Resize(new_w, new_h, ts_w, ts_h, fb);
 }
 
 

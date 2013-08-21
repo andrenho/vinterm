@@ -17,8 +17,8 @@ class Mouse;
 class Screen
 {
 public:
-	Screen(Options const& options, Framebuffer const& fb, 
-			Renderer const& renderer, Mouse& mouse);
+	Screen(Options const& options, Framebuffer& fb, Renderer const& renderer, 
+			Mouse& mouse);
 	~Screen();
 
 	void Update();
@@ -28,7 +28,7 @@ public:
 
 private:
 	Options const& options;
-	Framebuffer const& fb;
+	Framebuffer& fb;
 	Renderer const& renderer;
 	Mouse& mouse;
 
