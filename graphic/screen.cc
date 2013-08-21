@@ -39,8 +39,8 @@ Screen::Screen(Options const& options, Framebuffer const& fb,
 
 	// prepare to resize
 	int w, h;
-	SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN);
-	SDL_SetWindowFullscreen(win, 0);
+	// SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN);
+	// SDL_SetWindowFullscreen(win, 0);
 	SDL_RenderPresent(ren);
 	SDL_GetWindowSize(win, &w, &h);
 	keyQueue.push_back(RESIZE);
@@ -65,10 +65,7 @@ Screen::~Screen()
 void
 Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 {
-	cout << new_w << endl;
-	cout << new_h << endl;
-	cout << full_screen << endl;
-	ts_w = ts_h = 40; // TODO
+	renderer.Resize(new_w, new_h, ts_w, ts_h);
 }
 
 
