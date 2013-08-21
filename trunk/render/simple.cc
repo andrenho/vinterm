@@ -1,10 +1,21 @@
 #include "render/simple.h"
 
 #include "graphic/framebuffer.h"
+#include "graphic/font.h"
+
+Simple::Simple(Font const& font)
+	: Renderer(font)
+{
+}
+
 
 void 
-Simple::Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const
+Simple::Resize(int scr_w, int scr_h, int& ts_w, int& ts_h,
+		Framebuffer& fb) const
 {
+	ts_w = scr_w / font.CharWidth();
+	ts_h = scr_w / font.CharHeight();
+	fb.Resize(scr_w, scr_h);
 }
 
 
@@ -21,4 +32,3 @@ Simple::Render(SDL_Renderer*& ren, Framebuffer const& fb) const
 	SDL_RenderPresent(ren);
 	delete[] pixels;
 }
-

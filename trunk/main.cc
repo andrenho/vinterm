@@ -5,6 +5,7 @@ using namespace std;
 #include "options.h"
 #include "graphic/framebuffer.h"
 #include "graphic/screen.h"
+#include "graphic/font.h"
 #include "render/simple.h"
 #include "terminal/pty.h"
 #include "terminal/charmatrix.h"
@@ -36,8 +37,20 @@ int main(int argc, char** argv)
 	 * characters from the charmatrix and draws the pixels. */
 	Framebuffer framebuffer(options, cm);
 
+	/* Load the font defined by the user. */
+	Font const* font = nullptr;
+	try
+	{
+		font = Font::LoadFont(options);
+	}
+	catch(string s)
+	{
+		cerr << s << endl;
+		return 1;
+	}
+
 	/* Create a renderer. */
-	Simple simple;
+	Simple simple(*font);
 
 	/* The screen reads data from the pixes and display them on the screen, 
 	 * transforming them in the 80s style. */
@@ -67,6 +80,9 @@ int main(int argc, char** argv)
 		screen.Update();
 		screen.CheckEvents();
 	}
+
+	/* Clean up. */
+	delete font;
 
 	return 0;
 }

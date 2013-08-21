@@ -26,6 +26,8 @@ Options........... Setup the options, read the arguments and the config file
 
 Graphic/
   Audio........... Beeps
+  Font/
+    FontBMP....... Bitmap font
   Framebuffer..... A pixel map of the screen
   Screen.......... Display everything to the user, with the filters
 
@@ -42,6 +44,7 @@ Terminal/
     Vinterm....... Use custom escape codes
 
 Renderer/
+  Simple.......... Simple terminal, much as a xterm
   Monochrome...... Draws the characters like a monochrome monitor
 
 The following files are also distributed in the data/ dir:
