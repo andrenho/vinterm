@@ -5,9 +5,8 @@
 #include "terminal/keyqueue.h"
 #include "render/renderer.h"
 
-Screen::Screen(Options const& options, Framebuffer& fb, 
-		Renderer const& renderer, Mouse& mouse)
-	: options(options), fb(fb), renderer(renderer), mouse(mouse),
+Screen::Screen(Options const& options, Renderer const& renderer, Mouse& mouse)
+	: options(options), renderer(renderer), mouse(mouse),
 	  win(nullptr), ren(nullptr)
 {
 	// initialize SDL
@@ -41,7 +40,6 @@ Screen::Screen(Options const& options, Framebuffer& fb,
 	int w, h;
 	// SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN);
 	// SDL_SetWindowFullscreen(win, 0);
-	SDL_RenderPresent(ren);
 	SDL_GetWindowSize(win, &w, &h);
 	keyQueue.push_back(RESIZE);
 	keyQueue.push_back(w);
@@ -65,14 +63,14 @@ Screen::~Screen()
 void
 Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 {
-	renderer.Resize(new_w, new_h, ts_w, ts_h, fb);
+	renderer.Resize(new_w, new_h, ts_w, ts_h);
 }
 
 
 void
 Screen::Update()
 {
-	renderer.Render(ren, fb);
+	renderer.Render();
 }
 
 

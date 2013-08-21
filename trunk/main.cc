@@ -33,10 +33,6 @@ int main(int argc, char** argv)
 	 * translating the escape codes from the specific terminal on demand. */
 	Vinterm terminal(cm, pty, options);
 
-	/* Opens the screen that the user will interact with. It reads the
-	 * characters from the charmatrix and draws the pixels. */
-	Framebuffer framebuffer(options, cm);
-
 	/* Load the font defined by the user. */
 	Font const* font = nullptr;
 	try
@@ -49,12 +45,17 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
+	/* Opens the screen that the user will interact with. It reads the
+	 * characters from the charmatrix and draws the pixels. */
+	Framebuffer framebuffer(options, cm, *font);
+
 	/* Create a renderer. */
-	Simple simple(*font);
+	Simple simple(*font, framebuffer);
 
 	/* The screen reads data from the pixes and display them on the screen, 
 	 * transforming them in the 80s style. */
-	Screen screen(options, framebuffer, simple, terminal.mouse);
+	Screen screen(options, simple, terminal.mouse);
+	simple.setRenderer(screen.GLRenderer());
 
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */
@@ -77,6 +78,7 @@ int main(int argc, char** argv)
 	{
 		terminal.Output(screen);
 		terminal.Input();
+		framebuffer.DrawChars();
 		screen.Update();
 		screen.CheckEvents();
 	}

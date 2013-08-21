@@ -6,11 +6,14 @@
 class Simple : public Renderer
 {
 public:
-	Simple(Font const& font);
-	void Render(SDL_Renderer*& ren, Framebuffer const& fb) const;
-	void Resize(int scr_w, int scr_h, int& ts_w, int& ts_h,
-			Framebuffer& fb) const;
+	Simple(Font const& font, Framebuffer& fb);
+	~Simple();
+	void Render() const;
+	void Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const;
+
+private:
+	mutable int w, h;
+	mutable SDL_Texture* texture;
 };
 
 #endif
-
