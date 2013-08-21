@@ -5,7 +5,7 @@ using namespace std;
 #include "options.h"
 #include "graphic/framebuffer.h"
 #include "graphic/screen.h"
-#include "render/monochrome.h"
+#include "render/simple.h"
 #include "terminal/pty.h"
 #include "terminal/charmatrix.h"
 #include "terminal/vinterm.h"
@@ -37,11 +37,11 @@ int main(int argc, char** argv)
 	Framebuffer framebuffer(options, cm);
 
 	/* Create a renderer. */
-	Monochrome monochrome;
+	Simple simple;
 
 	/* The screen reads data from the pixes and display them on the screen, 
 	 * transforming them in the 80s style. */
-	Screen screen(options, framebuffer, monochrome, terminal.mouse);
+	Screen screen(options, framebuffer, simple, terminal.mouse);
 
 	/* Now that the font was loaded (in Screen), set up the terminal
 	   encoding. */

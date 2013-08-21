@@ -22,5 +22,5 @@ Framebuffer::Resize(int w, int h)
 	if(pixels)
 		delete[] pixels;
 	pixels = new uint32_t[w*h];
-	pixels[10*10] = 0xffffffff;
+	pixels[10+10*400] = 0xffffffff;
 }
