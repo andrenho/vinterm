@@ -20,8 +20,8 @@ void
 Simple::Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const
 {
 	ts_w = scr_w / font.CharWidth();
-	ts_h = scr_w / font.CharHeight();
-	fb.Resize(scr_w, scr_h);
+	ts_h = scr_h / font.CharHeight();
+	fb.Resize(scr_w, scr_h, ts_w, ts_h);
 	this->w = scr_w;
 	this->h = scr_h;
 
