@@ -8,7 +8,7 @@
 #include "terminal/charattr.h"
 #include "graphic/font.h"
 
-Framebuffer::Framebuffer(Options const& options, CharMatrix const& cm, 
+Framebuffer::Framebuffer(Options const& options, CharMatrix& cm, 
 		Font const& font)
 	: options(options), cm(cm), font(font), w(0), h(0), pixels(nullptr)
 {
@@ -28,8 +28,10 @@ Framebuffer::~Framebuffer()
 
 
 void 
-Framebuffer::Resize(int w, int h)
+Framebuffer::Resize(int w, int h, int ts_w, int ts_h)
 {
+	cm.Resize(ts_w, ts_h);
+
 	if(pixels)
 		delete[] pixels;
 	this->w = w;
@@ -43,13 +45,12 @@ Framebuffer::Resize(int w, int h)
 void
 Framebuffer::DrawChars()
 {
-	for(auto n = cm.dirty->begin(); n != cm.dirty->end(); n++)
+	set<int>::const_iterator n;
+	for(n = cm.dirty->begin(); n != cm.dirty->end(); n++)
 	{
-		int i = (*n);
-
 		// get framebuffer positions
-		int x = i % w;
-		int y = i / w;
+		int x = (*n) % cm.W();
+		int y = (*n) / cm.W();
 
 		// verify if it's the cursor
 		bool cursor = (x == cm.CursorX() && y == cm.CursorY());
@@ -59,6 +60,7 @@ Framebuffer::DrawChars()
 		// get character to draw and adjust attribute
 		Char ch = cm.Ch(x, y);
 		char c = ch.Ch;
+
 		Attribute attr = ch.Attr;
 		if(attr.Blink || cursor)
 		{

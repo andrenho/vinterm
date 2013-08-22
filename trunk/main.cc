@@ -73,7 +73,7 @@ int main(int argc, char** argv)
 	 *   4. Check for events.
 	 *
 	 * The loop exits when a EOF is received from the terminal. */
-	//terminal.SendString(options.toBeRun);
+	terminal.SendString(options.toBeRun);
 	while(terminal.Active())
 	{
 		terminal.Output(screen);

@@ -80,13 +80,30 @@ Screen::Update()
 void
 Screen::CheckEvents() const
 {
+	uint16_t c;
+	int i = 0;
+
 	SDL_Event e;
 	while(SDL_PollEvent(&e))
 	{
 		switch(e.type)
 		{
-		case SDL_KEYDOWN:
+		/* case SDL_KEYDOWN:
 			KeyEvent(e.key);
+			break; */
+
+		case SDL_TEXTINPUT:
+			i = 0;
+			c = 0;
+			while(e.text.text[i])
+			{
+				printf("%x\n", e.text.text[i] & 0xff);
+				keyQueue.push_back(e.text.text[i] & 0xff);
+				c <<= 8;
+				c += (e.text.text[i++] & 0xff);
+			}
+			printf("%d\n", c);
+			//keyQueue.push_back(c);
 			break;
 
 		case SDL_WINDOWEVENT:
