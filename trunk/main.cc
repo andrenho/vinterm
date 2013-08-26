@@ -80,6 +80,7 @@ int main(int argc, char** argv)
 		terminal.Input();
 		framebuffer.DrawChars();
 		screen.Update();
+		cm.CheckForBlink();
 		screen.CheckEvents();
 	}
 

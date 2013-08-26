@@ -196,34 +196,11 @@ Terminal::Output(Screen& screen)
 void
 Terminal::KeyPressed(uint32_t ch)
 {
-	size_t ibl = 2; // len of iso
-	size_t obl = 5; // len of converted
-
 	// if screen is rolled back, restore
 	cm.ForetrackToScreen();
 
-	char *iso = (char*)calloc(ibl, sizeof(char));
-	char *iso_ptr = iso;
-	iso[0] = (char)ch;
-	char *converted = (char*)calloc(obl, sizeof(char));
-	char *converted_start = converted;
-
-	size_t ret = iconv(cd_out, &iso, &ibl, &converted, &obl);
-
-	if(ret == (size_t)-1)
-	{
-		perror("iconv");
-		return;
-	}
-	else
-	{
-		int i = 0;
-		while(converted_start[i])
-			pty.Send(converted_start[i++]);
-	}
-
-	free(iso_ptr);
-	free(converted_start);
+	// send to PTY
+	pty.Send(ch);
 }
 
 

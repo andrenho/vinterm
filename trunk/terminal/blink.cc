@@ -1,5 +1,7 @@
 #include "terminal/blink.h"
 
+#include "SDL2/SDL_timer.h"
+
 #include "terminal/charmatrix.h"
 
 Blink::Blink(const uint32_t milliseconds)
@@ -13,8 +15,7 @@ void
 Blink::ResetClock()
 {
 	// TODO
-	// last_blink = SDL_GetTicks();
-	last_blink = 0;
+	last_blink = SDL_GetTicks();
 	state = true;
 }
 
@@ -23,8 +24,7 @@ bool
 Blink::TimeToBlink() const
 {
 	// TODO
-	//uint32_t now = SDL_GetTicks();
-	uint32_t now = 0;
+	uint32_t now = SDL_GetTicks();
 
 	return (now - last_blink) > milliseconds;
 }
@@ -36,6 +36,5 @@ Blink::DoBlink(CharMatrix const& cm)
 	state = !state;
 
 	// TODO
-	// last_blink = SDL_GetTicks();
-	last_blink = 0;
+	last_blink = SDL_GetTicks();
 }

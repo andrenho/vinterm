@@ -27,7 +27,7 @@ FontBMP::~FontBMP()
 
 void 
 FontBMP::DrawChar(uint32_t ch, uint8_t* pixels, int x, int y, int pitch,
-		uint8_t bg_color, uint8_t fg_color) const
+		uint8_t bg_color, uint8_t fg_color, bool underline) const
 {
 	int ch_x = (ch % chars_per_row) * w;
 	int ch_y = ch / chars_per_row * h;
@@ -41,6 +41,9 @@ FontBMP::DrawChar(uint32_t ch, uint8_t* pixels, int x, int y, int pitch,
 			else
 				pixels[(x+xx)+(y+yy)*pitch] = bg_color;
 		}
+	if(underline)
+		for(int xx=0; xx<w; xx++)
+			pixels[(x+xx)+(y+h-1)*pitch] = fg_color;
 }
 
 

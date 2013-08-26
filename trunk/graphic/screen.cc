@@ -38,8 +38,6 @@ Screen::Screen(Options const& options, Renderer const& renderer, Mouse& mouse)
 
 	// prepare to resize
 	int w, h;
-	// SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN);
-	// SDL_SetWindowFullscreen(win, 0);
 	SDL_GetWindowSize(win, &w, &h);
 	keyQueue.push_back(RESIZE);
 	keyQueue.push_back(w);
@@ -80,7 +78,6 @@ Screen::Update()
 void
 Screen::CheckEvents() const
 {
-	uint16_t c;
 	int i = 0;
 
 	SDL_Event e;
@@ -88,22 +85,14 @@ Screen::CheckEvents() const
 	{
 		switch(e.type)
 		{
-		/* case SDL_KEYDOWN:
+		case SDL_KEYDOWN:
 			KeyEvent(e.key);
-			break; */
+			break;
 
 		case SDL_TEXTINPUT:
 			i = 0;
-			c = 0;
 			while(e.text.text[i])
-			{
-				printf("%x\n", e.text.text[i] & 0xff);
-				keyQueue.push_back(e.text.text[i] & 0xff);
-				c <<= 8;
-				c += (e.text.text[i++] & 0xff);
-			}
-			printf("%d\n", c);
-			//keyQueue.push_back(c);
+				keyQueue.push_back(e.text.text[i++]);
 			break;
 
 		case SDL_WINDOWEVENT:
@@ -127,15 +116,38 @@ Screen::CheckEvents() const
 void
 Screen::KeyEvent(SDL_KeyboardEvent key) const
 {
-	uint16_t c;
-	//Uint8* k = SDL_GetKeyState(NULL);
+	static struct { char c; uint8_t code; } ctrl_codes[] = {
+		{ 'a', 1 }, { 'b', 2 }, { 'c', 3 }, { 'd', 4 }, { 'e', 5 },
+		{ 'f', 6 }, { 'g', 7 }, { 'h', 8 }, { 'i', 9 }, { 'j', 10 },
+		{ 'k', 11 }, { 'l', 12 }, { 'm', 13 }, { 'n', 14 }, { 'o', 15 },
+		{ 'p', 16 }, { 'q', 17 }, { 'r', 18 }, { 's', 19 }, { 't', 20 },
+		{ 'u', 21 }, { 'v', 22 }, { 'w', 23 }, { 'x', 24 }, { 'y', 25 },
+		{ 'z', 26 }, { '[', 27 }, { '\\', 28 }, { ']', 29 }, { '^', 30 },
+		{ '_', 31 },
+	};
 
 	SDL_ShowCursor(SDL_DISABLE);
-//	cm.blink->ResetClock();
 
+	// check for control codes
+	if(key.keysym.mod & KMOD_CTRL)
+		for(auto cc : ctrl_codes)
+			if(cc.c == key.keysym.sym)
+			{
+				keyQueue.push_back(cc.code);
+				return;
+			}
+
+	// check for other codes
 	switch(key.keysym.sym)
 	{
-		/*
+	case SDLK_RETURN:
+		keyQueue.push_back('\n'); break;
+	case SDLK_BACKSPACE:
+		keyQueue.push_back('\b'); break;
+	case SDLK_TAB:
+		keyQueue.push_back('\t'); break;
+	case SDLK_ESCAPE:
+		keyQueue.push_back(27); break;
 	case SDLK_F1:
 		keyQueue.push_back(F1); break;
 	case SDLK_F2:
@@ -157,13 +169,15 @@ Screen::KeyEvent(SDL_KeyboardEvent key) const
 	case SDLK_F10:
 		keyQueue.push_back(F10); break;
 	case SDLK_F11:
-		if(k[SDLK_RCTRL] || k[SDLK_LCTRL])
+		if(key.keysym.mod & KMOD_CTRL)
 		{
 			// full screen
+			int w, h;
+			SDL_GetWindowSize(win, &w, &h);
 			keyQueue.push_back(RESIZE);
-			keyQueue.push_back(desktop_w);
-			keyQueue.push_back(desktop_h);
-			keyQueue.push_back((k[SDLK_RSHIFT] || k[SDLK_LSHIFT]) + 1);
+			keyQueue.push_back(w);
+			keyQueue.push_back(h);
+			keyQueue.push_back((key.keysym.mod & KMOD_SHIFT) + 1);
 		}
 		else
 			keyQueue.push_back(F11); 
@@ -171,25 +185,25 @@ Screen::KeyEvent(SDL_KeyboardEvent key) const
 	case SDLK_F12:
 		keyQueue.push_back(F12); break;
 	case SDLK_UP:
-		if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+		if(key.keysym.mod & KMOD_SHIFT)
 			keyQueue.push_back(SH_UP);
 		else
 			keyQueue.push_back(K_UP);
 		break;
 	case SDLK_DOWN:
-		if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+		if(key.keysym.mod & KMOD_SHIFT)
 			keyQueue.push_back(SH_DOWN);
 		else
 			keyQueue.push_back(K_DOWN);
 		break;
 	case SDLK_LEFT:
-		if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+		if(key.keysym.mod & KMOD_SHIFT)
 			keyQueue.push_back(SH_LEFT);
 		else
 			keyQueue.push_back(K_LEFT);
 		break;
 	case SDLK_RIGHT:
-		if(k[SDLK_RSHIFT] || k[SDLK_LSHIFT])
+		if(key.keysym.mod & KMOD_SHIFT)
 			keyQueue.push_back(SH_RIGHT);
 		else
 			keyQueue.push_back(K_RIGHT);
@@ -199,17 +213,17 @@ Screen::KeyEvent(SDL_KeyboardEvent key) const
 	case SDLK_DELETE:
 		keyQueue.push_back(DELETE); break;
 	case SDLK_PAGEUP:
-		if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
+		if(key.keysym.mod & KMOD_CTRL)
 			keyQueue.push_back(CT_PAGE_UP);
-		else if(k[SDLK_LSHIFT] || k[SDLK_RSHIFT])
+		else if(key.keysym.mod & KMOD_SHIFT)
 			keyQueue.push_back(SH_PAGE_UP);
 		else
 			keyQueue.push_back(PAGE_UP);
 		break;
 	case SDLK_PAGEDOWN:
-		if(k[SDLK_LCTRL] || k[SDLK_RCTRL])
+		if(key.keysym.mod & KMOD_CTRL)
 			keyQueue.push_back(CT_PAGE_DOWN);
-		else if(k[SDLK_LSHIFT] || k[SDLK_RSHIFT])
+		else if(key.keysym.mod & KMOD_SHIFT)
 			keyQueue.push_back(SH_PAGE_DOWN);
 		else
 			keyQueue.push_back(PAGE_DOWN);
@@ -218,10 +232,5 @@ Screen::KeyEvent(SDL_KeyboardEvent key) const
 		keyQueue.push_back(INSERT); break;
 	case SDLK_END:
 		keyQueue.push_back(END); break;
-		*/
-	default:
-		c = key.keysym.sym; //unicode;
-		if(c != 0)
-			keyQueue.push_back(c);
 	}
 }

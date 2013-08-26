@@ -16,7 +16,7 @@ public:
 	~FontBMP();
 
 	void DrawChar(uint32_t ch, uint8_t* pixels, int x, int y, int pitch,
-			uint8_t bg_color, uint8_t fg_color) const;
+			uint8_t bg_color, uint8_t fg_color, bool underline) const;
 	string Encoding() const { return encoding; }
 	int CharWidth() const { return w; }
 	int CharHeight() const { return h; }
