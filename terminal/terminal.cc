@@ -105,7 +105,7 @@ Terminal::InputChar(const char c)
 			{
 				if(readingStatusLine)
 				{
-					string s = cm.terminalTitle();
+					string s = cm.TerminalTitle();
 					cm.setTerminalTitle(s + cv);
 				}
 				else

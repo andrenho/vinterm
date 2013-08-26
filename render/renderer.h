@@ -3,7 +3,8 @@
 
 #include "SDL2/SDL.h"
 
-class Framebuffer;
+#include "graphic/framebuffer.h"
+
 class Font;
 
 class Renderer
@@ -13,14 +14,17 @@ public:
 
 	virtual void Render() const = 0;
 	virtual void Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const = 0;
+	virtual void CharPosition(int mx, int my, int& x, int& y) const = 0;
+
 	void setRenderer(SDL_Renderer* r) { ren = r; }
+	::Framebuffer& Framebuffer() const { return fb; }
 
 protected:
-	Renderer(Font const& font, Framebuffer& fb)
+	Renderer(Font const& font, ::Framebuffer& fb)
 		: font(font), fb(fb) { }
 
 	Font const& font;
-	Framebuffer& fb;
+	::Framebuffer& fb;
 	SDL_Renderer* ren;
 };
 

@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "terminal/keyqueue.h"
+#include "terminal/mouse.h"
 #include "render/renderer.h"
 
 Screen::Screen(Options const& options, Renderer const& renderer, Mouse& mouse)
@@ -71,7 +72,14 @@ Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 void
 Screen::Update()
 {
+	// render image
 	renderer.Render();
+
+	// set window title
+	string new_title = renderer.Framebuffer().TerminalTitle();
+	const char* title = SDL_GetWindowTitle(win);
+	if(strcmp(title, new_title.c_str()) != 0)
+		SDL_SetWindowTitle(win, new_title.c_str());
 }
 
 
@@ -79,6 +87,8 @@ void
 Screen::CheckEvents() const
 {
 	int i = 0;
+	int x, y;
+	uint8_t state;
 
 	SDL_Event e;
 	while(SDL_PollEvent(&e))
@@ -93,6 +103,41 @@ Screen::CheckEvents() const
 			i = 0;
 			while(e.text.text[i])
 				keyQueue.push_back(e.text.text[i++]);
+			break;
+
+		case SDL_MOUSEBUTTONDOWN:
+		case SDL_MOUSEBUTTONUP:
+			SDL_ShowCursor(SDL_ENABLE);
+			if(!mouse.Captured() && e.button.button == 2  // paste
+					&& e.type == SDL_MOUSEBUTTONDOWN) 
+			{
+				for(char c : fb.clipboard.Read())
+					keyQueue.push_back(c);
+			}
+			else   // send mouse event to application
+			{
+				renderer.CharPosition(e.button.x, e.button.y, x, y);
+				if(x >= 0 && y >= 0)
+				{
+					SDLMod mod = SDL_GetModState();
+					mouse.AddButtonPressToQueue(
+							e.type == SDL_MOUSEBUTTONDOWN,
+							x, y, e.button.button,
+							mod & KMOD_SHIFT,
+							mod & KMOD_ALT,
+							mod & KMOD_CTRL, false);
+				}
+			}
+			break;
+
+		case SDL_MOUSEMOTION:
+			SDL_ShowCursor(SDL_ENABLE);
+			state = SDL_GetMouseState(NULL, NULL);
+			if(state & (SDL_BUTTON(1) | SDL_BUTTON(2) | SDL_BUTTON(3)))
+			{
+				renderer.CharPosition(e.motion.x, e.motion.y, x, y);
+				mouse.Drag(x, y, state);
+			}
 			break;
 
 		case SDL_WINDOWEVENT:

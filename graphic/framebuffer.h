@@ -3,8 +3,9 @@
 
 #include <cstdint>
 
+#include "terminal/charmatrix.h"
+
 class Options;
-class CharMatrix;
 class Font;
 
 struct Color { uint8_t r, g, b; };
@@ -18,7 +19,8 @@ public:
 	void Resize(int w, int h, int ts_w, int ts_h);
 	void DrawChars();
 
-	const uint8_t* const Pixels() const { return pixels; }
+	inline const uint8_t* const Pixels() const { return pixels; }
+	inline string TerminalTitle() const { return cm.TerminalTitle(); }
 
 	Color palette[255];
 private:
