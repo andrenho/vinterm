@@ -6,10 +6,11 @@
 class Simple : public Renderer
 {
 public:
-	Simple(Font const& font, Framebuffer& fb);
+	Simple(Font const& font, ::Framebuffer& fb);
 	~Simple();
 	void Render() const;
 	void Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const;
+	void CharPosition(int mx, int my, int& x, int& y) const;
 
 private:
 	mutable int w, h;

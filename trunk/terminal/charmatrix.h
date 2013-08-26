@@ -106,7 +106,7 @@ public:
 	bool IsSelected(int x, int y) const;
 
 	// terminal title
-	inline string terminalTitle() const { return terminal_title; }
+	inline string TerminalTitle() const { return terminal_title; }
 	inline void setTerminalTitle(string s) { terminal_title = s; }
 
 	mutable set<int>* dirty;

@@ -3,7 +3,7 @@
 #include "graphic/framebuffer.h"
 #include "graphic/font.h"
 
-Simple::Simple(Font const& font, Framebuffer& fb)
+Simple::Simple(Font const& font, ::Framebuffer& fb)
 	: Renderer(font, fb), texture(nullptr)
 {
 }
@@ -52,4 +52,11 @@ Simple::Render() const
 	SDL_RenderClear(ren);
 	SDL_RenderCopy(ren, texture, NULL, NULL);
 	SDL_RenderPresent(ren);
+}
+
+
+void
+Simple::CharPosition(int mx, int my, int& x, int& y) const
+{
+	x = y = 0; // TODO
 }
