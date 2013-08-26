@@ -14,7 +14,7 @@ CharMatrix::CharMatrix(Options const& options)
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
 	  saved_x(0), saved_y(0), flashing(false), 
 	  backtrack(new Backtrack(*this, 5)), current_backtrack(0),
-	  screen_advances(0)
+	  screen_advances(0), old_cursor_x(0), old_cursor_y(0)
 {
 	chars.insert(chars.begin(), w*h, Char());
 	for(int x=0; x<w; x+=8)
@@ -140,6 +140,9 @@ CharMatrix::Resize(int new_w, int new_h)
 		cursor_x = w-1;
 	if(cursor_y >= h)
 		cursor_y = h-1;
+
+	// reset blink clock
+	blink->ResetClock();
 }
 
 
@@ -192,6 +195,9 @@ CharMatrix::Put(const char c, Attribute attr, const int x, const int y,
 
 	// add to list of positions to be updated on the screen
 	dirty->insert(pos);
+
+	// reset blinks
+	blink->ResetClock();
 }
 
 
@@ -583,4 +589,26 @@ CharMatrix::IsSelected(int x, int y) const
 
 	return ((x+y*W()) >= min(selection.start, selection.end)) 
 	    && ((x+y*W()) <= max(selection.start, selection.end));
+}
+
+
+void
+CharMatrix::CheckForBlink()
+{
+	// blink, if necessary
+	if(blink->TimeToBlink())
+	{
+		blink->DoBlink(*this);
+		dirty->insert(CursorX() + CursorY() * W());
+		RegisterBlinks();
+	}
+
+	// register a change where the cursor was and where it is now
+	if(CursorX() != old_cursor_x || CursorY() != old_cursor_y)
+	{
+		dirty->insert(old_cursor_x + old_cursor_y * W());
+		dirty->insert(CursorX() + CursorY() * W());
+		old_cursor_x = CursorX();
+		old_cursor_y = CursorY();
+	}
 }

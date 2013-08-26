@@ -14,8 +14,8 @@ Framebuffer::Framebuffer(Options const& options, CharMatrix& cm,
 {
 	for(int i=0; i<256; i++)
 		palette[i] = { 0, 0, 0 };
-	palette[1] = { 30, 30, 30 };
-	palette[2] = { 60, 60, 60 };
+	palette[1] = { 50, 50, 50 };
+	palette[2] = { 100, 100, 100 };
 	palette[255] = { 255, 255, 255 };
 }
 
@@ -89,8 +89,8 @@ Framebuffer::DrawChars()
 		int bg = 255;
 		if(attr.Reverse)
 			swap(fg, bg);
-		font.DrawChar(c, pixels, xx, yy, w, bg, fg);
-		// TODO - underline
+		font.DrawChar((uint8_t)c, pixels, xx, yy, w, bg, fg, 
+				attr.Underline);
 
 		// register char location for later update
 		// TODO - rects.push_back(r);

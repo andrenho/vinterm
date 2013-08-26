@@ -6,8 +6,9 @@
 #include <istream>
 using namespace std;
 
-#include "terminal/clipboard.h"
 #include "terminal/backtrack.h"
+#include "terminal/blink.h"
+#include "terminal/clipboard.h"
 #include "terminal/charattr.h"
 class Options;
 class Blink;
@@ -96,6 +97,7 @@ public:
 	// attributes
 	void RegisterBlinks() const;
 	void SetAttr(AttrType attr, bool value);
+	void CheckForBlink();
 
 	// selection
 	void SetStartSelection(int x, int y);
@@ -129,6 +131,7 @@ private:
 	int screen_advances; // screen advance (new line at bottom) counter
 	string terminal_title;
 	Selection selection;
+	int old_cursor_x, old_cursor_y;
 };
 
 #endif
