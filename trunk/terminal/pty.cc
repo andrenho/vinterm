@@ -16,8 +16,8 @@
 
 #include "options.h"
 
-PTY::PTY(Options const& options, const string terminal)
-	: fd(0), options(options), debug(options.debug_terminal), debug_ct(0)
+PTY::PTY(const string terminal)
+	: fd(0), debug(options->debug_terminal), debug_ct(0)
 {
 	//CopyStartupFile();       
 	OpenPTY(terminal);

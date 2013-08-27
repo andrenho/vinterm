@@ -24,11 +24,13 @@ SRC = main.cc			\
       graphic/fontbmp.cc	\
       graphic/framebuffer.cc    \
       graphic/screen.cc         \
+      render/renderer.cc	\
       render/simple.cc
 #      render/monochrome.cc      \
 
 OBJ = ${SRC:.cc=.o}
-HEADERS = ${SRC:.cc=.h} filters/filter.h terminal/charattr.h render/renderer.h
+HEADERS = ${SRC:.cc=.h} global.h filters/filter.h terminal/charattr.h \
+	render/renderer.h
 DIST = AUTHORS HACKING LICENSE NEWS README INSTALL
 ICONS = icon/icon_16.png icon/icon_32.png icon/icon_64.png \
 	icon/icon_128.png icon/icon.svg icon/icon_22.png icon/icon_48.png

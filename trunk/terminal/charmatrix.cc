@@ -5,11 +5,10 @@
 #include <utility>
 
 #include "options.h"
-#include "terminal/blink.h"
 
-CharMatrix::CharMatrix(Options const& options)
+CharMatrix::CharMatrix()
 	: dirty(new set<int>), InsertMode(false), CursorVisibility(VISIBLE), 
-	  blink(new Blink(options.blink_speed)), 
+	  blink(new Blink(options->blink_speed)), 
 	  current_attr(Attribute()), w(80), h(24), 
 	  cursor_x(0), cursor_y(0), scroll_top(0), scroll_bottom(h-1),
 	  saved_x(0), saved_y(0), flashing(false), 

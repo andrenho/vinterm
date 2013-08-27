@@ -5,12 +5,12 @@
 #  include <ao/ao.h>
 #endif
 
-class Options;
+#include "global.h"
 
 class Audio
 {
 public:
-	Audio(Options const& options);
+	Audio();
 	~Audio();
 
 	void Beep() const;

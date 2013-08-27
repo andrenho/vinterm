@@ -7,15 +7,15 @@
 
 #define BUF_SIZE 4096
 
-#include "options.h"
-
 #include <iostream>
 using namespace std;
 
-Audio::Audio(Options const& options)
+#include "options.h"
+
+Audio::Audio()
 	: active(false)
 {
-	if(options.audio_disabled)
+	if(options->audio_disabled)
 		return;
 #ifdef AO
 	int default_driver;

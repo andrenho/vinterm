@@ -1,10 +1,13 @@
 #include "render/simple.h"
 
-#include "graphic/framebuffer.h"
-#include "graphic/font.h"
+#include <iostream>
+using namespace std;
 
-Simple::Simple(Font const& font, ::Framebuffer& fb)
-	: Renderer(font, fb), texture(nullptr)
+#include "graphic/font.h"
+#include "graphic/framebuffer.h"
+
+Simple::Simple()
+	: Renderer(), texture(nullptr)
 {
 }
 
@@ -19,9 +22,9 @@ Simple::~Simple()
 void 
 Simple::Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const
 {
-	ts_w = scr_w / font.CharWidth();
-	ts_h = scr_h / font.CharHeight();
-	fb.Resize(scr_w, scr_h, ts_w, ts_h);
+	ts_w = scr_w / font->CharWidth();
+	ts_h = scr_h / font->CharHeight();
+	framebuffer->Resize(scr_w, scr_h, ts_w, ts_h);
 	this->w = scr_w;
 	this->h = scr_h;
 
@@ -45,7 +48,7 @@ Simple::Render() const
 
 	for(int i=0; i<w*h; i++)
 	{
-		Color p = fb.palette[fb.Pixels()[i]];
+		Color p = framebuffer->palette[framebuffer->Pixels()[i]];
 		pixels[i] = (p.r << 16) + (p.g << 8) + p.b;
 	}
 	SDL_UnlockTexture(texture);
