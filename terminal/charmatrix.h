@@ -6,13 +6,11 @@
 #include <istream>
 using namespace std;
 
+#include "global.h"
 #include "terminal/backtrack.h"
 #include "terminal/blink.h"
-#include "terminal/clipboard.h"
 #include "terminal/charattr.h"
-class Options;
-class Blink;
-class Clipboard;
+#include "terminal/clipboard.h"
 
 typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
 typedef enum { 
@@ -35,7 +33,7 @@ struct Selection
 class CharMatrix
 {
 public:
-	CharMatrix(Options const& options);
+	CharMatrix();
 	~CharMatrix();
 
 	// backtracking

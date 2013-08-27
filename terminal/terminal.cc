@@ -4,19 +4,19 @@
 using namespace std;
 
 #include "options.h"
-#include "terminal/charmatrix.h"
 #include "terminal/pty.h"
+#include "terminal/charmatrix.h"
 #include "terminal/keyqueue.h"
+#include "terminal/mouse.h"
 #include "graphic/audio.h"
 #include "graphic/screen.h"
 
-Terminal::Terminal(CharMatrix& cm, PTY& pty, Options const& options)
-	: cm(cm), pty(pty), options(options), alternateCharset(false),
-	  readingStatusLine(false), audio(new Audio(options)), active(true), 
+Terminal::Terminal()
+	: alternateCharset(false),
+	  readingStatusLine(false), active(true), 
 	  escape_mode(false), encoding(""), inbuf((char*)calloc(4, 1)), 
 	  original_inbuf(inbuf), inbuf_pos(0)
 {
-	mouse.setTerminal(this);
 }
 
 
@@ -28,26 +28,25 @@ Terminal::~Terminal()
 		iconv_close(cd_out);
 	}
 	free(original_inbuf);
-	delete audio;
 }
 
 
 void 
 Terminal::SendString(string s)
 {
-	pty.Send(s);
+	pty->Send(s);
 }
 
 
 void
 Terminal::Input()
 {
-	cm.Flash(false);
+	cm->Flash(false);
 
 	// read data from the PTY
 	int i;
 
-	while((i = pty.Get()) != PTY::NO_DATA)
+	while((i = pty->Get()) != PTY::NO_DATA)
 	{
 		if(i == EOF)
 		{
@@ -55,7 +54,7 @@ Terminal::Input()
 			return;
 		}
 
-		cm.ForetrackToScreen();
+		cm->ForetrackToScreen();
 
 		const char c = (const char)i;
 		bool update_scr = false;
@@ -82,18 +81,18 @@ Terminal::InputChar(const char c)
 		escape_sequence = "\033";
 		break;
 	case '\n': // new line
-		return cm.AdvanceCursorY();
+		return cm->AdvanceCursorY();
 	case '\r': // carriage return
-		cm.CarriageReturn();
+		cm->CarriageReturn();
 		break;
 	case '\t': // tab
-		cm.Tab();
+		cm->Tab();
 		break;
 	case '\a': // beep
 		audio->Beep();
 		break;
 	case '\b': // backspace
-		cm.Backspace();
+		cm->Backspace();
 		break;
 	default:
 		if(alternateCharset)
@@ -105,11 +104,11 @@ Terminal::InputChar(const char c)
 			{
 				if(readingStatusLine)
 				{
-					string s = cm.TerminalTitle();
-					cm.setTerminalTitle(s + cv);
+					string s = cm->TerminalTitle();
+					cm->setTerminalTitle(s + cv);
 				}
 				else
-					cm.Put(cv, false);
+					cm->Put(cv, false);
 			}
 		}
 	}
@@ -121,7 +120,7 @@ Terminal::InputChar(const char c)
 void
 Terminal::InputAlternateChar(const char c)
 {
-	cm.Put(c, false);
+	cm->Put(c, false);
 }
 
 
@@ -140,13 +139,13 @@ Terminal::InputEscapeChar(const char c)
 void 
 Terminal::Resize(int new_w, int new_h)
 {
-	cm.Resize(new_w, new_h);
-	pty.Resize(new_w, new_h);
+	cm->Resize(new_w, new_h);
+	pty->Resize(new_w, new_h);
 }
 
 
 void 
-Terminal::Output(Screen& screen)
+Terminal::Output()
 {
 	while(!keyQueue.empty())
 	{
@@ -161,10 +160,10 @@ Terminal::Output(Screen& screen)
 		case 0: // discard
 			break;
 		case SH_PAGE_UP:
-			cm.BackTrack();
+			cm->BackTrack();
 			break;
 		case SH_PAGE_DOWN:
-			cm.ForeTrack();
+			cm->ForeTrack();
 			break;
 		case RESIZE:
 			w = keyQueue[0];
@@ -173,13 +172,13 @@ Terminal::Output(Screen& screen)
 			keyQueue.pop_front();
 			fs = keyQueue[0];
 			keyQueue.pop_front();
-			screen.Resize(w, h, fs, ts_w, ts_h);
+			screen->Resize(w, h, fs, ts_w, ts_h);
 			Resize(ts_w, ts_h);
 			break;
 		case MPRESS:
 		case MRELEASE:
 		case MDRAG:
-			s = mouse.Translate(ch);
+			s = mouse->Translate(ch);
 			if(!s.empty())
 				SendString(s);
 			break;
@@ -197,10 +196,10 @@ void
 Terminal::KeyPressed(uint32_t ch)
 {
 	// if screen is rolled back, restore
-	cm.ForetrackToScreen();
+	cm->ForetrackToScreen();
 
 	// send to PTY
-	pty.Send(ch);
+	pty->Send(ch);
 }
 
 
@@ -224,11 +223,11 @@ Terminal::SetEncoding(string const& encoding)
 {
 	this->encoding = encoding;
 
-	cd_in = iconv_open(encoding.c_str(), options.CurrentEncoding.c_str());
+	cd_in = iconv_open(encoding.c_str(), options->CurrentEncoding.c_str());
 	if(cd_in == (iconv_t)-1)
 	{
 		if(errno == EINVAL)
-			cerr << "conversion from " << options.CurrentEncoding <<
+			cerr << "conversion from " << options->CurrentEncoding <<
 				" to " << encoding << " not available." << endl;
 		else
 			perror("iconv_open");
@@ -236,12 +235,12 @@ Terminal::SetEncoding(string const& encoding)
 		return;
 	}
 
-	cd_out = iconv_open(options.CurrentEncoding.c_str(), "ISO-8859-1");
+	cd_out = iconv_open(options->CurrentEncoding.c_str(), "ISO-8859-1");
 	if(cd_out == (iconv_t)-1)
 	{
 		if(errno == EINVAL)
 			cerr << "conversion from ISO-8859-1 to " << 
-				options.CurrentEncoding.c_str() <<
+				options->CurrentEncoding.c_str() <<
 				" not available." << endl;
 		else
 			perror("iconv_open");

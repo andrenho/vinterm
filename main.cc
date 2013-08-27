@@ -2,42 +2,57 @@
 #include <iostream>
 using namespace std;
 
+#include "global.h"
 #include "options.h"
+#include "terminal/charmatrix.h"
+#include "terminal/pty.h"
+#include "terminal/vinterm.h"
+#include "terminal/mouse.h"
+#include "graphic/font.h"
 #include "graphic/framebuffer.h"
 #include "graphic/screen.h"
-#include "graphic/font.h"
+#include "graphic/audio.h"
 #include "render/simple.h"
-#include "terminal/pty.h"
-#include "terminal/charmatrix.h"
-#include "terminal/vinterm.h"
-#include "terminal/clipboard.h"
+
+Options* 	options		= nullptr;
+CharMatrix* 	cm		= nullptr;
+PTY* 		pty		= nullptr;
+Terminal*	terminal 	= nullptr;
+Mouse*          mouse		= nullptr;
+Font*		font		= nullptr;
+Framebuffer*	framebuffer	= nullptr;
+Screen*		screen 		= nullptr;
+Renderer*	renderer 	= nullptr;
+Audio*		audio 		= nullptr;
 
 int main(int argc, char** argv)
 {
 	/* Read and initialize options from the program arguments. In the
 	 * future, will also read from a configuration file. */
-	Options options(argc, argv);
+	options = new Options(argc, argv);
 
 	/* Initialize the charmatrix. The charmatrix is a (initially) 80x25
 	 * grid of characters and their attributes, and represents the console
 	 * that the user sees. */
-	CharMatrix cm(options);
+	cm = new CharMatrix();
 
 	/* The PTY is the class that connects to the virtual terminal. It
 	 * receives the characters sent by the terminal, and sends the chars
 	 * inputted by the user to the terminal. */
-	PTY pty(options);
+	pty = new PTY();
 
 	/* The terminal is the class that connects the PTY with the charmatrix.
 	 * It reads the data from the PTY and stores it on the charmatrix,
 	 * translating the escape codes from the specific terminal on demand. */
-	Vinterm terminal(cm, pty, options);
+	terminal = new Vinterm();
+
+	/* Initialize the mouse code translation. */
+	mouse = new Mouse();
 
 	/* Load the font defined by the user. */
-	Font const* font = nullptr;
 	try
 	{
-		font = Font::LoadFont(options);
+		font = Font::LoadFont();
 	}
 	catch(string s)
 	{
@@ -47,22 +62,23 @@ int main(int argc, char** argv)
 
 	/* Opens the screen that the user will interact with. It reads the
 	 * characters from the charmatrix and draws the pixels. */
-	Framebuffer framebuffer(options, cm, *font);
-
-	/* Create a renderer. */
-	Simple simple(*font, framebuffer);
+	framebuffer = new Framebuffer();
 
 	/* The screen reads data from the pixes and display them on the screen, 
 	 * transforming them in the 80s style. */
-	Screen screen(options, simple, terminal.mouse);
-	simple.setRenderer(screen.GLRenderer());
+	screen = new Screen();
 
-	/* Now that the font was loaded (in Screen), set up the terminal
-	   encoding. */
-	terminal.SetEncoding(font->Encoding());
+	/* Create a renderer. */
+	renderer = new Simple();
+
+	/* Initialize audio. */
+	audio = new Audio();
+
+	/* Now that the font was loaded, set up the terminal encoding. */
+	terminal->SetEncoding(font->Encoding());
 
 	/* Initialize clipboard. */
-	cm.clipboard.ConnectToWM();
+	cm->clipboard.ConnectToWM();
 
 	/* The main loop is very simple. It executes these steps continually:
 	 *
@@ -73,19 +89,28 @@ int main(int argc, char** argv)
 	 *   4. Check for events.
 	 *
 	 * The loop exits when a EOF is received from the terminal. */
-	terminal.SendString(options.toBeRun);
-	while(terminal.Active())
+	terminal->SendString(options->toBeRun);
+	while(terminal->Active())
 	{
-		terminal.Output(screen);
-		terminal.Input();
-		framebuffer.DrawChars();
-		screen.Update();
-		cm.CheckForBlink();
-		screen.CheckEvents();
+		terminal->Output();
+		terminal->Input();
+		framebuffer->DrawChars();
+		screen->Update();
+		cm->CheckForBlink();
+		screen->CheckEvents();
 	}
 
 	/* Clean up. */
+	delete audio;
+	delete renderer;
+	delete screen;
+	delete framebuffer;
 	delete font;
+	delete mouse;
+	delete terminal;
+	delete pty;
+	delete cm;
+	delete options;
 
 	return 0;
 }

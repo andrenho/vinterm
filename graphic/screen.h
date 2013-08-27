@@ -5,19 +5,14 @@
 #include <deque>
 using namespace std;
 
-#include "graphic/audio.h"
+#include "global.h"
 
 #include "SDL2/SDL.h"
-
-class Options;
-class Framebuffer;
-class Renderer;
-class Mouse;
 
 class Screen
 {
 public:
-	Screen(Options const& options, Renderer const& renderer, Mouse& mouse);
+	Screen();
 	~Screen();
 
 	void Update();
@@ -28,10 +23,6 @@ public:
 
 private:
 	void KeyEvent(SDL_KeyboardEvent key) const;
-
-	Options const& options;
-	Renderer const& renderer;
-	Mouse& mouse;
 
 	SDL_Window* win;
 	SDL_Renderer* ren;

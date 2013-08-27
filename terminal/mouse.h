@@ -7,7 +7,7 @@
 #include <string>
 using namespace std;
 
-class Terminal;
+#include "global.h"
 
 class Mouse
 {
@@ -23,8 +23,6 @@ public:
 
 	string Translate(int ch);
 	bool Captured() const;
-
-	void setTerminal(Terminal* terminal) { this->terminal = terminal; }
 
 private:
 	int mode;

@@ -2,13 +2,12 @@
 
 #include <iostream>
 
+#include "terminal/charmatrix.h"
 #include "terminal/keyqueue.h"
-#include "terminal/mouse.h"
 #include "render/renderer.h"
 
-Screen::Screen(Options const& options, Renderer const& renderer, Mouse& mouse)
-	: options(options), renderer(renderer), mouse(mouse),
-	  win(nullptr), ren(nullptr)
+Screen::Screen()
+	: win(nullptr), ren(nullptr)
 {
 	// initialize SDL
 	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
@@ -65,7 +64,7 @@ Screen::~Screen()
 void
 Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
 {
-	renderer.Resize(new_w, new_h, ts_w, ts_h);
+	renderer->Resize(new_w, new_h, ts_w, ts_h);
 }
 
 
@@ -73,10 +72,10 @@ void
 Screen::Update()
 {
 	// render image
-	renderer.Render();
+	renderer->Render();
 
 	// set window title
-	string new_title = renderer.Framebuffer().TerminalTitle();
+	string new_title = cm->TerminalTitle();
 	const char* title = SDL_GetWindowTitle(win);
 	if(strcmp(title, new_title.c_str()) != 0)
 		SDL_SetWindowTitle(win, new_title.c_str());
@@ -105,10 +104,11 @@ Screen::CheckEvents() const
 				keyQueue.push_back(e.text.text[i++]);
 			break;
 
+		/*
 		case SDL_MOUSEBUTTONDOWN:
 		case SDL_MOUSEBUTTONUP:
 			SDL_ShowCursor(SDL_ENABLE);
-			if(!mouse.Captured() && e.button.button == 2  // paste
+			if(!mouse->Captured() && e.button.button == 2  // paste
 					&& e.type == SDL_MOUSEBUTTONDOWN) 
 			{
 				for(char c : fb.clipboard.Read())
@@ -116,11 +116,11 @@ Screen::CheckEvents() const
 			}
 			else   // send mouse event to application
 			{
-				renderer.CharPosition(e.button.x, e.button.y, x, y);
+				renderer->CharPosition(e.button.x, e.button.y, x, y);
 				if(x >= 0 && y >= 0)
 				{
 					SDLMod mod = SDL_GetModState();
-					mouse.AddButtonPressToQueue(
+					mouse->AddButtonPressToQueue(
 							e.type == SDL_MOUSEBUTTONDOWN,
 							x, y, e.button.button,
 							mod & KMOD_SHIFT,
@@ -135,10 +135,10 @@ Screen::CheckEvents() const
 			state = SDL_GetMouseState(NULL, NULL);
 			if(state & (SDL_BUTTON(1) | SDL_BUTTON(2) | SDL_BUTTON(3)))
 			{
-				renderer.CharPosition(e.motion.x, e.motion.y, x, y);
-				mouse.Drag(x, y, state);
+				renderer->CharPosition(e.motion.x, e.motion.y, x, y);
+				mouse->Drag(x, y, state);
 			}
-			break;
+			break; */
 
 		case SDL_WINDOWEVENT:
 			if(e.window.event == SDL_WINDOWEVENT_RESIZED)

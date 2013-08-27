@@ -54,7 +54,7 @@ Mouse::AddButtonPressToQueue(bool press, int x, int y, int button, bool shift,
 		if(button == 1)
 		{
 			if(press)
-				terminal->CM().SetNoSelection();
+				cm->SetNoSelection();
 			else
 				selection_started = false;
 		}
@@ -81,9 +81,9 @@ Mouse::Drag(int x, int y, uint8_t button)
 		if(!selection_started)
 		{
 			selection_started = true;
-			terminal->CM().SetStartSelection(last_press_x, last_press_y);
+			cm->SetStartSelection(last_press_x, last_press_y);
 		}
-		terminal->CM().SetEndSelection(x, y);
+		cm->SetEndSelection(x, y);
 	}
 
 	last_press_x = x;
