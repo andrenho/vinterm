@@ -13,6 +13,7 @@ using namespace std;
 #include "graphic/screen.h"
 #include "graphic/audio.h"
 #include "render/simple.h"
+#include "util/chronometer.h"
 
 Options* 	options		= nullptr;
 CharMatrix* 	cm		= nullptr;
@@ -89,14 +90,21 @@ int main(int argc, char** argv)
 	 *   4. Check for events.
 	 *
 	 * The loop exits when a EOF is received from the terminal. */
+	Chronometer ch;
 	terminal->SendString(options->toBeRun);
 	while(terminal->Active())
 	{
+		ch.Next("terminal output");
 		terminal->Output();
+		ch.Next("terminal input");
 		terminal->Input();
+		ch.Next("framebuffer draw chars");
 		framebuffer->DrawChars();
+		ch.Next("screen update");
 		screen->Update();
+		ch.Next("charmatrix check blink");
 		cm->CheckForBlink();
+		ch.Next("screen check events");
 		screen->CheckEvents();
 	}
 

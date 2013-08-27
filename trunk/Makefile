@@ -25,8 +25,8 @@ SRC = main.cc			\
       graphic/framebuffer.cc    \
       graphic/screen.cc         \
       render/renderer.cc	\
-      render/simple.cc
-#      render/monochrome.cc      \
+      render/simple.cc		\
+      util/chronometer.cc
 
 OBJ = ${SRC:.cc=.o}
 HEADERS = ${SRC:.cc=.h} global.h filters/filter.h terminal/charattr.h \
