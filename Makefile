@@ -26,6 +26,7 @@ SRC = main.cc			\
       graphic/screen.cc         \
       render/renderer.cc	\
       render/simple.cc		\
+      render/monochrome.cc	\
       util/chronometer.cc
 
 OBJ = ${SRC:.cc=.o}
