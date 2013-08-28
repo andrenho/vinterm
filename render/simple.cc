@@ -5,6 +5,7 @@ using namespace std;
 
 #include "graphic/font.h"
 #include "graphic/framebuffer.h"
+#include "util/chronometer.h"
 
 Simple::Simple()
 	: Renderer(), texture(nullptr)
@@ -44,16 +45,23 @@ Simple::Render() const
 
 	uint32_t* pixels;
 	int pitch;
-	SDL_LockTexture(texture, NULL, (void**)&pixels, &pitch);
 
+	ch->Next("render lock texture");
+	SDL_LockTexture(texture, NULL, (void**)&pixels, &pitch);
+	ch->Next("render update texture");
 	for(int i=0; i<w*h; i++)
 	{
 		Color p = framebuffer->palette[framebuffer->Pixels()[i]];
 		pixels[i] = (p.r << 16) + (p.g << 8) + p.b;
 	}
+	ch->Next("render unlock texture");
 	SDL_UnlockTexture(texture);
+
+	ch->Next("render clear");
 	SDL_RenderClear(ren);
+	ch->Next("render copy texture");
 	SDL_RenderCopy(ren, texture, NULL, NULL);
+	ch->Next("render present texture");
 	SDL_RenderPresent(ren);
 }
 

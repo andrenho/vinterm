@@ -25,6 +25,7 @@ Framebuffer*	framebuffer	= nullptr;
 Screen*		screen 		= nullptr;
 Renderer*	renderer 	= nullptr;
 Audio*		audio 		= nullptr;
+Chronometer*	ch		= nullptr;
 
 int main(int argc, char** argv)
 {
@@ -90,25 +91,28 @@ int main(int argc, char** argv)
 	 *   4. Check for events.
 	 *
 	 * The loop exits when a EOF is received from the terminal. */
-	Chronometer ch;
+	ch = new Chronometer();
 	terminal->SendString(options->toBeRun);
 	while(terminal->Active())
 	{
-		ch.Next("terminal output");
+		ch->Next("terminal output");
 		terminal->Output();
-		ch.Next("terminal input");
+		ch->Next("terminal input");
 		terminal->Input();
-		ch.Next("framebuffer draw chars");
+		ch->Next("framebuffer draw chars");
 		framebuffer->DrawChars();
-		ch.Next("screen update");
+		//ch->Next("screen update");
 		screen->Update();
-		ch.Next("charmatrix check blink");
+		ch->Next("charmatrix check blink");
 		cm->CheckForBlink();
-		ch.Next("screen check events");
+		ch->Next("screen check events");
 		screen->CheckEvents();
 	}
+	if(options->debug_terminal)
+		ch->Report();
 
 	/* Clean up. */
+	delete ch;
 	delete audio;
 	delete renderer;
 	delete screen;
