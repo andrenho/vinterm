@@ -13,7 +13,7 @@ using namespace libconfig;
 
 Options::Options(const int argc, char** const argv) 
 	: debug_terminal(false), audio_disabled(false), fullscreen(false),
-	  blink_speed(500), flashing_speed(100)
+	  renderer("monochrome"), blink_speed(500), flashing_speed(100)
 {
 	ReadConfigFile();
 	ParseArguments(argc, argv);
@@ -59,6 +59,7 @@ Options::ReadConfigFile()
 	// read data
 	cfg.lookupValue("no_audio", audio_disabled);
 	cfg.lookupValue("fullscreen", fullscreen);
+	cfg.lookupValue("renderer", renderer);
 }
 
 
@@ -75,6 +76,9 @@ Options::WriteConfigFile()
 		return;
 	}
 
+	fprintf(f, "# graphic renderer (monochrome, simple)\n");
+	fprintf(f, "fullscreen = %s\n", renderer);
+	fprintf(f, "\n");
 	fprintf(f, "# disable audible beep\n");
 	fprintf(f, "no_audio = %s\n", audio_disabled ? "true" : "false");
 	fprintf(f, "\n");

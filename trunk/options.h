@@ -15,6 +15,7 @@ public:
 	bool debug_terminal;
 	bool audio_disabled;
 	bool fullscreen;
+	string renderer;
 	string toBeRun;
 	string CurrentEncoding;
 	const uint32_t blink_speed, flashing_speed;
