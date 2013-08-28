@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "graphic/framebuffer.h"
+
 #define P(sf,x,y) *((Uint8*)(sf)->pixels + (y)*(sf)->pitch + (x))
 
 FontBMP::FontBMP(string filename, int w, int h, int chars_per_row, 
@@ -36,14 +38,22 @@ FontBMP::DrawChar(uint32_t ch, uint8_t* pixels, int x, int y, int pitch,
 	for(int xx=0; xx<w; xx++)
 		for(int yy=0; yy<h; yy++)
 		{
+			int p = (x+xx)+(y+yy)*pitch;
+			if(p > framebuffer->W() * framebuffer->H())
+				break;
 			if(P(sf, ch_x+xx, ch_y+yy) == foreground)
-				pixels[(x+xx)+(y+yy)*pitch] = fg_color;
+				pixels[p] = fg_color;
 			else
-				pixels[(x+xx)+(y+yy)*pitch] = bg_color;
+				pixels[p] = bg_color;
 		}
 	if(underline)
 		for(int xx=0; xx<w; xx++)
-			pixels[(x+xx)+(y+h-1)*pitch] = fg_color;
+		{
+			int p = (x+xx)+(y+h-1)*pitch;
+			if(p > framebuffer->W() * framebuffer->H())
+				break;
+			pixels[p] = fg_color;
+		}
 }
 
 

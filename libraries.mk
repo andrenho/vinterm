@@ -26,3 +26,6 @@ ifeq (${CONFIG},0)
 else
   $(warning IMPORTANT: The libconfig++ library was not detected in the system. The installation will continue but the audible beep in the terminal will not be avaliable)
 endif
+
+# X11 libraries
+LDFLAGS += -lX11

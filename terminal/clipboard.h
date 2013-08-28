@@ -4,10 +4,12 @@
 #include <string>
 using namespace std;
 
+#include "SDL2/SDL.h"
+
 class Clipboard
 {
 public:
-	void ConnectToWM();
+	void ConnectToWM(SDL_Window* w);
 	string Read() const;
 	void Store(string s);
 	void Respond() const;

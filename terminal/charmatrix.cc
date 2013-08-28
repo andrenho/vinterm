@@ -5,6 +5,7 @@
 #include <utility>
 
 #include "options.h"
+#include "terminal/clipboard.h"
 
 CharMatrix::CharMatrix()
 	: dirty(new set<int>), InsertMode(false), CursorVisibility(VISIBLE), 
@@ -543,6 +544,8 @@ CharMatrix::SetEndSelection(int x, int y)
 	{
 		int st = min(selection.start, min(old_start, min(selection.end, old_end)));
 		int en = max(selection.start, max(old_start, max(selection.end, old_end)));
+		if(st < 0)
+			st = 0;
 
 		// update screen
 		for(int i=st; i<=en; ++i)
@@ -563,7 +566,7 @@ CharMatrix::SetEndSelection(int x, int y)
 				selection += "\n";
 			}
 		}
-		clipboard.Store(selection);
+		clipboard->Store(selection);
 	}
 }
 

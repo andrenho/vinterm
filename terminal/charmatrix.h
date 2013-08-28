@@ -10,7 +10,6 @@ using namespace std;
 #include "terminal/backtrack.h"
 #include "terminal/blink.h"
 #include "terminal/charattr.h"
-#include "terminal/clipboard.h"
 
 typedef enum { UP, DOWN, LEFT, RIGHT } Direction;
 typedef enum { 
@@ -111,7 +110,6 @@ public:
 	int InsertMode;
 	CrsVisibility CursorVisibility;
 	Blink* blink;
-	Clipboard clipboard;
 
 private:
 	void ValidateCursorPosition();

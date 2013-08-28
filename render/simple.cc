@@ -48,12 +48,22 @@ Simple::Render() const
 
 	ch->Next("render lock texture");
 	SDL_LockTexture(texture, NULL, (void**)&pixels, &pitch);
+	
 	ch->Next("render update texture");
-	for(int i=0; i<w*h; i++)
+	for(Rectangle r : framebuffer->rects)
 	{
-		Color p = framebuffer->palette[framebuffer->Pixels()[i]];
-		pixels[i] = (p.r << 16) + (p.g << 8) + p.b;
+		for(int x=r.x; x<(r.x+r.w); x++)
+			for(int y=r.y; y<(r.y+r.h); y++)
+			{
+				if(x > framebuffer->W() || y > framebuffer->H())
+					break;
+				int i = x + (y * w);
+				Color p = framebuffer->palette[framebuffer->Pixels()[i]];
+				pixels[i] = (p.r << 16) + (p.g << 8) + p.b;
+			}
 	}
+	framebuffer->rects.clear();
+
 	ch->Next("render unlock texture");
 	SDL_UnlockTexture(texture);
 
@@ -69,5 +79,6 @@ Simple::Render() const
 void
 Simple::CharPosition(int mx, int my, int& x, int& y) const
 {
-	x = y = 0; // TODO
+	x = mx / font->CharWidth();
+	y = my / font->CharHeight();
 }

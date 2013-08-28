@@ -8,6 +8,7 @@ using namespace std;
 #include "terminal/pty.h"
 #include "terminal/vinterm.h"
 #include "terminal/mouse.h"
+#include "terminal/clipboard.h"
 #include "graphic/font.h"
 #include "graphic/framebuffer.h"
 #include "graphic/screen.h"
@@ -25,6 +26,7 @@ Framebuffer*	framebuffer	= nullptr;
 Screen*		screen 		= nullptr;
 Renderer*	renderer 	= nullptr;
 Audio*		audio 		= nullptr;
+Clipboard*	clipboard	= nullptr;
 Chronometer*	ch		= nullptr;
 
 int main(int argc, char** argv)
@@ -80,7 +82,8 @@ int main(int argc, char** argv)
 	terminal->SetEncoding(font->Encoding());
 
 	/* Initialize clipboard. */
-	cm->clipboard.ConnectToWM();
+	clipboard = new Clipboard();
+	clipboard->ConnectToWM(screen->SDLWindow());
 
 	/* The main loop is very simple. It executes these steps continually:
 	 *
@@ -107,6 +110,8 @@ int main(int argc, char** argv)
 		cm->CheckForBlink();
 		ch->Next("screen check events");
 		screen->CheckEvents();
+		ch->Next("idle");
+		screen->WaitNextFrame();
 	}
 	if(options->debug_terminal)
 		ch->Report();

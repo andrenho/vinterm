@@ -12,7 +12,7 @@ using namespace std;
 using namespace libconfig;
 
 Options::Options(const int argc, char** const argv) 
-	: debug_terminal(false), audio_disabled(false),
+	: debug_terminal(false), audio_disabled(false), fullscreen(false),
 	  blink_speed(500), flashing_speed(100)
 {
 	ReadConfigFile();
@@ -58,6 +58,7 @@ Options::ReadConfigFile()
 
 	// read data
 	cfg.lookupValue("no_audio", audio_disabled);
+	cfg.lookupValue("fullscreen", fullscreen);
 }
 
 
@@ -76,6 +77,9 @@ Options::WriteConfigFile()
 
 	fprintf(f, "# disable audible beep\n");
 	fprintf(f, "no_audio = %s\n", audio_disabled ? "true" : "false");
+	fprintf(f, "\n");
+	fprintf(f, "# initialize in full screen\n");
+	fprintf(f, "fullscreen = %s\n", fullscreen ? "true" : "false");
 
 	fclose(f);
 }
@@ -90,6 +94,7 @@ Options::ParseArguments(int argc, char* argv[])
 		int idx(0);
 		static struct option long_opt[] = {
 			{ "no-audio", no_argument,       0, 'a' },
+			{ "fullscreen", no_argument,     0, 'f' },
 #ifdef DEBUG
 			{ "debug-terminal", no_argument, 0, '@' },
 #endif
@@ -98,7 +103,7 @@ Options::ParseArguments(int argc, char* argv[])
 			{ 0,          0,                 0, 0 }
 		};
 
-		if((c = getopt_long(argc, argv, ":a@", long_opt, &idx)) == -1)
+		if((c = getopt_long(argc, argv, ":af@", long_opt, &idx)) == -1)
 			break;
 
 		if(c == -1)
@@ -116,6 +121,9 @@ Options::ParseArguments(int argc, char* argv[])
 			break;
 		case 'a':
 			audio_disabled = true;
+			break;
+		case 'f':
+			fullscreen = true;
 			break;
 		case '@':
 #ifdef DEBUG
@@ -168,6 +176,7 @@ Options::Help(int status)
 	fprintf(f, "\n");
 	fprintf(f, "Options:\n");
 	fprintf(f, "  -a, --no-audio       disable audible beep\n");
+	fprintf(f, "  -f, --fullscreen     initialize in full screen\n");
 	fprintf(f, "      --help           display this help and exit\n");
 	fprintf(f, "      --version        display version information and exit\n");
 	fprintf(f, "\n");
@@ -176,7 +185,7 @@ Options::Help(int status)
 	fprintf(f, "\n");
 	fprintf(f, "Keys:\n");
 	fprintf(f, "  CTRL+F11             full screen\n");
-	fprintf(f, "  CTRL+SHIFT+F11       full screen with 80 columns\n");
+	//fprintf(f, "  CTRL+SHIFT+F11       full screen with 80 columns\n");
 	fprintf(f, "\n");
 	fprintf(f, "Report bugs to: <http://code.google.com/p/vinterm/issues/>\n");
 	fprintf(f, "`Vintage Terminal` home page: <http://code.google.com/p/vinterm/>\n");

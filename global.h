@@ -11,6 +11,7 @@ class Framebuffer;
 class Screen;
 class Renderer;
 class Audio;
+class Clipboard;
 class Chronometer;
 
 extern Options* 	options;
@@ -23,6 +24,7 @@ extern Framebuffer*	framebuffer;
 extern Screen*		screen;
 extern Renderer*	renderer;
 extern Audio*		audio;
+extern Clipboard*	clipboard;
 extern Chronometer*	ch;
 
 #endif
