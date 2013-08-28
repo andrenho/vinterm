@@ -3,14 +3,17 @@
 #include <iostream>
 
 #include "terminal/charmatrix.h"
+#include "terminal/clipboard.h"
 #include "terminal/keyqueue.h"
+#include "terminal/mouse.h"
 #include "render/renderer.h"
+#include "options.h"
 
 Screen::Screen()
-	: win(nullptr), ren(nullptr)
+	: win(nullptr), ren(nullptr), last_frame(0), full_screen(false)
 {
 	// initialize SDL
-	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
+	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) == -1)
 	{
 		cerr << "error: could not initialize SDL2" << endl;
 		throw SDL_GetError();
@@ -20,12 +23,13 @@ Screen::Screen()
 	win = SDL_CreateWindow("vinterm " VERSION,
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			640, 480, // TODO - calculate font size
-			SDL_WINDOW_SHOWN);
+			SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE);
 	if(win == nullptr)
 	{
 		cerr << "error: could not initialize SDL2 window" << endl;
 		throw SDL_GetError();
 	}
+	SDL_EnableScreenSaver();
 
 	// create renderer
 	ren = SDL_CreateRenderer(win, -1, 
@@ -42,7 +46,10 @@ Screen::Screen()
 	keyQueue.push_back(RESIZE);
 	keyQueue.push_back(w);
 	keyQueue.push_back(h);
-	keyQueue.push_back(0);
+	if(options->fullscreen)
+		keyQueue.push_back(1);
+	else
+		keyQueue.push_back(0);
 
 	// clear screen
 	SDL_RenderClear(ren);
@@ -62,8 +69,21 @@ Screen::~Screen()
 
 
 void
-Screen::Resize(int new_w, int new_h, int full_screen, int& ts_w, int& ts_h)
+Screen::Resize(int new_w, int new_h, int fs, int& ts_w, int& ts_h)
 {
+	if(fs)
+	{
+		if(full_screen)
+		{
+			if(!SDL_SetWindowFullscreen(win, 0))
+				full_screen = false;
+		}
+		else
+		{
+			if(!SDL_SetWindowFullscreen(win, SDL_WINDOW_FULLSCREEN_DESKTOP))
+				full_screen = true;
+		}
+	}
 	renderer->Resize(new_w, new_h, ts_w, ts_h);
 }
 
@@ -79,6 +99,9 @@ Screen::Update()
 	const char* title = SDL_GetWindowTitle(win);
 	if(strcmp(title, new_title.c_str()) != 0)
 		SDL_SetWindowTitle(win, new_title.c_str());
+
+	// clipboard management
+	clipboard->Respond();
 }
 
 
@@ -104,14 +127,14 @@ Screen::CheckEvents() const
 				keyQueue.push_back(e.text.text[i++]);
 			break;
 
-		/*
 		case SDL_MOUSEBUTTONDOWN:
 		case SDL_MOUSEBUTTONUP:
 			SDL_ShowCursor(SDL_ENABLE);
 			if(!mouse->Captured() && e.button.button == 2  // paste
 					&& e.type == SDL_MOUSEBUTTONDOWN) 
 			{
-				for(char c : fb.clipboard.Read())
+				cout << clipboard->Read() << endl;
+				for(char c : clipboard->Read())
 					keyQueue.push_back(c);
 			}
 			else   // send mouse event to application
@@ -119,7 +142,7 @@ Screen::CheckEvents() const
 				renderer->CharPosition(e.button.x, e.button.y, x, y);
 				if(x >= 0 && y >= 0)
 				{
-					SDLMod mod = SDL_GetModState();
+					SDL_Keymod mod = SDL_GetModState();
 					mouse->AddButtonPressToQueue(
 							e.type == SDL_MOUSEBUTTONDOWN,
 							x, y, e.button.button,
@@ -133,12 +156,13 @@ Screen::CheckEvents() const
 		case SDL_MOUSEMOTION:
 			SDL_ShowCursor(SDL_ENABLE);
 			state = SDL_GetMouseState(NULL, NULL);
-			if(state & (SDL_BUTTON(1) | SDL_BUTTON(2) | SDL_BUTTON(3)))
+			if(state & (SDL_BUTTON(1)))
 			{
 				renderer->CharPosition(e.motion.x, e.motion.y, x, y);
-				mouse->Drag(x, y, state);
+				if(x >= 0 && y >= 0)
+					mouse->Drag(x, y, state);
 			}
-			break; */
+			break;
 
 		case SDL_WINDOWEVENT:
 			if(e.window.event == SDL_WINDOWEVENT_RESIZED)
@@ -278,4 +302,16 @@ Screen::KeyEvent(SDL_KeyboardEvent key) const
 	case SDLK_END:
 		keyQueue.push_back(END); break;
 	}
+}
+
+
+void
+Screen::WaitNextFrame()
+{
+	if(last_frame != 0)
+	{
+		if(SDL_GetTicks() < last_frame + (1000 / FPS))
+			SDL_Delay(last_frame + (1000 / FPS) - SDL_GetTicks());
+	}
+	last_frame = SDL_GetTicks();
 }

@@ -1,3 +1,8 @@
+Version 1.0.0
+-------------
+  - Graphic engine completely rewritten, now using SDL2.
+  - Added a full screen option (-f)
+
 Version 0.5.0
 -------------
   - Mouse support for applications

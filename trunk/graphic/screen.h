@@ -9,6 +9,8 @@ using namespace std;
 
 #include "SDL2/SDL.h"
 
+#define FPS 50
+
 class Screen
 {
 public:
@@ -20,12 +22,18 @@ public:
 			int& ts_w, int& ts_h);
 	void CheckEvents() const;
 	SDL_Renderer* GLRenderer() const { return ren; }
+	void WaitNextFrame();
+
+	SDL_Window* SDLWindow() const { return win; } 
 
 private:
 	void KeyEvent(SDL_KeyboardEvent key) const;
 
 	SDL_Window* win;
 	SDL_Renderer* ren;
+
+	uint32_t last_frame;
+	bool full_screen;
 };
 
 #endif

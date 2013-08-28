@@ -12,8 +12,8 @@ Framebuffer::Framebuffer()
 {
 	for(int i=0; i<256; i++)
 		palette[i] = { 0, 0, 0 };
-	palette[1] = { 50, 50, 50 };
-	palette[2] = { 100, 100, 100 };
+	palette[1] = { 70, 70, 70 };
+	palette[2] = { 120, 120, 120 };
 	palette[255] = { 255, 255, 255 };
 }
 
@@ -37,6 +37,7 @@ Framebuffer::Resize(int w, int h, int ts_w, int ts_h)
 	pixels = new uint8_t[w*h];
 	for(int i=0; i<(w*h); i++)
 		pixels[i] = 255;
+	rects.push_back(Rectangle(0, 0, w, h));
 }
 
 
@@ -91,8 +92,8 @@ Framebuffer::DrawChars()
 				attr.Underline);
 
 		// register char location for later update
-		// TODO - rects.push_back(r);
-
+		rects.push_back(Rectangle(xx, yy, font->CharWidth(), 
+					font->CharHeight()));
 	}
 	cm->dirty->clear();
 }
