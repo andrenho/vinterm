@@ -73,7 +73,15 @@ int main(int argc, char** argv)
 	screen = new Screen();
 
 	/* Create a renderer. */
-	renderer = new Simple();
+	try
+	{
+		renderer = options->InitializeRenderer();
+	} 
+	catch(string s)
+	{
+		cerr << s << endl;
+		return 1;
+	}
 
 	/* Initialize audio. */
 	audio = new Audio();

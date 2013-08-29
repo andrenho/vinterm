@@ -77,7 +77,7 @@ Options::WriteConfigFile()
 	}
 
 	fprintf(f, "# graphic renderer (monochrome, simple)\n");
-	fprintf(f, "fullscreen = %s\n", renderer);
+	fprintf(f, "fullscreen = %s\n", renderer.c_str());
 	fprintf(f, "\n");
 	fprintf(f, "# disable audible beep\n");
 	fprintf(f, "no_audio = %s\n", audio_disabled ? "true" : "false");
@@ -99,6 +99,7 @@ Options::ParseArguments(int argc, char* argv[])
 		static struct option long_opt[] = {
 			{ "no-audio", no_argument,       0, 'a' },
 			{ "fullscreen", no_argument,     0, 'f' },
+			{ "renderer", required_argument, 0, 'r' },
 #ifdef DEBUG
 			{ "debug-terminal", no_argument, 0, '@' },
 #endif
@@ -107,7 +108,7 @@ Options::ParseArguments(int argc, char* argv[])
 			{ 0,          0,                 0, 0 }
 		};
 
-		if((c = getopt_long(argc, argv, ":af@", long_opt, &idx)) == -1)
+		if((c = getopt_long(argc, argv, "r:af@", long_opt, &idx)) == -1)
 			break;
 
 		if(c == -1)
@@ -136,6 +137,9 @@ Options::ParseArguments(int argc, char* argv[])
 			fprintf(stderr, "vinterm wasn't compiled with debugging	information.\n");
 			exit(1);
 #endif
+			break;
+		case 'r':
+			renderer = optarg;
 			break;
 		case 'v':
 			Version();
@@ -181,6 +185,7 @@ Options::Help(int status)
 	fprintf(f, "Options:\n");
 	fprintf(f, "  -a, --no-audio       disable audible beep\n");
 	fprintf(f, "  -f, --fullscreen     initialize in full screen\n");
+	fprintf(f, "  -r, --renderer       chose a renderer\n");
 	fprintf(f, "      --help           display this help and exit\n");
 	fprintf(f, "      --version        display version information and exit\n");
 	fprintf(f, "\n");
@@ -208,4 +213,19 @@ Options::Version()
 	printf("There is NO WARRANTY, to the extent permitted by law.\n");
 
 	exit(EXIT_SUCCESS);
+}
+
+
+#include "render/simple.h"
+#include "render/monochrome.h"
+
+Renderer* 
+Options::InitializeRenderer() const
+{
+	if(renderer == "simple")
+		return new Simple();
+	else if(renderer == "monochrome")
+		return new Monochrome();
+	else
+		throw string("invalid renderer (supported: simple, monochrome)");
 }

@@ -6,11 +6,15 @@
 #include <string>
 using namespace std;
 
+class Renderer;
+
 class Options
 {
 public:
 	Options(const int argc, char** const argv);
 	~Options();
+
+	Renderer* InitializeRenderer() const;
 
 	bool debug_terminal;
 	bool audio_disabled;
