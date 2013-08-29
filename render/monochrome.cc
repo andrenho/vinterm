@@ -21,6 +21,7 @@ Monochrome::~Monochrome()
 void 
 Monochrome::Resize(int scr_w, int scr_h, int& ts_w, int& ts_h) const
 {
+	ts_w = ts_h = 10; // TODO
 }
 
 
