@@ -1,1 +1,4 @@
 http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
+
+Drawing lines:
+http://artgrammer.blogspot.com.br/2011/05/drawing-nearly-perfect-2d-line-segments.html
