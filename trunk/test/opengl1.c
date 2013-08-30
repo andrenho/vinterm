@@ -1,5 +1,7 @@
 // gcc -o opengl1 opengl1.c `sdl2-config --cflags --libs` -lGL && ./opengl1
 
+// http://duriansoftware.com/joe/An-intro-to-modern-OpenGL.-Table-of-Contents.html
+
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_opengl.h"
 
@@ -20,7 +22,7 @@ static const GLfloat g_vertex_buffer_data[] = {
 static const GLushort g_element_buffer_data[] = { 0, 1, 2, 3 };
 
 
-static GLuint makebuffer(GLenum target, const void* buffer_data, GLsizei buffer_size)
+static GLuint make_buffer(GLenum target, const void* buffer_data, GLsizei buffer_size)
 {
 	GLuint buffer;
 	glGenBuffers(1, &buffer);
@@ -43,10 +45,14 @@ static int make_resources()
 static GLuint make_texture(const char* filename)
 {
 	GLuint texture;
-	/*int width, height;
-	void* pixels = read_tga(filename, &width, &height);*/
+	SDL_Surface* sf = SDL_LoadBMP(filename);
+	void* pixels = sf->pixels;
 	if(!pixels)
 		return 0;
+	int width = sf->w, height = sf->h;
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 }
 
 
